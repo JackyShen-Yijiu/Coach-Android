@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.blackcat.coach.activities.MallActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/mall_top_headpic_im"
+        android:layout_width="match_parent"
+        android:layout_height="120dp">
+
+
+        <com.blackcat.coach.widgets.AutoScrollViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.blackcat.coach.widgets.AutoScrollViewPager>
+
+        <com.viewpagerindicator.LinePageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white_grey"
+            android:padding="5dp"
+            app:lineWidth="18dp"
+            app:selectedColor="@color/maintab_text_selected"
+            app:strokeWidth="4dp"
+            app:unselectedColor="@color/maintab_text_normal" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/mall_listview"
+        style="@style/ListViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never" />
+</LinearLayout>

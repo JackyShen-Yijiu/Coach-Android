@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_wallet"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="53dp"
+            android:text="我的零钱"
+            android:textColor="#ffffff"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/my_wallet_change_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="14dp"
+            android:text="0"
+            android:textColor="#ffffff"
+            android:textSize="65dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="29dp">
+
+        <TextView
+            android:id="@+id/my_wallet_show_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f7f9fb"
+            android:gravity="center_vertical"
+            android:paddingLeft="15dp"
+            android:text="@string/deal_detail"
+            android:textColor="#333333"
+            android:textSize="12dp" />
+
+        <ImageView
+            android:id="@+id/my_wallet_show_im"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/ic_arrow_down" />
+    </RelativeLayout>
+
+    <com.blackcat.coach.widgets.LoadMoreListView
+        android:id="@+id/my_wallet_listview"
+        style="@style/ListViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#d5d5d5"
+        android:contentDescription="@string/app_name" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f7f9fb"
+        android:orientation="horizontal"
+        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/my_invit_code"
+            android:textColor="#999999"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/my_wallet_invit_code_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ff6633"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:background="#f7f9fb"
+        android:orientation="horizontal"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+
+        <Button
+            android:id="@+id/my_wallet_invite_btn"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_yellow"
+            android:text="@string/invite_friends"
+            android:textColor="@drawable/btn_text_bg_yellow"
+            android:textSize="15dp" />
+
+        <Button
+            android:id="@+id/my_wallet_change_btn"
+            android:layout_width="0dp"
+            android:layout_height="44dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:background="@drawable/btn_bg_yellow"
+            android:text="@string/exchange_commodity"
+            android:textColor="@drawable/btn_text_bg_yellow"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+</LinearLayout>

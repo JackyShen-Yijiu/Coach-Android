@@ -1,0 +1,308 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white_pure"
+    tools:context="com.blackcat.coach.activities.ChatActivity">
+
+    <include layout="@layout/layout_toolbar"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/tv_subject"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginTop="@dimen/padding_10"
+            android:text="科目二路考试训练"
+            android:textSize="16sp"
+            android:textColor="@color/text_333"/>
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginTop="@dimen/padding_6"
+            android:text="2015年7月2日 13:00-18:00"
+            android:textSize="14sp"
+            android:textColor="@color/text_999"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/chat_swipe_layout"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent">
+
+            <ListView
+                android:id="@+id/lv_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:cacheColorHint="#00000000"
+                android:divider="@null"
+                android:dividerHeight="5dp"
+                android:listSelector="#00000000"
+                android:scrollbarStyle="outsideOverlay"
+                android:transcriptMode="normal" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_recording_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/recording_hint_bg"
+            android:padding="10dp"
+            android:visibility="invisible" >
+
+            <ImageView
+                android:id="@+id/iv_mic_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/record_animate_01" />
+
+            <TextView
+                android:id="@+id/tv_recording_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_mic_image"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:padding="2dp"
+                android:text="@string/str_move_up_cancel"
+                android:textSize="10sp" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/split_line_height"
+        android:background="#d5d5d5"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btn_mod_voice"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:background="@drawable/chatting_setmode_voice_btn"
+                android:layout_marginTop="9dp"
+                android:visibility="visible"/>
+            <Button
+                android:id="@+id/btn_mod_keyboard"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:background="@drawable/chatting_setmode_keyboard_btn"
+                android:layout_marginTop="9dp"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/ll_press_to_speak"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_press_speak"
+                    android:layout_width="match_parent"
+                    android:layout_height="31dp"
+                    android:layout_marginLeft="@dimen/padding_4"
+                    android:text="@string/str_push_speak"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:gravity="center"
+                    android:background="@drawable/send_et_bg"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_send_txt_msg"
+                android:layout_width="0dp"
+                android:layout_height="49dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/ev_input"
+                    android:layout_width="0dp"
+                    android:layout_height="31dp"
+                    android:layout_marginLeft="@dimen/padding_4"
+                    android:layout_marginTop="9dp"
+                    android:layout_weight="1"
+                    android:textColor="@color/caldroid_333"
+                    android:textSize="14sp"
+                    android:background="@drawable/send_et_bg"
+                    android:paddingLeft="@dimen/padding_left"
+                    android:paddingRight="@dimen/padding_left"
+                    />
+
+
+            </LinearLayout>
+            <Button
+                android:id="@+id/btn_send"
+                android:layout_width="60dp"
+                android:layout_height="31dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="@dimen/padding_left"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/send_btn_bg"
+                android:text="发送"
+                android:textColor="@color/white_pure"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btn_more"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="@dimen/padding_left"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/type_select_btn"
+                android:visibility="visible"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_btn_container"
+            android:layout_width="match_parent"
+            android:layout_height="153dp"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="6dp"
+            android:weightSum="4"
+            android:visibility="gone"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="6dp"
+                android:weightSum="2" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp">
+
+                    <RelativeLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        >
+
+                        <ImageView
+                            android:id="@+id/iv_send_picture1"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/chat_image_selector"
+                            android:clickable="true"
+                            android:scaleType="fitCenter" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="图片"
+                        android:textColor="#727171" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp">
+
+                    <RelativeLayout
+                        android:layout_width="80dp"
+                        android:layout_height="80dp" >
+
+                        <ImageView
+                            android:id="@+id/iv_take_picture"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/chat_takepic_selector"
+                            android:clickable="true"
+                            android:scaleType="fitCenter" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="@string/attach_take_pic"
+                        android:textColor="#727171" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <RelativeLayout
+                        android:layout_width="64dp"
+                        android:layout_height="64dp" >
+
+                        <ImageView
+                            android:id="@+id/iv_send_file"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/chat_file_selector"
+                            android:clickable="true"
+                            android:scaleType="fitCenter" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="文件"
+                        android:textColor="#727171" />
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

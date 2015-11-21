@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingTop="23dp">
+
+    <TextView
+        android:id="@+id/tv_timestamp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="2015年6月28日"
+        android:textColor="#BBBBBB"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="@dimen/size_avatar"
+            android:layout_height="@dimen/size_avatar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="15dp"
+            android:background="@mipmap/ic_avatar_small"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/tv_chatcontent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/iv_avatar"
+            android:autoLink="web"
+            android:background="@drawable/chat_from_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="left|center"
+            android:lineSpacingExtra="2dp"
+            android:maxWidth="210.0dip"
+            android:minHeight="36dp"
+            android:text="你好，有什么，能帮助你的吗？"
+            android:textColor="#333333"
+            android:textSize="15sp" />
+
+        <!--<TextView
+            android:id="@+id/tv_userid"
+            style="@style/chat_text_name_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@id/tv_chatcontent"
+            android:layout_below="@id/iv_userhead"/>-->
+    </RelativeLayout>
+
+
+</LinearLayout>

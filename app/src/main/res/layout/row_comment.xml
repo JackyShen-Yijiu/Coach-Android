@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/sl_default_background"
+    android:padding="15dp">
+
+    <ImageView
+        android:id="@+id/iv_cmt_avatar"
+        android:layout_width="@dimen/comment_avatar"
+        android:layout_height="@dimen/comment_avatar"
+        android:layout_marginRight="12dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_avatar_small" />
+
+    <TextView
+        android:id="@+id/tv_cmt_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/iv_cmt_avatar"
+        android:singleLine="true"
+        android:textColor="#333333"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_cmt_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:singleLine="true"
+        android:textColor="#999999"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_cmt_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_cmt_name"
+        android:layout_marginTop="12dp"
+        android:layout_toRightOf="@+id/iv_cmt_avatar"
+        android:singleLine="true"
+        android:textColor="#333333"
+        android:textSize="14sp" />
+
+</RelativeLayout>

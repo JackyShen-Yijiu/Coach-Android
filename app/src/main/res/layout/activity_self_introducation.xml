@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.blackcat.coach.activities.SelfIntroducationActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <EditText
+        android:id="@+id/et_self_intro"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/padding_10"
+        android:background="@drawable/background_border_edit"
+        android:gravity="top|left"
+        android:hint="@string/str_self_intro"
+        android:paddingBottom="@dimen/padding_14"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_left"
+        android:paddingTop="@dimen/padding_14"
+        android:singleLine="false"
+        android:textColor="@color/maintab_text_normal"
+        android:textSize="@dimen/profile_text_size" />
+
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="15dp"
+        android:background="@color/blue"
+        android:text="@string/str_submit"
+        android:textColor="@color/white_pure"
+        android:textSize="16sp" />
+
+</LinearLayout>

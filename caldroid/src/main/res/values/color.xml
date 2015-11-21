@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="caldroid_white">#FFFFFF</color>
+    <color name="caldroid_black">#000000</color>
+    <color name="caldroid_transparent">#00000000</color>
+    <!-- For settings framework -->
+    <color name="caldroid_lighter_gray">#ddd</color>
+    <color name="caldroid_gray">#CCC</color>
+    <color name="caldroid_darker_gray">#CCCCCC</color>
+    <color name="caldroid_middle_gray">#333333</color>
+    <!-- A light Holo shade of blue -->
+    <color name="caldroid_holo_blue_light">#2F7CEF</color>
+    <!-- A dark Holo shade of blue -->
+    <color name="caldroid_holo_blue_dark">#ff0099cc</color>
+    <!-- A really bright Holo shade of blue -->
+    <color name="caldroid_sky_blue">#FFA3E8F7</color>
+
+    <color name="caldroid_333">#333</color>
+    <color name="caldroid_555">#555</color>
+    <color name="caldroid_light_red">#ff7f7f</color>
+    <color name="caldroid_divider">#E6E6E6</color>
+
+    <color name="caldroid_bg_selected">#2F7CEF</color>
+</resources>

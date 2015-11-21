@@ -1,0 +1,112 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_pure"
+    android:orientation="vertical"
+    tools:context="com.blackcat.coach.activities.UploadCoachInfoActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <EditText
+        android:id="@+id/et_card"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="@dimen/activity_padding"
+        android:background="@drawable/background_border"
+        android:hint="@string/upload_id_card"
+        android:inputType="number"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="#999999"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_border"
+        android:hint="@string/upload_driver_name"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="#999999"
+        android:textSize="15sp" />
+
+    <RelativeLayout
+        android:id="@+id/rl_choose_school"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_border">
+
+        <TextView
+            android:id="@+id/tv_drive_school"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:singleLine="true"
+            android:text="@string/upload_driving_school"
+            android:textColor="#999999"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/ic_right" />
+    </RelativeLayout>
+
+
+    <EditText
+        android:id="@+id/et_drive_cert"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_border"
+        android:hint="@string/upload_driver_license"
+        android:inputType="number"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="#999999"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/et_coach_cert"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_border"
+        android:hint="@string/upload_coach_certificate"
+        android:inputType="number"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="#999999"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/btn_commit"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="20dp"
+        android:background="#2879f3"
+        android:text="@string/upload_submit_audit"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+</LinearLayout>

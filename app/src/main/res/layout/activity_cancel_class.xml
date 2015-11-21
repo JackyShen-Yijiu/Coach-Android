@@ -1,0 +1,100 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_pure"
+    android:orientation="vertical"
+    tools:context="com.blackcat.coach.activities.CancelClassActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_left"
+        android:layout_marginTop="@dimen/padding_19"
+        android:text="@string/str_cancel_reason"
+        android:textColor="@color/black_text"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/rg_cancel_reason"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="cancel_reason">
+
+        <RadioButton
+            android:id="@+id/rb_busy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginTop="18dp"
+            android:text="临时有事，无法参加"
+            android:textColor="@color/black_text"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/rb_ill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginTop="18dp"
+            android:text="身体抱恙"
+            android:textColor="@color/black_text"
+            android:textSize="14sp" />
+
+        <RadioButton
+            android:id="@+id/rb_other"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginTop="20dp"
+            android:text="其它"
+            android:textColor="@color/black_text"
+            android:textSize="14sp" />
+    </RadioGroup>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/split_line_color" />
+
+    <EditText
+        android:id="@+id/et_cancel_intro"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/padding_10"
+        android:background="@drawable/background_border_edit"
+        android:gravity="top|left"
+        android:hint="@string/str_cancel_intru"
+        android:paddingBottom="@dimen/padding_14"
+        android:paddingLeft="@dimen/padding_left"
+        android:paddingRight="@dimen/padding_left"
+        android:paddingTop="@dimen/padding_14"
+        android:singleLine="false"
+        android:textColor="@color/maintab_text_normal"
+        android:textSize="@dimen/profile_text_size" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_left"
+        android:layout_marginTop="@dimen/padding_19"
+        android:text="亲，多次取消会影响您的信用积分吆！"
+        android:textColor="#999999"
+        android:textSize="14dp" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="20dp"
+        android:background="@color/blue"
+        android:text="@string/str_submit"
+        android:textColor="@color/white_pure"
+        android:textSize="16sp" />
+</LinearLayout>

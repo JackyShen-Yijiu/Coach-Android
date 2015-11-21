@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.blackcat.coach.widgets.CheckableRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="71dp"
+    android:background="@drawable/sl_course_item"
+    android:padding="15dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tv_course_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_course_vip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:maxEms="18"
+            android:singleLine="true"
+            android:textColor="@color/text_999"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_course_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:singleLine="true"
+        android:textColor="@color/blue"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_course_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:singleLine="true"
+        android:textColor="#999999"
+        android:textSize="14sp" />
+</com.blackcat.coach.widgets.CheckableRelativeLayout>

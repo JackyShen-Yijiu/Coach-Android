@@ -1,0 +1,255 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:shSwitch="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.blackcat.coach.activities.SettingsActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/split_line_height"
+                android:layout_marginTop="10dp"
+                android:background="@color/split_line_color" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/info_item_height"
+                android:background="@drawable/sl_default_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/padding_left"
+                    android:text="@string/str_appointment"
+                    android:textColor="@color/profile_text_normal"
+                    android:textSize="@dimen/profile_text_size" />
+
+                <com.blackcat.coach.widgets.ShSwitchView
+                    android:id="@+id/sv_appointment"
+                    android:layout_width="45dip"
+                    android:layout_height="22dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padding_right"
+                    shSwitch:shadowSpace="0dp"
+                    shSwitch:tintColor="#2F7CEF" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:background="@color/split_line_color" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/info_item_height"
+                android:background="@drawable/sl_default_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/padding_left"
+                    android:text="@string/str_new_notice"
+                    android:textColor="@color/profile_text_normal"
+                    android:textSize="@dimen/profile_text_size" />
+
+                <com.blackcat.coach.widgets.ShSwitchView
+                    android:id="@+id/sv_new_notice"
+                    android:layout_width="45dip"
+                    android:layout_height="22dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padding_left"
+                    shSwitch:shadowSpace="0dip"
+                    shSwitch:tintColor="#2F7CEF" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:background="@color/split_line_color" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/info_item_height"
+                android:background="@drawable/sl_default_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/padding_left"
+                    android:text="@string/str_class_notice"
+                    android:textColor="@color/profile_text_normal"
+                    android:textSize="@dimen/profile_text_size" />
+
+                <com.blackcat.coach.widgets.ShSwitchView
+                    android:id="@+id/sv_class_notice"
+                    android:layout_width="45dip"
+                    android:layout_height="22dip"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padding_left"
+                    shSwitch:shadowSpace="0dip"
+                    shSwitch:tintColor="#2F7CEF" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/split_line_height"
+                android:background="@color/split_line_color" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/split_line_height"
+                android:layout_marginTop="10dp"
+                android:background="@color/split_line_color" />
+
+            <RelativeLayout
+                android:id="@+id/rl_about"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/info_item_height"
+                android:background="@drawable/sl_default_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/padding_left"
+                    android:text="@string/str_about_we"
+                    android:textColor="@color/profile_text_normal"
+                    android:textSize="@dimen/profile_text_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/detail_right_size"
+                    android:layout_height="@dimen/detail_right_size"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padding_left"
+                    android:background="@mipmap/ic_right" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:background="@color/split_line_color" />
+
+            <RelativeLayout
+                android:id="@+id/rl_rating"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/info_item_height"
+                android:background="@drawable/sl_default_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/padding_left"
+                    android:text="@string/str_go_score"
+                    android:textColor="@color/profile_text_normal"
+                    android:textSize="@dimen/profile_text_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/detail_right_size"
+                    android:layout_height="@dimen/detail_right_size"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padding_left"
+                    android:background="@mipmap/ic_right" />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:background="@color/split_line_color" />
+
+            <RelativeLayout
+                android:id="@+id/rl_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/info_item_height"
+                android:background="@drawable/sl_default_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/padding_left"
+                    android:text="@string/str_feedback"
+                    android:textColor="@color/profile_text_normal"
+                    android:textSize="@dimen/profile_text_size" />
+
+                <ImageView
+                    android:layout_width="@dimen/detail_right_size"
+                    android:layout_height="@dimen/detail_right_size"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padding_left"
+                    android:background="@mipmap/ic_right" />>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/split_line_height"
+                android:background="@color/split_line_color" />
+
+            <LinearLayout
+                android:id="@+id/ll_logout"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/sl_default_background"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/split_line_height"
+                    android:background="@color/split_line_color" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="退出登录"
+                    android:textColor="@color/text_333" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/split_line_height"
+                    android:background="@color/split_line_color" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

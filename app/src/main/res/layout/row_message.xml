@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/sl_default_background"
+    android:padding="15dp">
+
+    <RelativeLayout
+        android:id="@+id/avatar_container"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_alignParentLeft="true">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="12dp"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_reservation_avatar" />
+
+        <TextView
+            android:id="@+id/tv_unread_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/unread_count_bg"
+            android:gravity="center"
+            android:text="18"
+            android:textColor="@color/white_pure"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/avatar_container"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="课程预约消息"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:singleLine="true"
+            android:text="16个预约请求待处理"
+            android:textColor="#999999"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:singleLine="true"
+            android:text="周四"
+            android:textColor="#999999"
+            android:textSize="12sp" />
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

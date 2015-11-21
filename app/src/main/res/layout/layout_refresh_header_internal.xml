@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:padding="16dp" >
+
+    <LinearLayout
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center_horizontal"
+        android:minWidth="80dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/pull_fresh_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:minEms="4"
+            android:text="@string/pull_fresh_header_down"
+            android:textColor="@color/pull_refresh_time_color"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/pull_fresh_header_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/pull_refresh_time_color"
+            android:textSize="11sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/pull_fresh_header_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
+        android:layout_toLeftOf="@+id/text"
+        android:src="@mipmap/ic_pull_arrow"
+        android:contentDescription="@string/contentDescription" />
+
+    <ImageView
+        android:id="@+id/pull_fresh_header_anim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"
+        android:layout_toLeftOf="@+id/text"
+        android:src="@mipmap/ic_pull_refresh"
+        android:contentDescription="@string/contentDescription" />
+
+</RelativeLayout>

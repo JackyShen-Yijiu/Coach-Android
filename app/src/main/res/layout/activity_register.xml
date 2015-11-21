@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_pure"
+    android:orientation="vertical"
+    tools:context="com.blackcat.coach.activities.RegisterActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+
+    <EditText
+        android:id="@+id/et_phonenum"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="@dimen/activity_padding"
+        android:background="@drawable/background_border"
+        android:hint="@string/login_user_name"
+        android:inputType="phone"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="#999999"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/et_verification_code"
+            android:layout_width="202dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/background_border"
+            android:hint="@string/register_code"
+            android:inputType="number"
+            android:paddingLeft="15dp"
+            android:singleLine="true"
+            android:textColor="#999999"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_send_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_border_blue"
+            android:gravity="center"
+            android:text="@string/register_send_code"
+            android:textColor="@color/blue" />
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_border"
+        android:hint="@string/login_password"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="#999999"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/et_password2"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_border"
+        android:hint="@string/login_confirm_password"
+        android:inputType="textPassword"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="#999999"
+        android:textSize="15sp" />
+
+    <EditText
+        android:id="@+id/et_invite_code"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_border"
+        android:hint="@string/register_invite"
+        android:inputType="number"
+        android:paddingLeft="15dp"
+        android:singleLine="true"
+        android:textColor="#999999"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="20dp"
+        android:background="@color/blue"
+        android:text="@string/register"
+        android:textColor="@color/white_pure"
+        android:textSize="16sp" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="15dp"
+        android:text="@string/register_word"
+        android:textColor="#666666"
+        android:textSize="13sp" />
+
+
+</LinearLayout>

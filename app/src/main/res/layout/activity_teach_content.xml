@@ -1,0 +1,128 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_pure"
+    android:orientation="vertical"
+    tools:context="com.blackcat.coach.activities.TeachContentActivity">
+
+    <include layout="@layout/layout_toolbar"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+<RelativeLayout
+                android:id="@+id/rl_profile_header"
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:background="@drawable/sl_default_background"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/ic_system_msg_avatar" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_avatar"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="李文政"
+                        android:textColor="#333333"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tv_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="ID：309963423"
+                        android:textColor="#999999"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/split_line_height"
+                android:background="@color/split_line_color" />
+
+            <TextView
+                android:id="@+id/tv_subject_tile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:layout_marginTop="@dimen/padding_19"
+                android:text="科目三课程内容"
+                android:textColor="@color/black_text"
+                android:textSize="14sp"
+                />
+            <com.blackcat.coach.widgets.ExpandGridView
+                android:id="@+id/gv_class_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_20"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:layout_marginRight="@dimen/padding_left"
+                android:numColumns="2"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding_10"
+                android:background="@color/split_line_color" />
+
+            <EditText
+                android:id="@+id/et_teach_intro"
+                android:layout_width="match_parent"
+                android:layout_height="89dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/background_border_edit"
+                android:gravity="top|left"
+                android:hint="@string/str_other_content_intro"
+                android:paddingBottom="@dimen/padding_14"
+                android:paddingLeft="@dimen/padding_left"
+                android:paddingRight="@dimen/padding_left"
+                android:paddingTop="@dimen/padding_14"
+                android:singleLine="false"
+                android:textColor="@color/maintab_text_normal"
+                android:textSize="@dimen/profile_text_size" />
+
+            <Button
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_marginLeft="@dimen/activity_padding"
+                android:layout_marginRight="@dimen/activity_padding"
+                android:layout_marginTop="20dp"
+                android:background="@color/blue"
+                android:text="@string/str_submit_evaluation"
+                android:textColor="@color/white_pure"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:layout_marginTop="@dimen/padding_19"
+                android:textSize="14dp"
+                android:textColor="#999999"
+                android:text="评价有积分奖励吆.越用心的评价奖励越高哦！"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

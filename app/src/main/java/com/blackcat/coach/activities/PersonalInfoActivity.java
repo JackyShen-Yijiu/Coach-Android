@@ -1,0 +1,230 @@
+package com.blackcat.coach.activities;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.blackcat.coach.CarCoachApplication;
+import com.blackcat.coach.R;
+import com.blackcat.coach.dialogs.AsyncProgressDialog;
+import com.blackcat.coach.dialogs.BaseDialogWrapper;
+import com.blackcat.coach.imgs.UILHelper;
+import com.blackcat.coach.models.Session;
+import com.blackcat.coach.qiniu.PhotoUtil;
+import com.blackcat.coach.qiniu.QiniuUploadManager;
+import com.blackcat.coach.utils.ToastHelper;
+import com.nostra13.universalimageloader.core.ImageLoader;
+
+import java.io.File;
+
+public class PersonalInfoActivity extends BaseActivity implements View.OnClickListener {
+
+    private ImageView mIvAvatar;
+    private TextView  mTvIdCard, mTvName, mTvId;
+    private TextView  mTvPhone;
+    private TextView  mTvDriverLicense;
+    private TextView  mTvSeniority;
+    private TextView  mTvSeniorityId;
+    private TextView  mTvSex;
+    private TextView mTvIntroduction;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_personal_info);
+        configToolBar(R.mipmap.ic_back);
+        initViews();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        bindViewInfo();
+    }
+
+    private void initViews() {
+        findViewById(R.id.rl_avatar).setOnClickListener(this);
+        findViewById(R.id.rl_id_card).setOnClickListener(this);
+        findViewById(R.id.rl_modify_phone).setOnClickListener(this);
+        findViewById(R.id.rl_driving_license).setOnClickListener(this);
+        findViewById(R.id.rl_seniority).setOnClickListener(this);
+        findViewById(R.id.rl_coach_num).setOnClickListener(this);
+        findViewById(R.id.rl_gender).setOnClickListener(this);
+        findViewById(R.id.rl_self_intro).setOnClickListener(this);
+        mTvIdCard = (TextView)findViewById(R.id.tv_id_card);
+        mTvPhone = (TextView)findViewById(R.id.tv_phone);
+        mTvDriverLicense = (TextView)findViewById(R.id.tv_driver_license);
+        mTvSeniority = (TextView)findViewById(R.id.tv_seniority);
+        mTvSeniorityId = (TextView)findViewById(R.id.tv_coach_num);
+        mTvSex = (TextView)findViewById(R.id.tv_sex);
+        mTvSex.setOnClickListener(this);
+        mTvIntroduction = (TextView)findViewById(R.id.tv_self);
+
+        mTvName = (TextView) findViewById(R.id.tv_name);
+        mTvId = (TextView) findViewById(R.id.tv_id);
+        mTvName.setText(Session.getSession().name);
+        mTvId.setText(Session.getSession().displaycoachid);
+
+        mIvAvatar = (ImageView) findViewById(R.id.iv_avatar);
+        if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
+//            PicassoUtil.loadImage(this, mIvAvatar, Session.getSession().headportrait.originalpic, R.dimen.avatar_size, R.dimen.avatar_size, false, R.mipmap.ic_avatar_small);
+            UILHelper.loadImage(mIvAvatar, Session.getSession().headportrait.originalpic, false, R.mipmap.ic_avatar_small);
+        }
+    }
+
+    private void bindViewInfo() {
+        if (!TextUtils.isEmpty(Session.getSession().idcardnumber)) {
+            mTvIdCard.setText(Session.getSession().idcardnumber);
+        }
+        if (!TextUtils.isEmpty(Session.getSession().mobile)){
+            mTvPhone.setText(Session.getSession().mobile);
+        }
+        if (!TextUtils.isEmpty(Session.getSession().drivinglicensenumber)) {
+            mTvDriverLicense.setText(Session.getSession().drivinglicensenumber);
+        }
+        if (!TextUtils.isEmpty(Session.getSession().Seniority)) {
+            mTvSeniority.setText(Session.getSession().Seniority);
+        }
+        if (!TextUtils.isEmpty(Session.getSession().coachnumber)) {
+            mTvSeniorityId.setText(Session.getSession().coachnumber);
+        }
+
+        if (!TextUtils.isEmpty(Session.getSession().Gender)) {
+            mTvSex.setText(Session.getSession().Gender);
+        }
+
+        if (!TextUtils.isEmpty(Session.getSession().introduction)) {
+            mTvIntroduction.setText(Session.getSession().introduction);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        switch (id) {
+            case R.id.rl_self_intro:
+                startActivity(new Intent(this, SelfIntroducationActivity.class));
+                break;
+            case R.id.rl_modify_phone:
+                startActivity(new Intent(this, BindPhoneActivity.class));
+                break;
+            case R.id.rl_avatar:
+                if (mAvatarDialog == null) {
+                    mAvatarDialog = new BaseDialogWrapper(PersonalInfoActivity.this, getPhotoDialogView());
+                    mAvatarDialog.setFullWidth(true);
+                }
+                mAvatarDialog.setGravity(Gravity.BOTTOM);
+                mAvatarDialog.showDialog();
+                break;
+            case R.id.tv_take_photo:
+                mAvatarDialog.dismissDialog();
+                mPhotoFile = PhotoUtil.getPhotoFile(CarCoachApplication.getInstance());
+                startActivityForResult(PhotoUtil.getTakePickIntent(mPhotoFile), PhotoUtil.PICTRUE_FROM_CAMERA);
+                break;
+            case R.id.tv_choose_from_gallery:
+                mAvatarDialog.dismissDialog();
+                mPhotoFile = PhotoUtil.getPhotoFile(CarCoachApplication.getInstance());
+                Intent intent = new Intent(Intent.ACTION_PICK, null);
+                intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                startActivityForResult(intent, PhotoUtil.PICTRUE_FROM_GALLERY);
+                break;
+            case R.id.tv_choose_cancel:
+                mAvatarDialog.dismissDialog();
+                break;
+            case R.id.rl_id_card:
+                startActivity(new Intent(this, ModifyIdCardActivity.class));
+                break;
+            case R.id.rl_driving_license:
+                startActivity(new Intent(this,DrivingLicenseActivity.class));
+                break;
+            case R.id.rl_seniority:
+                startActivity(new Intent(this, ModifySeniorityActivity.class));
+                break;
+            case R.id.rl_coach_num:
+                startActivity(new Intent(this, ModifyCoachNumberActivity.class));
+                break;
+            case R.id.rl_gender:
+                startActivity(new Intent(this, ModifyGenderActivity.class));
+                break;
+            default:
+                break;
+        }
+
+    }
+
+    private File mPhotoFile;
+    private AsyncProgressDialog mDialog;
+    private BaseDialogWrapper mAvatarDialog;
+
+    private View getPhotoDialogView() {
+        View dialogView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.dialog_photo_picker, null);
+        dialogView.findViewById(R.id.tv_choose_cancel).setOnClickListener(this);
+        dialogView.findViewById(R.id.tv_take_photo).setOnClickListener(this);
+        dialogView.findViewById(R.id.tv_choose_from_gallery).setOnClickListener(this);
+        return dialogView;
+    }
+
+    private Uri mPhotoUri;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case PhotoUtil.PICTRUE_FROM_CAMERA:
+                // 拍好了照片 应该跳转
+                // TODO 判断照片有没有拍照
+                if (mPhotoFile != null && mPhotoFile.exists()) {
+                    mPhotoUri = Uri.fromFile(mPhotoFile);
+                    loadPhoto(mPhotoUri);
+                }
+                break;
+            case PhotoUtil.PICTRUE_FROM_GALLERY:
+                if (data != null) {
+                    Uri uri = data.getData();
+                    if (uri != null) {
+                        mPhotoUri = uri;
+                        loadPhoto(mPhotoUri);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void loadPhoto(Uri uri) {
+        if (uri == null) {
+            return;
+        }
+        mDialog = new AsyncProgressDialog(this);
+        mDialog.show();
+        QiniuUploadManager.getInstance().submitImage(PersonalInfoActivity.this, mPhotoUri, new QiniuUploadManager.QiniuUploadListener() {
+
+            @Override
+            public void onSucess() {
+                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.upload_avatar_ok);
+                mDialog.dismiss();
+                mDialog = null;
+                Session.save(Session.getSession(), true);
+                if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
+                    UILHelper.loadImage(mIvAvatar, Session.getSession().headportrait.originalpic, false, R.mipmap.ic_avatar_small);
+                }
+            }
+
+            @Override
+            public void onError() {
+                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.upload_avatar_err);
+                mIvAvatar.setImageResource(R.mipmap.ic_avatar_small);
+                mDialog.dismiss();
+                mDialog = null;
+            }
+        });
+
+        ImageLoader.getInstance().displayImage(uri.toString(), mIvAvatar);
+    }
+}

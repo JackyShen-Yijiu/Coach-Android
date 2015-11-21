@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.blackcat.coach.activities.DetailStudentActivity">
+    <item
+        android:id="@+id/action_msg"
+        android:icon="@mipmap/ic_msg"
+        android:orderInCategory="100"
+        android:title="消息"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_tel"
+        android:icon="@mipmap/ic_tel"
+        android:orderInCategory="100"
+        android:title="电话"
+        app:showAsAction="always" />
+</menu>

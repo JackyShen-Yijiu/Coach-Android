@@ -1,0 +1,288 @@
+<resources>
+    <string name="app_name">一步学车教练端</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">设置</string>
+    <string name="action_chat">聊天</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="contentDescription">这是张图片</string>
+    <string name="no_more_data">没有更多了</string>
+    <string name="net_err">网络不给力</string>
+    <string name="token_invalid">登录信息已失效，请重新登录</string>
+    <string name="in_uploading">正在上传</string>
+
+    <!-- main tab -->
+    <string name="tab_indicator_title_reservation">预约</string>
+    <string name="tab_indicator_title_message">消息</string>
+    <string name="tab_indicator_title_profile">我的</string>
+
+    <!-- title -->
+    <string name="title_reservation">预约</string>
+    <string name="title_schedule">日程</string>
+    <string name="title_message">消息</string>
+    <string name="title_profile">我的</string>
+
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register">注册</string>
+    <string name="title_activity_upload_coach_info">完善信息</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_forget_pwd">忘记密码</string>
+
+    <!-- PullToRefreshView -->
+    <string name="pull_fresh_header_text1">下拉可以刷新</string>
+    <string name="pull_fresh_header_text2">松开可以刷新</string>
+    <string name="pull_fresh_state_loading">加载中…</string>
+    <string name="pull_fresh_update">最后更新&#160;</string>
+    <string name="pull_fresh_header_down">下拉更新</string>
+    <string name="pull_fresh_header_up">松开更新</string>
+    <string name="pull_fresh_state_refresh">正在加载</string>
+
+    <!-- login -->
+    <string name="login_user_name">手机号</string>
+    <string name="login_password">密码</string>
+    <string name="login_register_account">注册账号</string>
+    <string name="login_forget_password">忘记密码</string>
+    <string name="login_login">登录</string>
+
+    <!-- register -->
+    <string name="register">注册</string>
+    <string name="register_code">验证码</string>
+    <string name="login_confirm_password">确认密码</string>
+    <string name="register_invite">输入邀请码将获得奖励</string>
+    <string name="register_send_code">发送验证码</string>
+    <string name="register_word">点击注册则表示您同意《用户服务协议》</string>
+
+    <string name="upload_id_card">身份证</string>
+    <string name="upload_driving_school">挂靠驾校</string>
+    <string name="upload_driver_name">姓名</string>
+    <string name="upload_driver_license">驾驶证</string>
+    <string name="upload_coach_certificate">教练证</string>
+    <string name="upload_input_invite_code">输入邀请码将获得奖励</string>
+    <string name="upload_submit_audit">提交审核</string>
+
+    <string name="self_words">这个教练很忙，还没来得及写自我介绍~</string>
+    <string name="train_field">训练场地</string>
+    <string name="work_time">工作时间</string>
+    <string name="tech_subject">可授科目</string>
+    <string name="str_shuttle">班型设置</string>
+    <string name="str_vacation">休假</string>
+    <string name="str_student_list">学员列表</string>
+    <string name="str_wallet">钱包</string>
+    <string name="str_setting">设置</string>
+    <string name="title_activity_personal_info">个人信息</string>
+
+    <string name="str_avatar">头像</string>
+    <string name="str_username">用户名</string>
+    <string name="title_activity_driving_school">挂靠驾校</string>
+    <string name="title_activity_students">学员列表</string>
+    <string name="title_activity_self_introducation">自我介绍</string>
+    <string name="title_activity_setting">设置</string>
+    <string name="title_activity_vacation">休假</string>
+    <string name="title_activity_work_time">工作时间</string>
+    <string name="title_activity_classes_setting">班型设置</string>
+    <string name="title_activity_product_order">订单确认</string>
+    <string name="title_activity_product_order_succ">交易成功</string>
+
+    <string name="str_self_intro">写段描述来介绍自己吧</string>
+    <string name="str_submit">提交</string>
+    <string name="str_phone_num">联系电话</string>
+    <string name="str_sex">性别</string>
+    <string name="str_self">自我介绍</string>
+    <string name="str_seniority">教龄</string>
+    <string name="str_coach_num">教练证号</string>
+    <string name="str_appointment">预约提醒</string>
+    <string name="str_new_notice">新消息通知</string>
+    <string name="str_class_notice">开课提醒</string>
+    <string name="str_about_we">关于我们</string>
+    <string name="str_go_score">去评分</string>
+    <string name="str_feedback">反馈</string>
+    <string name="title_activity_send_comment">评论</string>
+    <string name="title_activity_detail_student">学员详情</string>
+    <string name="title_activity_detail_reservation">预约详情</string>
+    <string name="title_activity_chat">聊天室</string>
+    <string name="title_activity_about">关于</string>
+    <string name="title_activity_feedback">反馈</string>
+    <string name="title_activity_wallet">我的钱包</string>
+    <string name="title_activity_modify_pwd">更改密码</string>
+    <string name="title_activity_mall">积分商城</string>
+    <string name="title_activity_detail_mall">商品详情</string>
+
+
+    <!--登录 注册 -->
+    <string name="login_ok">登录成功</string>
+    <string name="login_hint">请登录</string>
+
+    <string name="find_pwd_ok">密码找回成功</string>
+    <string name="register_ok">注册成功</string>
+    <string name="register_get_code">发送验证码</string>
+    <string name="register_sent">已发送</string>
+    <string name="register_resend">重新发送</string>
+    <string name="register_time_left">剩余(%ds)</string>
+    <string name="phonenum_empty">手机号码不能空</string>
+    <string name="sms_empty">验证码不能为空</string>
+    <string name="pwd_empty">密码不能为空</string>
+    <string name="pwd_not_match">两次密码输入不一致</string>
+    <string name="update_pwd_ok">密码修改成功</string>
+
+    <string name="sent_ok">发送成功</string>
+
+    <!-- 提交审核 -->
+    <string name="verify_name_empty">姓名不能为空</string>
+    <string name="verify_id_empty">身份证号码不能为空</string>
+    <string name="verify_school_empty">挂靠驾校不能为空</string>
+    <string name="verify_drivingcard_empty">驾驶证不能为空</string>
+    <string name="verify_coachcard_empty">教练证不能为空</string>
+    <string name="drivingschool_empty">驾校不能为空</string>
+    <!--修改绑定手机-->
+    <string name="title_activity_bind_phone">修改绑定手机</string>
+    <string name="str_finish">完成</string>
+    <string name="str_new_phone">新手机号</string>
+    <string name="str_modify_ok">修改成功</string>
+
+    <!--Reservation status -->
+    <string name="reservation_applying">待接受</string>
+    <string name="reservation_applycancel">学员取消</string>
+    <string name="reservation_confirm">已接受</string>
+    <string name="reservation_applyrefuse">已拒绝</string>
+    <string name="reservation_unconfirmfinish">待确认完成</string>
+    <string name="reservation_uncomments">待评价</string>
+    <string name="reservation_finish">已完成</string>
+    <string name="reservation_unknown">未知状态</string>
+    <string name="reservation_canceled">已取消</string>
+
+    <string name="reservation_btn_accept">接受</string>
+    <string name="reservation_btn_refuse">拒绝</string>
+    <string name="reservation_btn_comment">评价</string>
+    <string name="reservation_btn_confirm">确认学完</string>
+    <string name="reservation_btn_cancel">取消课程</string>
+
+    <!--取消课程-->
+    <string name="title_activity_cancel_class">取消课程</string>
+    <string name="str_cancel_reason">取消原因</string>
+    <string name="str_cancel_intru">取消预约说明</string>
+    <string name="str_cancel_ok">取消成功</string>
+    <string name="str_accept_ok">接受预约成功</string>
+    <string name="op_ok">操作成功</string>
+
+    <string name="title_activity_teach_content">教学内容确认</string>
+    <string name="str_other_content_intro">其它教学内容说明</string>
+    <string name="str_submit_evaluation">提交并去评价</string>
+    <string name="str_subject2_title">科目二课程内容</string>
+    <string name="str_subject3_title">科目三课程内容</string>
+
+    <string name="title_activity_refuse_class">拒绝课程</string>
+    <string name="str_refuse_reason">拒绝原因</string>
+    <string name="str_refuse_intru">拒绝预约说明</string>
+    <string name="str_refuse_ok">拒绝成功</string>
+    <string name="title_activity_train_field">训练场地</string>
+
+    <string name="str_pick_place">接送地址：%s</string>
+    <string name="str_train_field">训练场地：%s</string>
+    <string name="str_student_id">ID：%s</string>
+    <string name="title_activity_training_subject">可授科目</string>
+
+    <string name="comment_empty">评论内容不能为空</string>
+
+
+    <string name="info_school_name">报考驾校：%s</string>
+    <string name="info_type">车  型：%s</string>
+    <string name="info_place">常用地址：%s</string>
+    <string name="info_id">ID %s</string>
+
+    <string name="action_finish">完成</string>
+
+    <string name="date_empty">开始和结束日期不能为空</string>
+    <string name="feedback_empty">反馈信息不能为空</string>
+    <string name="submit_ok">提交成功</string>
+    <string name="str_self_info_empty">自我介绍信息不能为空</string>
+    <string name="title_activity_modifyi_id_card">修改身份证</string>
+    <string name="title_activity_driving_license">修改驾驶证</string>
+    <string name="title_activity_modify_seniority">修改教龄</string>
+    <string name="title_activity_modify_sex">修改性别</string>
+    <string name="str_new_id_card">新身份证号</string>
+    <string name="str_new_license">新驾驶证号</string>
+    <string name="str_new_coach_num">新教练证号</string>
+    <string name="str_new_seniority">更改教龄</string>
+    <string name="upload_avatar_ok">上传头像成功</string>
+    <string name="upload_avatar_err">上传头像失败</string>
+
+    <string name="img_url">\?imageView2/1/w/%1$d/h/%2$d/q/%3$d</string>
+
+    <string name="str_sex_male">男</string>
+    <string name="str_sex_female">女</string>
+    <string name="str_license_empty">驾驶证号为空</string>
+    <string name="str_idcard_empty">身份证为空</string>
+    <string name="title_activity_modify_coach_number">修改教练证号</string>
+    <string name="str_choice_gender">请选择性别</string>
+
+    <string name="str_app_version">V%s</string>
+    <string name="str_idcardnumber_invalid">请输入15/18位的身份证号码</string>
+    <string name="str_worktime_invalid">工作开始时间不能大于结束时间</string>
+    <string name="str_vacation_invalid">请假开始时间不能大于结束时间</string>
+
+    <string name="str_brackets">(%s)</string>
+
+    <string name="str_push_speak">按住说话</string>
+    <string name="str_move_up_cancel">手指上滑，取消发送</string>
+    <string name="str_release_cancel">松开手指，取消发送</string>
+    <string name="Failed_to_download_file">下载文件失败:</string>
+    <string name="Have_downloaded">已下载</string>
+    <string name="Did_not_download">未下载</string>
+    <string name="Download_the_pictures">下载图片: 0%</string>
+    <string name="Download_the_pictures_new">下载图片:</string>
+    <string name="downwaiting">正在下载文件请稍后</string>
+    <string name="text_ack_msg">已读</string>
+    <string name="text_delivered_msg">送达</string>
+    <string name="attach_take_pic">拍照</string>
+    <string name="title_activity_show_image">显示图片</string>
+    <string name="title_activity_show_normal_file">显示图片</string>
+    <string name="str_picture">[图片]</string>
+    <string name="str_voice">声音</string>
+    <string name="str_file">[文件]</string>
+    <string name="no_more_messages">没有更多的消息了</string>
+    <string name="search_new">搜</string>
+    <string name="confirm_forward_to">确定转发到：%1$s ?</string>
+    <string name="search_header">搜</string>
+    <string name="select_contacts">选择联系人</string>
+    <string name="prompt">提示</string>
+    <string name="ok">确定</string>
+    <string name="cancel">取消</string>
+    <string name="Delete_failed">删除失败:</string>
+    <string name="delete">删除</string>
+    <string name="resend">重发</string>
+    <string name="copy">复制</string>
+    <string name="forward">转发</string>
+    <string name="send_fail">发送消息失败,</string>
+    <string name="delete_message">删除消息</string>
+    <string name="copy_message">复制消息</string>
+    <string name="delete_voice">删除语音</string>
+    <string name="delete_video">删除视频</string>
+    <string name="confirm_resend">确认重发该信息？</string>
+
+    <string name="can_not_connect_chat_server_connection">连接不到聊天服务器</string>
+    <string name="the_current_network">当前网络不可用，请检查网络设置</string>
+    <string name="Logoff_notification">下线通知</string>
+    <string name="connect_conflict">同一帐号已在其他设备登录</string>
+
+    <string name="reveiver">收件人信息</string>
+    <string name="product_name">姓名</string>
+    <string name="product_phone">电话</string>
+    <string name="product_address">地址</string>
+    <string name="my_currency">我的豆币</string>
+    <string name="currency">豆币</string>
+    <string name="confirm_buy">确认购买</string>
+    <string name="terminal_buy">立即购买</string>
+    <string name="buy_success">购买成功</string>
+    <string name="buy_success_tip">我们已经收到你的订单，我们将尽快把商品送到你的手中，祝您愉快！</string>
+    <string name="continue_buy">返回商城</string>
+    <string name="mall_construct">商城建设中</string>
+
+    <string name="deal_detail">交易详情</string>
+    <string name="my_invit_code">我的邀请码</string>
+    <string name="invite_friends">赚积分</string>
+    <string name="exchange_commodity">兑换商品</string>
+    <string name="invite_friends_get_bonus">一步学车设计了最先进的用户激励机制\n推荐用户和学员，可以长久的获利\n赶快去邀请小伙伴来用吧！\n记得让他们在注册时填写你的邀请码哟</string>
+</resources>

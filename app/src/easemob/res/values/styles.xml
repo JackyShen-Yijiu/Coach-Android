@@ -1,0 +1,69 @@
+<resources>
+    <style name="AppTheme.Base" parent="Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!-- Actionbar color -->
+        <!-- <item name="colorPrimary">@color/white_absolute</item> -->
+        <!--Status bar color-->
+        <!-- <item name="colorPrimaryDark">@color/transparent</item> -->
+        <!--Window color-->
+        <!-- <item name="android:windowBackground">@null</item> -->
+
+        <!--Activity enter and exit animation-->
+        <item name="android:windowAnimationStyle">@style/TranslateEnterExitAnimation</item>
+    </style>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <style name="AppBaseTheme" parent="AppTheme.Base">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="tab_indicator">
+        <item name="android:textSize">10sp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@drawable/sl_tab_indicator_title_textcolor</item>
+    </style>
+
+    <style name="ListViewStyle">
+        <item name="android:cacheColorHint">@color/transparent</item>
+        <item name="android:listSelector">@color/transparent</item>
+        <item name="android:divider">@color/list_divider</item>
+        <item name="android:dividerHeight">1dp</item>
+        <item name="android:footerDividersEnabled">false</item>
+        <item name="android:headerDividersEnabled">false</item>
+        <item name="android:fadingEdge">none</item>
+    </style>
+
+    <style name="TranslateEnterExitAnimation">
+        <item name="android:activityOpenEnterAnimation">@anim/right_in_anim</item>
+        <item name="android:activityOpenExitAnimation">@anim/left_out_anim</item>
+        <item name="android:activityCloseEnterAnimation">@anim/left_in_anim</item>
+        <item name="android:activityCloseExitAnimation">@anim/right_out_anim</item>
+    </style>
+
+    <style name="DialogViewTheme" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="DialogViewAnimation" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/alpha_in</item>
+        <item name="android:windowExitAnimation">@anim/alpha_out</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>
+
