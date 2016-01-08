@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -154,16 +155,16 @@ public class IndexActivity extends BaseActivity implements IKillable,
 		mShouldReloadResources = false;
 		mContext = this;
 		mFirstResumeAfterOnCreate = (savedInstanceState == null);
-		
+
 		// 刷新token
 		// jpush alias和tag是通过接口请求的
 		refreshCheck();
-		
+
 		init();
-		
+
 		EventBus.getDefault().register(this);
 }
-	
+
 	public final static String DAILY_REFRESH_TAGS = "daily_refresh_tags";
 	public final static String DAILY_REFRESH_TOKEN = "daily_refresh_token";
 	private void refreshCheck() {
@@ -216,7 +217,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
 		VolleyUtil.getQueue(this).add(request);
 	}
-	
+
 
     @Override
 	protected boolean hasActionbarShadow() {
@@ -516,10 +517,29 @@ public class IndexActivity extends BaseActivity implements IKillable,
 	 * public boolean onKeyDown(int keyCode, KeyEvent event) {return true or
 	 * false}
 	 */
+//	@Override
+//	public boolean onKeyDown(int keyCode, KeyEvent event) {
+//		return mMainContainer.onKeyDown(keyCode, event) ? true : super
+//				.onKeyDown(keyCode, event);
+//	}
+//
+	private long firstTime;
+
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		return mMainContainer.onKeyDown(keyCode, event) ? true : super
-				.onKeyDown(keyCode, event);
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			long secondTime = System.currentTimeMillis();
+			if (secondTime - firstTime > 2000) {// 如果两次按键时间间隔大于800毫秒，则不退出
+				Toast.makeText(IndexActivity.this, "再按一次退出程序...",
+						Toast.LENGTH_SHORT).show();
+				firstTime = secondTime;// 更新firstTime
+				return true;
+			} else {
+				// System.exit(0);// 否则退出程序
+				finish();
+			}
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 
 	@Override
@@ -595,7 +615,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 			break;
 		}
 	}
-	
+
 //	private MenuItem mMenuItemRight;
 //	@Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
@@ -622,7 +642,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 //            return super.onOptionsItemSelected(item);
 //        }
 //    }
-    
+
 	@Override
 	public void onClick(View v) {
 //		switch (v.getId()) {
