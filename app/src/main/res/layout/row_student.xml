@@ -22,12 +22,30 @@
         android:layout_toRightOf="@+id/iv_avatar"
         android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        >
+
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text_333"
+            android:layout_alignParentLeft="true"
+            android:layout_toLeftOf="@+id/tv_last"
+
             android:textSize="16sp" />
+        <TextView
+            android:id="@+id/tv_last"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_333"
+            android:layout_alignParentRight="true"
+            android:contentDescription="剩余课程数量"
+            android:textSize="16sp" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/tv_progress"
@@ -36,6 +54,7 @@
             android:layout_marginTop="5dp"
             android:singleLine="true"
             android:textColor="@color/text_999"
+
             android:textSize="14sp" />
     </LinearLayout>
 

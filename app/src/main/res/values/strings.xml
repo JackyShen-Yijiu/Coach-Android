@@ -16,7 +16,6 @@
 
     <!-- main tab -->
     <string name="tab_indicator_title_reservation">预约</string>
-    <string name="tab_indicator_title_schedule">日程</string>
     <string name="tab_indicator_title_message">消息</string>
     <string name="tab_indicator_title_profile">我的</string>
 
@@ -57,7 +56,7 @@
     <string name="register_word">点击注册则表示您同意《用户服务协议》</string>
 
     <string name="upload_id_card">身份证</string>
-    <string name="upload_driving_school">挂靠驾校</string>
+    <string name="upload_driving_school">所在驾校</string>
     <string name="upload_driver_name">姓名</string>
     <string name="upload_driver_license">驾驶证</string>
     <string name="upload_coach_certificate">教练证</string>
@@ -91,9 +90,9 @@
     <string name="str_submit">提交</string>
     <string name="str_phone_num">联系电话</string>
     <string name="str_sex">性别</string>
-    <string name="str_self">自我介绍</string>
+    <string name="str_self">个人说明</string>
     <string name="str_seniority">教龄</string>
-    <string name="str_coach_num">教练证号</string>
+    <string name="str_coach_num">教练证</string>
     <string name="str_appointment">预约提醒</string>
     <string name="str_new_notice">新消息通知</string>
     <string name="str_class_notice">开课提醒</string>
@@ -240,6 +239,7 @@
     <string name="attach_take_pic">拍照</string>
     <string name="title_activity_show_image">显示图片</string>
     <string name="title_activity_show_normal_file">显示图片</string>
+    <string name="title_coach_type">工作性质</string>
     <string name="str_picture">[图片]</string>
     <string name="str_voice">声音</string>
     <string name="str_file">[文件]</string>
@@ -286,4 +286,11 @@
     <string name="invite_friends">赚积分</string>
     <string name="exchange_commodity">兑换商品</string>
     <string name="invite_friends_get_bonus">一步学车设计了最先进的用户激励机制\n推荐用户和学员，可以长久的获利\n赶快去邀请小伙伴来用吧！\n记得让他们在注册时填写你的邀请码哟</string>
+    <string name="default_label">默认标签</string>
+    <string name="custom_label">自定义标签</string>
+    <string name="title_custom_label">个性标签</string>
+    <string name="please_input_your_lable">请输入您想要添加的标签</string>
+
+    <string name="tab_indicator_title_schedule">日程</string>
+
 </resources>

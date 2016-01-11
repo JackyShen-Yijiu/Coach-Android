@@ -11,8 +11,8 @@ public class NetConstants {
 	
 	public static final boolean BASE64_ENCODING = true;
 	
-	//public static final String HOSTNAME = "101.200.204.240";
-	public static final String HOSTNAME = "123.57.63.15";
+	public static final String HOSTNAME = "101.200.204.240";
+//	public static final String HOSTNAME = "123.57.63.15";
 
 	public static final int DEFAULT_PORT = 8181;
 

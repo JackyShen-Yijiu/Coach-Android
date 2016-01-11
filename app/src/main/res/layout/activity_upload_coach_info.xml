@@ -66,6 +66,35 @@
             android:src="@mipmap/ic_right" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_choose_coach_type"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:onClick="onClick"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_border">
+
+        <TextView
+            android:id="@+id/tv_coach_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:singleLine="true"
+            android:text="@string/title_coach_type"
+            android:textColor="#999999"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/ic_right" />
+    </RelativeLayout>
 
     <EditText
         android:id="@+id/et_drive_cert"
@@ -76,6 +105,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/background_border"
         android:hint="@string/upload_driver_license"
+        android:visibility="gone"
         android:inputType="number"
         android:paddingLeft="15dp"
         android:singleLine="true"

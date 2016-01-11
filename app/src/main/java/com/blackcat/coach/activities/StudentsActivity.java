@@ -4,6 +4,9 @@ import android.os.Bundle;
 
 import com.blackcat.coach.R;
 
+/**
+ * 学员列表
+ */
 public class StudentsActivity extends BaseActivity {
 
     @Override
@@ -11,5 +14,12 @@ public class StudentsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_students);
         configToolBar(R.mipmap.ic_back);
+        initView();
+
     }
+
+    private void initView() {
+
+    }
+
 }

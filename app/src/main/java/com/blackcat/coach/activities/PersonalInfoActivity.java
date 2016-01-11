@@ -20,6 +20,7 @@ import com.blackcat.coach.models.Session;
 import com.blackcat.coach.qiniu.PhotoUtil;
 import com.blackcat.coach.qiniu.QiniuUploadManager;
 import com.blackcat.coach.utils.ToastHelper;
+import com.blackcat.coach.widgets.WordWrapView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
@@ -34,6 +35,9 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
     private TextView  mTvSeniorityId;
     private TextView  mTvSex;
     private TextView mTvIntroduction;
+    //个性标签
+    private WordWrapView wordWrapView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +68,7 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
         mTvSex = (TextView)findViewById(R.id.tv_sex);
         mTvSex.setOnClickListener(this);
         mTvIntroduction = (TextView)findViewById(R.id.tv_self);
+        wordWrapView = (WordWrapView) findViewById(R.id.view_wordwrap);
 
         mTvName = (TextView) findViewById(R.id.tv_name);
         mTvId = (TextView) findViewById(R.id.tv_id);
@@ -100,6 +105,24 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
 
         if (!TextUtils.isEmpty(Session.getSession().introduction)) {
             mTvIntroduction.setText(Session.getSession().introduction);
+        }
+
+        addTags();
+    }
+
+    /**
+     * 设置标签
+     */
+    private void addTags(){
+        if(wordWrapView.getChildCount()>0){
+            return;
+        }
+        wordWrapView.removeAllViews();
+        String[] strs = {"个性标签","包接送","五星级教练","不吸烟","态度极好","免费提供水服务","不收彩礼"};
+        for (int i = 0; i < strs.length; i++) {
+            TextView textview = new TextView(this);
+            textview.setText(strs[i]);
+            wordWrapView.addView(textview);
         }
     }
 
@@ -150,6 +173,9 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.rl_gender:
                 startActivity(new Intent(this, ModifyGenderActivity.class));
+                break;
+            case R.id.view_wordwrap:// 标签页面
+
                 break;
             default:
                 break;

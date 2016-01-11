@@ -3,6 +3,7 @@ package com.blackcat.coach.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Rect;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -20,6 +21,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
+import com.blackcat.coach.adapters.CoachTypeAdapter;
 import com.blackcat.coach.models.DrivingSchool;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
@@ -44,8 +46,9 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
 
     private EditText mEtCard, mEtCarCert, mEtCoachCert, mEtName;
     private Button mBtnCommit;
-    private TextView mTvSchool;
+    private TextView mTvSchool,mTvCoach;
     private DrivingSchool mDrivingSchool;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,7 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
         initViews();
         EventBus.getDefault().register(this);
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
     }
 
     private void initViews() {
@@ -69,13 +73,16 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
         mEtCoachCert = (EditText) findViewById(R.id.et_coach_cert);
         mEtName = (EditText) findViewById(R.id.et_name);
 
+        mTvCoach = (TextView) findViewById(R.id.tv_coach_type);
         mTvSchool = (TextView) findViewById(R.id.tv_drive_school);
         mBtnCommit = (Button) findViewById(R.id.btn_commit);
         mBtnCommit.setOnClickListener(this);
         mTvSchool.setOnClickListener(this);
     }
 
-    private Type mType = new TypeToken<Result>(){}.getType();
+    private Type mType = new TypeToken<Result>() {
+    }.getType();
+
     private void applyVerifyRequest(String name, String idcardnumber, String driveschoolid, String drivinglicensenumber, String coachnumber) {
         URI uri = URIUtil.getApplyVerify();
         String url = null;
@@ -166,8 +173,12 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
                 }
                 applyVerifyRequest(mEtName.getText().toString(), mEtCard.getText().toString(), mDrivingSchool.id, mEtCarCert.getText().toString(), mEtCoachCert.getText().toString());
                 break;
-            case R.id.rl_choose_school:
+            case R.id.rl_choose_school://选择驾校
                 startActivity(new Intent(this, DrivingSchoolActivity.class));
+                break;
+            case R.id.rl_choose_coach_type://选择教练类型
+                Intent i1 = new Intent(this, PickCoachTypeAct.class);
+                startActivityForResult(i1, 2);
                 break;
         }
     }
@@ -182,17 +193,17 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
     public boolean dispatchTouchEvent(MotionEvent event) {
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
             View v = getCurrentFocus();
-            if ( v instanceof EditText) {
+            if (v instanceof EditText) {
                 Rect outRect = new Rect();
                 v.getGlobalVisibleRect(outRect);
-                if (!outRect.contains((int)event.getRawX(), (int)event.getRawY())) {
+                if (!outRect.contains((int) event.getRawX(), (int) event.getRawY())) {
                     v.clearFocus();
                     InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                 }
             }
         }
-        return super.dispatchTouchEvent( event );
+        return super.dispatchTouchEvent(event);
     }
 
     @Override
@@ -200,4 +211,20 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
+
+    @Override
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        // TODO Auto-generated method stub
+        if(data!=null && requestCode==2){//选择 教练类型
+            String name = data.getStringExtra("name");
+            int type = data.getIntExtra("type",0);
+            if(null!=name)
+                mTvCoach.setText(name);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+
+    }
+
 }

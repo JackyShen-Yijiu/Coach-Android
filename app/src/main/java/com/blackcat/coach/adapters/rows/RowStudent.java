@@ -28,6 +28,7 @@ public class RowStudent {
         holder.tvName = (TextView) view.findViewById(R.id.tv_name);
         holder.tvProgress = (TextView) view.findViewById(R.id.tv_progress);
         holder.ivAvatar = (ImageView) view.findViewById(R.id.iv_avatar);
+        holder.tvLast = (TextView) view.findViewById(R.id.tv_last);
         return holder;
     }
 
@@ -38,6 +39,8 @@ public class RowStudent {
         viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item));
         viewHolder.tvName.setText(item.name);
         viewHolder.tvProgress.setText(item.subjectprocess);
+        //sun
+        viewHolder.tvLast.setText("剩余课程数量");
         if (item.headportrait != null && !TextUtils.isEmpty(item.headportrait.originalpic)) {
             //TODO
 //            PicassoUtil.loadImage(activity, viewHolder.ivAvatar, item.headportrait.originalpic, R.dimen.avatar_size, R.dimen.avatar_size, false, R.mipmap.ic_avatar_small);
@@ -54,6 +57,8 @@ public class RowStudent {
         private ImageView ivAvatar;
         private TextView tvName;
         private TextView tvProgress;
+        //剩余课程的数量  : 预约剩余课程20学时
+        private TextView tvLast;
 
         public Holder(View itemView) {
             super(itemView);

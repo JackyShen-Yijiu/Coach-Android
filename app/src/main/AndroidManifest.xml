@@ -6,17 +6,18 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="21" />
 
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <!-- 获取WIFI信息 -->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
     <!-- SD卡读写权限 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+
     <!-- 获取deviceId -->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+
     <!-- 获取包信息 -->
-    <uses-permission android:name="android.permission.GET_TASKS" />
+
 
     <!-- Required 自定义用来收发消息的相关权限 -->
     <permission
@@ -29,7 +30,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -203,6 +203,12 @@
             android:name=".activities.ShowNormalFileActivity"
             android:label="@string/title_activity_show_normal_file"
             android:screenOrientation="portrait" />
+        <!-- 选择 教练类型 -->
+
+        <activity
+            android:name=".activities.PickCoachTypeAct"
+            android:label="@string/title_coach_type"
+            android:screenOrientation="portrait" />
 
         <!-- 自定义的contextmenu -->
         <activity
@@ -234,7 +240,7 @@
         <!-- black-cat#yibuxuecheprod -->
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="black-cat#yibuxuecheprod" />
+            android:value="black-cat#yibuxuechetest" />
         <!-- 声明sdk所需的service -->
         <service android:name="com.easemob.chat.EMChatService" />
         <!-- 声明sdk所需的receiver -->
@@ -370,12 +376,30 @@
             android:name=".activities.ProductOrderActivity"
             android:label="@string/title_activity_product_order"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.ProductOrderSuccActivity"
             android:label="@string/title_activity_product_order_succ"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+
+        <activity android:name=".activities.PersionLableAct"
+            android:label="@string/title_custom_label"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            ></activity>
+
+        <!-- 环信SDK引入 -->
+        <!-- black-cat#yibuxuechetest -->
+        <!-- black-cat#yibuxuecheprod -->
+        <meta-data
+            android:name="EASEMOB_APPKEY"
+            android:value="black-cat#yibuxuechetest" />
     </application>
 
 </manifest>

@@ -29,16 +29,16 @@
     <color name="list_divider">#E6E6E6</color>
     <color name="list_divider2">#F7F9FB</color>
     <color name="toolbar_shadow">#979797</color>
-    
+
     <color name="text_blue">#46d9c2</color>
     <color name="text_red">#F46F89</color>
     <color name="text_grey">#BFBFBF</color>
-   	<color name="text_mid_grey">#A3A3A3</color>
+    <color name="text_mid_grey">#A3A3A3</color>
     <color name="text_yellow2">#ff6633</color>
 
-   	
-   	<color name="text_yellow">#ED9B31</color>
-   	<color name="text_green">#46D9C2</color>
+
+    <color name="text_yellow">#ED9B31</color>
+    <color name="text_green">#46D9C2</color>
 
     <!-- PullToRefreshView -->
     <color name="refresh_text_color">#838483</color>
@@ -101,7 +101,9 @@
     <color name="btn_gray_pressed_status">#b5b5b6</color>
     <color name="error_item_color">#F6EBE6</color>
 
-
-    //修改
     <color name="slidingtab_indicatorcolor">#2879f3</color>
+    <!--线的背景色 -->
+    <color name="line_bg">#e6e7e9</color>
+    <color name="gray_bg1">#f8f9fb</color>
+
 </resources>

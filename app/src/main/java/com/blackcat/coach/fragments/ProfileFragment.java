@@ -122,7 +122,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
             case R.id.rl_vacation:
                 startActivity(new Intent(mActivity, VacationActivity.class));
                 break;
-            case R.id.rl_students:
+            case R.id.rl_students://学员列表
                 startActivity(new Intent(mActivity, StudentsActivity.class));
                 break;
             case R.id.rl_setting:
