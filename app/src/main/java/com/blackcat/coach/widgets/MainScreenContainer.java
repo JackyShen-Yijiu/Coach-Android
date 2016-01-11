@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.IndexActivity;
+import com.blackcat.coach.fragments.ChildScheduleFragment;
 import com.blackcat.coach.fragments.MessageFragment;
 import com.blackcat.coach.fragments.ProfileFragment;
 import com.blackcat.coach.fragments.ReservationFragment;
@@ -78,6 +79,8 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
         mTabs = new ArrayList<TabInfo>();
         mTabs.add(getTabInfo(R.id.tab_grab_order, new ReservationFragment(), IndexActivity.TAB_RESERVATION,
                 R.string.tab_indicator_title_reservation, R.drawable.sl_tab_icon_reservation));
+        mTabs.add(getTabInfo(R.id.tab_schedule, new ChildScheduleFragment(), IndexActivity.TAB_SCHEDULE,
+                R.string.tab_indicator_title_schedule, R.drawable.sl_tab_icon_schedule));
         mTabs.add(getTabInfo(R.id.tab_my_orders, new MessageFragment(), IndexActivity.TAB_MESSAGE,
                 R.string.tab_indicator_title_message, R.drawable.sl_tab_icon_message));
         mTabs.add(getTabInfo(R.id.tab_profile, new ProfileFragment(), IndexActivity.TAB_PROFILE,
@@ -220,7 +223,7 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
 
     private void removeAllFragment() {
         mAddedTabs = new HashSet<TabInfo>();
-        int[] tags = new int[] { IndexActivity.TAB_RESERVATION, IndexActivity.TAB_MESSAGE, IndexActivity.TAB_PROFILE };
+        int[] tags = new int[] { IndexActivity.TAB_RESERVATION, IndexActivity.TAB_MESSAGE, IndexActivity.TAB_PROFILE ,IndexActivity.TAB_SCHEDULE};
 
         FragmentTransaction ft = null;
         for (int tag : tags) {

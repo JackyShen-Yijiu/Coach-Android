@@ -72,549 +72,559 @@ import cn.jpush.android.api.TagAliasCallback;
 import de.greenrobot.event.EventBus;
 
 public class IndexActivity extends BaseActivity implements IKillable,
-		EMEventListener,
-		MainScreenContainer.OnTabLisener, View.OnClickListener {
+        EMEventListener,
+        MainScreenContainer.OnTabLisener, View.OnClickListener {
 
-	private static final String TAG = "MainScreen";
-	public static final int RESULT_CODE_EXIT_APP = 20;
-	private static final int MSG_START_RECEIVE_TOUCH_DELAY = 500;
-	private static final int MSG_RELOAD_RESOURCES = 8;
-	private static final int MSG_RELOAD_RESOURCES_DELAY = 200;
+    private static final String TAG = "MainScreen";
+    public static final int RESULT_CODE_EXIT_APP = 20;
+    private static final int MSG_START_RECEIVE_TOUCH_DELAY = 500;
+    private static final int MSG_RELOAD_RESOURCES = 8;
+    private static final int MSG_RELOAD_RESOURCES_DELAY = 200;
 
-	private static final int MSG_START_RECEIVE_TOUCH = 2; // it's time to
-															// receive touch
-															// event
-	private static final String STATE_KEY_INT_SELECTED_TAB = "selected_tab";
+    private static final int MSG_START_RECEIVE_TOUCH = 2; // it's time to
+    // receive touch
+    // event
+    private static final String STATE_KEY_INT_SELECTED_TAB = "selected_tab";
 
-	/**
-	 * Due to the activity switch is too fast to clean the touch event queue
-	 * completely, we will discard some touch event to avoid the touch problem
-	 * in splash screen
-	 */
-	private boolean mIsClickable = false;
-	private Context mContext;
+    /**
+     * Due to the activity switch is too fast to clean the touch event queue
+     * completely, we will discard some touch event to avoid the touch problem
+     * in splash screen
+     */
+    private boolean mIsClickable = false;
+    private Context mContext;
 
-	private boolean mIsActive = false;
-	private boolean mShouldReloadResources = false;
-	private final List<WeakReference<IResourceDischarger>> mFragDischargerList = new ArrayList<WeakReference<IResourceDischarger>>();
-	private final List<WeakReference<IKillable>> mFragKillableList = new ArrayList<WeakReference<IKillable>>();
+    private boolean mIsActive = false;
+    private boolean mShouldReloadResources = false;
+    private final List<WeakReference<IResourceDischarger>> mFragDischargerList = new ArrayList<WeakReference<IResourceDischarger>>();
+    private final List<WeakReference<IKillable>> mFragKillableList = new ArrayList<WeakReference<IKillable>>();
 
-	private TextView mToolBarTitle, mVerificationWarning;
+    private TextView mToolBarTitle, mVerificationWarning;
     private RadioGroup mRadioGroupReservation;
 
-	// 是否是OnCreate之后的第一次onResume调用
-	private boolean mFirstResumeAfterOnCreate = false;
+    // 是否是OnCreate之后的第一次onResume调用
+    private boolean mFirstResumeAfterOnCreate = false;
 
-	private boolean mIsConflict = false;
+    private boolean mIsConflict = false;
 
-	private BCConnectionListener connectionListener;
-	// 防止内存泄漏
-	static class StaticHandler extends Handler {
-		final WeakReference<IndexActivity> outer;
+    private BCConnectionListener connectionListener;
 
-		StaticHandler(WeakReference<IndexActivity> outer) {
-			this.outer = outer;
-		}
+    // 防止内存泄漏
+    static class StaticHandler extends Handler {
+        final WeakReference<IndexActivity> outer;
 
-		@Override
-		public void handleMessage(Message msg) {
-			try {
-				IndexActivity outerObj = outer.get();
-				if (outerObj != null) {
-					outerObj.handleMessage(msg);
-				}
-			} catch (Exception e) {
-			}
-		}
-	}
+        StaticHandler(WeakReference<IndexActivity> outer) {
+            this.outer = outer;
+        }
 
-	private Handler mHandler;
-
-	public void handleMessage(Message msg) {
-		IndexActivity mainScreen = (IndexActivity) msg.obj;
-		if (mainScreen == null) {
-			return;
-		}
-
-		switch (msg.what) {
-		case MSG_START_RECEIVE_TOUCH:
-			mIsClickable = true;
-			break;
-		case MSG_RELOAD_RESOURCES:
-			reloadResources();
-			break;
-		default:
-			break;
-		}
-	}
-
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		mHandler = new StaticHandler(new WeakReference<IndexActivity>(this));
-		mShouldReloadResources = false;
-		mContext = this;
-		mFirstResumeAfterOnCreate = (savedInstanceState == null);
-
-		// 刷新token
-		// jpush alias和tag是通过接口请求的
-		refreshCheck();
-
-		init();
-
-		EventBus.getDefault().register(this);
-}
-
-	public final static String DAILY_REFRESH_TAGS = "daily_refresh_tags";
-	public final static String DAILY_REFRESH_TOKEN = "daily_refresh_token";
-	private void refreshCheck() {
-		fetchCoachInfo();
+        @Override
+        public void handleMessage(Message msg) {
+            try {
+                IndexActivity outerObj = outer.get();
+                if (outerObj != null) {
+                    outerObj.handleMessage(msg);
+                }
+            } catch (Exception e) {
+            }
+        }
     }
 
-	private Type mTokenType = new TypeToken<Result<CoachInfo>>() {}.getType();
+    private Handler mHandler;
 
-	private void fetchCoachInfo() {
-		URI uri = URIUtil.getCoachInfo(Session.getSession().coachid);
-		String url = null;
-		try {
-			url = uri.toURL().toString();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+    public void handleMessage(Message msg) {
+        IndexActivity mainScreen = (IndexActivity) msg.obj;
+        if (mainScreen == null) {
+            return;
+        }
 
-		if (TextUtils.isEmpty(url)) {
-			return;
-		}
+        switch (msg.what) {
+            case MSG_START_RECEIVE_TOUCH:
+                mIsClickable = true;
+                break;
+            case MSG_RELOAD_RESOURCES:
+                reloadResources();
+                break;
+            default:
+                break;
+        }
+    }
 
-		Map map = new HashMap<>();
-		map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
-		GsonIgnoreCacheHeadersRequest<Result<CoachInfo>> request = new GsonIgnoreCacheHeadersRequest<Result<CoachInfo>>(
-				Request.Method.GET, url, null, mTokenType, map,
-				new Response.Listener<Result<CoachInfo>>() {
-					@Override
-					public void onResponse(Result<CoachInfo> response) {
-						if (response != null && response.data != null && response.type == Result.RESULT_OK) {
-							Session.save(response.data, true);
-							if (!Session.getSession().is_validation) {
-								mVerificationWarning.setVisibility(View.VISIBLE);
-							} else {
-								mVerificationWarning.setVisibility(View.GONE);
-							}
-						}
-						if (Constants.DEBUG) {
-							VolleyLog.v("Response:%n %s", response);
-						}
-					}
-				},
-				new Response.ErrorListener() {
-					@Override
-					public void onErrorResponse(VolleyError arg0) {
-					}
-				});
-		// 请求加上Tag,用于取消请求
-		request.setTag(this);
-		request.setShouldCache(false);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mHandler = new StaticHandler(new WeakReference<IndexActivity>(this));
+        mShouldReloadResources = false;
+        mContext = this;
+        mFirstResumeAfterOnCreate = (savedInstanceState == null);
 
-		VolleyUtil.getQueue(this).add(request);
-	}
+        // 刷新token
+        // jpush alias和tag是通过接口请求的
+        refreshCheck();
+
+        init();
+
+        EventBus.getDefault().register(this);
+    }
+
+    public final static String DAILY_REFRESH_TAGS = "daily_refresh_tags";
+    public final static String DAILY_REFRESH_TOKEN = "daily_refresh_token";
+
+    private void refreshCheck() {
+        fetchCoachInfo();
+    }
+
+    private Type mTokenType = new TypeToken<Result<CoachInfo>>() {
+    }.getType();
+
+    private void fetchCoachInfo() {
+        URI uri = URIUtil.getCoachInfo(Session.getSession().coachid);
+        String url = null;
+        try {
+            url = uri.toURL().toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
+
+        Map map = new HashMap<>();
+        map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
+        GsonIgnoreCacheHeadersRequest<Result<CoachInfo>> request = new GsonIgnoreCacheHeadersRequest<Result<CoachInfo>>(
+                Request.Method.GET, url, null, mTokenType, map,
+                new Response.Listener<Result<CoachInfo>>() {
+                    @Override
+                    public void onResponse(Result<CoachInfo> response) {
+                        if (response != null && response.data != null && response.type == Result.RESULT_OK) {
+                            Session.save(response.data, true);
+                            if (!Session.getSession().is_validation) {
+                                mVerificationWarning.setVisibility(View.VISIBLE);
+                            } else {
+                                mVerificationWarning.setVisibility(View.GONE);
+                            }
+                        }
+                        if (Constants.DEBUG) {
+                            VolleyLog.v("Response:%n %s", response);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError arg0) {
+                    }
+                });
+        // 请求加上Tag,用于取消请求
+        request.setTag(this);
+        request.setShouldCache(false);
+
+        VolleyUtil.getQueue(this).add(request);
+    }
 
 
     @Override
-	protected boolean hasActionbarShadow() {
-	    return false;
-	}
+    protected boolean hasActionbarShadow() {
+        return false;
+    }
 
-	@Override
-	public void onAttachFragment(Fragment fragment) {
-		super.onAttachFragment(fragment);
-		IResourceDischarger fragDischarger = null;
-		try {
-			fragDischarger = (IResourceDischarger) fragment;
-		} catch (ClassCastException e) {
-			fragDischarger = null;
-		}
-		if (fragDischarger != null) {
-			mFragDischargerList.add(new WeakReference<IResourceDischarger>(fragDischarger));
-		}
-		if (fragment instanceof IKillable) {
-			if (AppEnv.bAppdebug) {
-				Log.d(TAG, "killable fragment " + fragment.getTag());
-			}
-			mFragKillableList.add(new WeakReference<IKillable>((IKillable) fragment));
-		}
-	}
+    @Override
+    public void onAttachFragment(Fragment fragment) {
+        super.onAttachFragment(fragment);
+        IResourceDischarger fragDischarger = null;
+        try {
+            fragDischarger = (IResourceDischarger) fragment;
+        } catch (ClassCastException e) {
+            fragDischarger = null;
+        }
+        if (fragDischarger != null) {
+            mFragDischargerList.add(new WeakReference<IResourceDischarger>(fragDischarger));
+        }
+        if (fragment instanceof IKillable) {
+            if (AppEnv.bAppdebug) {
+                Log.d(TAG, "killable fragment " + fragment.getTag());
+            }
+            mFragKillableList.add(new WeakReference<IKillable>((IKillable) fragment));
+        }
+    }
 
-	private void reloadResources() {
-		if (mShouldReloadResources) {
-			for (WeakReference<IResourceDischarger> ref : mFragDischargerList) {
-				IResourceDischarger f = ref.get();
-				if (f != null && ((Fragment) f).isHidden()) {
-					f.reloadResource();
-				}
-			}
-			mShouldReloadResources = false;
-		}
-	}
+    private void reloadResources() {
+        if (mShouldReloadResources) {
+            for (WeakReference<IResourceDischarger> ref : mFragDischargerList) {
+                IResourceDischarger f = ref.get();
+                if (f != null && ((Fragment) f).isHidden()) {
+                    f.reloadResource();
+                }
+            }
+            mShouldReloadResources = false;
+        }
+    }
 
-	private void releaseResources() {
-		for (WeakReference<IResourceDischarger> ref : mFragDischargerList) {
-			IResourceDischarger f = ref.get();
-			if (f != null) {
-				if (Utils.isActivityFinishing(this)
-						|| ((Fragment) f).isHidden()) {
-					f.releaseResource();
-				}
-			}
-		}
-		mShouldReloadResources = true;
-		// 系统进行内存回收
-		System.gc();
+    private void releaseResources() {
+        for (WeakReference<IResourceDischarger> ref : mFragDischargerList) {
+            IResourceDischarger f = ref.get();
+            if (f != null) {
+                if (Utils.isActivityFinishing(this)
+                        || ((Fragment) f).isHidden()) {
+                    f.releaseResource();
+                }
+            }
+        }
+        mShouldReloadResources = true;
+        // 系统进行内存回收
+        System.gc();
 
-		UIUtils.clearCavnasCaches();
-	}
+        UIUtils.clearCavnasCaches();
+    }
 
-	@Override
-	public void onStart() {
-		super.onStart();
-		mIsActive = true;
-	}
+    @Override
+    public void onStart() {
+        super.onStart();
+        mIsActive = true;
+    }
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-		mFirstResumeAfterOnCreate = false;
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mFirstResumeAfterOnCreate = false;
 
-		Message msg = mHandler.obtainMessage(MSG_START_RECEIVE_TOUCH, IndexActivity.this);
-		mHandler.sendMessageDelayed(msg, MSG_START_RECEIVE_TOUCH_DELAY);
-		msg = mHandler.obtainMessage(MSG_RELOAD_RESOURCES, IndexActivity.this);
-		mHandler.sendMessageDelayed(msg, MSG_RELOAD_RESOURCES_DELAY);
-		refreshView();
-		refreshUI();
-		registerEnventListener();
-	}
+        Message msg = mHandler.obtainMessage(MSG_START_RECEIVE_TOUCH, IndexActivity.this);
+        mHandler.sendMessageDelayed(msg, MSG_START_RECEIVE_TOUCH_DELAY);
+        msg = mHandler.obtainMessage(MSG_RELOAD_RESOURCES, IndexActivity.this);
+        mHandler.sendMessageDelayed(msg, MSG_RELOAD_RESOURCES_DELAY);
+        refreshView();
+        refreshUI();
+        registerEnventListener();
+    }
 
-	private void registerEnventListener() {
-		BlackCatHXSDKHelper hxsdkHelper = (BlackCatHXSDKHelper)BlackCatHXSDKHelper.getInstance();
-		hxsdkHelper.pushActivity(this);
+    private void registerEnventListener() {
+        BlackCatHXSDKHelper hxsdkHelper = (BlackCatHXSDKHelper) BlackCatHXSDKHelper.getInstance();
+        hxsdkHelper.pushActivity(this);
 
-		EMChatManager.getInstance().registerEventListener(this,
-				new EMNotifierEvent.Event[]{
-						EMNotifierEvent.Event.EventNewMessage,
-						EMNotifierEvent.Event.EventOfflineMessage,
-						EMNotifierEvent.Event.EventConversationListChanged
-				});
-	}
+        EMChatManager.getInstance().registerEventListener(this,
+                new EMNotifierEvent.Event[]{
+                        EMNotifierEvent.Event.EventNewMessage,
+                        EMNotifierEvent.Event.EventOfflineMessage,
+                        EMNotifierEvent.Event.EventConversationListChanged
+                });
+    }
 
-	@Override
-	protected void onPause() {
-		EMChatManager.getInstance().unregisterEventListener(this);
-		BlackCatHXSDKHelper hxsdkHelper = (BlackCatHXSDKHelper)BlackCatHXSDKHelper.getInstance();
-		hxsdkHelper.popActivity(this);
+    @Override
+    protected void onPause() {
+        EMChatManager.getInstance().unregisterEventListener(this);
+        BlackCatHXSDKHelper hxsdkHelper = (BlackCatHXSDKHelper) BlackCatHXSDKHelper.getInstance();
+        hxsdkHelper.popActivity(this);
 
-		super.onPause();
-	}
+        super.onPause();
+    }
 
-	@Override
-	public void onStop() {
-		super.onStop();
-		mIsActive = false;
-		releaseResources();
-	}
+    @Override
+    public void onStop() {
+        super.onStop();
+        mIsActive = false;
+        releaseResources();
+    }
 
-	@Override
-	public boolean dispatchTouchEvent(MotionEvent ev) {
-		// discard the touch event
-		if (mIsClickable == false) {
-			return true;
-		}
-		// handle it
-		return super.dispatchTouchEvent(ev);
-	}
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        // discard the touch event
+        if (mIsClickable == false) {
+            return true;
+        }
+        // handle it
+        return super.dispatchTouchEvent(ev);
+    }
 
 
 	/*
-	 * If anyone want to get the thumbnail after the resource release, we need
+     * If anyone want to get the thumbnail after the resource release, we need
 	 * to reload it and re-schedule the release time
 	 */
 
-	@Override
-	public boolean onCreateThumbnail(Bitmap outBitmap, Canvas canvas) {
-		if (!mIsActive) {
-			reloadResources();
-		}
-		boolean ret = super.onCreateThumbnail(outBitmap, canvas);
-		if (!mIsActive) {
-			releaseResources();
-		}
-		return ret;
-	}
+    @Override
+    public boolean onCreateThumbnail(Bitmap outBitmap, Canvas canvas) {
+        if (!mIsActive) {
+            reloadResources();
+        }
+        boolean ret = super.onCreateThumbnail(outBitmap, canvas);
+        if (!mIsActive) {
+            releaseResources();
+        }
+        return ret;
+    }
 
-	@Override
-	public void onDestroy() {
-		super.onDestroy();
-		try {
-			LocalBroadcastManager.getInstance(this).unregisterReceiver(mMainScreenLocalReceiver);
-		} catch (Exception e) {
-			if (AppEnv.bAppdebug) {
-				Log.e(TAG, "", e);
-			}
-		}
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        try {
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(mMainScreenLocalReceiver);
+        } catch (Exception e) {
+            if (AppEnv.bAppdebug) {
+                Log.e(TAG, "", e);
+            }
+        }
 
-		// remove handler
-		mHandler.removeCallbacksAndMessages(null);
-		mHandler = null;
+        // remove handler
+        mHandler.removeCallbacksAndMessages(null);
+        mHandler = null;
 
-		// Release all UI related resource
-		mIsActive = false;
+        // Release all UI related resource
+        mIsActive = false;
 
-		if (connectionListener != null) {
-			EMChatManager.getInstance().removeConnectionListener(connectionListener);
-		}
+        if (connectionListener != null) {
+            EMChatManager.getInstance().removeConnectionListener(connectionListener);
+        }
 
-		EventBus.getDefault().unregister(this);
-		// VolleyUtil.getQueue(mContext).add(new
-		// ClearCacheRequest(VolleyUtil.getQueue(mContext).getCache(), null));
-	}
+        EventBus.getDefault().unregister(this);
+        // VolleyUtil.getQueue(mContext).add(new
+        // ClearCacheRequest(VolleyUtil.getQueue(mContext).getCache(), null));
+    }
 
-	@Override
-	protected void onNewIntent(Intent intent) {
-		super.onNewIntent(intent);
-		selectTabByIntent(intent);
-		refreshCheck();
-	}
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        selectTabByIntent(intent);
+        refreshCheck();
+    }
 
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (resultCode == RESULT_CODE_EXIT_APP) {
-			Utils.finishActivity(this);
-		}
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_CODE_EXIT_APP) {
+            Utils.finishActivity(this);
+        }
 
-		super.onActivityResult(requestCode, resultCode, data);
-	}
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
-	@Override
-	public void onEvent(EMNotifierEvent event) {
-		switch (event.getEvent()) {
-			case EventNewMessage:
-			{
-				EMMessage message = (EMMessage)event.getData();
-				HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
-				refreshUI();
-				break;
-			}
-			case EventOfflineMessage:
-				refreshUI();
-				break;
-			case EventConversationListChanged:
-				refreshUI();
-				break;
-			default:
-				break;
-		}
-	}
+    @Override
+    public void onEvent(EMNotifierEvent event) {
+        switch (event.getEvent()) {
+            case EventNewMessage: {
+                EMMessage message = (EMMessage) event.getData();
+                HXSDKHelper.getInstance().getNotifier().onNewMsg(message);
+                refreshUI();
+                break;
+            }
+            case EventOfflineMessage:
+                refreshUI();
+                break;
+            case EventConversationListChanged:
+                refreshUI();
+                break;
+            default:
+                break;
+        }
+    }
 
-	private void refreshUI() {
-		//更新未读消息显示
-		//refreshUnreadLabel();
-		//更新fragment消息通知
-		EventBus.getDefault().post(new NewMessageReceiveEvent());
-	}
+    private void refreshUI() {
+        //更新未读消息显示
+        //refreshUnreadLabel();
+        //更新fragment消息通知
+        EventBus.getDefault().post(new NewMessageReceiveEvent());
+    }
 
-	public void refreshUnreadLabel() {
-		runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				int cpunt = getUnreadMsgCountTotal();
-			}
-		});
-	}
+    public void refreshUnreadLabel() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                int cpunt = getUnreadMsgCountTotal();
+            }
+        });
+    }
 
-	private int getUnreadMsgCountTotal() {
-		int unreadMsgCountTotal = 0;
-		int chatroomUnreadMsgCount = 0;
-		unreadMsgCountTotal = EMChatManager.getInstance().getUnreadMsgsCount();
-		for(EMConversation conversation:EMChatManager.getInstance().getAllConversations().values()){
-			if(conversation.getType() == EMConversation.EMConversationType.ChatRoom)
-				chatroomUnreadMsgCount=chatroomUnreadMsgCount+conversation.getUnreadMsgCount();
-		}
-		return unreadMsgCountTotal-chatroomUnreadMsgCount;
-	}
-	// ////////////////////////////////////////////////////////////////////////////////////////////////
-	private MainScreenContainer mMainContainer;
-	public static final String ACTION_REFRESH_REDPOINT = "ACTION_REFRESH_REDPOINT";// 刷新红点状态
-	public static final String ACTION_SHOW_TAB = "ACTION_SHOW_TAB";// 显示tab
-	public static final String ACTION_HIDE_TAB = "ACTION_HIDE_TAB";// 隐藏tab
-	private final BroadcastReceiver mMainScreenLocalReceiver = new BroadcastReceiver() {
+    private int getUnreadMsgCountTotal() {
+        int unreadMsgCountTotal = 0;
+        int chatroomUnreadMsgCount = 0;
+        unreadMsgCountTotal = EMChatManager.getInstance().getUnreadMsgsCount();
+        for (EMConversation conversation : EMChatManager.getInstance().getAllConversations().values()) {
+            if (conversation.getType() == EMConversation.EMConversationType.ChatRoom)
+                chatroomUnreadMsgCount = chatroomUnreadMsgCount + conversation.getUnreadMsgCount();
+        }
+        return unreadMsgCountTotal - chatroomUnreadMsgCount;
+    }
 
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			if (intent == null) {
-				return;
-			}
+    // ////////////////////////////////////////////////////////////////////////////////////////////////
+    private MainScreenContainer mMainContainer;
+    public static final String ACTION_REFRESH_REDPOINT = "ACTION_REFRESH_REDPOINT";// 刷新红点状态
+    public static final String ACTION_SHOW_TAB = "ACTION_SHOW_TAB";// 显示tab
+    public static final String ACTION_HIDE_TAB = "ACTION_HIDE_TAB";// 隐藏tab
+    private final BroadcastReceiver mMainScreenLocalReceiver = new BroadcastReceiver() {
 
-			String act = intent.getAction();
-			if (ACTION_REFRESH_REDPOINT.equals(act)) {
-				mMainContainer.refreshTab();
-			} else if (ACTION_HIDE_TAB.equals(act)) {
-				mMainContainer.hideTabContainer();
-			} else if (ACTION_SHOW_TAB.equals(act)) {
-				mMainContainer.showTabContainer();
-			}
-		}
-	};
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent == null) {
+                return;
+            }
 
-	private void init() {
-		Utils.setContentView(this, R.layout.activity_index);
+            String act = intent.getAction();
+            if (ACTION_REFRESH_REDPOINT.equals(act)) {
+                mMainContainer.refreshTab();
+            } else if (ACTION_HIDE_TAB.equals(act)) {
+                mMainContainer.hideTabContainer();
+            } else if (ACTION_SHOW_TAB.equals(act)) {
+                mMainContainer.showTabContainer();
+            }
+        }
+    };
+
+    private void init() {
+        Utils.setContentView(this, R.layout.activity_index);
         mToolBarTitle = (TextView) findViewById(R.id.toolbar_title);
-		mVerificationWarning = (TextView) findViewById(R.id.tv_verification_warning);
-		if (!Session.getSession().is_validation) {
-			mVerificationWarning.setVisibility(View.VISIBLE);
-		}
+        mVerificationWarning = (TextView) findViewById(R.id.tv_verification_warning);
+        if (!Session.getSession().is_validation) {
+            mVerificationWarning.setVisibility(View.VISIBLE);
+        }
 
         mRadioGroupReservation = (RadioGroup) findViewById(R.id.rg_reservation);
-		mMainContainer = (MainScreenContainer) Utils.findViewById(this, R.id.main_screen_container);
-		mMainContainer.setup(getSupportFragmentManager());
-		mMainContainer.setOnTabListener(this);
+        mMainContainer = (MainScreenContainer) Utils.findViewById(this, R.id.main_screen_container);
+        mMainContainer.setup(getSupportFragmentManager());
+        mMainContainer.setOnTabListener(this);
 
-		IntentFilter intentFilter = new IntentFilter();
-		intentFilter.addAction(ACTION_REFRESH_REDPOINT);
-		intentFilter.addAction(ACTION_SHOW_TAB);
-		intentFilter.addAction(ACTION_HIDE_TAB);
-		LocalBroadcastManager.getInstance(this).registerReceiver(mMainScreenLocalReceiver, intentFilter);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ACTION_REFRESH_REDPOINT);
+        intentFilter.addAction(ACTION_SHOW_TAB);
+        intentFilter.addAction(ACTION_HIDE_TAB);
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMainScreenLocalReceiver, intentFilter);
 
-		mMainContainer.post(new Runnable() {
+        mMainContainer.post(new Runnable() {
 
-			@Override
-			public void run() {
-				selectTabByIntent(getIntent());
-			}
-		});
+            @Override
+            public void run() {
+                selectTabByIntent(getIntent());
+            }
+        });
 
-		connectionListener = new BCConnectionListener();
-		EMChatManager.getInstance().addConnectionListener(connectionListener);
-	}
+        connectionListener = new BCConnectionListener();
+        EMChatManager.getInstance().addConnectionListener(connectionListener);
+    }
 
-	private void refreshView() {
-		mMainContainer.refreshTab();
-	}
+    private void refreshView() {
+        mMainContainer.refreshTab();
+    }
 
-	private void selectTabByIntent(Intent intent) {
-		int tab = 0;
-		if (intent != null) {
-			tab = intent.getIntExtra(SELECT_TAB_NAME, 0);
-		}
-		mMainContainer.jumpTab(tab, intent);
-	}
+    private void selectTabByIntent(Intent intent) {
+        int tab = 0;
+        if (intent != null) {
+            tab = intent.getIntExtra(SELECT_TAB_NAME, 0);
+        }
+        mMainContainer.jumpTab(tab, intent);
+    }
 
-	public static final String SELECT_TAB_NAME = "SELECT_TAB_NAME";
-	public static final int TAB_RESERVATION = 1;
-	public static final int TAB_MESSAGE = 2;
-	public static final int TAB_PROFILE = 3;
+    public static final String SELECT_TAB_NAME = "SELECT_TAB_NAME";
+    public static final int TAB_RESERVATION = 1;//预约
+    public static final int TAB_MESSAGE = 2;//消息
+    public static final int TAB_PROFILE = 3;//我的
+    public static final int TAB_SCHEDULE = 4;//日程
 
-	/**
-	 * 向需要接收onKeyDown事件并且提供了onKeyDown方法的Fragment传递按键事件。
-	 * 需要接收按键事件的Fragment需要提供如下方法：<br>
-	 * public boolean onKeyDown(int keyCode, KeyEvent event) {return true or
-	 * false}
-	 */
+    /**
+     * 向需要接收onKeyDown事件并且提供了onKeyDown方法的Fragment传递按键事件。
+     * 需要接收按键事件的Fragment需要提供如下方法：<br>
+     * public boolean onKeyDown(int keyCode, KeyEvent event) {return true or
+     * false}
+     */
 //	@Override
 //	public boolean onKeyDown(int keyCode, KeyEvent event) {
 //		return mMainContainer.onKeyDown(keyCode, event) ? true : super
 //				.onKeyDown(keyCode, event);
 //	}
 //
-	private long firstTime;
+    private long firstTime;
 
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			long secondTime = System.currentTimeMillis();
-			if (secondTime - firstTime > 2000) {// 如果两次按键时间间隔大于800毫秒，则不退出
-				Toast.makeText(IndexActivity.this, "再按一次退出程序...",
-						Toast.LENGTH_SHORT).show();
-				firstTime = secondTime;// 更新firstTime
-				return true;
-			} else {
-				// System.exit(0);// 否则退出程序
-				finish();
-			}
-		}
-		return super.onKeyDown(keyCode, event);
-	}
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            long secondTime = System.currentTimeMillis();
+            if (secondTime - firstTime > 2000) {// 如果两次按键时间间隔大于800毫秒，则不退出
+                Toast.makeText(IndexActivity.this, "再按一次退出程序...",
+                        Toast.LENGTH_SHORT).show();
+                firstTime = secondTime;// 更新firstTime
+                return true;
+            } else {
+                // System.exit(0);// 否则退出程序
+                finish();
+            }
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
-	@Override
-	public void onBackPressed() {
-		// 加一个保护避免Fragment爆掉, like this:
-		// 03-14 21:50:02.859 E/CrashHandler(16989):
-		// java.lang.IllegalStateException: Can not perform this action after
-		// onSaveInstanceState
-		// 03-14 21:50:02.859 E/CrashHandler(16989): at
-		// android.app.FragmentManagerImpl.checkStateLoss(FragmentManager.java:1280)
-		// 03-14 21:50:02.859 E/CrashHandler(16989): at
-		// android.app.FragmentManagerImpl.popBackStackImmediate(FragmentManager.java:451)
-		// 03-14 21:50:02.859 E/CrashHandler(16989): at
-		// android.app.Activity.onBackPressed(Activity.java:2228)
-		// 03-14 21:50:02.859 E/CrashHandler(16989): at
-		// android.app.Activity.onKeyUp(Activity.java:2206)
-		// 03-14 21:50:02.859 E/CrashHandler(16989): at
-		// android.view.KeyEvent.dispatch(KeyEvent.java:2633)
-		// 03-14 21:50:02.859 E/CrashHandler(16989): at
-		// android.app.Activity.dispatchKeyEvent(Activity.java:2436)
-		try {
-			super.onBackPressed();
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-	}
+    @Override
+    public void onBackPressed() {
+        // 加一个保护避免Fragment爆掉, like this:
+        // 03-14 21:50:02.859 E/CrashHandler(16989):
+        // java.lang.IllegalStateException: Can not perform this action after
+        // onSaveInstanceState
+        // 03-14 21:50:02.859 E/CrashHandler(16989): at
+        // android.app.FragmentManagerImpl.checkStateLoss(FragmentManager.java:1280)
+        // 03-14 21:50:02.859 E/CrashHandler(16989): at
+        // android.app.FragmentManagerImpl.popBackStackImmediate(FragmentManager.java:451)
+        // 03-14 21:50:02.859 E/CrashHandler(16989): at
+        // android.app.Activity.onBackPressed(Activity.java:2228)
+        // 03-14 21:50:02.859 E/CrashHandler(16989): at
+        // android.app.Activity.onKeyUp(Activity.java:2206)
+        // 03-14 21:50:02.859 E/CrashHandler(16989): at
+        // android.view.KeyEvent.dispatch(KeyEvent.java:2633)
+        // 03-14 21:50:02.859 E/CrashHandler(16989): at
+        // android.app.Activity.dispatchKeyEvent(Activity.java:2436)
+        try {
+            super.onBackPressed();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
 
-	@Override
-	protected void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		outState.putInt(STATE_KEY_INT_SELECTED_TAB,
-				mMainContainer != null ? mMainContainer.getCurrentTabType()
-						: IndexActivity.TAB_RESERVATION);
-		outState.putBoolean(Constant.LOGIN_STATE_CONFLICT, isConflict());
-	}
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(STATE_KEY_INT_SELECTED_TAB,
+                mMainContainer != null ? mMainContainer.getCurrentTabType()
+                        : IndexActivity.TAB_RESERVATION);
+        outState.putBoolean(Constant.LOGIN_STATE_CONFLICT, isConflict());
+    }
 
-	@Override
-	public boolean isKillable() {
-		if (mFragKillableList != null) {
-			for (WeakReference<IKillable> aKillableRef : mFragKillableList) {
-				IKillable aKillable = aKillableRef.get();
-				if (aKillable != null && !aKillable.isKillable()) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
+    @Override
+    public boolean isKillable() {
+        if (mFragKillableList != null) {
+            for (WeakReference<IKillable> aKillableRef : mFragKillableList) {
+                IKillable aKillable = aKillableRef.get();
+                if (aKillable != null && !aKillable.isKillable()) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 
-	@Override
-	public void onTabSelected(int index, boolean reClicked) {
-		switch (index) {
-		case TAB_RESERVATION:
-			mToolBarTitle.setVisibility(View.GONE);
-            mRadioGroupReservation.setVisibility(View.VISIBLE);
+    @Override
+    public void onTabSelected(int index, boolean reClicked) {
+        switch (index) {
+            case TAB_RESERVATION:
+                mToolBarTitle.setVisibility(View.VISIBLE);
+                mRadioGroupReservation.setVisibility(View.GONE);
 //			mMenuItemRight.setVisible(true);
 //			if (reClicked) {
 //	        }
-			break;
-		case TAB_MESSAGE:
-            mToolBarTitle.setVisibility(View.VISIBLE);
-            mRadioGroupReservation.setVisibility(View.GONE);
-			mToolBarTitle.setText(R.string.title_message);
+                mToolBarTitle.setText(R.string.title_reservation);
+                break;
+            case TAB_SCHEDULE:
+                mToolBarTitle.setVisibility(View.VISIBLE);
+                mRadioGroupReservation.setVisibility(View.GONE);
+                mToolBarTitle.setText(R.string.title_schedule);
+
+            case TAB_MESSAGE:
+                mToolBarTitle.setVisibility(View.VISIBLE);
+                mRadioGroupReservation.setVisibility(View.GONE);
+                mToolBarTitle.setText(R.string.title_message);
 //			mMenuItemRight.setVisible(false);
-			break;
-		case TAB_PROFILE:
-            mToolBarTitle.setVisibility(View.VISIBLE);
-            mRadioGroupReservation.setVisibility(View.GONE);
-			mToolBarTitle.setText(R.string.title_profile);
+                break;
+            case TAB_PROFILE:
+                mToolBarTitle.setVisibility(View.VISIBLE);
+                mRadioGroupReservation.setVisibility(View.GONE);
+                mToolBarTitle.setText(R.string.title_profile);
 //		    mMenuItemRight.setVisible(false);
-			break;
-		default:
-			break;
-		}
-	}
+                break;
+            default:
+                break;
+        }
+    }
 
 //	private MenuItem mMenuItemRight;
 //	@Override
@@ -643,8 +653,8 @@ public class IndexActivity extends BaseActivity implements IKillable,
 //        }
 //    }
 
-	@Override
-	public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
 //		switch (v.getId()) {
 //		case R.id.toolbar_title:
 //			break;
@@ -653,134 +663,134 @@ public class IndexActivity extends BaseActivity implements IKillable,
 //		default:
 //			break;
 //		}
-	}
+    }
 
 
-	class BCConnectionListener implements EMConnectionListener {
-		@Override
-		public void onConnected() {
-			boolean groupSynced = HXSDKHelper.getInstance().isGroupsSyncedWithServer();
-			boolean contactSynced = HXSDKHelper.getInstance().isContactsSyncedWithServer();
+    class BCConnectionListener implements EMConnectionListener {
+        @Override
+        public void onConnected() {
+            boolean groupSynced = HXSDKHelper.getInstance().isGroupsSyncedWithServer();
+            boolean contactSynced = HXSDKHelper.getInstance().isContactsSyncedWithServer();
 
-			// in case group and contact were already synced, we supposed to notify sdk we are ready to receive the events
-			if(contactSynced){
-				new Thread(){
-					@Override
-					public void run(){
-						HXSDKHelper.getInstance().notifyForRecevingEvents();
-					}
-				}.start();
-			}else{
+            // in case group and contact were already synced, we supposed to notify sdk we are ready to receive the events
+            if (contactSynced) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        HXSDKHelper.getInstance().notifyForRecevingEvents();
+                    }
+                }.start();
+            } else {
 
-				if(!contactSynced){
-				}
+                if (!contactSynced) {
+                }
 
-			}
+            }
 
-			runOnUiThread(new Runnable() {
+            runOnUiThread(new Runnable() {
 
-				@Override
-				public void run() {
-					NetStateEvent event = new NetStateEvent();
-					event.mIsNetOk = true;
-					EventBus.getDefault().post(event);
-				}
+                @Override
+                public void run() {
+                    NetStateEvent event = new NetStateEvent();
+                    event.mIsNetOk = true;
+                    EventBus.getDefault().post(event);
+                }
 
-			});
-		}
+            });
+        }
 
-		@Override
-		public void onDisconnected(final int error) {
-			final String st1 = getResources().getString(R.string.can_not_connect_chat_server_connection);
-			final String st2 = getResources().getString(R.string.the_current_network);
-			runOnUiThread(new Runnable() {
+        @Override
+        public void onDisconnected(final int error) {
+            final String st1 = getResources().getString(R.string.can_not_connect_chat_server_connection);
+            final String st2 = getResources().getString(R.string.the_current_network);
+            runOnUiThread(new Runnable() {
 
-				@Override
-				public void run() {
-					if (error == EMError.USER_REMOVED) {
-						// 显示帐号已经被移除
-					} else if (error == EMError.CONNECTION_CONFLICT) {
-						// 显示帐号在其他设备登陆dialog
-						showConflictDialog();
-					} else {
-						NetStateEvent event = new NetStateEvent();
-						event.mIsNetOk = false;
-						if (NetUtils.hasNetwork(IndexActivity.this)) {
-							event.mErrorMsg = st1;
-						} else {
-							event.mErrorMsg = st2;
-						}
-						EventBus.getDefault().post(event);
-					}
-				}
+                @Override
+                public void run() {
+                    if (error == EMError.USER_REMOVED) {
+                        // 显示帐号已经被移除
+                    } else if (error == EMError.CONNECTION_CONFLICT) {
+                        // 显示帐号在其他设备登陆dialog
+                        showConflictDialog();
+                    } else {
+                        NetStateEvent event = new NetStateEvent();
+                        event.mIsNetOk = false;
+                        if (NetUtils.hasNetwork(IndexActivity.this)) {
+                            event.mErrorMsg = st1;
+                        } else {
+                            event.mErrorMsg = st2;
+                        }
+                        EventBus.getDefault().post(event);
+                    }
+                }
 
-			});
-		}
-	}
+            });
+        }
+    }
 
-	public boolean isConflict() {
-		return mIsConflict;
-	}
+    public boolean isConflict() {
+        return mIsConflict;
+    }
 
-	private android.app.AlertDialog.Builder conflictBuilder;
-	private boolean isConflictDialogShow;
+    private android.app.AlertDialog.Builder conflictBuilder;
+    private boolean isConflictDialogShow;
 
-	private void showConflictDialog() {
-		isConflictDialogShow = true;
-		BlackCatHXSDKHelper.getInstance().logout(false,null);
-		String st = getResources().getString(R.string.Logoff_notification);
-		if (!IndexActivity.this.isFinishing()) {
-			// clear up global variables
-			try {
-				if (conflictBuilder == null)
-					conflictBuilder = new android.app.AlertDialog.Builder(IndexActivity.this);
-				conflictBuilder.setTitle(st);
-				conflictBuilder.setMessage(R.string.connect_conflict);
-				conflictBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+    private void showConflictDialog() {
+        isConflictDialogShow = true;
+        BlackCatHXSDKHelper.getInstance().logout(false, null);
+        String st = getResources().getString(R.string.Logoff_notification);
+        if (!IndexActivity.this.isFinishing()) {
+            // clear up global variables
+            try {
+                if (conflictBuilder == null)
+                    conflictBuilder = new android.app.AlertDialog.Builder(IndexActivity.this);
+                conflictBuilder.setTitle(st);
+                conflictBuilder.setMessage(R.string.connect_conflict);
+                conflictBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						dialog.dismiss();
-						conflictBuilder = null;
-						Session.save(null,true);
-						finish();
-						startActivity(new Intent(IndexActivity.this, LoginActivity.class));
-					}
-				});
-				conflictBuilder.setCancelable(false);
-				conflictBuilder.create().show();
-				mIsConflict = true;
-			} catch (Exception e) {
-			}
-		}
-	}
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        conflictBuilder = null;
+                        Session.save(null, true);
+                        finish();
+                        startActivity(new Intent(IndexActivity.this, LoginActivity.class));
+                    }
+                });
+                conflictBuilder.setCancelable(false);
+                conflictBuilder.create().show();
+                mIsConflict = true;
+            } catch (Exception e) {
+            }
+        }
+    }
 
-	public void onEvent(LogoutEvent event) {
-		finish();
-		JPushInterface.setAlias(getApplicationContext(), "", mAliasCallback);
-	}
+    public void onEvent(LogoutEvent event) {
+        finish();
+        JPushInterface.setAlias(getApplicationContext(), "", mAliasCallback);
+    }
 
-	private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
-		@Override
-		public void gotResult(int code, String alias, Set<String> tags) {
-			String logs;
-			switch (code) {
-				case 0:
-					logs = "Set tag and alias success";
-					Log.i(TAG, logs);
-					// 建议这里往 SharePreference 里写一个成功设置的状态。成功设置一次后，以后不必再次设置了。
-					break;
-				case 6002:
-					logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
-					Log.i(TAG, logs);
-					// 延迟 60 秒来调用 Handler 设置别名
-					// mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_ALIAS,
-					// alias), 1000 * 60);
-					break;
-				default:
-					logs = "Failed with errorCode = " + code;
-					Log.e(TAG, logs);
-			}
-		}
-	};
+    private final TagAliasCallback mAliasCallback = new TagAliasCallback() {
+        @Override
+        public void gotResult(int code, String alias, Set<String> tags) {
+            String logs;
+            switch (code) {
+                case 0:
+                    logs = "Set tag and alias success";
+                    Log.i(TAG, logs);
+                    // 建议这里往 SharePreference 里写一个成功设置的状态。成功设置一次后，以后不必再次设置了。
+                    break;
+                case 6002:
+                    logs = "Failed to set alias and tags due to timeout. Try again after 60s.";
+                    Log.i(TAG, logs);
+                    // 延迟 60 秒来调用 Handler 设置别名
+                    // mHandler.sendMessageDelayed(mHandler.obtainMessage(MSG_SET_ALIAS,
+                    // alias), 1000 * 60);
+                    break;
+                default:
+                    logs = "Failed with errorCode = " + code;
+                    Log.e(TAG, logs);
+            }
+        }
+    };
 }

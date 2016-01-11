@@ -86,6 +86,13 @@
             android:layout_weight="1"
             android:background="@drawable/sl_tab_indicator_bg"
             android:duplicateParentState="true" />
+        <com.blackcat.coach.widgets.MainScreenTab
+            android:id="@+id/tab_schedule"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sl_tab_indicator_bg"
+            android:duplicateParentState="true" />
 
         <com.blackcat.coach.widgets.MainScreenTab
             android:id="@+id/tab_my_orders"
@@ -94,6 +101,7 @@
             android:layout_weight="1"
             android:background="@drawable/sl_tab_indicator_bg"
             android:duplicateParentState="true" />
+
 
         <com.blackcat.coach.widgets.MainScreenTab
             android:id="@+id/tab_profile"

@@ -16,6 +16,7 @@
 
     <!-- main tab -->
     <string name="tab_indicator_title_reservation">预约</string>
+    <string name="tab_indicator_title_schedule">日程</string>
     <string name="tab_indicator_title_message">消息</string>
     <string name="tab_indicator_title_profile">我的</string>
 
