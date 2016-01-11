@@ -16,6 +16,8 @@ public class ReservationAdapter extends FragmentPagerAdapter {
 
     private final String[] titles;
 
+
+
     public ReservationAdapter(FragmentManager fm,String[] titles) {
         super(fm);
         this.titles = titles;
