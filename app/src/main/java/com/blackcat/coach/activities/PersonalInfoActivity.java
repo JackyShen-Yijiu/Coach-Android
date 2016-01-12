@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.blackcat.coach.qiniu.QiniuUploadManager;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.widgets.WordWrapView;
 import com.nostra13.universalimageloader.core.ImageLoader;
+
+import org.w3c.dom.Text;
 
 import java.io.File;
 
@@ -75,7 +78,7 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
         mTvName.setText(Session.getSession().name);
         mTvId.setText(Session.getSession().displaycoachid);
 
-        mIvAvatar = (ImageView) findViewById(R.id.iv_avatar);
+        mIvAvatar = (ImageView) findViewById(R.id.ic_avatar);
         if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
 //            PicassoUtil.loadImage(this, mIvAvatar, Session.getSession().headportrait.originalpic, R.dimen.avatar_size, R.dimen.avatar_size, false, R.mipmap.ic_avatar_small);
             UILHelper.loadImage(mIvAvatar, Session.getSession().headportrait.originalpic, false, R.mipmap.ic_avatar_small);
@@ -83,6 +86,8 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void bindViewInfo() {
+        if (!TextUtils.isEmpty(Session.getSession().name))//用户名
+            mTvName.setText(Session.getSession().name);
         if (!TextUtils.isEmpty(Session.getSession().idcardnumber)) {
             mTvIdCard.setText(Session.getSession().idcardnumber);
         }
@@ -106,7 +111,7 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
         if (!TextUtils.isEmpty(Session.getSession().introduction)) {
             mTvIntroduction.setText(Session.getSession().introduction);
         }
-
+        Log.d("tag", "Introduction-->" + Session.getSession().introduction);
         addTags();
     }
 
@@ -130,6 +135,11 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
+            case R.id.rl_name://姓名
+                Intent i = new Intent(this, ModifyCoachNameAct.class);
+//                i.putExtra("name",Session.getSession().name)
+                startActivity(i);
+                break;
             case R.id.rl_self_intro:
                 startActivity(new Intent(this, SelfIntroducationActivity.class));
                 break;

@@ -116,6 +116,34 @@ public class URIUtil {
 		return null;
 	}
 
+	/**
+	 * 预约 请求地址
+	 * @param coachId  教练id
+	 * @param pos	    页数
+	 * @param type		请求的不同种类 分四类:
+	 * @return
+	 */
+	public static URI getAppointMent(String coachId,int pos,int type){
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		//种类
+		params.add(new BasicNameValuePair(NetConstants.KEY_RESERVATIONSTATE, String.valueOf(type)));
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, coachId));
+//		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, "5616352721ec29041a9af889"));
+
+		params.add(new BasicNameValuePair(NetConstants.KEY_INDEX, String.valueOf(pos)));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_RESERVATION_LIST, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static URI getReservationList(String coachid, int pos) {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 		fillBasicParams(CarCoachApplication.getInstance(), params);

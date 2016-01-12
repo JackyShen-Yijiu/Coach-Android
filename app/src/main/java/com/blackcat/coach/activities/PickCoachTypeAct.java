@@ -17,7 +17,7 @@ import com.blackcat.coach.adapters.CoachTypeAdapter;
  */
 public class PickCoachTypeAct extends ChatBaseActivity implements  AdapterView.OnItemClickListener{
 
-    CoachTypeAdapter adapter;
+    private CoachTypeAdapter adapter;
 
     private String[] coaches = {"挂靠教练","直营教练"};
 

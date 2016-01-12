@@ -69,6 +69,8 @@ public class NetConstants {
 	public static final String KEY_USERID = "userid";
 	public static final String KEY_SCHOOLID = "schoolid";
 	public static final String KEY_COACHID = "coachid";
+	/**订单状态*/
+	public static final String KEY_RESERVATIONSTATE = "reservationstate";
 	public static final String KEY_INDEX = "index";
 	public static final String KEY_SEQINDEX = "seqindex";
 	public static final String KEY_DATE = "date";

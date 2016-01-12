@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -125,6 +126,7 @@ public class DrivingSchoolActivity extends BaseActivity implements View.OnClickL
     }
 
     public void getNearbyDriverSchool() {
+
         if (Session.isUserInfoEmpty()) {
             return;
         }
@@ -137,6 +139,7 @@ public class DrivingSchoolActivity extends BaseActivity implements View.OnClickL
                 e.printStackTrace();
             }
         }
+
         if (TextUtils.isEmpty(url)) {
             return;
         }
@@ -178,6 +181,7 @@ public class DrivingSchoolActivity extends BaseActivity implements View.OnClickL
                 e.printStackTrace();
             }
         }
+
         if (TextUtils.isEmpty(url)) {
             return;
         }
@@ -223,6 +227,7 @@ public class DrivingSchoolActivity extends BaseActivity implements View.OnClickL
         UpdateCoachParams params = new UpdateCoachParams(Session.getSession());
         params.driveschoolinfo = ds;
         params.driveschoolid = ds.id;
+        params.coachid = Session.getSession().coachid;
         Session.getSession().updateRequest(this, params);
     }
 
@@ -230,6 +235,7 @@ public class DrivingSchoolActivity extends BaseActivity implements View.OnClickL
 
         @Override
         public void onReceiveLocation(BDLocation location) {
+
             //Receive Location
             if (location.getLocType() == BDLocation.TypeGpsLocation ||
                     location.getLocType() == BDLocation.TypeNetWorkLocation ||

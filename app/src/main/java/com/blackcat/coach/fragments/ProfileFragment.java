@@ -1,8 +1,10 @@
 package com.blackcat.coach.fragments;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.ClassesSettingsActivity;
 import com.blackcat.coach.activities.DrivingSchoolActivity;
+import com.blackcat.coach.activities.ForwardMessageActivity;
 import com.blackcat.coach.activities.PersonalInfoActivity;
 import com.blackcat.coach.activities.SettingsActivity;
 import com.blackcat.coach.activities.StudentsActivity;
@@ -24,6 +27,8 @@ import com.blackcat.coach.activities.WalletActivity;
 import com.blackcat.coach.activities.WorkTimeActivity;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Session;
+import com.easemob.chat.EMMessage;
+import com.easemob.chat.TextMessageBody;
 
 public class ProfileFragment extends BaseFragment implements OnClickListener {
 
@@ -101,6 +106,12 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         if (Session.getSession().trainfieldlinfo != null && !TextUtils.isEmpty(Session.getSession().trainfieldlinfo.name)) {
             mTvFieldName.setText(Session.getSession().trainfieldlinfo.name);
         }
+        if(null!= Session.getSession().workweek){//工作时间
+            Log.d("tag", "work--time:" + Session.getSession().workweek.getClass());
+        }
+//        if()
+
+
     }
 
     @Override
@@ -113,8 +124,10 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
             case R.id.rl_driving_school:
                 startActivity(new Intent(mActivity, DrivingSchoolActivity.class));
                 break;
-            case R.id.rl_work_time:
-                startActivity(new Intent(mActivity, WorkTimeActivity.class));
+            case R.id.rl_work_time://工作时间
+                Intent i1 = new Intent(mActivity, WorkTimeActivity.class);
+//                startActivityForResult(i1,1);
+                startActivity(i1);
                 break;
             case R.id.rl_shuttle:
                 startActivity(new Intent(mActivity, ClassesSettingsActivity.class));
@@ -147,4 +160,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         super.onResume();
         bindUserInfo();
     }
+
+
+
 }

@@ -8,8 +8,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_margin="10dp"
+        android:layout_margin="15dp"
         android:text="Medium Text"
+        android:textSize="@dimen/profile_text_size"
         android:id="@+id/row_pick_coach_type_tv" />
 </LinearLayout>

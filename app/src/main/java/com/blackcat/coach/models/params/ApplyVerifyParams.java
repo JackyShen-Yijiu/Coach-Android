@@ -10,4 +10,6 @@ public class ApplyVerifyParams {
     public String driveschoolid;
     public String drivinglicensenumber;
     public String coachnumber;
+    /** coachtype": "0" // 教练类型 0 挂靠教练 1直营教练*/
+    public String coachtype;
 }

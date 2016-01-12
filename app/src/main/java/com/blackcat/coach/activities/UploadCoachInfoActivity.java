@@ -48,6 +48,7 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
     private Button mBtnCommit;
     private TextView mTvSchool,mTvCoach;
     private DrivingSchool mDrivingSchool;
+   private  int type;
 
 
     @Override
@@ -83,7 +84,15 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
     private Type mType = new TypeToken<Result>() {
     }.getType();
 
-    private void applyVerifyRequest(String name, String idcardnumber, String driveschoolid, String drivinglicensenumber, String coachnumber) {
+    /**
+     * coachtype": "0" // 教练类型 0 挂靠教练 1直营教练
+     * @param name
+     * @param idcardnumber
+     * @param driveschoolid
+     * @param drivinglicensenumber
+     * @param coachnumber
+     */
+    private void applyVerifyRequest(String name, String idcardnumber, String driveschoolid, String drivinglicensenumber, String coachnumber,int type) {
         URI uri = URIUtil.getApplyVerify();
         String url = null;
         try {
@@ -102,6 +111,8 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
         params.drivinglicensenumber = drivinglicensenumber;
         params.driveschoolid = driveschoolid;
         params.coachnumber = coachnumber;
+        params.coachtype = String.valueOf(type);
+
         Map map = new HashMap<>();
         map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
 
@@ -171,7 +182,7 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_coachcard_empty);
                     return;
                 }
-                applyVerifyRequest(mEtName.getText().toString(), mEtCard.getText().toString(), mDrivingSchool.id, mEtCarCert.getText().toString(), mEtCoachCert.getText().toString());
+                applyVerifyRequest(mEtName.getText().toString(), mEtCard.getText().toString(), mDrivingSchool.id, mEtCarCert.getText().toString(), mEtCoachCert.getText().toString(),type);
                 break;
             case R.id.rl_choose_school://选择驾校
                 startActivity(new Intent(this, DrivingSchoolActivity.class));
@@ -219,7 +230,7 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
         // TODO Auto-generated method stub
         if(data!=null && requestCode==2){//选择 教练类型
             String name = data.getStringExtra("name");
-            int type = data.getIntExtra("type",0);
+            type = data.getIntExtra("type",0);
             if(null!=name)
                 mTvCoach.setText(name);
         }

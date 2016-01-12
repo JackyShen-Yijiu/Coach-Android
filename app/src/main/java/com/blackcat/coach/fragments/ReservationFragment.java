@@ -9,8 +9,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.activities.IndexActivity;
 import com.blackcat.coach.adapters.ReservationAdapter;
 import com.blackcat.coach.lib.PagerSlidingTab;
 
@@ -126,6 +128,8 @@ public class ReservationFragment extends BaseFragment {
                 .findViewById(R.id.fragment_reservation_sliding_tab);
         viewPager = (ViewPager) rootView
                 .findViewById(R.id.fragment_reservation_view_pager);
+
+//
     }
 
 
@@ -137,7 +141,26 @@ public class ReservationFragment extends BaseFragment {
 
         viewPager.setAdapter(adapter);
         slidingTab.setViewPager(viewPager);
+        slidingTab.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+//                Toast.makeText(getActivity(),"position"+position,Toast.LENGTH_SHORT).show();
+                if(position==0){//新订单,显示签到
+                    ((IndexActivity) getActivity()).showHideQianDao(true);
+                }else
+                    ((IndexActivity) getActivity()).showHideQianDao(false);
+             }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     @Override

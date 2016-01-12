@@ -149,6 +149,9 @@ public class IndexActivity extends BaseActivity implements IKillable,
         }
     }
 
+    //签到
+    private TextView tvQianDao;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -469,6 +472,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
     private void init() {
         Utils.setContentView(this, R.layout.activity_index);
         mToolBarTitle = (TextView) findViewById(R.id.toolbar_title);
+        tvQianDao = (TextView) findViewById(R.id.toolbar_title_right);
         mVerificationWarning = (TextView) findViewById(R.id.tv_verification_warning);
         if (!Session.getSession().is_validation) {
             mVerificationWarning.setVisibility(View.VISIBLE);
@@ -608,22 +612,35 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_schedule);
-
+                showHideQianDao(false);
             case TAB_MESSAGE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_message);
+                showHideQianDao(false);
 //			mMenuItemRight.setVisible(false);
                 break;
             case TAB_PROFILE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_profile);
+                showHideQianDao(false);
 //		    mMenuItemRight.setVisible(false);
                 break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 是否显示  签到
+     * @param flag
+     */
+    public void showHideQianDao(boolean flag){
+        if(flag)
+            tvQianDao.setVisibility(View.VISIBLE);
+        else
+            tvQianDao.setVisibility(View.GONE);
     }
 
 //	private MenuItem mMenuItemRight;
@@ -655,78 +672,79 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
     @Override
     public void onClick(View v) {
-//		switch (v.getId()) {
+        switch (v.getId()) {
 //		case R.id.toolbar_title:
 //			break;
-//		case R.id.toolbar_right:
-//			break;
-//		default:
-//			break;
-//		}
-    }
+            case R.id.toolbar_title_right://签到
+
+                break;
+            default:
+                break;
+		    }
+        }
 
 
-    class BCConnectionListener implements EMConnectionListener {
-        @Override
-        public void onConnected() {
-            boolean groupSynced = HXSDKHelper.getInstance().isGroupsSyncedWithServer();
-            boolean contactSynced = HXSDKHelper.getInstance().isContactsSyncedWithServer();
+        class BCConnectionListener implements EMConnectionListener {
+            @Override
+            public void onConnected() {
+                boolean groupSynced = HXSDKHelper.getInstance().isGroupsSyncedWithServer();
+                boolean contactSynced = HXSDKHelper.getInstance().isContactsSyncedWithServer();
 
-            // in case group and contact were already synced, we supposed to notify sdk we are ready to receive the events
-            if (contactSynced) {
-                new Thread() {
+                // in case group and contact were already synced, we supposed to notify sdk we are ready to receive the events
+                if (contactSynced) {
+                    new Thread() {
+                        @Override
+                        public void run() {
+                            HXSDKHelper.getInstance().notifyForRecevingEvents();
+                        }
+                    }.start();
+                } else {
+
+                    if (!contactSynced) {
+                    }
+
+                }
+
+                runOnUiThread(new Runnable() {
+
                     @Override
                     public void run() {
-                        HXSDKHelper.getInstance().notifyForRecevingEvents();
-                    }
-                }.start();
-            } else {
-
-                if (!contactSynced) {
-                }
-
-            }
-
-            runOnUiThread(new Runnable() {
-
-                @Override
-                public void run() {
-                    NetStateEvent event = new NetStateEvent();
-                    event.mIsNetOk = true;
-                    EventBus.getDefault().post(event);
-                }
-
-            });
-        }
-
-        @Override
-        public void onDisconnected(final int error) {
-            final String st1 = getResources().getString(R.string.can_not_connect_chat_server_connection);
-            final String st2 = getResources().getString(R.string.the_current_network);
-            runOnUiThread(new Runnable() {
-
-                @Override
-                public void run() {
-                    if (error == EMError.USER_REMOVED) {
-                        // 显示帐号已经被移除
-                    } else if (error == EMError.CONNECTION_CONFLICT) {
-                        // 显示帐号在其他设备登陆dialog
-                        showConflictDialog();
-                    } else {
                         NetStateEvent event = new NetStateEvent();
-                        event.mIsNetOk = false;
-                        if (NetUtils.hasNetwork(IndexActivity.this)) {
-                            event.mErrorMsg = st1;
-                        } else {
-                            event.mErrorMsg = st2;
-                        }
+                        event.mIsNetOk = true;
                         EventBus.getDefault().post(event);
                     }
-                }
 
-            });
+                });
+            }
+
+            @Override
+            public void onDisconnected(final int error) {
+                final String st1 = getResources().getString(R.string.can_not_connect_chat_server_connection);
+                final String st2 = getResources().getString(R.string.the_current_network);
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        if (error == EMError.USER_REMOVED) {
+                            // 显示帐号已经被移除
+                        } else if (error == EMError.CONNECTION_CONFLICT) {
+                            // 显示帐号在其他设备登陆dialog
+                            showConflictDialog();
+                        } else {
+                            NetStateEvent event = new NetStateEvent();
+                            event.mIsNetOk = false;
+                            if (NetUtils.hasNetwork(IndexActivity.this)) {
+                                event.mErrorMsg = st1;
+                            } else {
+                                event.mErrorMsg = st2;
+                            }
+                            EventBus.getDefault().post(event);
+                        }
+                    }
+
+                });
+            }
         }
-    }
 
     public boolean isConflict() {
         return mIsConflict;

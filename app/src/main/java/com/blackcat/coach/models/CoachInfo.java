@@ -2,6 +2,7 @@ package com.blackcat.coach.models;
 
 import android.app.Activity;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -76,6 +77,7 @@ public class CoachInfo implements Serializable {
 
     // 更新个人信息
     public static void updateRequest(final Activity activity, final UpdateCoachParams params) {
+
         if (Session.getSession() == null || activity == null) {
             return;
         }
@@ -87,6 +89,7 @@ public class CoachInfo implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+//        Log.d("tag","update-->"+url +GsonUtils.toJson(params));
         if (TextUtils.isEmpty(url)) {
             return;
         }

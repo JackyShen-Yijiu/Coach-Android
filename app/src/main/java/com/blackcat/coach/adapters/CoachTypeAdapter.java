@@ -51,9 +51,7 @@ public class CoachTypeAdapter extends BaseAdapter{
             holder = (ViewHolder) convertView.getTag();
         }
 
-
         holder.tvName.setText(list[i]);
-
 
         return convertView;
     }

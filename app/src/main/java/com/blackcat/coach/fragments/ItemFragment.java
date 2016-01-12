@@ -1,5 +1,6 @@
 package com.blackcat.coach.fragments;
 
+import android.content.ClipData;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -28,21 +29,23 @@ import de.greenrobot.event.EventBus;
  */
 public class ItemFragment extends BaseListFragment {
 
+//    private final
+    /***请求种类*/
+    private int type = 0;
+
+    public ItemFragment(){
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-//        View contextView = inflater.inflate(R.layout.fragment_item, container, false);
-        View contextView = inflater.inflate(R.layout.fragment_child_reservation, container, false);
-        initView(contextView,inflater);
-//        TextView mTextView = (TextView) contextView.findViewById(R.id.textview);
-
+        View contextView = inflater.inflate(R.layout.fragment_item, container, false);
         //获取Activity传递过来的参数
         Bundle mBundle = getArguments();
-        String title = mBundle.getString("arg");
+        initView(contextView,inflater,mBundle.getInt("type"));
 
-//        mTextView.setText(title);
         initData();
 
         return contextView;
@@ -57,15 +60,16 @@ public class ItemFragment extends BaseListFragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    private void initView(View rootView,LayoutInflater inflater){
+    private void initView(View rootView,LayoutInflater inflater,int type){
+
+        this.type = type;
         mType = new TypeToken<Result<List<Reservation>>>(){}.getType();
 
         initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_RESERVATION);
 
         mPage = 1;
         if (!Session.isUserInfoEmpty()) {
-            mURI = URIUtil.getReservationList(Session.getSession().coachid, mPage);
-            refresh(DicCode.RefreshType.R_INIT, mURI);
+            request(mPage);
         }
         EventBus.getDefault().register(this);
     }
@@ -83,14 +87,32 @@ public class ItemFragment extends BaseListFragment {
     @Override
     public void onRefresh() {
         mPage = 1;
-        mURI = URIUtil.getReservationList(Session.getSession().coachid, mPage);
-        refresh(DicCode.RefreshType.R_PULL_DOWN, mURI);
+        request(mPage);
     }
 
     @Override
     public void onLoadMore() {
         mPage++;
-        mURI = URIUtil.getReservationList(Session.getSession().coachid, mPage);
+        request(mPage);
+    }
+
+    private  void request(int page){
+        int temp = 0;
+        switch(type){
+            case 0://预约中
+                temp = 1;
+                break;
+            case 1://待评价
+                temp = 6;
+                break;
+            case 2://学生取消
+                temp = 2;
+                break;
+            case 3://已经完成
+                temp = 7;
+                break;
+        }
+        mURI = URIUtil.getAppointMent(Session.getSession().coachid,page,temp);
         refresh(DicCode.RefreshType.R_PULL_UP, mURI);
     }
 

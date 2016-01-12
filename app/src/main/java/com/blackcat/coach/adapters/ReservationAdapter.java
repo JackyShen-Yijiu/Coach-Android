@@ -17,7 +17,6 @@ public class ReservationAdapter extends FragmentPagerAdapter {
     private final String[] titles;
 
 
-
     public ReservationAdapter(FragmentManager fm,String[] titles) {
         super(fm);
         this.titles = titles;
@@ -30,7 +29,8 @@ public class ReservationAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment = new ItemFragment();
         Bundle args = new Bundle();
-        args.putString("arg", titles[position]);
+        args.putInt("type",position);
+//        args.putString("type", titles[position]);
         fragment.setArguments(args);
 
         return fragment;

@@ -85,14 +85,12 @@
                 android:layout_marginLeft="15dp"
                 android:background="@color/split_line_color" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/padding_10"
-                android:background="@color/split_line_color" />
+
 
             <RelativeLayout
                 android:id="@+id/rl_name"
                 android:layout_width="match_parent"
+                android:onClick="onClick"
                 android:layout_height="@dimen/info_item_height"
                 android:background="@drawable/sl_default_background"
                 android:gravity="center_vertical">
@@ -361,7 +359,8 @@
             <LinearLayout
                 android:id="@+id/rl_self_intro"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/info_item_height"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/padding_16"
                 android:orientation="vertical"
                 android:gravity="center_vertical">
 
@@ -371,17 +370,22 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/padding_left"
                     android:layout_marginRight="@dimen/padding_right"
+                    android:layout_marginTop="@dimen/padding_10"
                     android:text="@string/str_self"
                     android:textColor="@color/profile_text_normal"
                     android:textSize="@dimen/profile_text_size" />
 
                 <TextView
                     android:id="@+id/tv_self"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:maxLines="2"
-                    android:textColor="@color/maintab_text_normal"
+                    android:layout_marginLeft="@dimen/padding_left"
+                    android:layout_marginRight="@dimen/padding_right"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:maxLines="3"
+                    android:text="各适量的"
+                    android:textColor="@color/text_999"
                     android:textSize="@dimen/text_size_small" />
 
 

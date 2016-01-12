@@ -16,11 +16,25 @@
             android:layout_gravity="center"
             android:textColor="@color/textColorPrimary" />
 
+        <TextView
+            android:id="@+id/toolbar_title_right"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/iconfont_icon"
+            android:text="@string/qiandao"
+            android:layout_marginRight="14dp"
+            android:onClick="onClick"
+            android:textSize="@dimen/profile_text_size"
+            android:layout_gravity="right"
+            android:textColor="@color/textColorPrimary" />
+
         <RadioGroup
             android:id="@+id/rg_reservation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:visibility="gone"
             android:background="@drawable/bg_title_tab"
             android:orientation="horizontal">
 

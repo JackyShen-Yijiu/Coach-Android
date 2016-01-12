@@ -388,11 +388,11 @@
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
         -->
 
-        <activity android:name=".activities.PersionLableAct"
+        <activity
+            android:name=".activities.PersionLableAct"
             android:label="@string/title_custom_label"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"
-            ></activity>
+            android:theme="@style/AppTheme" />
 
         <!-- 环信SDK引入 -->
         <!-- black-cat#yibuxuechetest -->
@@ -400,6 +400,15 @@
         <meta-data
             android:name="EASEMOB_APPKEY"
             android:value="black-cat#yibuxuechetest" />
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+
+        <activity android:name=".activities.ModifyCoachNameAct"
+            android:label="@string/title_modify_name"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

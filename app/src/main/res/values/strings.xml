@@ -290,6 +290,9 @@
     <string name="custom_label">自定义标签</string>
     <string name="title_custom_label">个性标签</string>
     <string name="please_input_your_lable">请输入您想要添加的标签</string>
+    <string name="qiandao">签到</string>
+    <string name="title_modify_name">修改姓名</string>
+    
 
     <string name="tab_indicator_title_schedule">日程</string>
 
