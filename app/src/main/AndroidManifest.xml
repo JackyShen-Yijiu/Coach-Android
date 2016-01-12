@@ -394,12 +394,7 @@
             android:theme="@style/AppTheme"
             ></activity>
 
-        <!-- 环信SDK引入 -->
-        <!-- black-cat#yibuxuechetest -->
-        <!-- black-cat#yibuxuecheprod -->
-        <meta-data
-            android:name="EASEMOB_APPKEY"
-            android:value="black-cat#yibuxuechetest" />
+
     </application>
 
 </manifest>

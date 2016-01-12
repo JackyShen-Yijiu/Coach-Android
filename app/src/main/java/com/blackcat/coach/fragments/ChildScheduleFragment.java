@@ -63,7 +63,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
         initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_SCHEDULE);
 
         final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        mCurrentDate = formatter.format(new Date());
+        mCurrentDate = formatter.format(new Date());// 当期日期
         mType = new TypeToken<Result<List<Reservation>>>(){}.getType();
         mPage = 1;
         if (!Session.isUserInfoEmpty()) {

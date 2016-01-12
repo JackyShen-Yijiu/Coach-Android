@@ -6,7 +6,6 @@
     android:background="@color/white_pure"
     android:orientation="vertical"
     tools:context="com.blackcat.coach.activities.DetailReservationActivity">
-
     <include layout="@layout/layout_toolbar" />
 
     <RelativeLayout
@@ -39,13 +38,11 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/tv_num"
+                android:id="@+id/tv_progress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="ID："
-                android:textColor="#999999"
-                android:textSize="14sp" />
+                android:layout_marginTop="11dp"
+                android:textColor="@color/text_333" />
         </LinearLayout>
 
     </RelativeLayout>
@@ -56,29 +53,7 @@
         android:layout_marginLeft="15dp"
         android:background="#E6E6E6" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="16dp"
-        android:text="学习进度"
-        android:textColor="@color/text_333" />
 
-    <TextView
-        android:id="@+id/tv_progress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="11dp"
-        android:textColor="@color/text_333" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="18dp"
-        android:text="课程信息"
-        android:textColor="@color/text_333" />
 
     <TextView
         android:id="@+id/tv_date"
@@ -95,20 +70,69 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="8dp"
-        android:text="训练场地："
         android:textColor="#333333"
         android:textSize="14sp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15dp"
+        android:background="#E6E6E6" />
 
-    <TextView
-        android:id="@+id/tv_place"
+    <LinearLayout
+        android:id="@+id/ll_change_reson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        android:text="接送地点："
+        android:layout_marginTop="8dp">
+    <TextView
+        android:id="@+id/text_reason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:text="拒绝原因："
+        android:textSize="14sp" />
+    <TextView
+        android:id="@+id/tv_reason"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/text_reason"
+        android:layout_marginRight="10dp"
+
         android:textColor="#333333"
         android:textSize="14sp" />
+    </RelativeLayout>
+
+    -----------------------------------------------------------
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="8dp">
+
+    <TextView
+        android:id="@+id/text_ground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#333333"
+        android:text="理由："
+        android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_ground"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/text_ground"
+            android:layout_marginRight="10dp"
+
+            android:textColor="#333333"
+            android:textSize="14sp" />
+    </RelativeLayout>
+    </LinearLayout>
 
     <com.baidu.mapapi.map.MapView
         android:id="@+id/map_view"

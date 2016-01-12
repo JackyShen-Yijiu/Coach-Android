@@ -12,7 +12,7 @@ public class NetConstants {
 	public static final boolean BASE64_ENCODING = true;
 	
 	public static final String HOSTNAME = "101.200.204.240";
-//	public static final String HOSTNAME = "123.57.63.15";
+	//public static final String HOSTNAME = "123.57.63.15";
 
 	public static final int DEFAULT_PORT = 8181;
 
@@ -36,7 +36,12 @@ public class NetConstants {
 	public static final String PATH_SCHEDULE_LIST = "api/v1/courseinfo/daysreservationlist";
 	public static final String PATH_GET_STUDENTS = "api/v1/userinfo/coachstudentlist";
 	public static final String PATH_GET_RESERVATIONINFO = "api/v1/courseinfo/reservationinfo/";
-	public static final String PATH_COACH_COMMENT = "api/v1/courseinfo/coachcomment";
+
+		//修改
+	//public static final String PATH_COACH_COMMENT = "api/v1/courseinfo/coachcomment";
+	  public static final String PATH_COACH_COMMENT = "api/v1/courseinfo/coachcommentv2";
+
+
 	public static final String PATH_GET_TRAININGFIELD = "api/v1/getschooltrainingfield";
 	public static final String PATH_GET_SUBJECTS = "api/v1/info/subject";
 	public static final String PATH_GET_COMMENTS = "api/v1/courseinfo/getusercomment/1/";

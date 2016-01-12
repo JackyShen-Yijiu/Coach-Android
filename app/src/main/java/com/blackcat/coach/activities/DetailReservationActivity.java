@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -35,7 +36,6 @@ import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
-import com.easemob.chat.EMChatManager;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -48,13 +48,18 @@ import de.greenrobot.event.EventBus;
 public class DetailReservationActivity extends BaseNoFragmentActivity implements View.OnClickListener {
     private Reservation mReservation;
     private Type mType = new TypeToken<Result<Reservation>>(){}.getType();
-
+    private TextView toolbar_title;
     private ImageView mIvAvatar;
     private TextView mTvStudentName, mTvStudentNum;
     private TextView mTvProgress, mTvDate, mTvTrainField, mTvPickPlace;
     private Button mBtnSend, mBtnAccept, mBtnRefuse;
     private MapView mMapView;
     private View mBottomView, mApplyOpView;
+    private LinearLayout ll_change_reson;
+    //private TextView tv_reason;
+   // private TextView tv_ground;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,16 +92,22 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
 
     private void initViews() {
         mMapView = (MapView) findViewById(R.id.map_view);
+        toolbar_title=(TextView)findViewById(R.id.toolbar_title);
         mBottomView = findViewById(R.id.fl_bottom);
         mApplyOpView = findViewById(R.id.ll_applying);
-
+        ll_change_reson=(LinearLayout)findViewById(R.id.ll_change_reson);
         mIvAvatar = (ImageView) findViewById(R.id.iv_avatar);
         mTvStudentName = (TextView) findViewById(R.id.tv_name);
-        mTvStudentNum = (TextView) findViewById(R.id.tv_num);
+     //   mTvStudentNum = (TextView) findViewById(R.id.tv_num);
         mTvProgress = (TextView) findViewById(R.id.tv_progress);
         mTvDate = (TextView) findViewById(R.id.tv_date);
         mTvTrainField = (TextView) findViewById(R.id.tv_train_field);
-        mTvPickPlace = (TextView) findViewById(R.id.tv_place);
+
+        //请假原因
+//        tv_reason = (TextView) findViewById(R.id.tv_reason);
+//        tv_ground=(TextView)findViewById(R.id.tv_ground);
+
+      // mTvPickPlace = (TextView) findViewById(R.id.tv_place);
         mBtnSend = (Button) findViewById(R.id.btn_send);
         mBtnSend.setOnClickListener(this);
         mBtnRefuse = (Button) findViewById(R.id.btn_refuse);
@@ -114,7 +125,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 mTvStudentName.setText(mReservation.userid.name);
             }
             if (!TextUtils.isEmpty(mReservation.userid.displayuserid)) {
-                mTvStudentNum.setText(res.getString(R.string.str_student_id, mReservation.userid.displayuserid));
+              //  mTvStudentNum.setText(res.getString(R.string.str_student_id, mReservation.userid.displayuserid));
             }
             if (mReservation.userid.headportrait != null && !TextUtils.isEmpty(mReservation.userid.headportrait.originalpic)) {
                 //TODO
@@ -130,9 +141,12 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         if (mReservation.trainfieldlinfo != null) {
             mTvTrainField.setText(res.getString(R.string.str_train_field, mReservation.trainfieldlinfo.name));
         }
-        if (!TextUtils.isEmpty(mReservation.shuttleaddress)) {
-            mTvPickPlace.setText(res.getString(R.string.str_pick_place, mReservation.shuttleaddress));
-        }
+//        if (!TextUtils.isEmpty(reasonBeen.cancelreason)) {
+//            tv_reason.setText(reasonBeen.cancelreason);
+//        }
+//        if (!TextUtils.isEmpty(reasonBeen.cancelcontent)) {
+//            tv_ground.setText(reasonBeen.cancelcontent);
+//        }
         if (!TextUtils.isEmpty(mReservation.classdatetimedesc)) {
             mTvDate.setText(mReservation.classdatetimedesc);
         }
@@ -143,42 +157,56 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         switch (mReservation.getReservationstate()) {
             case APPLYING:
                 mBtnSend.setVisibility(View.INVISIBLE);
+                toolbar_title.setText("新订单");
+                ll_change_reson.setVisibility(View.GONE);
                 break;
 
             case APPLYCANCEL:
+                toolbar_title.setText("新订单");
+                ll_change_reson.setVisibility(View.GONE);
             case APPLYREFUSE:
                 //已取消
+                ll_change_reson.setVisibility(View.VISIBLE);
 //                mBottomView.setVisibility(View.INVISIBLE);
                 mApplyOpView.setVisibility(View.INVISIBLE);
                 mBtnSend.setText(R.string.reservation_canceled);
+                toolbar_title.setText("已取消");
                 mBtnSend.setEnabled(false);
                 break;
             case FINISH:
                 //已完成
 //                mBottomView.setVisibility(View.INVISIBLE);
+                ll_change_reson.setVisibility(View.GONE);
                 mApplyOpView.setVisibility(View.INVISIBLE);
                 mBtnSend.setText(R.string.reservation_finish);
+                toolbar_title.setText("新订单");
                 mBtnSend.setEnabled(false);
                 break;
 
             case APPLYCONFIRM:
+                ll_change_reson.setVisibility(View.GONE);
                 mApplyOpView.setVisibility(View.INVISIBLE);
                 mBtnSend.setVisibility(View.VISIBLE);
                 mBtnSend.setText(R.string.reservation_btn_cancel);
+                toolbar_title.setText("已取消");
                 break;
 
             case UNCONFIRMFINISH:
+                ll_change_reson.setVisibility(View.GONE);
                 mMapView.setVisibility(View.GONE);
                 mApplyOpView.setVisibility(View.INVISIBLE);
                 mBtnSend.setVisibility(View.VISIBLE);
                 mBtnSend.setText(R.string.reservation_btn_confirm);
+                toolbar_title.setText("已学完");
                 break;
 
             case UNCOMMENTS:
+                ll_change_reson.setVisibility(View.GONE);
                 mMapView.setVisibility(View.GONE);
                 mApplyOpView.setVisibility(View.INVISIBLE);
                 mBtnSend.setVisibility(View.VISIBLE);
                 mBtnSend.setText(R.string.reservation_btn_comment);
+                toolbar_title.setText("待评价");
                 break;
         }
 
