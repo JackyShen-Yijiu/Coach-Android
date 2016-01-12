@@ -7,7 +7,7 @@ import android.widget.GridView;
 /**
  * Created by zou on 15/10/27.
  */
-public class ExpandGridView extends GridView {
+public class  ExpandGridView extends GridView {
     public ExpandGridView(Context context) {
         super(context);
     }

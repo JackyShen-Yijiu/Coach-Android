@@ -112,6 +112,7 @@ public class TeachContentActivity extends BaseActivity implements View.OnClickLi
             mCoachClassList.add(coachClass);
         }
 
+
         mAdapter = new CoachClassAdapter(this, mCoachClassList);
         mEgvClasses.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();

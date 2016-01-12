@@ -2,6 +2,7 @@ package com.blackcat.coach.activities;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,36 +16,53 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
+import com.blackcat.coach.adapters.CoachClassAdapter;
 import com.blackcat.coach.events.ReservationOpOk;
 import com.blackcat.coach.imgs.UILHelper;
+import com.blackcat.coach.models.CoachClass;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.ReservationStatus;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.params.CommentParams;
+import com.blackcat.coach.models.params.NewParams;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
+import com.blackcat.coach.widgets.ExpandGridView;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 
 public class SendCommentActivity extends BaseNoFragmentActivity {
 
+    public static final int SUBJECTS_TYPE_ERROR = 0;
+    public static final int SUBJECTS_TYPE_TWO = 2;
+    public static final int SUBJECTS_TYPE_THREE = 3;
+    public static final String SUBJECT_TYPE_ID = "subject_type";
+
     private Button mBtnCommit;
     private EditText mEtComment;
     private Reservation mReservation;
     private ImageView mIvAvatar;
     private TextView mTvName, mTvProgress;
-    private RatingBar mRbOverall, mRbAttitude, mRbAbility, mRbTime;
+    private RatingBar mRbOverall;
+    private TextView mTvSubjectTitle;
+    private int mSubjectType;
+    private ExpandGridView mEgvClasses;
+    private String[] mSubjectNames;
+    private List<CoachClass> mCoachClassList;
+    private CoachClassAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,26 +72,56 @@ public class SendCommentActivity extends BaseNoFragmentActivity {
             finish();
             return;
         }
-        setContentView(R.layout.activity_send_comment);
+        mSubjectType = mReservation.subject.subjectid;
+        setContentView(R.layout.aaaa_new_teach_content);
         configToolBar(R.mipmap.ic_back);
         initViews();
-
+        initData();
         mBtnCommit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO
+                String learningContent = makeCheckedContent();
                 if (TextUtils.isEmpty(mEtComment.getText())) {
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.comment_empty);
                     return;
                 }
-                sendCommentRequest(String.valueOf(mRbOverall.getRating()), String.valueOf(mRbAttitude.getRating()), String.valueOf(mRbAbility.getRating()), String.valueOf(mRbTime.getRating()), mEtComment.getText().toString());
+
+               // sendCommentRequest(String.valueOf(mRbOverall.getRating()),mEtComment.getText().toString());
+                sendCommentRequest(Session.getSession().coachid,mReservation._id,mEtComment.getText().toString(), String.valueOf(mRbOverall.getRating()),learningContent);
             }
         });
     }
+    private String makeCheckedContent() {
+        String learningContent = "";
+        for(CoachClass coachClass : mCoachClassList) {
+            if(coachClass.isChecked()) {
+                String name = coachClass.getClassName();
+                if(!TextUtils.isEmpty(learningContent)) {
+                    learningContent += "," + name;
+                }else {
+                    learningContent = name;
+                }
+            }
+        }
+        return learningContent;
+    }
+
 
     private void initViews() {
         mEtComment = (EditText) findViewById(R.id.et_comment);
         mBtnCommit = (Button) findViewById(R.id.btn_commit);
+        //修改
+        mTvSubjectTitle = (TextView) findViewById(R.id.tv_subject_tile);
+        if (mSubjectType == SUBJECTS_TYPE_TWO) {
+            mTvSubjectTitle.setText(R.string.str_subject2_title);
+        }
+        else if (mSubjectType == SUBJECTS_TYPE_THREE) {
+            mTvSubjectTitle.setText(R.string.str_subject3_title);
+        }
+        mEgvClasses = (ExpandGridView)findViewById(R.id.gv_class_list);
+
+
 
         mIvAvatar = (ImageView) findViewById(R.id.iv_avatar);
         mTvName = (TextView) findViewById(R.id.tv_name);
@@ -85,14 +133,32 @@ public class SendCommentActivity extends BaseNoFragmentActivity {
         mTvProgress.setText(mReservation.courseprocessdesc);
 
         mRbOverall = (RatingBar) findViewById(R.id.rb_overall);
-        mRbAbility = (RatingBar) findViewById(R.id.rb_ability);
-        mRbAttitude = (RatingBar) findViewById(R.id.rb_attitude);
-        mRbTime = (RatingBar) findViewById(R.id.rb_time);
+
+
+    }
+
+    private void initData() {
+        if(mSubjectType == SUBJECTS_TYPE_TWO) {
+            mSubjectNames = getResources().getStringArray(R.array.subject2);
+        }
+        else if (mSubjectType == SUBJECTS_TYPE_ERROR) {
+            mSubjectNames = getResources().getStringArray(R.array.subject3);
+        }
+
+        mCoachClassList = new ArrayList<>();
+        for (int i = 0; i < mSubjectNames.length; i++) {
+            CoachClass coachClass = new CoachClass(mSubjectNames[i], false);
+            mCoachClassList.add(coachClass);
+        }
+
+        mAdapter = new CoachClassAdapter(this, mCoachClassList);
+        mEgvClasses.setAdapter(mAdapter);
+        mAdapter.notifyDataSetChanged();
     }
 
     private Type mTokenType = new TypeToken<Result>() {}.getType();
 
-    private void sendCommentRequest(String starlevel, String attitude, String ability, String time, String content) {
+    private void sendCommentRequest(String coachid, String reservationid, String commentcontent, String starlevel, String learningcontent) {
         URI uri = URIUtil.getCoachComment();
         String url = null;
         try {
@@ -104,19 +170,24 @@ public class SendCommentActivity extends BaseNoFragmentActivity {
         if (TextUtils.isEmpty(url)) {
             return;
         }
-        CommentParams param = new CommentParams();
-        param.coachid = Session.getSession().coachid;
-        param.reservationid = mReservation._id;
-        param.commentcontent = content;
-        param.abilitylevel = ability;
+
+        NewParams param = new NewParams();
+
+        param.coachid = coachid;
+        param.reservationid = reservationid;
+        param.commentcontent = commentcontent;
         param.starlevel = starlevel;
-        param.timelevel = time;
-        param.attitudelevel = attitude;
+        param.learningcontent = learningcontent;
+
+
+        Log.i("TAG",GsonUtils.toJson(param)+"coachid-->"+coachid+"reservationid-->"+reservationid+"level-->"+commentcontent+starlevel+learningcontent);
+
         Map map = new HashMap<>();
         map.put("authorization", Session.getToken());
         GsonIgnoreCacheHeadersRequest<Result> request = new GsonIgnoreCacheHeadersRequest<Result>(
                 Request.Method.POST, url, GsonUtils.toJson(param), mTokenType, map,
                 new Response.Listener<Result>() {
+
                     @Override
                     public void onResponse(Result response) {
                         if (response != null && response.type == Result.RESULT_OK) {
