@@ -1,6 +1,7 @@
 package com.blackcat.coach.fragments;
 
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -13,6 +14,7 @@ import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
+import com.blackcat.coach.models.User;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.utils.Constants;
@@ -126,6 +128,12 @@ public abstract class BaseListFragment<T> extends BaseFragment
         }
         if (response != null && response.type == Result.RESULT_OK && response.data != null) {
             List<T> list = response.data;
+//            if(list.size()>0 && list.get(0) instanceof User){
+//                for(int i=0;i<list.size();i++){//
+//                    Log.d("tag","user-->"+((User)list.get(i)).leavecoursecount);
+//                }
+//            }
+
             if (refreshType == DicCode.RefreshType.R_PULL_UP) {
                 mListView.setLoadMoreComplete();
                 if (list.size() < NetConstants.REQ_LEN) {

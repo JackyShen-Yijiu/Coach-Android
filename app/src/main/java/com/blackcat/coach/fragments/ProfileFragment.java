@@ -34,6 +34,9 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
     private ImageView mIvAvatar;
     private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName;
+    private TextView mWorkTime,mSubject,mClass;
+
+    public static boolean CLASS_SETTING = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -58,6 +61,10 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         mTvSelfDesc = (TextView) rootView.findViewById(R.id.tv_self_description);
         mTvSchoolName = (TextView) rootView.findViewById(R.id.tv_school_name);
         mTvFieldName = (TextView) rootView.findViewById(R.id.tv_field_name);
+
+        mWorkTime = (TextView) rootView.findViewById(R.id.tv_work_time);
+        mSubject = (TextView) rootView.findViewById(R.id.tv_subjects);
+        mClass = (TextView) rootView.findViewById(R.id.tv_class);
 
         RelativeLayout profileHeader = (RelativeLayout) rootView.findViewById(R.id.rl_profile_header);
         profileHeader.setOnClickListener(this);
@@ -106,9 +113,24 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         if (Session.getSession().trainfieldlinfo != null && !TextUtils.isEmpty(Session.getSession().trainfieldlinfo.name)) {
             mTvFieldName.setText(Session.getSession().trainfieldlinfo.name);
         }
-        if(null!= Session.getSession().workweek){//工作时间
+        if(Session.getSession().workweek.length>0){//工作时间
+            mWorkTime.setText("已设置");
             Log.d("tag", "work--time:" + Session.getSession().workweek.getClass());
+        }else{
+            mWorkTime.setText("");
         }
+
+        if(Session.getSession().subject.size()>0){//可授科目
+            mSubject.setText("已设置");
+        }else{
+            mSubject.setText("");
+        }
+
+        if(CLASS_SETTING)
+            mClass.setText("已设置");
+        else
+            mClass.setText("");
+
 //        if()
 
 

@@ -107,7 +107,7 @@ public class RowReservation {
 		}
 		int color = activity.getResources().getColor(id);
 		viewHolder.statusLine.setBackgroundColor(color);
-		viewHolder.tvStatus.setTextColor(color);
+//		viewHolder.tvStatus.setTextColor(color);
 	}
 
 	static class Holder extends BaseViewHolder {

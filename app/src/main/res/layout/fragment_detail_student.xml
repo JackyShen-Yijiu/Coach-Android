@@ -1,8 +1,24 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.blackcat.coach.fragments.StudentsFragment">
 
-    <include layout="@layout/layout_pulltorefresh_list" />
-</FrameLayout>
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/student_detail_btn"
+        layout="@layout/layout_pulltorefresh_list" />
+
+    <Button
+        android:id="@+id/student_detail_btn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_blue_selector"
+        android:text="可报考科目二"
+        android:textColor="@color/white"
+        android:layout_margin="15dp"
+        />
+
+</RelativeLayout>

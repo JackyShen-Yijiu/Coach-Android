@@ -114,9 +114,23 @@ public class WordWrapView extends ViewGroup {
     public static String getRandColorCode(){
         String r,g,b;
         Random random = new Random();
-        r = Integer.toHexString(random.nextInt(256)).toUpperCase();
-        g = Integer.toHexString(random.nextInt(256)).toUpperCase();
-        b = Integer.toHexString(random.nextInt(256)).toUpperCase();
+        int temp1 = random.nextInt(256);
+        int temp2 = random.nextInt(256);
+        int temp3= random.nextInt(256);
+        //如果都是大于100  第一个减去100 ，依旧大于
+        while(temp1>100 && temp2> 100 && temp3 >100){
+            temp1 = temp1 -100;
+            if(temp1<100)
+                break;
+        }
+        if(temp1<100 && temp2< 100 && temp3 <100){
+            temp1 = temp1 + 100;
+        }
+
+
+        r = Integer.toHexString(temp1).toUpperCase();
+        g = Integer.toHexString(temp2).toUpperCase();
+        b = Integer.toHexString(temp3).toUpperCase();
 
         r = r.length()==1 ? "0" + r : r ;
         g = g.length()==1 ? "0" + g : g ;

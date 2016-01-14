@@ -188,7 +188,7 @@
 
 
     <string name="info_school_name">报考驾校：%s</string>
-    <string name="info_type">车  型：%s</string>
+    <string name="info_type">车   型：%s</string>
     <string name="info_place">常用地址：%s</string>
     <string name="info_id">ID %s</string>
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.blackcat.coach.CarCoachApplication;
+import com.blackcat.coach.models.Session;
 import com.blackcat.coach.utils.BaseUtils;
 
 import org.apache.http.NameValuePair;
@@ -380,6 +381,25 @@ public class URIUtil {
 			URI uri = URIUtils.createURI(NetConstants.HTTP,
 					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
 					NetConstants.PATH_GET_STUDENTINFO, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/**
+	 *  教练提醒学员可以报名
+	 * @return
+	 */
+	public static URI getremindexam(){
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_REMINDEXAM, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
 			logRequestUri(uri);
 			return uri;
 		} catch (Exception e) {

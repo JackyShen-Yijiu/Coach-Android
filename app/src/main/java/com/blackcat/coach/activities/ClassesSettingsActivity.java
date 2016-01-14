@@ -16,6 +16,7 @@ import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.CommonAdapter;
+import com.blackcat.coach.fragments.ProfileFragment;
 import com.blackcat.coach.models.Course;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
@@ -131,7 +132,7 @@ public class ClassesSettingsActivity extends BaseActivity {
             return;
         }
 
-        CoachClassesParams params = new CoachClassesParams();
+        final CoachClassesParams params = new CoachClassesParams();
         params.coachid = Session.getSession().coachid;
         params.classtypelist = "";
         List<Course> list = mAdapter.getList();
@@ -143,8 +144,10 @@ public class ClassesSettingsActivity extends BaseActivity {
                     sb.append(",");
                 }
             }
+
             if (sb.length() > 0) {
                 sb.deleteCharAt(sb.length() - 1);
+
             }
             params.classtypelist = sb.toString();
         }
@@ -158,6 +161,8 @@ public class ClassesSettingsActivity extends BaseActivity {
                     public void onResponse(Result response) {
                         if (response != null && response.type == Result.RESULT_OK) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
+                            if(params.classtypelist.length()>0)//修改了
+                                ProfileFragment.CLASS_SETTING = true;
                             finish();
                         } else if (!TextUtils.isEmpty(response.msg)) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);

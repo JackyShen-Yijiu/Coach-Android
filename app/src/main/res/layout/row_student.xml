@@ -33,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/text_333"
+            android:singleLine="true"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/tv_last"
 
@@ -41,10 +42,11 @@
             android:id="@+id/tv_last"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_333"
+            android:textColor="@color/text_999"
             android:layout_alignParentRight="true"
             android:contentDescription="剩余课程数量"
-            android:textSize="16sp" />
+            android:textSize="14sp"
+             />
         </RelativeLayout>
 
         <TextView

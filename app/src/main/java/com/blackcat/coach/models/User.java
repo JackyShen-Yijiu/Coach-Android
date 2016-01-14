@@ -21,4 +21,9 @@ public class User implements Serializable {
     public Subject3 subjectthree;
     public String subjectprocess;
     public String address;
+    /**剩余课程*/
+    public int leavecoursecount;
+    /**遗漏课程*/
+    public int missingcoursecount;
+
 }

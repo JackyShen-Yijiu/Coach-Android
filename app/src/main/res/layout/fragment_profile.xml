@@ -224,7 +224,19 @@
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
+                <TextView
+                    android:id="@+id/tv_work_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/iv_work_time_img"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+
                 <ImageView
+                    android:id="@+id/iv_work_time_img"
                     android:layout_width="@dimen/detail_right_size"
                     android:layout_height="@dimen/detail_right_size"
                     android:layout_alignParentRight="true"
@@ -264,7 +276,19 @@
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
+                <TextView
+                    android:id="@+id/tv_subjects"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/iv_subjects"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+
                 <ImageView
+                    android:id="@+id/iv_subjects"
                     android:layout_width="@dimen/detail_right_size"
                     android:layout_height="@dimen/detail_right_size"
                     android:layout_alignParentRight="true"
@@ -304,7 +328,19 @@
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
+                <TextView
+                    android:id="@+id/tv_class"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/iv_class"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+
                 <ImageView
+                    android:id="@+id/iv_class"
                     android:layout_width="@dimen/detail_right_size"
                     android:layout_height="@dimen/detail_right_size"
                     android:layout_alignParentRight="true"

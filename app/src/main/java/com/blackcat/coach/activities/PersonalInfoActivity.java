@@ -111,6 +111,7 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
         if (!TextUtils.isEmpty(Session.getSession().introduction)) {
             mTvIntroduction.setText(Session.getSession().introduction);
         }
+
         Log.d("tag", "Introduction-->" + Session.getSession().introduction);
         addTags();
     }
@@ -147,6 +148,7 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
                 startActivity(new Intent(this, BindPhoneActivity.class));
                 break;
             case R.id.rl_avatar:
+            case R.id.ic_avatar:
                 if (mAvatarDialog == null) {
                     mAvatarDialog = new BaseDialogWrapper(PersonalInfoActivity.this, getPhotoDialogView());
                     mAvatarDialog.setFullWidth(true);

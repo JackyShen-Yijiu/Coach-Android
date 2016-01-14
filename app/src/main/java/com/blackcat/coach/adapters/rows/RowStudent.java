@@ -40,7 +40,7 @@ public class RowStudent {
         viewHolder.tvName.setText(item.name);
         viewHolder.tvProgress.setText(item.subjectprocess);
         //sun
-        viewHolder.tvLast.setText("剩余课程数量");
+        viewHolder.tvLast.setText("剩余"+item.leavecoursecount +"/漏"+item.missingcoursecount+"课时");
         if (item.headportrait != null && !TextUtils.isEmpty(item.headportrait.originalpic)) {
             //TODO
 //            PicassoUtil.loadImage(activity, viewHolder.ivAvatar, item.headportrait.originalpic, R.dimen.avatar_size, R.dimen.avatar_size, false, R.mipmap.ic_avatar_small);

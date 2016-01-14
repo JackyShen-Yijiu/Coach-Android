@@ -394,7 +394,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
-<<<<<<< HEAD
         <!-- 环信SDK引入 -->
         <!-- black-cat#yibuxuechetest -->
         <!-- black-cat#yibuxuecheprod -->
@@ -410,9 +409,7 @@
             android:label="@string/title_modify_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
-=======
 
->>>>>>> 54648cb8b59216e76d49b16c5d0aeab7efa66f3c
     </application>
 
 </manifest>

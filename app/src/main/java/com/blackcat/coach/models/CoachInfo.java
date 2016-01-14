@@ -89,7 +89,7 @@ public class CoachInfo implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        Log.d("tag","update-->"+url +GsonUtils.toJson(params));
+        Log.d("tag","update-->"+url +GsonUtils.toJson(params));
         if (TextUtils.isEmpty(url)) {
             return;
         }
