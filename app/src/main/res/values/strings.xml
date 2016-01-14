@@ -85,6 +85,7 @@
     <string name="title_activity_classes_setting">班型设置</string>
     <string name="title_activity_product_order">订单确认</string>
     <string name="title_activity_product_order_succ">交易成功</string>
+    <string name="title_activity_qr_capture">扫一扫</string>
 
     <string name="str_self_intro">写段描述来介绍自己吧</string>
     <string name="str_submit">提交</string>

@@ -382,6 +382,11 @@
             android:label="@string/title_activity_product_order_succ"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.CaptureActivity"
+            android:label="@string/title_activity_qr_capture"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
 
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -409,6 +414,7 @@
             android:label="@string/title_modify_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
+
 
     </application>
 
