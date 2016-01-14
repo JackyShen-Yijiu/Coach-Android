@@ -151,7 +151,7 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
     }
 
     public void jumpTab(int type, Intent intent) {
-        if (type <= IndexActivity.TAB_PROFILE && type >= IndexActivity.TAB_RESERVATION) {
+        if (type <= IndexActivity.TAB_SCHEDULE && type >= IndexActivity.TAB_RESERVATION) {
             for (int i = 0; i < mTabs.size(); i++) {
                 TabInfo tb = mTabs.get(i);
                 if (tb.type == type) {

@@ -12,7 +12,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import junit.framework.Test;
+
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -309,9 +313,21 @@ public class CaldroidGridAdapter extends BaseAdapter {
 
         cellView.refreshDrawableState();
 
-        // Set text
-        cellView.setText("" + dateTime.getDay());
+        Calendar today = Calendar.getInstance();
 
+        try {
+            today.setTime(Lunar.chineseDateFormat.parse("2016-1-31"));
+            System.out.println(Lunar.chineseDateFormat.parse(dateTime.getYear() + "-" + dateTime.getMonth()
+                    + "-" + dateTime.getDay()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Lunar lunar = new Lunar(today);
+//        System.out.println("北京时间：" + chineseDateFormat.format(today.getTime())
+//                + "　农历" + lunar);
+
+        // Set text
+        cellView.setText("" + dateTime.getDay()+"\n"+lunar);
         // Set custom color if required
         setCustomResources(dateTime, cellView, cellView);
 

@@ -1,5 +1,7 @@
 package com.blackcat.coach.activities;
 
+import android.app.*;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -56,6 +59,9 @@ import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.util.NetUtils;
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.ref.WeakReference;
@@ -108,6 +114,11 @@ public class IndexActivity extends BaseActivity implements IKillable,
     private boolean mIsConflict = false;
 
     private BCConnectionListener connectionListener;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     // 防止内存泄漏
     static class StaticHandler extends Handler {
@@ -167,6 +178,9 @@ public class IndexActivity extends BaseActivity implements IKillable,
         init();
 
         EventBus.getDefault().register(this);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     public final static String DAILY_REFRESH_TAGS = "daily_refresh_tags";
@@ -282,7 +296,23 @@ public class IndexActivity extends BaseActivity implements IKillable,
     @Override
     public void onStart() {
         super.onStart();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
         mIsActive = true;
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+//        Action viewAction = Action.newAction(
+//                Action.TYPE_VIEW, // TODO: choose an action type.
+//                "Index Page", // TODO: Define a title for the content shown.
+//                // TODO: If you have web page content that matches this app activity's content,
+//                // make sure this auto-generated web page URL is correct.
+//                // Otherwise, set the URL to null.
+//                Uri.parse("http://host/path"),
+//                // TODO: Make sure this auto-generated app deep link URI is correct.
+//                Uri.parse("android-app://com.blackcat.coach.activities/http/host/path")
+//        );
+//        AppIndex.AppIndexApi.start(client, viewAction);
     }
 
     @Override
@@ -323,8 +353,24 @@ public class IndexActivity extends BaseActivity implements IKillable,
     @Override
     public void onStop() {
         super.onStop();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+//        Action viewAction = Action.newAction(
+//                Action.TYPE_VIEW, // TODO: choose an action type.
+//                "Index Page", // TODO: Define a title for the content shown.
+//                // TODO: If you have web page content that matches this app activity's content,
+//                // make sure this auto-generated web page URL is correct.
+//                // Otherwise, set the URL to null.
+//                Uri.parse("http://host/path"),
+//                // TODO: Make sure this auto-generated app deep link URI is correct.
+//                Uri.parse("android-app://com.blackcat.coach.activities/http/host/path")
+//        );
+//        AppIndex.AppIndexApi.end(client, viewAction);
         mIsActive = false;
         releaseResources();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.disconnect();
     }
 
     @Override
@@ -613,6 +659,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_schedule);
                 showHideQianDao(false);
+                break;
             case TAB_MESSAGE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
@@ -634,10 +681,11 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
     /**
      * 是否显示  签到
+     *
      * @param flag
      */
-    public void showHideQianDao(boolean flag){
-        if(flag)
+    public void showHideQianDao(boolean flag) {
+        if (flag)
             tvQianDao.setVisibility(View.VISIBLE);
         else
             tvQianDao.setVisibility(View.GONE);
@@ -676,81 +724,82 @@ public class IndexActivity extends BaseActivity implements IKillable,
 //		case R.id.toolbar_title:
 //			break;
             case R.id.toolbar_title_right://签到
-
+                Intent intent = new Intent(this, CaptureActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
-		    }
         }
+    }
 
 
-        class BCConnectionListener implements EMConnectionListener {
-            @Override
-            public void onConnected() {
-                boolean groupSynced = HXSDKHelper.getInstance().isGroupsSyncedWithServer();
-                boolean contactSynced = HXSDKHelper.getInstance().isContactsSyncedWithServer();
+    class BCConnectionListener implements EMConnectionListener {
+        @Override
+        public void onConnected() {
+            boolean groupSynced = HXSDKHelper.getInstance().isGroupsSyncedWithServer();
+            boolean contactSynced = HXSDKHelper.getInstance().isContactsSyncedWithServer();
 
-                // in case group and contact were already synced, we supposed to notify sdk we are ready to receive the events
-                if (contactSynced) {
-                    new Thread() {
-                        @Override
-                        public void run() {
-                            HXSDKHelper.getInstance().notifyForRecevingEvents();
-                        }
-                    }.start();
-                } else {
-
-                    if (!contactSynced) {
+            // in case group and contact were already synced, we supposed to notify sdk we are ready to receive the events
+            if (contactSynced) {
+                new Thread() {
+                    @Override
+                    public void run() {
+                        HXSDKHelper.getInstance().notifyForRecevingEvents();
                     }
+                }.start();
+            } else {
 
+                if (!contactSynced) {
                 }
 
-                runOnUiThread(new Runnable() {
+            }
 
-                    @Override
-                    public void run() {
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    NetStateEvent event = new NetStateEvent();
+                    event.mIsNetOk = true;
+                    EventBus.getDefault().post(event);
+                }
+
+            });
+        }
+
+        @Override
+        public void onDisconnected(final int error) {
+            final String st1 = getResources().getString(R.string.can_not_connect_chat_server_connection);
+            final String st2 = getResources().getString(R.string.the_current_network);
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+                    if (error == EMError.USER_REMOVED) {
+                        // 显示帐号已经被移除
+                    } else if (error == EMError.CONNECTION_CONFLICT) {
+                        // 显示帐号在其他设备登陆dialog
+//                        showConflictDialog();
+                    } else {
                         NetStateEvent event = new NetStateEvent();
-                        event.mIsNetOk = true;
+                        event.mIsNetOk = false;
+                        if (NetUtils.hasNetwork(IndexActivity.this)) {
+                            event.mErrorMsg = st1;
+                        } else {
+                            event.mErrorMsg = st2;
+                        }
                         EventBus.getDefault().post(event);
                     }
+                }
 
-                });
-            }
-
-            @Override
-            public void onDisconnected(final int error) {
-                final String st1 = getResources().getString(R.string.can_not_connect_chat_server_connection);
-                final String st2 = getResources().getString(R.string.the_current_network);
-                runOnUiThread(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        if (error == EMError.USER_REMOVED) {
-                            // 显示帐号已经被移除
-                        } else if (error == EMError.CONNECTION_CONFLICT) {
-                            // 显示帐号在其他设备登陆dialog
-                            showConflictDialog();
-                        } else {
-                            NetStateEvent event = new NetStateEvent();
-                            event.mIsNetOk = false;
-                            if (NetUtils.hasNetwork(IndexActivity.this)) {
-                                event.mErrorMsg = st1;
-                            } else {
-                                event.mErrorMsg = st2;
-                            }
-                            EventBus.getDefault().post(event);
-                        }
-                    }
-
-                });
-            }
+            });
         }
+    }
 
     public boolean isConflict() {
         return mIsConflict;
     }
 
-    private android.app.AlertDialog.Builder conflictBuilder;
+    private AlertDialog.Builder conflictBuilder;
     private boolean isConflictDialogShow;
 
     private void showConflictDialog() {
@@ -761,7 +810,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
             // clear up global variables
             try {
                 if (conflictBuilder == null)
-                    conflictBuilder = new android.app.AlertDialog.Builder(IndexActivity.this);
+                    conflictBuilder = new AlertDialog.Builder(IndexActivity.this);
                 conflictBuilder.setTitle(st);
                 conflictBuilder.setMessage(R.string.connect_conflict);
                 conflictBuilder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
