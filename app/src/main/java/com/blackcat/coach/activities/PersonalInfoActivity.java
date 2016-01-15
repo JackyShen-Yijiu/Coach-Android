@@ -72,7 +72,8 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
         mTvSex.setOnClickListener(this);
         mTvIntroduction = (TextView)findViewById(R.id.tv_self);
         wordWrapView = (WordWrapView) findViewById(R.id.view_wordwrap);
-
+        //白色
+        wordWrapView.setFirstColor(true);
         mTvName = (TextView) findViewById(R.id.tv_name);
         mTvId = (TextView) findViewById(R.id.tv_id);
         mTvName.setText(Session.getSession().name);
@@ -187,7 +188,7 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
                 startActivity(new Intent(this, ModifyGenderActivity.class));
                 break;
             case R.id.view_wordwrap:// 标签页面
-
+                startActivity(new Intent(this,PersionLableAct.class));
                 break;
             default:
                 break;

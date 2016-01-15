@@ -59,6 +59,8 @@ public class ReservationFragment extends BaseFragment {
     private PagerSlidingTab slidingTab;
     private ViewPager viewPager;
     FragmentActivity mContext;
+
+    public static int currentPage = 0;
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -150,10 +152,11 @@ public class ReservationFragment extends BaseFragment {
             @Override
             public void onPageSelected(int position) {
 //                Toast.makeText(getActivity(),"position"+position,Toast.LENGTH_SHORT).show();
+                currentPage = position;
                 if(position==0){//新订单,显示签到
-                    ((IndexActivity) getActivity()).showHideQianDao(true);
+                    ((IndexActivity) getActivity()).showHideQianDao(true,position);
                 }else
-                    ((IndexActivity) getActivity()).showHideQianDao(false);
+                    ((IndexActivity) getActivity()).showHideQianDao(true,position);
              }
 
             @Override

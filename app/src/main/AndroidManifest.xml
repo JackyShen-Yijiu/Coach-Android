@@ -410,12 +410,12 @@
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
         -->
 
-        <activity android:name=".activities.ModifyCoachNameAct"
+        <activity
+            android:name=".activities.ModifyCoachNameAct"
             android:label="@string/title_modify_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-
-
+            android:theme="@style/AppTheme" />
+        <activity android:name=".activities.QueryAct"></activity>
     </application>
 
 </manifest>

@@ -324,6 +324,83 @@ public class URIUtil {
 		return null;
 	}
 
+	/***
+	 * 添加 标签
+	 * @return
+	 */
+	public static URI getLabelAdd() {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_COACH_TAG_ADD, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+
+			return uri;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/***
+	 * 删除 标签
+	 * @return
+	 */
+	public static URI getLabelDelete() {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_COACH_TAG_DELETE, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+
+			return uri;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/***
+	 * 删除 标签
+	 * @return
+	 */
+	public static URI setLable() {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_COACH_SET_TAG,URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+
+			return uri;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	/***
+	 * 所有 标签
+	 * @return
+	 */
+	public static URI getLabels() {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, Session.getSession().coachid));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_COACH_TAGS, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+
+			return uri;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static URI updateCoachInfo() {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 		fillBasicParams(CarCoachApplication.getInstance(), params);
@@ -411,6 +488,7 @@ public class URIUtil {
 	public static URI getClassesList() {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 		fillBasicParams(CarCoachApplication.getInstance(), params);
+
 		try {
 			URI uri = URIUtils.createURI(NetConstants.HTTP,
 					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
