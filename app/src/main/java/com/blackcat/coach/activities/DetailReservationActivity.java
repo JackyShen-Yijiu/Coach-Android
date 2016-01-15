@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -56,8 +57,10 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
     private MapView mMapView;
     private View mBottomView, mApplyOpView;
     private LinearLayout ll_change_reson;
-    //private TextView tv_reason;
-   // private TextView tv_ground;
+    private TextView tv_reason;
+    private TextView tv_ground;
+    //private HandleClassParams handleClassParams;
+
 
 
 
@@ -65,6 +68,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mReservation = (Reservation) getIntent().getSerializableExtra(Constants.DETAIL);
+     //   Log.i("TAG11",cancelreason);
         if (mReservation == null) {
             finish();
             return;
@@ -83,6 +87,9 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         mReservation = (Reservation) getIntent().getSerializableExtra(Constants.DETAIL);
+
+
+
         if (mReservation == null) {
             finish();
             return;
@@ -104,8 +111,8 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         mTvTrainField = (TextView) findViewById(R.id.tv_train_field);
 
         //请假原因
-//        tv_reason = (TextView) findViewById(R.id.tv_reason);
-//        tv_ground=(TextView)findViewById(R.id.tv_ground);
+        tv_reason = (TextView) findViewById(R.id.tv_reason);
+        tv_ground=(TextView)findViewById(R.id.tv_ground);
 
       // mTvPickPlace = (TextView) findViewById(R.id.tv_place);
         mBtnSend = (Button) findViewById(R.id.btn_send);
@@ -141,12 +148,13 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         if (mReservation.trainfieldlinfo != null) {
             mTvTrainField.setText(res.getString(R.string.str_train_field, mReservation.trainfieldlinfo.name));
         }
-//        if (!TextUtils.isEmpty(reasonBeen.cancelreason)) {
-//            tv_reason.setText(reasonBeen.cancelreason);
-//        }
-//        if (!TextUtils.isEmpty(reasonBeen.cancelcontent)) {
-//            tv_ground.setText(reasonBeen.cancelcontent);
-//        }
+
+        if (!TextUtils.isEmpty(mReservation.cancelreason)) {
+            tv_reason.setText(mReservation.cancelreason);
+        }
+        if (!TextUtils.isEmpty(mReservation.cancelcontent)) {
+            tv_ground.setText(mReservation.cancelcontent);
+        }
         if (!TextUtils.isEmpty(mReservation.classdatetimedesc)) {
             mTvDate.setText(mReservation.classdatetimedesc);
         }
@@ -324,6 +332,10 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         params.cancelreason = cancelreason;
         params.cancelcontent = cancelcontent;
         params.handletype = handletype;
+
+
+
+
 
         Map map = new HashMap<>();
         map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());

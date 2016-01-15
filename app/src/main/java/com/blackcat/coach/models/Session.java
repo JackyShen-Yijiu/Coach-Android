@@ -25,7 +25,7 @@ public class Session implements Serializable {
 	private static final String KEY = "session";
 	private static final String KEY_USR = "usr";
 	private static CoachInfo mUsrInfo;
-	
+
 	public static boolean isUserInfoEmpty() {
 		return Session.mUsrInfo == null;
 	}
@@ -43,7 +43,7 @@ public class Session implements Serializable {
 	public static CoachInfo getSession() {
 		return Session.mUsrInfo;
 	}
-	
+
 	public static String getToken() {
 	    if (Session.mUsrInfo != null) {
 	        return Session.mUsrInfo.token;

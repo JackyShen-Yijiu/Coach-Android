@@ -53,6 +53,9 @@ public class NetConstants {
 	public static final String PATH_GET_MALL_PRODUCT = "api/v1/getmailproduct";
 	public static final String PATH_GET_DETAIL_PRODUCT = "api/v1/getproductdetail";
 	public static final String PATH_BUY_PRODUCT = "api/v1/userinfo/buyproduct";
+	//添加
+	public static final String PATH_SYSTEMMSG = "api/v1/userinfo/getnews";
+	public static final String PATH_OREDERMSG = "api/v1/userinfo/getsysteminfo";
 
 
 	//public static final String PATH_COACH_COMMENT = "api/v1/courseinfo/coachcomment";
@@ -67,6 +70,8 @@ public class NetConstants {
 
 	public static final String PATH_COACH_SET_TAG = "api/v1/userinfo/coachsetselftags";
 
+	//新加（签到）
+	public static final String PATH_SIGNIN = "api/v1/courseinfo/coursesignin";
 	/***提醒学员可以报考了*/
 	public static final String PATH_REMINDEXAM = "api/v1/userinfo/remindexam";
 
