@@ -27,6 +27,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.utils.Constants;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.qr.camera.CameraManager;
@@ -202,7 +203,9 @@ public class CaptureActivity extends Activity implements Callback {
 	public void handleDecode(Result obj, Bitmap barcode) {
 		inactivityTimer.onActivity();
 		playBeepSoundAndVibrate();
-		showResult(obj, barcode);
+		//showResult(obj, barcode);
+		Intent intent = new Intent(CaptureActivity.this, SignInActivity.class);
+		startActivity(intent);
 	}
 
 	private void showResult(final Result rawResult, Bitmap barcode) {
@@ -218,10 +221,13 @@ public class CaptureActivity extends Activity implements Callback {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
-				Intent intent = new Intent();
+				Intent intent = new Intent(CaptureActivity.this, SendCommentActivity.class);
+				//intent = new Intent(this, SendCommentActivity.class);
+
 				intent.putExtra("result", rawResult.getText());
-				setResult(RESULT_OK, intent);
-				finish();
+				startActivity(intent);
+				//setResult(RESULT_OK, intent);
+			//	finish();
 			}
 		});
 		builder.setNegativeButton("重新扫描", new OnClickListener() {

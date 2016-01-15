@@ -21,6 +21,9 @@ public class Reservation implements Serializable {
     public User userid;
     public TrainField trainfieldlinfo;
 
+    public String cancelreason;
+    public String cancelcontent;
+
     //用来更新Reservation状态
     public int pos;
 

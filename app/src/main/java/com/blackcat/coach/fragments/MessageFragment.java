@@ -8,10 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.activities.CaptureActivity;
 import com.blackcat.coach.activities.ChatActivity;
+import com.blackcat.coach.activities.OrderMsgActivity;
+import com.blackcat.coach.activities.SystemMsgActivity;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
 import com.blackcat.coach.easemob.Constant;
@@ -33,7 +37,7 @@ import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 
-public class MessageFragment extends BaseFragment {
+public class MessageFragment extends BaseFragment implements View.OnClickListener {
 
     private ListView mListView;
     private CommonAdapter<Message> mAdapter;
@@ -42,6 +46,8 @@ public class MessageFragment extends BaseFragment {
 
     private View mRLNetErrorItem;
     private TextView mTvErrorMsg;
+    private RelativeLayout order_msg;
+    private RelativeLayout system_msg;
 
     public static MessageFragment newInstance(String param1, String param2) {
         MessageFragment fragment = new MessageFragment();
@@ -64,6 +70,7 @@ public class MessageFragment extends BaseFragment {
         return rootView;
     }
 
+    
     private void initViews(View rootView) {
         mListView = (ListView) rootView.findViewById(R.id.inner_list);
         mAdapter = new CommonAdapter<Message>(mActivity, null, CommonAdapter.AdapterType.TYPE_ADAPTER_MSG);
@@ -83,10 +90,25 @@ public class MessageFragment extends BaseFragment {
                 startActivity(intent);
             }
         });
-
+        order_msg=(RelativeLayout)rootView.findViewById(R.id.rl_order_messeage);
+        order_msg.setOnClickListener(this);
+        system_msg=(RelativeLayout)rootView.findViewById(R.id.rl_system_messeage);
+        system_msg.setOnClickListener(this);
+                
         mRLNetErrorItem = rootView.findViewById(R.id.rl_error_item);
         mTvErrorMsg = (TextView)rootView.findViewById(R.id.tv_connect_errormsg);
 
+    }
+    public void onClick(View v){
+        switch(v.getId()){
+            case R.id.rl_order_messeage:  //预约消息
+                startActivity(new Intent(mActivity, OrderMsgActivity.class));
+
+                break;
+            case R.id.rl_system_messeage://系统消息
+                startActivity(new Intent(mActivity, SystemMsgActivity.class));
+                break;
+       }
     }
 
     public void  onEvent(NewMessageReceiveEvent event) {
@@ -106,7 +128,7 @@ public class MessageFragment extends BaseFragment {
         mActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mRLNetErrorItem.setVisibility(mIsNetOk?View.GONE:View.VISIBLE);
+                mRLNetErrorItem.setVisibility(mIsNetOk ? View.GONE : View.VISIBLE);
                 if (!TextUtils.isEmpty(mErrorMsg)) {
                     mTvErrorMsg.setText(mErrorMsg);
                 }
@@ -138,6 +160,8 @@ public class MessageFragment extends BaseFragment {
         mAdapter.notifyDataSetChanged();
     }
 
+
+
     private void sortMessageListByTime(List<Message> messageList) {
         Collections.sort(messageList, new Comparator<Message>() {
             @Override
@@ -152,6 +176,7 @@ public class MessageFragment extends BaseFragment {
             }
         });
     }
+
     @Override
     public void onDestroyView() {
         EventBus.getDefault().unregister(this);

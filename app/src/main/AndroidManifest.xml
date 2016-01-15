@@ -415,6 +415,30 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
 
+        <activity android:name=".activities.OrderMsgActivity"
+            android:label="@string/system_msg"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+
+        <activity android:name=".activities.SystemMsgActivity"
+            android:label="@string/system_msg"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+
+        <activity android:name=".activities.SignInActivity"
+            android:label="@string/sigin_detail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+
+        <activity android:name=".activities.SignInSucceed"
+            android:label="@string/sigin_detail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".activities.SignInFaild"
+            android:label="@string/sigin_detail"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+
 
     </application>
 

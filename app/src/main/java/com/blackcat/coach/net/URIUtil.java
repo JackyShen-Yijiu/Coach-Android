@@ -201,6 +201,44 @@ public class URIUtil {
 		}
 		return null;
 	}
+	//系统消息（新加）
+	public static URI getStystemMsgList(String coachid, int pos) {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, coachid));
+//		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, "5616352721ec29041a9af889"));
+
+		params.add(new BasicNameValuePair(NetConstants.KEY_INDEX, String.valueOf(pos)));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_SYSTEMMSG, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	//咨询消息（新加）
+	public static URI getOrderMsgList(String coachid, int pos) {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, coachid));
+//		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, "5616352721ec29041a9af889"));
+
+		params.add(new BasicNameValuePair(NetConstants.KEY_INDEX, String.valueOf(pos)));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_OREDERMSG, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public static URI getReservationInfo(String reservationId) {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -270,6 +308,21 @@ public class URIUtil {
 			URI uri = URIUtils.createURI(NetConstants.HTTP,
 					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
 					NetConstants.PATH_COACH_COMMENT, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+
+			return uri;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	//新加
+	public static URI getSignin() {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_SIGNIN, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
 
 			return uri;
 		}catch (Exception e) {

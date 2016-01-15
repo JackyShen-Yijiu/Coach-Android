@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/layout_toolbar" />
+
+    <RelativeLayout
+
+        android:layout_below="@+id/toolbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+         <TextView
+             android:id="@+id/tv_sign_name"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="学员姓名："
+             android:textSize="18sp"
+             android:textColor="#000000"
+             android:layout_marginLeft="10dp"
+             android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/sign_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="雾里拦江"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:layout_alignTop="@+id/tv_sign_name"
+            android:layout_toRightOf="@+id/tv_sign_name" />
+        <TextView
+            android:id="@+id/tv_sign_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_sign_name"
+            android:text="预约课时："
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/sign_class"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="科目二第1课时"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:layout_alignTop="@+id/tv_sign_class"
+            android:layout_toRightOf="@+id/tv_sign_class" />
+        <TextView
+            android:id="@+id/tv_sign_adress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_sign_class"
+            android:text="当前位置："
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/sign_adress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="北京市海淀区一步驾校训练场地"
+            android:textSize="18sp"
+            android:textColor="#000000"
+            android:layout_alignTop="@+id/tv_sign_adress"
+            android:layout_toRightOf="@+id/tv_sign_adress" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="10dp"
+            android:background="#333"
+            android:layout_below="@+id/tv_sign_adress">
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/sign_commit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="提交"
+        android:textSize="18sp"
+        android:textColor="#ffffff"
+        android:background="#2879F3"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_centerVertical="true" />
+</RelativeLayout>
