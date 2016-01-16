@@ -27,6 +27,9 @@ public class NetConstants {
 	public static final String PATH_FEEDBACK = "api/v1/userfeedback";
 	public static final String PATH_GET_MSG_CODE = "api/v1/code/";
 	public static final String PATH_GET_COACHINFO = "api/v1/userinfo/getcoachinfo";
+	//消息（新加）
+	public static final String PATH_GET_MESSAGE = "api/v1/userinfo/getmessagecount";
+
 	public static final String PATH_UPDATE_COACHINFO = "api/v1/userinfo/updatecoachinfo";
 	public static final String PATH_APPLY_VERIFY = "api/v1/userinfo/applyverification";
 	public static final String PATH_UPDATE_MOBILE = "api/v1/userinfo/updatemobile";
@@ -58,6 +61,9 @@ public class NetConstants {
 	public static final String PATH_OREDERMSG = "api/v1/userinfo/getsysteminfo";
 
 
+	public static final String PATH_GET_GETMONTHAPPLYDATA = "api/v1/courseinfo/getmonthapplydata";
+
+
 	//public static final String PATH_COACH_COMMENT = "api/v1/courseinfo/coachcomment";
 	public static final String PATH_COACH_COMMENT = "api/v1/courseinfo/coachcommentv2";
 	/**添加标签*/
@@ -86,6 +92,8 @@ public class NetConstants {
 	public static final String KEY_USERTYPE = "usertype";
 	public static final String KEY_TYPE = "type";
 	public static final String KEY_USERID = "userid";
+	public static final String KEY_NEWSID = "lastnews";
+	public static final String KEY_MESSAGEID = "lastmessage";
 	public static final String KEY_SCHOOLID = "schoolid";
 	public static final String KEY_COACHID = "coachid";
 
@@ -113,6 +121,11 @@ public class NetConstants {
 	public static final String KEY_AUTHORIZATION = "authorization";
 	public static final String KEY_PRODUCT_ID = "productid";
 	public static final String KEY_SEARCH_NAME = "searchname";
+
+
+	public static final String KEY_COACH_ID = "coachid";
+	public static final String KEY_YEAR = "year";
+	public static final String KEY_MONTH = "month";
 
 
 

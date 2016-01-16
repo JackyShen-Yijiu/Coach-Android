@@ -317,8 +317,6 @@ public class CaldroidGridAdapter extends BaseAdapter {
 
         try {
             today.setTime(Lunar.chineseDateFormat.parse("2016-1-31"));
-            System.out.println(Lunar.chineseDateFormat.parse(dateTime.getYear() + "-" + dateTime.getMonth()
-                    + "-" + dateTime.getDay()));
         } catch (ParseException e) {
             e.printStackTrace();
         }

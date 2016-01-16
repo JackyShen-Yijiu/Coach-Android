@@ -657,6 +657,24 @@ public class URIUtil {
         }
         return null;
     }
+	//（新加）(消息)
+	public static URI getMessageInfo(String newsId,String messageId,String coachid) {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair(NetConstants.KEY_NEWSID, newsId));
+		params.add(new BasicNameValuePair(NetConstants.KEY_MESSAGEID, messageId));
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, coachid));
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_GET_MESSAGE, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public static URI getMyWallet(String userId, int seq, int count) {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -716,6 +734,23 @@ public class URIUtil {
 			URI uri = URIUtils.createURI(NetConstants.HTTP,
 					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
 					NetConstants.PATH_BUY_PRODUCT, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public static URI getMonthApplyDataUir(String coachid,String year,String month) {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACH_ID, coachid));
+		params.add(new BasicNameValuePair(NetConstants.KEY_YEAR, year));
+		params.add(new BasicNameValuePair(NetConstants.KEY_MONTH, month));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_GET_GETMONTHAPPLYDATA, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
 			logRequestUri(uri);
 			return uri;
 		} catch (Exception e) {

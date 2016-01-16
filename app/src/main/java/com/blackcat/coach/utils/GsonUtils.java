@@ -31,7 +31,6 @@ public class GsonUtils {
 	}
 
 	public static <T> T fromJson(String json, Type type) {
-
 		return mGson.fromJson(json, type);
 	}
 
