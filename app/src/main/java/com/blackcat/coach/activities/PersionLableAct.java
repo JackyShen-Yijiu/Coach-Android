@@ -23,9 +23,11 @@ import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.TagsBean;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
+import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.blackcat.coach.widgets.WordWrapView;
@@ -109,10 +111,10 @@ public class PersionLableAct<T> extends BaseActivity implements View.OnClickList
                         view.setBackgroundColor(Color.GRAY);
                     }else{//未选中// )
                         addSystemLabel(labels[tag]);
-
-                        view.setBackgroundColor(Color.parseColor("#" + wordWrapDefault.getcolor(tag)));
+                        if(labels[tag].color!=null)
+                            view.setBackgroundColor(Color.parseColor(labels[tag].color));
                     }
-                    Toast.makeText(PersionLableAct.this,tag+"bussiness",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(PersionLableAct.this,tag,Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -146,6 +148,30 @@ public class PersionLableAct<T> extends BaseActivity implements View.OnClickList
             wordWrapCustom.addView(textview);
         }
     }
+
+    /**
+     * 添加一个 标签
+     * @param bean
+     */
+    private void addLabel(LabelBean bean){
+        personlabel.add(bean);
+
+//        for (int i = 0; i < labels.length; i++) {
+            TextView textview = new TextView(this);
+            textview.setText(bean.tagname);
+            textview.setTag(bean._id);
+            textview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showDeleteDialog(view.getTag().toString());
+                }
+            });
+            wordWrapCustom.addView(textview);
+//        }
+
+    }
+
+
 
     private void addSystemLabel(LabelBean bean){
         addList.add(bean._id);
@@ -269,13 +295,14 @@ public class PersionLableAct<T> extends BaseActivity implements View.OnClickList
         CoachTagParams param = new CoachTagParams();
         param.coachid = Session.getSession().coachid;
         param.tagname = tagName;
+        LogUtil.print("coachid->"+param.coachid+"<<--name>"+param.tagname);
         Map map = new HashMap<>();
-        map.put("authorization", Session.getToken());
-        GsonIgnoreCacheHeadersRequest<Result> request = new GsonIgnoreCacheHeadersRequest<Result>(
+        map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
+        GsonIgnoreCacheHeadersRequest<Result<LabelBean>> request = new GsonIgnoreCacheHeadersRequest<Result<LabelBean>>(
                 Request.Method.POST, url, GsonUtils.toJson(param), mAddType, map,
-                new Response.Listener<Result>() {
+                new Response.Listener<Result<LabelBean>>() {
                     @Override
-                    public void onResponse(Result response) {
+                    public void onResponse(Result<LabelBean> response) {
                         if (response != null && response.type == Result.RESULT_OK) {
                             Log.d("tag", "result-->" + response.data);
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
@@ -391,8 +418,9 @@ public class PersionLableAct<T> extends BaseActivity implements View.OnClickList
         SetTagParams param = new SetTagParams();
         param.coachid = Session.getSession().coachid;
         param.tagslist = getSelectedystemTag();
+        LogUtil.print("tags-->"+param.tagslist);
         Map map = new HashMap<>();
-        map.put("authorization", Session.getToken());
+        map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
         GsonIgnoreCacheHeadersRequest<Result> request = new GsonIgnoreCacheHeadersRequest<Result>(
                 Request.Method.POST, url, GsonUtils.toJson(param), mTokenType, map,
                 new Response.Listener<Result>() {
@@ -429,12 +457,25 @@ public class PersionLableAct<T> extends BaseActivity implements View.OnClickList
 
     private String getSelectedystemTag(){
         String temp ="";
+        String temp1 ="";
+        //系统标签
         for (LabelBean labelBean : systemlabel) {
             if(labelBean.is_choose)
                 temp = temp+labelBean._id+",";
         }
         if(temp.length()>0)
             temp = temp.substring(0,temp.length()-1);
+
+
+        //所有的自定义标签
+        for (LabelBean labelBean : personlabel) {
+            if(labelBean.is_choose)
+                temp1 = temp1+labelBean._id+",";
+        }
+        if(temp1.length()>0)
+            temp1 = temp1.substring(0,temp1.length()-1);
+        if(temp1.length()>0)
+            temp = temp +","+ temp1;
          return temp;
     }
 

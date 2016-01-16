@@ -74,10 +74,12 @@ public class WordWrapView extends ViewGroup {
                 view.setBackgroundColor(Color.WHITE);
             else if(i<lables.size() && !lables.get(i).is_choose){//没有选中 。。颜色灰色
                 view.setBackgroundColor(Color.GRAY);
-            }else{
-                view.setBackgroundColor(Color.parseColor("#"+getcolor(i)));
             }
-
+            else
+//                view.setBackgroundColor(Color.parseColor("#"+getcolor(i)));
+//            }
+            if(i<lables.size() && lables.get(i).color!=null)
+                view.setBackgroundColor(Color.parseColor(lables.get(i).color));
 
             int width = view.getMeasuredWidth();
             int height = view.getMeasuredHeight();
