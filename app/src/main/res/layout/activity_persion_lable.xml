@@ -6,13 +6,13 @@
     android:background="@color/white"
     tools:context="com.blackcat.coach.activities.PersionLableAct">
     <include layout="@layout/layout_toolbar"
-        android:id="@+id/include2" />
+        android:id="@+id/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/scrollView"
-        android:layout_below="@+id/include2"
+        android:layout_below="@+id/toolbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         >
@@ -52,17 +52,23 @@
                 />
             <include layout="@layout/line_gray1"></include>
 
+
             <EditText
                 android:id="@+id/act_persion_label_et"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:hint="@string/please_input_your_lable"
-                android:textSize="@dimen/profile_text_size"
+                android:layout_height="44dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/activity_padding"
+                android:layout_marginRight="@dimen/activity_padding"
+                android:layout_marginTop="@dimen/activity_padding"
+                android:background="@drawable/background_border_edit_gray"
                 android:gravity="center"
-                android:layout_marginTop="10dp"
-                />
+                android:hint="@string/please_input_your_lable"
+                android:inputType="text"
+                android:paddingLeft="15dp"
+                android:singleLine="true"
+                android:textColor="@color/text_999"
+                android:textSize="@dimen/profile_text_size" />
 
             <com.blackcat.coach.widgets.WordWrapView
                 android:id="@+id/act_persion_label_custom"
@@ -87,7 +93,9 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_blue_selector"
+                />
 
         </LinearLayout>
 

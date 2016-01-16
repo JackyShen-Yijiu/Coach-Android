@@ -19,6 +19,8 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +36,7 @@ import com.blackcat.coach.easemob.basefunction.HXSDKHelper;
 import com.blackcat.coach.events.LogoutEvent;
 import com.blackcat.coach.events.NetStateEvent;
 import com.blackcat.coach.events.NewMessageReceiveEvent;
+import com.blackcat.coach.fragments.ReservationFragment;
 import com.blackcat.coach.i.IKillable;
 import com.blackcat.coach.i.IResourceDischarger;
 import com.blackcat.coach.models.CoachInfo;
@@ -152,7 +155,9 @@ public class IndexActivity extends BaseActivity implements IKillable,
     }
 
     //签到
+    private LinearLayout llQianDao;
     private TextView tvQianDao;
+    private ImageView imgQuery;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -503,7 +508,9 @@ public class IndexActivity extends BaseActivity implements IKillable,
     private void init() {
         Utils.setContentView(this, R.layout.activity_index);
         mToolBarTitle = (TextView) findViewById(R.id.toolbar_title);
-        tvQianDao = (TextView) findViewById(R.id.toolbar_title_right);
+        llQianDao = (LinearLayout) findViewById(R.id.toolbar_title_right);
+        tvQianDao = (TextView) findViewById(R.id.toobar_title_right_tv);
+        imgQuery = (ImageView) findViewById(R.id.toobar_title_right_img);
         mVerificationWarning = (TextView) findViewById(R.id.tv_verification_warning);
         if (!Session.getSession().is_validation) {
             mVerificationWarning.setVisibility(View.VISIBLE);
@@ -638,25 +645,26 @@ public class IndexActivity extends BaseActivity implements IKillable,
 //			if (reClicked) {
 //	        }
                 mToolBarTitle.setText(R.string.title_reservation);
+                showHideQianDao(true, ReservationFragment.currentPage);
                 break;
             case TAB_SCHEDULE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_schedule);
-                showHideQianDao(false);
+                showHideQianDao(false,-1);
                 break;
             case TAB_MESSAGE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_message);
-                showHideQianDao(false);
+                showHideQianDao(false,-1);
 //			mMenuItemRight.setVisible(false);
                 break;
             case TAB_PROFILE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_profile);
-                showHideQianDao(false);
+                showHideQianDao(false,-1);
 //		    mMenuItemRight.setVisible(false);
                 break;
             default:
@@ -669,11 +677,20 @@ public class IndexActivity extends BaseActivity implements IKillable,
      *
      * @param flag
      */
-    public void showHideQianDao(boolean flag) {
-        if (flag)
-            tvQianDao.setVisibility(View.VISIBLE);
-        else
-            tvQianDao.setVisibility(View.GONE);
+    public void showHideQianDao(boolean flag,int position) {
+        if (flag){
+            llQianDao.setVisibility(View.VISIBLE);
+            if(position==0){//签到
+                tvQianDao.setVisibility(View.VISIBLE);
+                imgQuery.setImageResource(R.drawable.iconfont_icon);
+            }else{
+                tvQianDao.setVisibility(View.GONE);
+                imgQuery.setImageResource(R.drawable.iconfont_query);
+            }
+        }else{
+            llQianDao.setVisibility(View.GONE);
+        }
+
     }
 
 //	private MenuItem mMenuItemRight;
@@ -709,8 +726,12 @@ public class IndexActivity extends BaseActivity implements IKillable,
 //		case R.id.toolbar_title:
 //			break;
             case R.id.toolbar_title_right://签到
-                Intent intent = new Intent(this, CaptureActivity.class);
-                startActivity(intent);
+                if(ReservationFragment.currentPage == 0){//签到
+                    Intent intent = new Intent(this, CaptureActivity.class);
+                    startActivity(intent);
+                }else{//搜索
+
+                }
                 break;
             default:
                 break;

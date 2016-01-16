@@ -7,6 +7,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blackcat.coach.models.LabelBean;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -20,6 +24,12 @@ public class WordWrapView extends ViewGroup {
     private static final int SIDE_MARGIN = 24;//左右间距
     private static final int TEXT_MARGIN = 24;
 
+    private boolean firstWhite = false;
+
+    private String[] colors = {"ab414e","9d3e7a","7f3e9d","4249a7","42a3a7","3a93a0","3aa087","3aa063","43a03a",
+            "73a03a","98a03a","cd9637"};
+
+    private List<LabelBean> lables = new ArrayList<LabelBean>();
 
     /**
      * @param context
@@ -51,8 +61,6 @@ public class WordWrapView extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-
-
         int childCount = getChildCount();
         Log.d("tag", "random--childCount::" + childCount);
         int autualWidth = r - l;
@@ -62,11 +70,15 @@ public class WordWrapView extends ViewGroup {
         for(int i=0;i<childCount;i++){
             View view = getChildAt(i);
 
-
-            if(i==0)
+            if(i==0 && firstWhite)
                 view.setBackgroundColor(Color.WHITE);
-            else
-                view.setBackgroundColor(Color.parseColor("#"+getRandColorCode()));
+            else if(i<lables.size() && !lables.get(i).is_choose){//没有选中 。。颜色灰色
+                view.setBackgroundColor(Color.GRAY);
+            }else{
+                view.setBackgroundColor(Color.parseColor("#"+getcolor(i)));
+            }
+
+
             int width = view.getMeasuredWidth();
             int height = view.getMeasuredHeight();
             x += width+TEXT_MARGIN;
@@ -107,6 +119,18 @@ public class WordWrapView extends ViewGroup {
         setMeasuredDimension(actualWidth, y);
     }
 
+    public void setFirstColor(boolean flag){
+        firstWhite = flag;
+    }
+
+    public String[] getColor(){
+        return colors;
+    }
+
+    public void setData(List<LabelBean> lables){
+        this.lables = lables;
+    }
+
     /**
      * 获取十六进制的颜色代码.例如 "#6E36B4" , For HTML ,
      * @return String
@@ -137,6 +161,12 @@ public class WordWrapView extends ViewGroup {
         b = b.length()==1 ? "0" + b : b ;
 
         return r+g+b;
+    }
+
+    public String getcolor(int po){
+        int temp = po%colors.length;
+        Log.d("tag",temp+"iii>>"+colors[temp]);
+        return colors[temp];
     }
 
 }

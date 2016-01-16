@@ -16,19 +16,37 @@
             android:layout_gravity="center"
             android:textColor="@color/textColorPrimary" />
 
-        <TextView
+
+        <LinearLayout
             android:id="@+id/toolbar_title_right"
-            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/iconfont_icon"
-            android:text="@string/qiandao"
-            android:layout_marginRight="14dp"
             android:onClick="onClick"
-            android:clickable="true"
-            android:textSize="@dimen/profile_text_size"
+            android:orientation="horizontal"
             android:layout_gravity="right"
-            android:textColor="@color/textColorPrimary" />
+            android:paddingRight="14dp"
+            >
+
+            <ImageView
+                android:id="@+id/toobar_title_right_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconfont_icon"
+                android:layout_marginRight="3dp"
+                />
+            <TextView
+                android:id="@+id/toobar_title_right_tv"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/qiandao"
+                android:clickable="true"
+                android:textSize="@dimen/profile_text_size"
+                android:textColor="@color/textColorPrimary" />
+
+
+        </LinearLayout>
+
 
         <RadioGroup
             android:id="@+id/rg_reservation"

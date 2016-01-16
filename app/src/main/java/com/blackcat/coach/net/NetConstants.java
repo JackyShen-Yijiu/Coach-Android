@@ -63,6 +63,16 @@ public class NetConstants {
 
 	//public static final String PATH_COACH_COMMENT = "api/v1/courseinfo/coachcomment";
 	public static final String PATH_COACH_COMMENT = "api/v1/courseinfo/coachcommentv2";
+	/**添加标签*/
+	public static final String PATH_COACH_TAG_ADD= "api/v1/userinfo/coachaddtag";
+
+	/**删除标签*/
+	public static final String PATH_COACH_TAG_DELETE= "api/v1/userinfo/coachdeletetag";
+	/**所有标签*/
+	public static final String PATH_COACH_TAGS= "api/v1/userinfo/getallcoachtags";
+
+	public static final String PATH_COACH_SET_TAG = "api/v1/userinfo/coachsetselftags";
+
 	//新加（签到）
 	public static final String PATH_SIGNIN = "api/v1/courseinfo/coursesignin";
 	/***提醒学员可以报考了*/

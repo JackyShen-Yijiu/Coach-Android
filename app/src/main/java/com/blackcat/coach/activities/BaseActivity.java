@@ -29,6 +29,7 @@ public class BaseActivity extends AppCompatActivity {
 	public void setContentView(int layoutResID) {
 		super.setContentView(layoutResID);
 		View v = findViewById(R.id.toolbar);
+
 		if (v != null) {
 			mToolBar = (Toolbar) v;
 		    setSupportActionBar(mToolBar);
@@ -39,7 +40,7 @@ public class BaseActivity extends AppCompatActivity {
 		}
 	}
 
-	protected Toolbar configToolBar(int navigationIconId) {
+	public Toolbar configToolBar(int navigationIconId) {
 		mToolBar.setNavigationIcon(navigationIconId);
 		mToolBar.setNavigationOnClickListener(new View.OnClickListener() {
 			@Override
