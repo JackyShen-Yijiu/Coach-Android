@@ -11,4 +11,6 @@ public class OrderMsg implements Serializable {
     public String createtime;
     public String description;
     public String title;
+    public String _id;
+
 }

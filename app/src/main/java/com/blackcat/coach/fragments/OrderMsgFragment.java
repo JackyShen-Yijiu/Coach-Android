@@ -1,5 +1,6 @@
 package com.blackcat.coach.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,9 @@ import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.SystemMsg;
 import com.blackcat.coach.models.User;
+import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
+import com.blackcat.coach.utils.SpHelper;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
@@ -22,7 +25,7 @@ import java.util.List;
 /**
  * Created by zou on 15/10/29.
  */
-public class OrderMsgFragment extends BaseListFragment<SystemMsg> {
+public class OrderMsgFragment extends BaseListFragment<OrderMsg> {
     public static OrderMsgFragment newInstance(String param1, String param2) {
         OrderMsgFragment fragment = new OrderMsgFragment();
         return fragment;
@@ -67,6 +70,17 @@ public class OrderMsgFragment extends BaseListFragment<SystemMsg> {
         mPage++;
         mURI = URIUtil.getOrderMsgList(Session.getSession().coachid, mPage);
         refresh(DicCode.RefreshType.R_PULL_UP, mURI);
+    }
+
+    @Override
+    protected void onFeedsResponse(Result<List<OrderMsg>> response, int refreshType) {
+        super.onFeedsResponse(response, refreshType);
+        if (response != null && response.type == Result.RESULT_OK && response.data != null) {
+            List<OrderMsg> list = response.data;
+            Context c = getActivity();
+            if(c!=null && list.size()>0)
+                new SpHelper(c).set(NetConstants.KEY_MESSAGEID,list.get(0)._id);
+        }
     }
 
     @Override

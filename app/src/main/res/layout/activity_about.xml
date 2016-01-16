@@ -48,7 +48,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="14dp"
-        android:text="Copyright@2015-2018 All Rights Reserved"
+        android:text="Copyright@2015-2016 All Rights Reserved"
         android:textColor="@color/text_999"
         android:textSize="11sp" />
 

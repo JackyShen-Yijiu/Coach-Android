@@ -1,5 +1,6 @@
 package com.blackcat.coach.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,9 @@ import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.SystemMsg;
 import com.blackcat.coach.models.User;
+import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
+import com.blackcat.coach.utils.SpHelper;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
@@ -66,6 +69,18 @@ public class SystemMsgFragment extends BaseListFragment<SystemMsg> {
         mPage++;
         mURI = URIUtil.getStystemMsgList(Session.getSession().coachid, mPage);
         refresh(DicCode.RefreshType.R_PULL_UP, mURI);
+    }
+
+    @Override
+    protected void onFeedsResponse(Result<List<SystemMsg>> response, int refreshType) {
+            super.onFeedsResponse(response, refreshType);
+        if (response != null && response.type == Result.RESULT_OK && response.data != null) {
+            List<SystemMsg> list = response.data;
+            Context c = getActivity();
+            if(c!=null && list.size()>0)
+                new SpHelper(c).set(NetConstants.KEY_NEWSID,list.get(0).newsid);
+        }
+
     }
 
     @Override

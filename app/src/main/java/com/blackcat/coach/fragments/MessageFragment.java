@@ -30,8 +30,10 @@ import com.blackcat.coach.models.MessageCount;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
+import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.LogUtil;
+import com.blackcat.coach.utils.SpHelper;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.easemob.chat.EMChatManager;
@@ -60,6 +62,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     private RelativeLayout order_msg;
     private RelativeLayout system_msg;
     private TextView order_time,system_time,Tv_toast,Tv_system_toast,tv_unread_count,TV_system_messeage;
+    private GsonIgnoreCacheHeadersRequest<Result<MessageCount>> request;
 
 
     public static MessageFragment newInstance(String param1, String param2) {
@@ -137,7 +140,8 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     }
 
     private void MessageInfo() {
-        URI uri = URIUtil.getMessageInfo("0","0",Session.getSession().coachid);
+        SpHelper sp = new SpHelper(getActivity());
+        URI uri = URIUtil.getMessageInfo(sp.get(NetConstants.KEY_NEWSID,"0"),sp.get(NetConstants.KEY_MESSAGEID,"0"),Session.getSession().coachid);
         String url = null;
         try {
             url = uri.toURL().toString();
@@ -148,6 +152,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         if (TextUtils.isEmpty(url)) {
             return;
         }
+        LogUtil.print("redPoint-->"+url);
         Type mMessageCountType = new TypeToken<Result<MessageCount>>(){}.getType();
         GsonIgnoreCacheHeadersRequest<Result<MessageCount>> request = new GsonIgnoreCacheHeadersRequest<Result<MessageCount>>(
                 url, mMessageCountType, null,
@@ -162,6 +167,18 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                             TV_system_messeage.setText(response.data.Newsinfo.newscount);
                             order_time.setText(response.data.messageinfo.messagetime);
                             system_time.setText(response.data.Newsinfo.newstime);
+                            if(response.data.messageinfo.messagecount.equals("0")){
+                                tv_unread_count.setVisibility(View.INVISIBLE);
+                            }else{
+                                tv_unread_count.setVisibility(View.VISIBLE);
+                            }
+
+                            if(response.data.Newsinfo.newscount.equals("0")){
+                                TV_system_messeage.setVisibility(View.INVISIBLE);
+                            }else{
+                                TV_system_messeage.setVisibility(View.VISIBLE);
+                            }
+
                         } else if (response != null && !TextUtils.isEmpty(response.msg)) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
                         }
