@@ -713,6 +713,23 @@ public class URIUtil {
 		}
 		return null;
 	}
+	public static URI getMonthApplyDataUir(String coachid,String year,String month) {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACH_ID, coachid));
+		params.add(new BasicNameValuePair(NetConstants.KEY_YEAR, year));
+		params.add(new BasicNameValuePair(NetConstants.KEY_MONTH, month));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_GET_GETMONTHAPPLYDATA, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 //	public static URI getFeedback(String token, String content, String contact) {
 //		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();

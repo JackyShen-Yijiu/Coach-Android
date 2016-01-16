@@ -41,13 +41,14 @@ public class GsonIgnoreCacheHeadersRequest<T> extends BaseRequest<T> {
 	 * 
 	 * @param url
 	 *            URL of the request to make
-	 * @param clazz
+	 *
 	 *            Relevant class object, for Gson's reflection
 	 * @param headers
 	 *            Map of request headers
 	 */
 	public GsonIgnoreCacheHeadersRequest(String url, Type type, Map<String, String> headers, Listener<T> listener, ErrorListener errorListener) {
 		super(Method.GET, url, errorListener);
+		LogUtil.print("url------>"+url);
 		this.type = type;
 		this.headers = headers;
 		this.listener = listener;
@@ -85,8 +86,13 @@ public class GsonIgnoreCacheHeadersRequest<T> extends BaseRequest<T> {
 	@Override
 	protected Response<T> parseNetworkResponse(NetworkResponse response) {
 		try {
+//			System.out.println("json--00>"+response.data+"||||||||type--->"+response.headers);
 			String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+<<<<<<< Updated upstream
 			LogUtil.print("json---"+json);
+=======
+			LogUtil.print("json----->>"+json);
+>>>>>>> Stashed changes
 			T parseObject = GsonUtils.fromJson(json, type);
 			return Response.success(parseObject, parseIgnoreCacheHeaders(response));
 		} catch (UnsupportedEncodingException e) {

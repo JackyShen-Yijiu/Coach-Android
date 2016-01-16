@@ -61,6 +61,9 @@ public class NetConstants {
 	public static final String PATH_OREDERMSG = "api/v1/userinfo/getsysteminfo";
 
 
+	public static final String PATH_GET_GETMONTHAPPLYDATA = "api/v1/courseinfo/getmonthapplydata";
+
+
 	//public static final String PATH_COACH_COMMENT = "api/v1/courseinfo/coachcomment";
 	public static final String PATH_COACH_COMMENT = "api/v1/courseinfo/coachcommentv2";
 	/**添加标签*/
@@ -115,6 +118,9 @@ public class NetConstants {
 	public static final String KEY_SCHOOLNAME = "schoolname";
 	public static final String KEY_AUTHORIZATION = "authorization";
 	public static final String KEY_PRODUCT_ID = "productid";
+	public static final String KEY_COACH_ID = "coachid";
+	public static final String KEY_YEAR = "year";
+	public static final String KEY_MONTH = "month";
 
 
 
