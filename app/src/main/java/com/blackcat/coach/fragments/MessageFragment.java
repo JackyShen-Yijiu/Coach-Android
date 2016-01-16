@@ -11,6 +11,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.CaptureActivity;
 import com.blackcat.coach.activities.ChatActivity;
@@ -23,12 +26,20 @@ import com.blackcat.coach.easemob.domain.User;
 import com.blackcat.coach.events.NetStateEvent;
 import com.blackcat.coach.events.NewMessageReceiveEvent;
 import com.blackcat.coach.models.Message;
+import com.blackcat.coach.models.MessageCount;
 import com.blackcat.coach.models.Result;
+import com.blackcat.coach.models.Session;
+import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
+import com.blackcat.coach.net.URIUtil;
+import com.blackcat.coach.utils.LogUtil;
+import com.blackcat.coach.utils.ToastHelper;
+import com.blackcat.coach.utils.VolleyUtil;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -48,6 +59,8 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     private TextView mTvErrorMsg;
     private RelativeLayout order_msg;
     private RelativeLayout system_msg;
+    private TextView order_time,system_time,Tv_toast,Tv_system_toast;
+
 
     public static MessageFragment newInstance(String param1, String param2) {
         MessageFragment fragment = new MessageFragment();
@@ -67,12 +80,19 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         initViews(rootView);
         EventBus.getDefault().register(this);
         refreshMessagesList();
+        MessageInfo();
         return rootView;
     }
 
     
     private void initViews(View rootView) {
         mListView = (ListView) rootView.findViewById(R.id.inner_list);
+
+        Tv_toast = (TextView) rootView.findViewById(R.id.Tv_toast);
+        Tv_system_toast = (TextView) rootView.findViewById(R.id.Tv_system_toast);
+        order_time=(TextView)rootView.findViewById(R.id.order_time);
+        system_time=(TextView)rootView.findViewById(R.id.system_time);
+
         mAdapter = new CommonAdapter<Message>(mActivity, null, CommonAdapter.AdapterType.TYPE_ADAPTER_MSG);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -110,6 +130,54 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 break;
        }
     }
+
+    private void MessageInfo() {
+        URI uri = URIUtil.getMessageInfo("0","0",Session.getSession().coachid);
+        String url = null;
+        try {
+            url = uri.toURL().toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
+        Type mMessageCountType = new TypeToken<Result<MessageCount>>(){}.getType();
+        GsonIgnoreCacheHeadersRequest<Result<MessageCount>> request = new GsonIgnoreCacheHeadersRequest<Result<MessageCount>>(
+                url, mMessageCountType, null,
+                new Response.Listener<Result<MessageCount>>() {
+                    @Override
+                    public void onResponse(Result<MessageCount> response) {
+                        if (response != null && response.type == Result.RESULT_OK && response.data != null) {
+
+
+                            Tv_toast.setText(response.data.messageinfo.message);
+                            Tv_system_toast.setText(response.data.Newsinfo.news);
+                            order_time.setText(response.data.messageinfo.messagetime);
+                            system_time.setText(response.data.Newsinfo.newstime);
+
+                            
+
+                        } else if (response != null && !TextUtils.isEmpty(response.msg)) {
+                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError arg0) {
+                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+                    }
+                });
+        // 请求加上Tag,用于取消请求
+        request.setTag(this);
+        request.setManuallyRefresh(true);
+        request.setShouldCache(true);
+
+        VolleyUtil.getQueue(getActivity()).add(request);
+    }
+
 
     public void  onEvent(NewMessageReceiveEvent event) {
         mActivity.runOnUiThread(new Runnable() {

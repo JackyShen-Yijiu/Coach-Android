@@ -10,6 +10,7 @@ import com.android.volley.Response.Listener;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.UnsupportedEncodingException;
@@ -85,6 +86,7 @@ public class GsonIgnoreCacheHeadersRequest<T> extends BaseRequest<T> {
 	protected Response<T> parseNetworkResponse(NetworkResponse response) {
 		try {
 			String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+			LogUtil.print("json---"+json);
 			T parseObject = GsonUtils.fromJson(json, type);
 			return Response.success(parseObject, parseIgnoreCacheHeaders(response));
 		} catch (UnsupportedEncodingException e) {

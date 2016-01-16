@@ -27,6 +27,9 @@ public class NetConstants {
 	public static final String PATH_FEEDBACK = "api/v1/userfeedback";
 	public static final String PATH_GET_MSG_CODE = "api/v1/code/";
 	public static final String PATH_GET_COACHINFO = "api/v1/userinfo/getcoachinfo";
+	//消息（新加）
+	public static final String PATH_GET_MESSAGE = "api/v1/userinfo/getmessagecount";
+
 	public static final String PATH_UPDATE_COACHINFO = "api/v1/userinfo/updatecoachinfo";
 	public static final String PATH_APPLY_VERIFY = "api/v1/userinfo/applyverification";
 	public static final String PATH_UPDATE_MOBILE = "api/v1/userinfo/updatemobile";
@@ -76,6 +79,8 @@ public class NetConstants {
 	public static final String KEY_USERTYPE = "usertype";
 	public static final String KEY_TYPE = "type";
 	public static final String KEY_USERID = "userid";
+	public static final String KEY_NEWSID = "lastnews";
+	public static final String KEY_MESSAGEID = "lastmessage";
 	public static final String KEY_SCHOOLID = "schoolid";
 	public static final String KEY_COACHID = "coachid";
 	/**订单状态*/
