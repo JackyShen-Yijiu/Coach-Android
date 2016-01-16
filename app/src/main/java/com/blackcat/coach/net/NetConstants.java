@@ -96,6 +96,8 @@ public class NetConstants {
 	public static final String KEY_MESSAGEID = "lastmessage";
 	public static final String KEY_SCHOOLID = "schoolid";
 	public static final String KEY_COACHID = "coachid";
+
+
 	/**订单状态*/
 	public static final String KEY_RESERVATIONSTATE = "reservationstate";
 	public static final String KEY_INDEX = "index";
@@ -118,9 +120,13 @@ public class NetConstants {
 	public static final String KEY_SCHOOLNAME = "schoolname";
 	public static final String KEY_AUTHORIZATION = "authorization";
 	public static final String KEY_PRODUCT_ID = "productid";
+	public static final String KEY_SEARCH_NAME = "searchname";
+
+
 	public static final String KEY_COACH_ID = "coachid";
 	public static final String KEY_YEAR = "year";
 	public static final String KEY_MONTH = "month";
+
 
 
 

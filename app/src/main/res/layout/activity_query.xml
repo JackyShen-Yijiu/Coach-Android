@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.blackcat.coach.activities.">
+    android:orientation="vertical"
+    tools:context="com.blackcat.coach.activities.QueryAct">
 
-</RelativeLayout>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:minHeight="@dimen/actionBarSize"
+        android:theme="@style/ToolbarTheme">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/act_query_et"
+            android:layout_alignBottom="@+id/toolbar"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:hint="请搜索"
+            android:singleLine="true"
+            android:imeOptions="actionSearch"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <include layout="@layout/fragment_item"></include>
+
+
+
+
+</LinearLayout>

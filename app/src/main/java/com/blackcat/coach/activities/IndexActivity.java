@@ -730,7 +730,8 @@ public class IndexActivity extends BaseActivity implements IKillable,
                     Intent intent = new Intent(this, CaptureActivity.class);
                     startActivity(intent);
                 }else{//搜索
-
+                    Intent intent1 = new Intent(this, QueryAct.class);
+                    startActivity(intent1);
                 }
                 break;
             default:

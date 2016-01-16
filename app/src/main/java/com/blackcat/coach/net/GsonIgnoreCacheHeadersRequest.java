@@ -1,5 +1,7 @@
 package com.blackcat.coach.net;
 
+import android.util.Log;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.NetworkResponse;
@@ -88,7 +90,9 @@ public class GsonIgnoreCacheHeadersRequest<T> extends BaseRequest<T> {
 		try {
 //			System.out.println("json--00>"+response.data+"||||||||type--->"+response.headers);
 			String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
+
 			LogUtil.print("json----->>"+json);
+
 			T parseObject = GsonUtils.fromJson(json, type);
 			return Response.success(parseObject, parseIgnoreCacheHeaders(response));
 		} catch (UnsupportedEncodingException e) {
