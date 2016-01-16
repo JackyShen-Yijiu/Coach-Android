@@ -20,7 +20,7 @@ public class RowOrderMsg {
         View view = LayoutInflater.from(context).inflate(R.layout.row_order_msg, parent, false);
         Holder holder = new Holder(view);
         holder.tv_time =(TextView) view.findViewById(R.id.order_tv_time);
-        holder.tv_order_data =(TextView) view.findViewById(R.id.tv_order_data);
+        holder.tv_order_data =(TextView) view.findViewById(R.id.tv_order_date);
         holder.tv_title = (TextView) view.findViewById(R.id.tv_title_money);
         holder.tv_content = (TextView) view.findViewById(R.id.tv_content);
         return holder;
@@ -30,8 +30,8 @@ public class RowOrderMsg {
                                           BaseViewHolder holder, final int position, final T info) {
         final Holder viewHolder = (Holder) holder;
         OrderMsg item = (OrderMsg) info;
-        viewHolder.tv_time.setText(item.createtime);
-        viewHolder.tv_order_data.setText(item.createtime);
+        viewHolder.tv_time.setText(getTime(item.createtime));
+        viewHolder.tv_order_data.setText(getDate(item.createtime));
         viewHolder.tv_content.setText(item.description);
         viewHolder.tv_title.setText(item.title);
 
@@ -47,5 +47,19 @@ public class RowOrderMsg {
         public Holder(View itemView) {
             super(itemView);
         }
+    }
+
+    private static String getTime(String time){
+        if(null == time || time.length()<20)
+            return time;
+
+        return time.substring(11,16);
+    }
+
+    private static String getDate(String time){
+        if(null == time || time.length()<20)
+            return time;
+
+        return time.substring(0,10);
     }
 }
