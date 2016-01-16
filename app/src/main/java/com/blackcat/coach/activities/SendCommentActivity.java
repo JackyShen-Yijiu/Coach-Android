@@ -30,6 +30,7 @@ import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.blackcat.coach.widgets.ExpandGridView;
@@ -178,9 +179,6 @@ public class SendCommentActivity extends BaseNoFragmentActivity {
         param.commentcontent = commentcontent;
         param.starlevel = starlevel;
         param.learningcontent = learningcontent;
-
-
-        Log.i("TAG",GsonUtils.toJson(param)+"coachid-->"+coachid+"reservationid-->"+reservationid+"level-->"+commentcontent+starlevel+learningcontent);
 
         Map map = new HashMap<>();
         map.put("authorization", Session.getToken());
