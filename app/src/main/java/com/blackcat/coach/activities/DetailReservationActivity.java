@@ -48,7 +48,7 @@ import de.greenrobot.event.EventBus;
 
 public class DetailReservationActivity extends BaseNoFragmentActivity implements View.OnClickListener {
     private Reservation mReservation;
-    private Type mType = new TypeToken<Result<Reservation>>(){}.getType();
+
     private TextView toolbar_title;
     private ImageView mIvAvatar;
     private TextView mTvStudentName, mTvStudentNum;
@@ -219,7 +219,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         }
 
     }
-
+    private Type mType = new TypeToken<Result<Reservation>>(){}.getType();
     private void fetchReservationRequest(String reservationId) {
         URI uri = URIUtil.getReservationInfo(reservationId);
         String url = null;

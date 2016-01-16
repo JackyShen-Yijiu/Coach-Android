@@ -88,11 +88,7 @@ public class GsonIgnoreCacheHeadersRequest<T> extends BaseRequest<T> {
 		try {
 //			System.out.println("json--00>"+response.data+"||||||||type--->"+response.headers);
 			String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
-<<<<<<< Updated upstream
-			LogUtil.print("json---"+json);
-=======
-			LogUtil.print("json----->>"+json);
->>>>>>> Stashed changes
+
 			T parseObject = GsonUtils.fromJson(json, type);
 			return Response.success(parseObject, parseIgnoreCacheHeaders(response));
 		} catch (UnsupportedEncodingException e) {

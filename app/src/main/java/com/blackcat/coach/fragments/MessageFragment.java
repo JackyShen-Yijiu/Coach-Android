@@ -59,7 +59,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     private TextView mTvErrorMsg;
     private RelativeLayout order_msg;
     private RelativeLayout system_msg;
-    private TextView order_time,system_time,Tv_toast,Tv_system_toast;
+    private TextView order_time,system_time,Tv_toast,Tv_system_toast,tv_unread_count,TV_system_messeage;
 
 
     public static MessageFragment newInstance(String param1, String param2) {
@@ -87,6 +87,9 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     
     private void initViews(View rootView) {
         mListView = (ListView) rootView.findViewById(R.id.inner_list);
+
+        tv_unread_count=(TextView)rootView.findViewById(R.id.tv_unread_count);
+        TV_system_messeage=(TextView)rootView.findViewById(R.id.TV_system_messeage);
 
         Tv_toast = (TextView) rootView.findViewById(R.id.Tv_toast);
         Tv_system_toast = (TextView) rootView.findViewById(R.id.Tv_system_toast);
@@ -121,12 +124,14 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     }
     public void onClick(View v){
         switch(v.getId()){
-            case R.id.rl_order_messeage:  //预约消息
+            case R.id.rl_order_messeage:  //系统消息
                 startActivity(new Intent(mActivity, OrderMsgActivity.class));
-
+                tv_unread_count.setVisibility(View.GONE);
+                Tv_toast.setVisibility(View.GONE);
                 break;
-            case R.id.rl_system_messeage://系统消息
+            case R.id.rl_system_messeage://行业资讯
                 startActivity(new Intent(mActivity, SystemMsgActivity.class));
+                TV_system_messeage.setVisibility(View.GONE);
                 break;
        }
     }
@@ -150,15 +155,13 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                     @Override
                     public void onResponse(Result<MessageCount> response) {
                         if (response != null && response.type == Result.RESULT_OK && response.data != null) {
-
-
                             Tv_toast.setText(response.data.messageinfo.message);
+                            tv_unread_count.setText(response.data.messageinfo.messagecount);
+
                             Tv_system_toast.setText(response.data.Newsinfo.news);
+                            TV_system_messeage.setText(response.data.Newsinfo.newscount);
                             order_time.setText(response.data.messageinfo.messagetime);
                             system_time.setText(response.data.Newsinfo.newstime);
-
-                            
-
                         } else if (response != null && !TextUtils.isEmpty(response.msg)) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
                         }
