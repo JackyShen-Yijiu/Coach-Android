@@ -36,6 +36,9 @@ import com.qr.decoding.InactivityTimer;
 import com.qr.decoding.MessageIDs;
 import com.qr.view.ViewfinderView;
 
+/**
+ * 二维码扫描
+ */
 public class CaptureActivity extends Activity implements Callback {
 	public static final String QR_RESULT = "RESULT";
 
