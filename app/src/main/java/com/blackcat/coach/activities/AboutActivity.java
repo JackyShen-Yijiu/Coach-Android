@@ -1,14 +1,16 @@
 package com.blackcat.coach.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.utils.BaseUtils;
 
-public class AboutActivity extends BaseNoFragmentActivity {
+public class AboutActivity extends BaseNoFragmentActivity implements View.OnClickListener{
 
-    private TextView mTvVersion;
+    private TextView mTvVersion,tv_proto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,5 +19,17 @@ public class AboutActivity extends BaseNoFragmentActivity {
         configToolBar(R.mipmap.ic_back);
         mTvVersion  = (TextView) findViewById(R.id.tv_version);
         mTvVersion.setText(getResources().getString(R.string.str_app_version, BaseUtils.getVersionName(this)));
+        tv_proto=(TextView)findViewById(R.id.tv_proto);
+        tv_proto.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_proto:
+                Intent intent = new Intent(AboutActivity.this, TermsActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }

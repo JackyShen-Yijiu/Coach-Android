@@ -56,7 +56,8 @@
     <string name="register_word">点击注册则表示您同意《用户服务协议》</string>
 
     <string name="upload_id_card">身份证</string>
-    <string name="upload_driving_school">所在驾校</string>
+    <string name="upload_driving_school">所属驾校</string>
+    <string name="upload_job_category">工作性质</string>
     <string name="upload_driver_name">姓名</string>
     <string name="upload_driver_license">驾驶证</string>
     <string name="upload_coach_certificate">教练证</string>
@@ -214,10 +215,18 @@
 
     <string name="str_sex_male">男</string>
     <string name="str_sex_female">女</string>
+    <string name="str_direct_coach">直营教练</string>
+    <string name="str_hangon_coach">挂考教练</string>
+
+    <string name="str_two_sbject">科目二</string>
+    <string name="str_three_sbject">科目三</string>
+
+
     <string name="str_license_empty">驾驶证号为空</string>
     <string name="str_idcard_empty">身份证为空</string>
     <string name="title_activity_modify_coach_number">修改教练证号</string>
     <string name="str_choice_gender">请选择性别</string>
+    <string name="str_subject_train">请选择科目</string>
 
     <string name="str_app_version">V%s</string>
     <string name="str_idcardnumber_invalid">请输入15/18位的身份证号码</string>
@@ -295,6 +304,9 @@
     <string name="title_modify_name">修改姓名</string>
     <string name="system_msg">系统消息</string>
     <string name="sigin_detail">签到详情</string>
+    <string name="about_server">许可服务协议</string>
+    <string name="job_category">工作性质</string>
+    <string name="delegable_subject">可授科目</string>
 
 
     <string name="tab_indicator_title_schedule">日程</string>

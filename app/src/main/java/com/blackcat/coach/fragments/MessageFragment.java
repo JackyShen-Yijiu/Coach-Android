@@ -154,6 +154,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         }
         LogUtil.print("redPoint-->"+url);
         Type mMessageCountType = new TypeToken<Result<MessageCount>>(){}.getType();
+
         GsonIgnoreCacheHeadersRequest<Result<MessageCount>> request = new GsonIgnoreCacheHeadersRequest<Result<MessageCount>>(
                 url, mMessageCountType, null,
                 new Response.Listener<Result<MessageCount>>() {
@@ -162,8 +163,8 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                         if (response != null && response.type == Result.RESULT_OK && response.data != null) {
                             Tv_toast.setText(response.data.messageinfo.message);
                             tv_unread_count.setText(response.data.messageinfo.messagecount);
-
                             Tv_system_toast.setText(response.data.Newsinfo.news);
+
                             TV_system_messeage.setText(response.data.Newsinfo.newscount);
                             order_time.setText(response.data.messageinfo.messagetime);
                             system_time.setText(response.data.Newsinfo.newstime);

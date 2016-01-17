@@ -442,6 +442,21 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
 
+        <activity android:name=".activities.TermsActivity"
+            android:label="@string/about_server"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+
+        <activity android:name=".activities.JobCategory"
+            android:label="@string/job_category"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".activities.NewTrainSubjectActivity"
+            android:label="@string/delegable_subject"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+
+
 
 >>>>>>> refs/remotes/origin/master
     </application>

@@ -48,6 +48,9 @@ public class CoachInfo implements Serializable {
     public boolean is_lock;
     public String address;
     public String Gender;
+    public String GenderOne;
+    //Y码
+    public String fcode;
     public boolean is_validation;
     public String validationstate;
     public DrivingSchool driveschoolinfo;
@@ -142,6 +145,7 @@ public class CoachInfo implements Serializable {
         Session.getSession().Seniority = params.Seniority;
         Session.getSession().coachnumber = params.coachnumber;
         Session.getSession().Gender = params.Gender;
+        Session.getSession().GenderOne = params.GenderOne;
         Session.getSession().drivinglicensenumber = params.drivinglicensenumber;
         Session.getSession().idcardnumber = params.idcardnumber;
         Session.getSession().mobile = params.mobile;

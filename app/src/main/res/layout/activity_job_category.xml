@@ -1,0 +1,67 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_pure"
+    android:orientation="vertical"
+    tools:context="com.blackcat.coach.activities.ModifyGenderActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/padding_left"
+        android:layout_marginTop="@dimen/padding_19"
+        android:text="工作性质"
+        android:textColor="@color/black_text"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/rg_sex_choice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="cancel_reason">
+
+        <RadioButton
+            android:id="@+id/rb_male"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginTop="18dp"
+            android:text="自营教练"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black_text"
+            android:textSize="14sp"
+            android:background="@null"
+            android:button="@drawable/radio_button_bg"
+            />
+
+        <RadioButton
+            android:id="@+id/rb_female"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginTop="18dp"
+            android:text="挂考教练"
+            android:paddingLeft="10dp"
+            android:textColor="@color/black_text"
+            android:textSize="14sp"
+            android:button="@drawable/radio_button_bg"
+            android:background="@null"/>
+
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="@dimen/activity_padding"
+        android:layout_marginRight="@dimen/activity_padding"
+        android:layout_marginTop="20dp"
+        android:background="@color/blue"
+        android:text="@string/str_submit"
+        android:textColor="@color/white_pure"
+        android:textSize="16sp" />
+</LinearLayout>

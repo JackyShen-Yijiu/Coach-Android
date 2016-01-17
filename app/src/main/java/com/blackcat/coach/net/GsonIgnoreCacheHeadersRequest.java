@@ -91,10 +91,7 @@ public class GsonIgnoreCacheHeadersRequest<T> extends BaseRequest<T> {
 //			System.out.println("json--00>"+response.data+"||||||||type--->"+response.headers);
 			String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
 
-<<<<<<< HEAD
-=======
 			LogUtil.print("json----->>"+json);
->>>>>>> ee5d45214cd8e84041ef298db915289f6c602c3e
 
 			T parseObject = GsonUtils.fromJson(json, type);
 			return Response.success(parseObject, parseIgnoreCacheHeaders(response));

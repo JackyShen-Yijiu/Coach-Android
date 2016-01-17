@@ -17,6 +17,8 @@ import de.greenrobot.event.EventBus;
 public class SettingsActivity extends BaseActivity implements View.OnClickListener {
 
     private View mLogoutView;
+    private View sv_appointment,sv_class_notice,sv_new_notice;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,12 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         mLogoutView = findViewById(R.id.ll_logout);
         mLogoutView.setOnClickListener(this);
 
+        sv_appointment=findViewById(R.id.sv_appointment);
+        sv_appointment.setOnClickListener(this);
+        sv_new_notice=findViewById(R.id.sv_new_notice);
+        sv_new_notice.setOnClickListener(this);
+        sv_class_notice=findViewById(R.id.sv_class_notice);
+        sv_class_notice.setOnClickListener(this);
         if (Session.isUserInfoEmpty()) {
             mLogoutView.setVisibility(View.INVISIBLE);
         }
@@ -81,11 +89,14 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
             @Override
             public void onProgress(int process, String status) {
+
             }
+
 
             @Override
             public void onError(int code, String message) {
             }
         });
     }
+
 }
