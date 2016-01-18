@@ -135,14 +135,16 @@ public class ReservationFragment extends BaseFragment {
     }
 
 
+
     protected void initData() {
 
         // 初始化数据
         String[] titles = new String[] { "新订单", "待评价", "已取消", "已完成" };
-        FragmentPagerAdapter adapter = new ReservationAdapter(mContext.getSupportFragmentManager(),titles);
+        final FragmentPagerAdapter adapter = new ReservationAdapter(mContext.getSupportFragmentManager(),titles);
 
         viewPager.setAdapter(adapter);
         slidingTab.setViewPager(viewPager);
+
         slidingTab.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -157,7 +159,9 @@ public class ReservationFragment extends BaseFragment {
                     ((IndexActivity) getActivity()).showHideQianDao(true,position);
                 }else
                     ((IndexActivity) getActivity()).showHideQianDao(true,position);
-             }
+
+                ((ItemFragment) adapter.getItem(position)).reRusume();
+            }
 
             @Override
             public void onPageScrollStateChanged(int state) {

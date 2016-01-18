@@ -17,6 +17,7 @@ import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.net.URIUtil;
+import com.blackcat.coach.utils.LogUtil;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.ArrayList;
@@ -32,12 +33,15 @@ public class ItemFragment extends BaseListFragment {
 //    private final
     /***请求种类*/
     private int type = 0;
+    public static  boolean REFRESH0 = false;
 
     public static  boolean REFRESH1 = false;
 
     public static  boolean REFRESH2 = false;
 
     public static  boolean REFRESH3 = false;
+
+
 
     public ItemFragment(){
 
@@ -78,6 +82,20 @@ public class ItemFragment extends BaseListFragment {
             request(mPage);
         }
         EventBus.getDefault().register(this);
+        //初始化
+        switch (ReservationFragment.currentPage ){
+            case 0:
+                REFRESH0 = false;
+                break;
+            case 1:
+                REFRESH0 = false;
+                break;
+            case 2:
+                REFRESH0 = false;
+                break;
+            case 3:
+                REFRESH0 = false;
+        }
     }
 
 
@@ -94,6 +112,32 @@ public class ItemFragment extends BaseListFragment {
     public void onResume() {
         super.onResume();
 
+        LogUtil.print("Item--->" + type);
+    }
+
+    public void reRusume(){
+        switch (ReservationFragment.currentPage ){
+            case 0:
+                LogUtil.print("---request00."+type);
+                if(REFRESH0)
+                    request(mPage);
+                break;
+            case 1:
+                LogUtil.print("---request111."+type);
+                if(REFRESH1)
+                    request(mPage);
+                break;
+            case 2:
+                LogUtil.print("---request22."+type);
+                if(REFRESH2)
+                    request(mPage);
+                break;
+            case 3:
+                LogUtil.print("---request33."+type);
+                if(REFRESH3)
+                    request(mPage);
+                break;
+        }
     }
 
     @Override
@@ -121,7 +165,7 @@ public class ItemFragment extends BaseListFragment {
                 temp = 2;
                 break;
             case 3://已经完成
-                temp = 7;
+                temp = 8;
                 break;
         }
         mURI = URIUtil.getAppointMent(Session.getSession().coachid,page,temp);

@@ -70,7 +70,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
 
         super.onCreate(savedInstanceState);
         mReservation = (Reservation) getIntent().getSerializableExtra(Constants.DETAIL);
-     //   Log.i("TAG11",cancelreason);
+     //   Log.i("TAG11",);
         if (mReservation == null) {
             finish();
             return;

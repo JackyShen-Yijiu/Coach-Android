@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.blackcat.coach.fragments.ItemFragment;
+import com.blackcat.coach.utils.LogUtil;
 
 
 /**
@@ -14,8 +15,9 @@ import com.blackcat.coach.fragments.ItemFragment;
  */
 public class ReservationAdapter extends FragmentPagerAdapter {
 
-    private final String[] titles;
+    private final String[] titles ;
 
+    public static Fragment[] fragments = {new ItemFragment(),new ItemFragment(),new ItemFragment(),new ItemFragment()};
 
     public ReservationAdapter(FragmentManager fm,String[] titles) {
         super(fm);
@@ -27,14 +29,17 @@ public class ReservationAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment fragment = new ItemFragment();
+        if(fragments[position].isAdded()){
+            return fragments[position];
+        }
         Bundle args = new Bundle();
-        args.putInt("type",position);
+        args.putInt("type", position);
 //        args.putString("type", titles[position]);
-        fragment.setArguments(args);
-
-        return fragment;
+        fragments[position].setArguments(args);
+        return fragments[position];
     }
+
+
 
     @Override
     public int getCount() {
