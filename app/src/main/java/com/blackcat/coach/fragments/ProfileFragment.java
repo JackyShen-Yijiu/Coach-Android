@@ -28,23 +28,17 @@ import com.blackcat.coach.activities.WalletActivity;
 import com.blackcat.coach.activities.WorkTimeActivity;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Session;
-<<<<<<< HEAD
 import com.blackcat.coach.utils.LogUtil;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
-=======
->>>>>>> 3f0e3753cf53b45dae3e15537766dadf4593568a
 
 public class ProfileFragment extends BaseFragment implements OnClickListener {
 
     private ImageView mIvAvatar;
-<<<<<<< HEAD
-    private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName;
-    private TextView mWorkTime,mSubject,mClass,mCode;
-=======
     private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
-    private TextView mWorkTime,mSubject,mClass;
->>>>>>> 3f0e3753cf53b45dae3e15537766dadf4593568a
+    private TextView mWorkTime,mSubject,mClass,mCode;
+//    private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
+//    private TextView mWorkTime,mSubject,mClass;
 
     public static boolean CLASS_SETTING = false;
     private TextView mTvFocde;
