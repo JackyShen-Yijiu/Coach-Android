@@ -79,7 +79,7 @@ public class OrderMsgFragment extends BaseListFragment<OrderMsg> {
             List<OrderMsg> list = response.data;
             Context c = getActivity();
             if(c!=null && list.size()>0)
-                new SpHelper(c).set(NetConstants.KEY_MESSAGEID,list.get(0)._id);
+                new SpHelper(c).set(NetConstants.KEY_MESSAGEID,list.get(0).seqindex);
         }
     }
 

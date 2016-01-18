@@ -7,6 +7,6 @@ import java.io.Serializable;
  */
 public class MessageInfo implements Serializable {
      public String message;
-    public String messagecount;
+    public int messagecount;
     public String messagetime;
 }

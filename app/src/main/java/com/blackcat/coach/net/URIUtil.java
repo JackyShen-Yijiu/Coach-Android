@@ -6,6 +6,7 @@ import android.util.Log;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.utils.BaseUtils;
+import com.blackcat.coach.utils.LogUtil;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URIUtils;
@@ -658,10 +659,11 @@ public class URIUtil {
         return null;
     }
 	//（新加）(消息)
-	public static URI getMessageInfo(String newsId,String messageId,String coachid) {
+	public static URI getMessageInfo(int newsId,int messageId,String coachid) {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair(NetConstants.KEY_NEWSID, newsId));
-		params.add(new BasicNameValuePair(NetConstants.KEY_MESSAGEID, messageId));
+		params.add(new BasicNameValuePair(NetConstants.KEY_NEWSID, String.valueOf(newsId)));
+		params.add(new BasicNameValuePair(NetConstants.KEY_MESSAGEID, String.valueOf(messageId)));
+		LogUtil.print("newId;::>"+newsId+"messageId>>"+messageId);
 		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, coachid));
 		fillBasicParams(CarCoachApplication.getInstance(), params);
 		try {
