@@ -8,7 +8,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
+        <include
+            android:id="@+id/rl_error_item"
+            layout="@layout/chat_neterror_item"
+            android:visibility="gone" />
 
         <RelativeLayout
             android:id="@+id/rl_order_messeage"
@@ -137,10 +140,7 @@
                 />
 
         </RelativeLayout>
-        <include
-            android:id="@+id/rl_error_item"
-            layout="@layout/chat_neterror_item"
-            android:visibility="gone" />
+
 
 
         <ListView

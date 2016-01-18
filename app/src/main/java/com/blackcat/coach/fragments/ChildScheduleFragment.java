@@ -242,11 +242,11 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         mCurrentDate = formatter.format(new Date());// 当期日期
         mType = new TypeToken<Result<List<Reservation>>>() {
         }.getType();
-//        mPage = 1;
-//        if (!Session.isUserInfoEmpty()) {
-//            mURI = URIUtil.getScheduleList(Session.getSession().coachid, mPage, mCurrentDate);
-//            refresh(DicCode.RefreshType.R_INIT, mURI);
-//        }
+        mPage = 1;
+        if (!Session.isUserInfoEmpty()) {
+            mURI = URIUtil.getScheduleList(Session.getSession().coachid, mPage, mCurrentDate);
+            refresh(DicCode.RefreshType.R_INIT, mURI);
+        }
         mContext = getActivity();
         initView(rootView);
         initData();
