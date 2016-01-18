@@ -1,15 +1,44 @@
 package com.blackcat.coach.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
+import com.blackcat.coach.easemob.Constant;
 import com.blackcat.coach.events.LogoutEvent;
+import com.blackcat.coach.models.CoachInfo;
+import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
+
+import com.blackcat.coach.models.params.SettingParams;
+import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
+import com.blackcat.coach.net.NetConstants;
+import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.BaseUtils;
+import com.blackcat.coach.utils.Constants;
+import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
+import com.blackcat.coach.utils.PrefUtils;
+import com.blackcat.coach.utils.ToastHelper;
+import com.blackcat.coach.utils.VolleyUtil;
+import com.blackcat.coach.widgets.ShSwitchView;
 import com.easemob.EMCallBack;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.net.URI;
+import java.util.HashMap;
+
+import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 
@@ -17,7 +46,10 @@ import de.greenrobot.event.EventBus;
 public class SettingsActivity extends BaseActivity implements View.OnClickListener {
 
     private View mLogoutView;
-    private View sv_appointment,sv_class_notice,sv_new_notice;
+    private ShSwitchView sv_appointment, sv_class_notice, sv_new_notice;
+    private int settingAppointment, settingClassNotice, settingNewNotice;
+
+    private Type mTokenType;
 
 
     @Override
@@ -26,6 +58,86 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_settings);
         configToolBar(R.mipmap.ic_back);
         initViews();
+        initData();
+    }
+
+    private void initData() {
+        settingAppointment = PrefUtils.getIntData(Constant.SETTING_APPOINTMENT, 1);
+        settingClassNotice = PrefUtils.getIntData(Constant.SETTING_CLASS_NOTICE, 1);
+        settingNewNotice = PrefUtils.getIntData(Constant.SETTING_NEW_NOTICE, 1);
+
+        LogUtil.print("settingAppointment"+settingAppointment);
+        LogUtil.print("settingClassNotice"+settingClassNotice);
+        LogUtil.print("settingNewNotice"+settingNewNotice);
+
+        if (settingAppointment == 1) {
+            sv_appointment.setOn(true);
+        }
+
+        if (settingClassNotice == 1) {
+            sv_class_notice.setOn(true);
+        }
+
+
+        if (settingNewNotice == 1) {
+            sv_new_notice.setOn(true);
+        }
+
+    }
+
+    //获取设置状态
+    private void obtainPersonalSetting() {
+        mTokenType = new TypeToken<Result<String>>() {
+        }.getType();
+        URI uri = URIUtil.getSettingUri();
+        String url = null;
+        try {
+            url = uri.toURL().toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
+        SettingParams param = new SettingParams();
+        param.userid = Session.getSession().coachid;
+        param.usertype = "2";
+        param.reservationreminder = settingAppointment + "";
+        param.newmessagereminder = settingNewNotice + "";
+        param.classremind = settingClassNotice + "";
+
+        Map map = new HashMap<>();
+        map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
+        GsonIgnoreCacheHeadersRequest<Result<CoachInfo>> request = new GsonIgnoreCacheHeadersRequest<Result<CoachInfo>>(
+                Request.Method.POST, url, GsonUtils.toJson(param), mTokenType, map,
+                new Response.Listener<Result<CoachInfo>>() {
+                    @Override
+                    public void onResponse(Result<CoachInfo> response) {
+                        if (response != null && response.data != null && response.type == Result.RESULT_OK) {
+                            //设置成功，保存状态
+                            PrefUtils.saveIntData(Constant.SETTING_APPOINTMENT, settingAppointment);
+                            PrefUtils.saveIntData(Constant.SETTING_CLASS_NOTICE, settingClassNotice);
+                            PrefUtils.saveIntData(Constant.SETTING_NEW_NOTICE, settingNewNotice);
+                        } else {
+                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
+                        }
+                        if (Constants.DEBUG) {
+                            VolleyLog.v("Response:%n %s", response);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError arg0) {
+//                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+                    }
+                });
+        // 请求加上Tag,用于取消请求
+        request.setTag(this);
+        request.setShouldCache(false);
+
+        VolleyUtil.getQueue(this).add(request);
     }
 
     private void initViews() {
@@ -35,12 +147,31 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         mLogoutView = findViewById(R.id.ll_logout);
         mLogoutView.setOnClickListener(this);
 
-        sv_appointment=findViewById(R.id.sv_appointment);
-        sv_appointment.setOnClickListener(this);
-        sv_new_notice=findViewById(R.id.sv_new_notice);
-        sv_new_notice.setOnClickListener(this);
-        sv_class_notice=findViewById(R.id.sv_class_notice);
-        sv_class_notice.setOnClickListener(this);
+        sv_appointment = (ShSwitchView) findViewById(R.id.sv_appointment);
+        sv_appointment.setOnSwitchStateChangeListener(new ShSwitchView.OnSwitchStateChangeListener() {
+            @Override
+            public void onSwitchStateChange(boolean isOn) {
+                LogUtil.print("设置预约提醒");
+                settingAppointment = sv_appointment.isOn() ? 1 : 0;
+                obtainPersonalSetting();
+            }
+        });
+        sv_new_notice = (ShSwitchView) findViewById(R.id.sv_new_notice);
+        sv_new_notice.setOnSwitchStateChangeListener(new ShSwitchView.OnSwitchStateChangeListener() {
+            @Override
+            public void onSwitchStateChange(boolean isOn) {
+                settingNewNotice = sv_new_notice.isOn() ? 1 : 0;
+                obtainPersonalSetting();
+            }
+        });
+        sv_class_notice = (ShSwitchView) findViewById(R.id.sv_class_notice);
+        sv_class_notice.setOnSwitchStateChangeListener(new ShSwitchView.OnSwitchStateChangeListener() {
+            @Override
+            public void onSwitchStateChange(boolean isOn) {
+                settingClassNotice = sv_class_notice.isOn() ? 1 : 0;
+                obtainPersonalSetting();
+            }
+        });
         if (Session.isUserInfoEmpty()) {
             mLogoutView.setVisibility(View.INVISIBLE);
         }
@@ -77,7 +208,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 break;
             case R.id.sv_class_notice://开课提醒
                 break;
-
         }
     }
 
@@ -105,5 +235,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             }
         });
     }
+
 
 }

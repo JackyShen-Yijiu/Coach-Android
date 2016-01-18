@@ -43,6 +43,21 @@ public class URIUtil {
 		return null;
 	}
 
+	public static URI getSettingUri() {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_PERSONAL_SETTING, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static URI getRegister(String mobile, String authCode, String pwd, String invite) {
         ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 		fillBasicParams(CarCoachApplication.getInstance(), params);

@@ -13,6 +13,7 @@ public class NetConstants {
 	
 	public static final String HOSTNAME = "101.200.204.240";
 //	public static final String HOSTNAME = "123.57.63.15";
+//	public static final String HOSTNAME = "123.56.185.59";
 
 	public static final int DEFAULT_PORT = 8181;
 
@@ -27,6 +28,7 @@ public class NetConstants {
 	public static final String PATH_FEEDBACK = "api/v1/userfeedback";
 	public static final String PATH_GET_MSG_CODE = "api/v1/code/";
 	public static final String PATH_GET_COACHINFO = "api/v1/userinfo/getcoachinfo";
+	public static final String PATH_PERSONAL_SETTING = "api/v1/userinfo/personalsetting";
 	//消息（新加）
 	public static final String PATH_GET_MESSAGE = "api/v1/userinfo/getmessagecount";
 
