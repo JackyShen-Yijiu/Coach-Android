@@ -36,7 +36,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
     private ImageView mIvAvatar;
     private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
-    private TextView mWorkTime,mSubject,mClass,mCode;
+    private TextView mWorkTime,mSubject,mClass;
 //    private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
 //    private TextView mWorkTime,mSubject,mClass;
 
@@ -68,7 +68,6 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         mTvSchoolName = (TextView) rootView.findViewById(R.id.tv_school_name);
         mTvFieldName = (TextView) rootView.findViewById(R.id.tv_field_name);
 
-        mCode  = (TextView) rootView.findViewById(R.id.tv_ycode);
         mWorkTime = (TextView) rootView.findViewById(R.id.tv_work_time);
         mSubject = (TextView) rootView.findViewById(R.id.tv_subjects);
         mClass = (TextView) rootView.findViewById(R.id.tv_class);
@@ -135,19 +134,20 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
             mWorkTime.setText("");
         }
 
-//        if(Session.getSession().subject.size()>0){//可授科目
-//            mSubject.setText("已设置");
-//        }else{
-//            mSubject.setText("");
-//        }
-        //授课
+
+        if(Session.getSession().subject.size()>0){//可授科目
+            mSubject.setText("已设置");
+        }else{
+            mSubject.setText("");
+        }
+       // 授课
 
 
-            if (!TextUtils.isEmpty(Session.getSession().GenderOne)) {
-                mSubject.setText(Session.getSession().GenderOne);
-            }else {
-                mSubject.setText("已设置");
-            }
+//            if (!TextUtils.isEmpty(Session.getSession().GenderOne)) {
+//                mSubject.setText(Session.getSession().GenderOne);
+//            }else {
+//                mSubject.setText("已设置");
+//            }
 
 
         if(CLASS_SETTING)
@@ -200,7 +200,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
                 startActivity(new Intent(mActivity, WalletActivity.class));
                 break;
             case R.id.rl_tech_subject:
-                startActivity(new Intent(mActivity, NewTrainSubjectActivity.class));
+                startActivity(new Intent(mActivity, TrainingSubjectActivity.class));
                 break;
             case R.id.rl_train_field:
                 startActivity(new Intent(mActivity, TrainFieldActivity.class));
