@@ -156,8 +156,8 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
             mClass.setText("");
 
 //        工作性质
-        if (!TextUtils.isEmpty(Session.getSession().Gender)) {
-            tv_job_category.setText(Session.getSession().Gender);
+        if (!TextUtils.isEmpty(Session.getSession().GenderJob)) {
+            tv_job_category.setText(Session.getSession().GenderJob);
         }
 
 

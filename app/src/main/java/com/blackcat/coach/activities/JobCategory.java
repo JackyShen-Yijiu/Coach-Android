@@ -27,8 +27,8 @@ public class JobCategory extends BaseActivity implements View.OnClickListener {
         mGroupViewSex = (RadioGroup)findViewById(R.id.rg_sex_choice);
         mRBtnMale = (RadioButton)findViewById(R.id.rb_male);
         mRBtnFemale = (RadioButton)findViewById(R.id.rb_female);
-        if (!TextUtils.isEmpty(Session.getSession().Gender)) {
-            if(Session.getSession().Gender.equals(getString(R.string.str_direct_coach))) {
+        if (!TextUtils.isEmpty(Session.getSession().GenderJob)) {
+            if(Session.getSession().GenderJob.equals(getString(R.string.str_direct_coach))) {
                 mRBtnMale.setChecked(true);
             }
             else  {
@@ -47,11 +47,11 @@ public class JobCategory extends BaseActivity implements View.OnClickListener {
             case R.id.btn_submit:
                 int checkedId = mGroupViewSex.getCheckedRadioButtonId();
                 if (checkedId <= 0) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_choice_gender);
+                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_job_category);
                     return;
                 }
                 String gender = ((RadioButton)findViewById(checkedId)).getText().toString();
-                if (gender.equals(Session.getSession().Gender)) {
+                if (gender.equals(Session.getSession().GenderJob)) {
                     finish();
                     return;
                 }
@@ -62,7 +62,7 @@ public class JobCategory extends BaseActivity implements View.OnClickListener {
 
     private void updateRequest(final String gender) {
         UpdateCoachParams params = new UpdateCoachParams(Session.getSession());
-        params.Gender = gender;
+        params.GenderJob = gender;
         Session.getSession().updateRequest(this, params);
     }
 
