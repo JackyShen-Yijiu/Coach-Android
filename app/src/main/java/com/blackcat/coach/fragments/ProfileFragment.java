@@ -134,7 +134,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         }else{
             mWorkTime.setText("");
         }
-
+        LogUtil.print("可授科目：：--》"+Session.getSession().subject.size());
 //        if(Session.getSession().subject.size()>0){//可授科目
 //            mSubject.setText("已设置");
 //        }else{

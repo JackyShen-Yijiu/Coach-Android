@@ -24,20 +24,31 @@ public enum ReservationStatus {
 //                // 已完成 课程结束
 //                finish:7
 //    }
-
+    @SerializedName("0")
+    APPLYINVALID,//所有订单
     @SerializedName("1")
-    APPLYING,
+    APPLYING,//预约中--------------------------新订单
     @SerializedName("2")
-    APPLYCANCEL,
+    APPLYCANCEL,//学生取消（已取消）-----------学生取消
     @SerializedName("3")
-    APPLYCONFIRM,
+    APPLYCONFIRM,//已确定 -- ------------------新订单
     @SerializedName("4")
-    APPLYREFUSE,
+    APPLYREFUSE,//教练拒绝或者取消(已取消)-----已取消
     @SerializedName("5")
-    UNCONFIRMFINISH,
+    UNCONFIRMFINISH,//待确认完成(无此状态) ----待确认完成
     @SerializedName("6")
-    UNCOMMENTS,
+    UNCOMMENTS,//待评论 -----------------------待评论
     @SerializedName("7")
-    FINISH,
-    UNKNOWN
+    ONCOMMENTED,//评论成功(已完成)-------------评论成功
+    @SerializedName("8")
+    FINISH,//订单完成（已完成）- --------------订单完成
+    @SerializedName("9")
+            SYSTEM_CANCEL,//系统取消(已取消)---系统取消
+    @SerializedName("10")
+    SIGNIN,//已签到(新订单)------------已签到
+    @SerializedName("11")
+    UNSINGIN ,//漏课,未签到
+    @SerializedName("12")
+    UNKNOWN//未知
+
 }

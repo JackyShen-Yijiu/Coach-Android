@@ -33,6 +33,12 @@ public class ItemFragment extends BaseListFragment {
     /***请求种类*/
     private int type = 0;
 
+    public static  boolean REFRESH1 = false;
+
+    public static  boolean REFRESH2 = false;
+
+    public static  boolean REFRESH3 = false;
+
     public ItemFragment(){
 
     }
@@ -85,6 +91,12 @@ public class ItemFragment extends BaseListFragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+    @Override
     public void onRefresh() {
         mPage = 1;
         request(mPage);
@@ -100,7 +112,7 @@ public class ItemFragment extends BaseListFragment {
         int temp = 0;
         switch(type){
             case 0://预约中
-                temp = 1;
+                temp = 3;
                 break;
             case 1://待评价
                 temp = 6;

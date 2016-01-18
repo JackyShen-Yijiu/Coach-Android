@@ -145,15 +145,18 @@
     <string name="str_modify_ok">修改成功</string>
 
     <!--Reservation status -->
-    <string name="reservation_applying">待接受</string>
+    <string name="reservation_applying">预约中</string>
     <string name="reservation_applycancel">学员取消</string>
-    <string name="reservation_confirm">已接受</string>
-    <string name="reservation_applyrefuse">已拒绝</string>
+    <string name="reservation_confirm">新订单</string>
+    <string name="reservation_applyrefuse">已取消</string>
     <string name="reservation_unconfirmfinish">待确认完成</string>
     <string name="reservation_uncomments">待评价</string>
-    <string name="reservation_finish">已完成</string>
+    <string name="reservation_oncomments">评论完成</string>
+    <string name="reservation_finish">订单完成</string>
     <string name="reservation_unknown">未知状态</string>
-    <string name="reservation_canceled">已取消</string>
+    <string name="reservation_canceled">系统取消</string>
+    <string name="reservation_sign_in">已签到</string>
+    <string name="reservation_leakage_class">已漏课</string>
 
     <string name="reservation_btn_accept">接受</string>
     <string name="reservation_btn_refuse">拒绝</string>

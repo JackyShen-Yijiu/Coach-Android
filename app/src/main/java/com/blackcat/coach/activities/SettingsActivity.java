@@ -71,6 +71,13 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
+            case R.id.sv_appointment://预约
+                break;
+            case R.id.sv_new_notice://新消息通知
+                break;
+            case R.id.sv_class_notice://开课提醒
+                break;
+
         }
     }
 

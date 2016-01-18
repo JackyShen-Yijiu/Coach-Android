@@ -21,12 +21,26 @@
             android:layout_alignBottom="@+id/toolbar"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:hint="请搜索"
+            android:hint="搜索"
             android:singleLine="true"
             android:imeOptions="actionSearch"
-            android:layout_marginLeft="20dp"
+            android:visibility="gone"
+            android:background="@drawable/background_border_edit_white"
             android:layout_marginRight="20dp" />
-
+        <android.support.v7.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:iconifiedByDefault="false"
+            android:inputType="textCapWords"
+            android:imeOptions="actionSearch"
+            android:goIcon="@drawable/ic_left_disabled"
+            android:background="@drawable/background_border_edit_white"
+            android:searchIcon="@drawable/ic_left_disabled"
+            android:foregroundGravity="center"
+            android:gravity="center"
+            android:queryHint="搜索" />
 
 
     </android.support.v7.widget.Toolbar>
