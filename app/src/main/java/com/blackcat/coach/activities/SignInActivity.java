@@ -14,9 +14,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
+import com.blackcat.coach.easemob.Constant;
 import com.blackcat.coach.events.ReservationOpOk;
 import com.blackcat.coach.models.ReservationStatus;
 import com.blackcat.coach.models.Result;
+import com.blackcat.coach.models.ScanningResult;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.SignInInfo;
 import com.blackcat.coach.models.params.NewParams;
@@ -41,13 +43,14 @@ import de.greenrobot.event.EventBus;
 public class SignInActivity extends BaseActivity implements View.OnClickListener{
     private TextView sign_name,sign_adress,sign_class;
     private Button sign_commit;
-    private String reservationid="string,预约id";
-    private String codecreateime="String,二维码生成时间戳";
-    private String userid="String,学员id";
-    private String userlatitude="Number,学员纬度";
-    private String userlongitude="Number,学员精度";
-    private String coachlatitude="Number,教练纬度";
-    private String coachlongitude="Number,教练经度";
+    ScanningResult scanningResult;
+//    private String reservationid="string,预约id";
+//    private String codecreateime="String,二维码生成时间戳";
+//    private String userid="String,学员id";
+//    private String userlatitude="Number,学员纬度";
+//    private String userlongitude="Number,学员精度";
+//    private String coachlatitude="Number,教练纬度";
+//    private String coachlongitude="Number,教练经度";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +58,13 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         setContentView(R.layout.signin_main);
         configToolBar(R.mipmap.ic_back);
 
+        scanningResult = (ScanningResult) getIntent().getSerializableExtra(Constant.SCANNING_RESULT);
         initViews();
 
+        initData();
+
     }
+
 
     private void initViews() {
 
@@ -67,6 +74,12 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
         sign_commit=(Button)findViewById(R.id.sign_commit);
         sign_commit.setOnClickListener(this);
+    }
+
+    private void initData() {
+        sign_name.setText(scanningResult.studentName);
+        sign_class.setText(scanningResult.courseProcessDesc);
+        sign_adress.setText(scanningResult.locationAddress);
     }
 
     @Override
@@ -98,13 +111,16 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         SignInInfo param = new SignInInfo();
 
         param.coachid = Session.getSession().coachid;
-        param.coachlatitude = coachlatitude;
-        param.coachlongitude = coachlongitude;
-        param.codecreatetime = codecreateime;
-        param.reservationid = reservationid;
-        param.userid = userid;
-        param.userlatitude = userlatitude;
-        param.userlongitude = userlongitude;
+        if(CarCoachApplication.latitude!=null&&CarCoachApplication.longitude!=null){
+
+        param.coachlatitude = CarCoachApplication.latitude;
+        param.coachlongitude = CarCoachApplication.longitude;
+        param.codecreatetime = scanningResult.createTime;
+        param.reservationid = scanningResult.reservationId;
+        param.userid = scanningResult.studentId;
+        param.userlatitude = scanningResult.latitude;
+        param.userlongitude = scanningResult.longitude;
+        }
 
 
       //  Log.i("TAG", GsonUtils.toJson(param) + "coachid-->" + coachid + "reservationid-->" + reservationid + "level-->" + commentcontent + starlevel + learningcontent);
@@ -117,7 +133,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
                     @Override
                     public void onResponse(Result response) {
-                        if (response != null && response.type == Result.RESULT_OK) {
+                        if (response != null && response.type == Result.RESULT_OK&&response.data!=null) {
 //                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
 //                            ReservationOpOk event = new ReservationOpOk();
 //                            event.pos = mReservation.pos;
@@ -125,12 +141,13 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 //                            EventBus.getDefault().post(event);
                             Intent intent = new Intent(SignInActivity.this, SignInSucceed.class);
                             startActivity(intent);
-                        //    finish();
+                            finish();
 
                         } else if (!TextUtils.isEmpty(response.msg)) {
                             //ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
                             Intent intent = new Intent(SignInActivity.this, SignInFaild.class);
                             startActivity(intent);
+                            finish();
                         }
                         if (Constants.DEBUG) {
                             VolleyLog.v("Response:%n %s", response);

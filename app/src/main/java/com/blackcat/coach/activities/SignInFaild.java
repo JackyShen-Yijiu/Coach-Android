@@ -3,6 +3,7 @@ package com.blackcat.coach.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.utils.Constants;
@@ -19,15 +20,16 @@ public class SignInFaild extends BaseActivity implements View.OnClickListener {
         setContentView(R.layout.signin_faild);
       //  configToolBar(R.mipmap.ic_back);
 
+       findViewById(R.id.sign_commit).setOnClickListener(this);
     }
     @Override
     public void onClick (View view){
         int id = view.getId();
         switch (id) {
             case R.id.sign_commit:
-               // finish();
-                Intent intent = new Intent(this, CaptureActivity.class);
-                startActivity(intent);
+                this.finish();
+//                Intent intent = new Intent(this, CaptureActivity.class);
+//                startActivity(intent);
                 break;
         }
     }
