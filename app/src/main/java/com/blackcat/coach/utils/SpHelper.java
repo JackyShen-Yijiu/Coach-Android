@@ -12,7 +12,7 @@ public class SpHelper {
     SharedPreferences sp;
     public SpHelper(Context c){
         if(sp ==null)
-            sp = c.getSharedPreferences("coache123", Context.MODE_PRIVATE);
+            sp = c.getSharedPreferences("coache1234", Context.MODE_PRIVATE);
     }
 
     public void set(String key,String value){

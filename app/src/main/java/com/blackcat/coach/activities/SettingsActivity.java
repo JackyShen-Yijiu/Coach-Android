@@ -16,10 +16,9 @@ import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
 import com.blackcat.coach.easemob.Constant;
 import com.blackcat.coach.events.LogoutEvent;
 import com.blackcat.coach.models.CoachInfo;
-import com.blackcat.coach.models.DrivingSchool;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
-import com.blackcat.coach.models.params.LoginParams;
+
 import com.blackcat.coach.models.params.SettingParams;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
@@ -38,10 +37,9 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
-import cn.jpush.android.api.JPushInterface;
 import de.greenrobot.event.EventBus;
 
 
@@ -52,10 +50,14 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     private int settingAppointment, settingClassNotice, settingNewNotice;
 
     private Type mTokenType;
+<<<<<<< HEAD
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
+=======
+
+>>>>>>> 9978805374cb00ca2f17982a79f6fbfe691dfae2
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +66,12 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         configToolBar(R.mipmap.ic_back);
         initViews();
         initData();
+<<<<<<< HEAD
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
+=======
+>>>>>>> 9978805374cb00ca2f17982a79f6fbfe691dfae2
     }
 
     private void initData() {
@@ -210,7 +215,12 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 startActivity(new Intent(this, LoginActivity.class));
                 finish();
                 break;
-
+            case R.id.sv_appointment://预约
+                break;
+            case R.id.sv_new_notice://新消息通知
+                break;
+            case R.id.sv_class_notice://开课提醒
+                break;
         }
     }
 

@@ -67,6 +67,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         mReservation = (Reservation) getIntent().getSerializableExtra(Constants.DETAIL);
      //   Log.i("TAG11",cancelreason);
@@ -76,7 +77,12 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         }
         //在使用SDK各组件之前初始化context信息，传入ApplicationContext
         //注意该方法要再setContentView方法之前实现
-        SDKInitializer.initialize(getApplicationContext());
+//        try{
+         SDKInitializer.initialize(getApplicationContext());
+//        }catch(java.lang.UnsatisfiedLinkError e){
+//            e.printStackTrace();
+//        }
+
         setContentView(R.layout.activity_detail_reservation);
         configToolBar(R.mipmap.ic_back);
         initViews();
@@ -88,9 +94,6 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         mReservation = (Reservation) getIntent().getSerializableExtra(Constants.DETAIL);
-
-
-
         if (mReservation == null) {
             finish();
             return;

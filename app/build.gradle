@@ -6,7 +6,7 @@ android {
     buildToolsVersion '23.0.0'
     defaultConfig {
         applicationId "com.blackcat.coach"
-        minSdkVersion 10
+        minSdkVersion 11
         targetSdkVersion 20
         versionCode 2
         versionName "1.0.0"
@@ -53,5 +53,8 @@ dependencies {
     //    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     //支持 布局 图片 按照比例显示
 
+<<<<<<< HEAD
   //  compile 'com.google.android.gms:play-services-appindexing:8.1.0'
+=======
+>>>>>>> 9978805374cb00ca2f17982a79f6fbfe691dfae2
 }

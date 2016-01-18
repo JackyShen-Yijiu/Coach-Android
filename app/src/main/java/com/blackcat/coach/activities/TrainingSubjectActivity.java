@@ -123,6 +123,11 @@ public class TrainingSubjectActivity extends BaseActivity {
         List<Subject> checkedSubjects = new ArrayList<>();
         SparseBooleanArray checkedPos = mListView.getCheckedItemPositions();
         for (int i = 0; i < mSubjectList.size(); i++) {
+            if(i ==1){
+
+            }else if(i==2){
+
+            }
             if (checkedPos.get(i) == true) {
                 checkedSubjects.add(mSubjectList.get(i));
             }

@@ -77,36 +77,36 @@ public class RowReservation {
 		viewHolder.tvTime.setText(item.classdatetimedesc);
 		viewHolder.tvStatus.setText(item.getReservationStatusDescId());
 
-		int id = R.color.text_999;
-		switch (item.getReservationstate()) {
-			case APPLYING:
-				id = R.color.reservation_status_applying;
-				break;
-
-			case APPLYCANCEL:
-			case APPLYREFUSE:
-				id = R.color.reservation_status_canceled;
-				//已取消
-				break;
-			case FINISH:
-				//已完成
-				id = R.color.reservation_status_finish;
-				break;
-
-			case APPLYCONFIRM:
-				id = R.color.reservation_status_comfirmed;
-				break;
-
-			case UNCONFIRMFINISH:
-				id = R.color.reservation_status_uncomform;
-				break;
-
-			case UNCOMMENTS:
-				id = R.color.reservation_status_uncomment;
-				break;
-		}
-		int color = activity.getResources().getColor(id);
-		viewHolder.statusLine.setBackgroundColor(color);
+//		int id = R.color.text_999;
+//		switch (item.getReservationstate()) {
+//			case APPLYING:
+//				id = R.color.reservation_status_applying;
+//				break;
+//
+//			case APPLYCANCEL:
+//			case APPLYREFUSE:
+//				id = R.color.reservation_status_canceled;
+//				//已取消
+//				break;
+//			case FINISH:
+//				//已完成
+//				id = R.color.reservation_status_finish;
+//				break;
+//
+//			case APPLYCONFIRM:
+//				id = R.color.reservation_status_comfirmed;
+//				break;
+//
+//			case UNCONFIRMFINISH:
+//				id = R.color.reservation_status_uncomform;
+//				break;
+//
+//			case UNCOMMENTS:
+//				id = R.color.reservation_status_uncomment;
+//				break;
+//		}
+//		int color = activity.getResources().getColor(id);
+//		viewHolder.statusLine.setBackgroundColor(color);
 //		viewHolder.tvStatus.setTextColor(color);
 	}
 
