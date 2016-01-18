@@ -8,6 +8,6 @@ import java.io.Serializable;
 public class NewsInfo implements Serializable {
 
    public String news;
-   public String newscount;
+   public int newscount;
    public String newstime;
 }

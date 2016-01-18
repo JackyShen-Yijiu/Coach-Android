@@ -27,7 +27,10 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.easemob.Constant;
+import com.blackcat.coach.models.ScanningResult;
 import com.blackcat.coach.utils.Constants;
+import com.blackcat.coach.utils.JsonUtil;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.qr.camera.CameraManager;
@@ -206,43 +209,49 @@ public class CaptureActivity extends Activity implements Callback {
 	public void handleDecode(Result obj, Bitmap barcode) {
 		inactivityTimer.onActivity();
 		playBeepSoundAndVibrate();
-		//showResult(obj, barcode);
-		Intent intent = new Intent(CaptureActivity.this, SignInActivity.class);
-		startActivity(intent);
+		showResult(obj, barcode);
+
 	}
 
 	private void showResult(final Result rawResult, Bitmap barcode) {
 
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		System.out.println("扫描结果："+rawResult.getText());
+		ScanningResult scanningResult = JsonUtil.parseJsonToBean(rawResult.getText(), ScanningResult.class);
+		Intent intent = new Intent(CaptureActivity.this, SignInActivity.class);
+		intent.putExtra(Constant.SCANNING_RESULT,scanningResult);
+		startActivity(intent);
+		finish();
 
-		Drawable drawable = new BitmapDrawable(barcode);
-		builder.setIcon(drawable);
-
-		builder.setTitle("类型:" + rawResult.getBarcodeFormat() + "\n 结果：" + rawResult.getText());
-		builder.setPositiveButton("确定", new OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-				Intent intent = new Intent(CaptureActivity.this, SendCommentActivity.class);
-				//intent = new Intent(this, SendCommentActivity.class);
-
-				intent.putExtra("result", rawResult.getText());
-				startActivity(intent);
-				//setResult(RESULT_OK, intent);
-			//	finish();
-			}
-		});
-		builder.setNegativeButton("重新扫描", new OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				dialog.dismiss();
-				restartPreviewAfterDelay(0L);
-			}
-		});
-		builder.setCancelable(false);
-		builder.show();
+//		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//
+//		Drawable drawable = new BitmapDrawable(barcode);
+//		builder.setIcon(drawable);
+//
+//		builder.setTitle("类型:" + rawResult.getBarcodeFormat() + "\n 结果：" + rawResult.getText());
+//		builder.setPositiveButton("确定", new OnClickListener() {
+//
+//			@Override
+//			public void onClick(DialogInterface dialog, int which) {
+//				dialog.dismiss();
+//				Intent intent = new Intent(CaptureActivity.this, SendCommentActivity.class);
+//				//intent = new Intent(this, SendCommentActivity.class);
+//
+//				intent.putExtra("result", rawResult.getText());
+//				startActivity(intent);
+//				//setResult(RESULT_OK, intent);
+//			//	finish();
+//			}
+//		});
+//		builder.setNegativeButton("重新扫描", new OnClickListener() {
+//
+//			@Override
+//			public void onClick(DialogInterface dialog, int which) {
+//				dialog.dismiss();
+//				restartPreviewAfterDelay(0L);
+//			}
+//		});
+//		builder.setCancelable(false);
+//		builder.show();
 
 		// Intent intent = new Intent();
 		// intent.putExtra(QR_RESULT, rawResult.getText());

@@ -77,6 +77,8 @@ public class CoachInfo implements Serializable {
     public String idcardnumber;
     public String coursestudentcount;
     public String driveschoolid;
+    /**标签*/
+    public LabelBean[] tagslist;
 
 
     // 更新个人信息

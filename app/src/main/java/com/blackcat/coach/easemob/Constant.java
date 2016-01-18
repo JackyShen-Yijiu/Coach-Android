@@ -29,6 +29,7 @@ public class Constant {
 	public static final String LOGIN_STATE_CONFLICT = "conflict";
 
 	public static final String CHAT_FROM_TYPE = "chat_from_type";
+	public static final String SCANNING_RESULT = "scanning_result";
 
 	public static final int CHAT_FROM_RESERVATION = 1;
 	public static final int CHAT_FROM_MESSAGES = 2;

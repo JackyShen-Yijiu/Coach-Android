@@ -48,9 +48,19 @@
                         android:id="@+id/tv_num"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="5dp"
                         android:textColor="#999999"
                         android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_ycode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textColor="#999999"
+                        android:text="yMa"
+                        android:textSize="13sp" />
+
                     <TextView
                     android:id="@+id/tv_focdes"
                     android:layout_width="wrap_content"
@@ -60,6 +70,7 @@
                     android:text="Y码："
                     android:textSize="13sp" />
 
+>>>>>>> 3f0e3753cf53b45dae3e15537766dadf4593568a
                 </LinearLayout>
                 <TextView
                     android:id="@+id/tv_focde"

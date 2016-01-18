@@ -28,12 +28,17 @@ import com.blackcat.coach.activities.WalletActivity;
 import com.blackcat.coach.activities.WorkTimeActivity;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Session;
+import com.blackcat.coach.utils.LogUtil;
+import com.easemob.chat.EMMessage;
+import com.easemob.chat.TextMessageBody;
 
 public class ProfileFragment extends BaseFragment implements OnClickListener {
 
     private ImageView mIvAvatar;
     private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
-    private TextView mWorkTime,mSubject,mClass;
+    private TextView mWorkTime,mSubject,mClass,mCode;
+//    private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
+//    private TextView mWorkTime,mSubject,mClass;
 
     public static boolean CLASS_SETTING = false;
     private TextView mTvFocde;
@@ -63,6 +68,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         mTvSchoolName = (TextView) rootView.findViewById(R.id.tv_school_name);
         mTvFieldName = (TextView) rootView.findViewById(R.id.tv_field_name);
 
+        mCode  = (TextView) rootView.findViewById(R.id.tv_ycode);
         mWorkTime = (TextView) rootView.findViewById(R.id.tv_work_time);
         mSubject = (TextView) rootView.findViewById(R.id.tv_subjects);
         mClass = (TextView) rootView.findViewById(R.id.tv_class);
@@ -156,6 +162,8 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
 
     }
+
+
 
     @Override
     public void onClick(View v) {

@@ -30,8 +30,9 @@ public class SignInSucceed extends BaseActivity implements View.OnClickListener 
         int id = view.getId();
         switch (id) {
             case R.id.sign_commit:
-                Intent intent = new Intent(SignInSucceed.this, IndexActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(SignInSucceed.this, IndexActivity.class);
+//                startActivity(intent);
+                this.finish();
                 break;
 
         }

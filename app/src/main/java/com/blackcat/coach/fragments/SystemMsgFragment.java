@@ -78,7 +78,7 @@ public class SystemMsgFragment extends BaseListFragment<SystemMsg> {
             List<SystemMsg> list = response.data;
             Context c = getActivity();
             if(c!=null && list.size()>0)
-                new SpHelper(c).set(NetConstants.KEY_NEWSID,list.get(0).newsid);
+                new SpHelper(c).set(NetConstants.KEY_NEWSID,list.get(0).seqindex);
         }
 
     }
