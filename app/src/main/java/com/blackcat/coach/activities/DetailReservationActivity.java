@@ -35,6 +35,7 @@ import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.google.gson.reflect.TypeToken;
@@ -149,12 +150,13 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
             mTvTrainField.setText(res.getString(R.string.str_train_field, mReservation.trainfieldlinfo.name));
         }
 
-        if (!TextUtils.isEmpty(mReservation.cancelreason)) {
-            tv_reason.setText(mReservation.cancelreason);
+        if(mReservation.cancelreason !=null){
+
+            tv_reason.setText(mReservation.cancelreason.reason);
+            tv_ground.setText(mReservation.cancelreason.cancelcontent);
         }
-        if (!TextUtils.isEmpty(mReservation.cancelcontent)) {
-            tv_ground.setText(mReservation.cancelcontent);
-        }
+
+
         if (!TextUtils.isEmpty(mReservation.classdatetimedesc)) {
             mTvDate.setText(mReservation.classdatetimedesc);
         }
@@ -261,6 +263,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                     }
                 });
         // 请求加上Tag,用于取消请求
+        LogUtil.print("123123"+mReservation._id);
         request.setTag(this);
         request.setShouldCache(false);
 

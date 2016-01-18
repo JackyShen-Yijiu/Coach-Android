@@ -240,7 +240,7 @@
         <!-- black-cat#yibuxuecheprod -->
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="black-cat#yibuxuechetest" />
+            android:value="black-cat#yibuxuecheprod" />
         <!-- 声明sdk所需的service -->
         <service android:name="com.easemob.chat.EMChatService" />
         <!-- 声明sdk所需的receiver -->
@@ -399,16 +399,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
-        <!-- 环信SDK引入 -->
-        <!-- black-cat#yibuxuechetest -->
-        <!-- black-cat#yibuxuecheprod -->
-        <meta-data
-            android:name="EASEMOB_APPKEY"
-            android:value="black-cat#yibuxuechetest" />
-        <!--
-             ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
+
 
         <activity
             android:name=".activities.ModifyCoachNameAct"
@@ -456,9 +447,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
 
-
-
->>>>>>> refs/remotes/origin/master
     </application>
 
 </manifest>

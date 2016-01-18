@@ -169,6 +169,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                             system_time.setText(response.data.Newsinfo.newstime);
                             if(response.data.messageinfo.messagecount==0){
                                 tv_unread_count.setVisibility(View.INVISIBLE);
+                                Tv_toast.setVisibility(View.INVISIBLE);
                             }else{
                                 tv_unread_count.setVisibility(View.VISIBLE);
                             }
