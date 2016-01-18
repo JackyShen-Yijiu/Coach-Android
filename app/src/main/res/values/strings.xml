@@ -227,6 +227,7 @@
     <string name="title_activity_modify_coach_number">修改教练证号</string>
     <string name="str_choice_gender">请选择性别</string>
     <string name="str_subject_train">请选择科目</string>
+    <string name="str_job_category">请选择工作性质</string>
 
     <string name="str_app_version">V%s</string>
     <string name="str_idcardnumber_invalid">请输入15/18位的身份证号码</string>
