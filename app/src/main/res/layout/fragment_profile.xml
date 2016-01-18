@@ -30,6 +30,7 @@
                     android:src="@mipmap/ic_avatar_small" />
 
                 <LinearLayout
+                    android:id="@+id/ll_head"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -55,11 +56,31 @@
                         android:id="@+id/tv_ycode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="2dp"
                         android:textColor="#999999"
                         android:text="yMa"
                         android:textSize="13sp" />
+
+                    <TextView
+                    android:id="@+id/tv_focdes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:textColor="#bfbfbf"
+                    android:text="Y码："
+                    android:textSize="13sp" />
+
+>>>>>>> 3f0e3753cf53b45dae3e15537766dadf4593568a
                 </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_focde"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/ll_head"
+                    android:layout_alignBottom="@+id/ll_head"
+                    android:textColor="#bfbfbf"
+                    android:text="123"
+                    android:textSize="13sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -74,22 +95,6 @@
                 android:layout_height="1px"
                 android:layout_marginLeft="15dp"
                 android:background="#e6e6e6" />
-
-
-            <TextView
-                android:id="@+id/tv_self_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white_pure"
-                android:maxLines="2"
-                android:paddingBottom="14dp"
-                android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="14dp"
-                android:text="@string/self_words"
-                android:textColor="#999999"
-                android:textSize="14sp" />
-
 
             <View
                 android:layout_width="match_parent"
@@ -149,6 +154,59 @@
                     android:src="@mipmap/ic_right" />
             </RelativeLayout>
 
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="15dp"
+                android:background="#e6e6e6" />
+
+            <RelativeLayout
+                android:id="@+id/rl_job_category"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/sl_default_background">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@mipmap/ic_driving_school" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="47dp"
+                    android:background="@null"
+                    android:hint="@string/upload_job_category"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_job_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/iv_job_category"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:id="@+id/iv_job_category"
+                    android:layout_width="@dimen/detail_right_size"
+                    android:layout_height="@dimen/detail_right_size"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_10"
+                    android:layout_marginRight="@dimen/padding_left"
+                    android:src="@mipmap/ic_right" />
+            </RelativeLayout>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
@@ -448,7 +506,49 @@
                 android:layout_height="1px"
                 android:layout_marginLeft="15dp"
                 android:background="#e6e6e6" />
+            <RelativeLayout
+                android:id="@+id/rl_setting"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/sl_default_background">
 
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:src="@mipmap/ic_setting" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="47dp"
+                    android:singleLine="true"
+                    android:text="@string/str_setting"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="@dimen/detail_right_size"
+                    android:layout_height="@dimen/detail_right_size"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/padding_left"
+                    android:src="@mipmap/ic_right" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e6e6e6" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="#e6e6e6" />
             <RelativeLayout
                 android:id="@+id/rl_wallet"
                 android:layout_width="match_parent"
@@ -483,49 +583,8 @@
                     android:src="@mipmap/ic_right" />
             </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#e6e6e6" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="8dp"
-                android:background="#e6e6e6" />
 
-            <RelativeLayout
-                android:id="@+id/rl_setting"
-                android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:background="@drawable/sl_default_background">
-
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:src="@mipmap/ic_setting" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="47dp"
-                    android:singleLine="true"
-                    android:text="@string/str_setting"
-                    android:textColor="#999999"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:layout_width="@dimen/detail_right_size"
-                    android:layout_height="@dimen/detail_right_size"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="@dimen/padding_left"
-                    android:src="@mipmap/ic_right" />
-            </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"

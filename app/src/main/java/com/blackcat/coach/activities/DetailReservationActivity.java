@@ -187,7 +187,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 ll_change_reson.setVisibility(View.GONE);
                 mApplyOpView.setVisibility(View.INVISIBLE);
                 mBtnSend.setText(R.string.reservation_finish);
-                toolbar_title.setText("新订单");
+                toolbar_title.setText("已学完");
                 mBtnSend.setEnabled(false);
                 break;
 

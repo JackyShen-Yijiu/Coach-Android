@@ -34,6 +34,7 @@ public class UpdateCoachParams {
     public String introduction;
     public String Seniority;
     public String Gender;
+    public String GenderOne;
     //public String platenumber;
     public String idcardnumber;
     public String driveschoolid;
