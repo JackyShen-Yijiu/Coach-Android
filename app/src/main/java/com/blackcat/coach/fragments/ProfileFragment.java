@@ -36,7 +36,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
     private ImageView mIvAvatar;
     private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
-    private TextView mWorkTime,mSubject,mClass,mCode;
+    private TextView mWorkTime,mSubject,mClass;
 //    private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
 //    private TextView mWorkTime,mSubject,mClass;
 
@@ -68,7 +68,6 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         mTvSchoolName = (TextView) rootView.findViewById(R.id.tv_school_name);
         mTvFieldName = (TextView) rootView.findViewById(R.id.tv_field_name);
 
-        mCode  = (TextView) rootView.findViewById(R.id.tv_ycode);
         mWorkTime = (TextView) rootView.findViewById(R.id.tv_work_time);
         mSubject = (TextView) rootView.findViewById(R.id.tv_subjects);
         mClass = (TextView) rootView.findViewById(R.id.tv_class);
