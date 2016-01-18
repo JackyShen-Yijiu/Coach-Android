@@ -165,7 +165,7 @@ public class ItemFragment extends BaseListFragment {
                 temp = 2;
                 break;
             case 3://已经完成
-                temp = 8;
+                temp = 7;
                 break;
         }
         mURI = URIUtil.getAppointMent(Session.getSession().coachid,page,temp);

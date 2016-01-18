@@ -53,8 +53,5 @@ dependencies {
     //    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     //支持 布局 图片 按照比例显示
 
-<<<<<<< HEAD
   //  compile 'com.google.android.gms:play-services-appindexing:8.1.0'
-=======
->>>>>>> 9978805374cb00ca2f17982a79f6fbfe691dfae2
 }

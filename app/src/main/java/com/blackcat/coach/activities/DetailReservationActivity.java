@@ -172,12 +172,14 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 mBtnSend.setVisibility(View.INVISIBLE);
                 toolbar_title.setText("新订单");
                 ll_change_reson.setVisibility(View.GONE);
+
                 break;
 
-            case APPLYCANCEL:
-                toolbar_title.setText("新订单");
-                ll_change_reson.setVisibility(View.GONE);
-            case APPLYREFUSE:
+            case APPLYCANCEL://学生取消
+                toolbar_title.setText("已取消");
+                ll_change_reson.setVisibility(View.VISIBLE);
+
+            case APPLYREFUSE://教练拒绝或者取消(已取消)
                 //已取消
                 ll_change_reson.setVisibility(View.VISIBLE);
 //                mBottomView.setVisibility(View.INVISIBLE);
@@ -201,7 +203,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 mApplyOpView.setVisibility(View.INVISIBLE);
                 mBtnSend.setVisibility(View.VISIBLE);
                 mBtnSend.setText(R.string.reservation_btn_cancel);
-                toolbar_title.setText("已取消");
+                toolbar_title.setText("新订单");
                 break;
 
             case UNCONFIRMFINISH:
@@ -220,6 +222,16 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 mBtnSend.setVisibility(View.VISIBLE);
                 mBtnSend.setText(R.string.reservation_btn_comment);
                 toolbar_title.setText("待评价");
+                break;
+
+            case ONCOMMENTED://评论成功(已完成)
+                ll_change_reson.setVisibility(View.GONE);
+                mMapView.setVisibility(View.GONE);
+                mBtnSend.setVisibility(View.VISIBLE);
+                mBtnSend.setText(R.string.reservation_oncomments);
+                mApplyOpView.setVisibility(View.INVISIBLE);
+                toolbar_title.setText("已完成");
+                mBtnSend.setEnabled(false);
                 break;
         }
 
