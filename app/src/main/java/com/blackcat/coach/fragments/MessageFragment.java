@@ -62,7 +62,6 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     private RelativeLayout order_msg;
     private RelativeLayout system_msg;
     private TextView order_time,system_time,Tv_toast,Tv_system_toast,tv_unread_count,TV_system_messeage;
-    private GsonIgnoreCacheHeadersRequest<Result<MessageCount>> request;
 
 
     public static MessageFragment newInstance(String param1, String param2) {

@@ -17,6 +17,7 @@ import com.blackcat.coach.R;
 import com.blackcat.coach.dialogs.AsyncProgressDialog;
 import com.blackcat.coach.dialogs.BaseDialogWrapper;
 import com.blackcat.coach.imgs.UILHelper;
+import com.blackcat.coach.models.LabelBean;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.qiniu.PhotoUtil;
 import com.blackcat.coach.qiniu.QiniuUploadManager;
@@ -27,6 +28,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import org.w3c.dom.Text;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PersonalInfoActivity extends BaseActivity implements View.OnClickListener {
 
@@ -121,14 +124,21 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
      * 设置标签
      */
     private void addTags(){
+        if(Session.getSession().tagslist==null)
+            return ;
         if(wordWrapView.getChildCount()>0){
             return;
         }
+        List<LabelBean> list = new ArrayList<LabelBean>();
+        for (LabelBean labelBean : Session.getSession().tagslist) {
+            list.add(labelBean);
+        }
+        wordWrapView.setData(list);
         wordWrapView.removeAllViews();
-        String[] strs = {"个性标签","包接送","五星级教练","不吸烟","态度极好","免费提供水服务","不收彩礼"};
-        for (int i = 0; i < strs.length; i++) {
+//        String[] strs = {"个性标签","包接送","五星级教练","不吸烟","态度极好","免费提供水服务","不收彩礼"};
+        for (int i = 0; i < list.size(); i++) {
             TextView textview = new TextView(this);
-            textview.setText(strs[i]);
+            textview.setText(list.get(i).tagname);
             wordWrapView.addView(textview);
         }
     }
