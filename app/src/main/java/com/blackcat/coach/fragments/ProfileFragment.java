@@ -134,19 +134,20 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
             mWorkTime.setText("");
         }
 
-//        if(Session.getSession().subject.size()>0){//可授科目
-//            mSubject.setText("已设置");
-//        }else{
-//            mSubject.setText("");
-//        }
-        //授课
+
+        if(Session.getSession().subject.size()>0){//可授科目
+            mSubject.setText("已设置");
+        }else{
+            mSubject.setText("");
+        }
+       // 授课
 
 
-            if (!TextUtils.isEmpty(Session.getSession().GenderOne)) {
-                mSubject.setText(Session.getSession().GenderOne);
-            }else {
-                mSubject.setText("已设置");
-            }
+//            if (!TextUtils.isEmpty(Session.getSession().GenderOne)) {
+//                mSubject.setText(Session.getSession().GenderOne);
+//            }else {
+//                mSubject.setText("已设置");
+//            }
 
 
         if(CLASS_SETTING)
@@ -199,7 +200,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
                 startActivity(new Intent(mActivity, WalletActivity.class));
                 break;
             case R.id.rl_tech_subject:
-                startActivity(new Intent(mActivity, NewTrainSubjectActivity.class));
+                startActivity(new Intent(mActivity, TrainingSubjectActivity.class));
                 break;
             case R.id.rl_train_field:
                 startActivity(new Intent(mActivity, TrainFieldActivity.class));

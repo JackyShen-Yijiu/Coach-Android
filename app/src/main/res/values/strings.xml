@@ -93,7 +93,7 @@
     <string name="str_phone_num">联系电话</string>
     <string name="str_sex">性别</string>
     <string name="str_self">个人说明</string>
-    <string name="str_seniority">教龄</string>
+    <string name="str_seniority">駕龄</string>
     <string name="str_coach_num">教练证</string>
     <string name="str_appointment">预约提醒</string>
     <string name="str_new_notice">新消息通知</string>

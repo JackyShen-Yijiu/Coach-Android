@@ -17,12 +17,7 @@
         android:textColor="@color/black_text"
         android:textSize="14sp" />
 
-    <RadioGroup
-        android:id="@+id/rg_sex_choice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:contentDescription="cancel_reason">
-        <RadioButton
+        <CheckBox
             android:id="@+id/rb_male_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -37,7 +32,7 @@
             />
 
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/rb_male"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,7 +46,7 @@
             android:button="@drawable/radio_button_bg"
             />
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/rb_female"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -63,7 +58,7 @@
             android:textSize="14sp"
             android:button="@drawable/radio_button_bg"
             android:background="@null"/>
-        <RadioButton
+        <CheckBox
             android:id="@+id/rb_male_four"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -76,8 +71,6 @@
             android:enabled="false"
             android:button="@drawable/radio_button_bg"
             />
-
-    </RadioGroup>
 
     <Button
         android:id="@+id/btn_submit"
