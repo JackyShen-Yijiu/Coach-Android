@@ -146,8 +146,8 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
             mIvAvatar.setImageResource(R.mipmap.ic_avatar_small);
         }
 
-        if (mReservation.trainfieldlinfo != null) {
-            mTvTrainField.setText(res.getString(R.string.str_train_field, mReservation.trainfieldlinfo.name));
+        if (!TextUtils.isEmpty(mReservation.shuttleaddress)) {
+            mTvTrainField.setText(res.getString(R.string.str_pick_place, mReservation.shuttleaddress));
         }
 
         if(mReservation.cancelreason !=null){
