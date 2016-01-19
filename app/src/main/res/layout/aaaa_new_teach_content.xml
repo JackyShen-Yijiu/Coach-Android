@@ -7,6 +7,14 @@
     tools:context="com.blackcat.coach.activities.SendCommentActivity">
 
     <include layout="@layout/layout_toolbar" />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
 
     <RelativeLayout
         android:id="@+id/rootView"
@@ -136,6 +144,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar2"
+        android:visibility="gone"
         android:layout_gravity="right" />
 
     <Button
@@ -150,4 +159,6 @@
         android:text="提交"
         android:textColor="@color/white_pure"
         android:textSize="16sp" />
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

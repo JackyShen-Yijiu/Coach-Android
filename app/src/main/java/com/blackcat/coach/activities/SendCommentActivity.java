@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -108,6 +109,11 @@ public class SendCommentActivity extends BaseNoFragmentActivity {
         }
         return learningContent;
     }
+
+    @Override
+    public boolean onTouchEvent(android.view.MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        return imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);}
 
 
     private void initViews() {
