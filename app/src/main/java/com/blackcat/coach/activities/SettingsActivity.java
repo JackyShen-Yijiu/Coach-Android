@@ -50,14 +50,12 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     private int settingAppointment, settingClassNotice, settingNewNotice;
 
     private Type mTokenType;
-<<<<<<< HEAD
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-=======
 
->>>>>>> 9978805374cb00ca2f17982a79f6fbfe691dfae2
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,12 +64,10 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         configToolBar(R.mipmap.ic_back);
         initViews();
         initData();
-<<<<<<< HEAD
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-=======
->>>>>>> 9978805374cb00ca2f17982a79f6fbfe691dfae2
+
     }
 
     private void initData() {
