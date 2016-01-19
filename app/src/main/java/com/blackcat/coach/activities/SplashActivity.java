@@ -10,22 +10,60 @@ import android.os.Message;
 import com.blackcat.coach.R;
 import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
 import com.blackcat.coach.models.Session;
+import com.blackcat.coach.utils.SharedPreferencesUtil;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-public class SplashActivity extends BaseNoFragmentActivity {
+public class SplashActivity extends BaseNoFragmentActivity{
 
     private static final int sleepTime = 2000;
+
+    public static String IS_APP_FIRST_OPEN = "is_app_first_open";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         initViews();
+        initData();
     }
+
+    private void initData() {
+        boolean isFirstOpen = SharedPreferencesUtil.getBoolean(
+                getApplicationContext(), IS_APP_FIRST_OPEN, true);
+        if (isFirstOpen) {
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    Intent intent = new Intent(SplashActivity.this,
+                            GuideActivity.class);
+                    startActivity(intent);
+                    SplashActivity.this.finish();
+                }
+            }, 1000);
+            // startActivity(new Intent(WelcomeActivity.this,
+            // GuideActivity.class));
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(SplashActivity.this,
+                            LoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }, 1000);
+
+        }
+
+    }
+
+
+
 
     private final static int mSplashTime = 1000;
 
