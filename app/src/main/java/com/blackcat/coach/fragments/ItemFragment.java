@@ -20,7 +20,6 @@ import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.LogUtil;
 import com.google.gson.reflect.TypeToken;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.greenrobot.event.EventBus;
@@ -40,8 +39,6 @@ public class ItemFragment extends BaseListFragment {
     public static  boolean REFRESH2 = false;
 
     public static  boolean REFRESH3 = false;
-
-
 
     public ItemFragment(){
 
@@ -128,16 +125,23 @@ public class ItemFragment extends BaseListFragment {
                     request(mPage);
                 break;
             case 2:
-                LogUtil.print("---request22."+type);
-                if(REFRESH2)
+                LogUtil.print("---request22." + type);
+                if(REFRESH2){
+                    REFRESH2 = true;
                     request(mPage);
+                }
+
                 break;
             case 3:
-                LogUtil.print("---request33."+type);
-                if(REFRESH3)
+                LogUtil.print("---request33." + type);
+                if(REFRESH3){
+                    REFRESH3 =false;
                     request(mPage);
+                }
+
                 break;
         }
+
     }
 
     @Override
