@@ -74,6 +74,7 @@ public class SendCommentActivity extends BaseNoFragmentActivity {
             return;
         }
         mSubjectType = mReservation.subject.subjectid;
+
         setContentView(R.layout.aaaa_new_teach_content);
         configToolBar(R.mipmap.ic_back);
         initViews();
@@ -139,10 +140,11 @@ public class SendCommentActivity extends BaseNoFragmentActivity {
     }
 
     private void initData() {
+        LogUtil.print("type--->"+mSubjectType);
         if(mSubjectType == SUBJECTS_TYPE_TWO) {
             mSubjectNames = getResources().getStringArray(R.array.subject2);
         }
-        else if (mSubjectType == SUBJECTS_TYPE_ERROR) {
+        else if (mSubjectType == SUBJECTS_TYPE_THREE) {
             mSubjectNames = getResources().getStringArray(R.array.subject3);
         }
 

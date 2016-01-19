@@ -6,6 +6,8 @@
         android:width="1dp"
         android:color="#f5f5f5" />
 
+    <corners android:radius="10px"/>
+
     <padding
         android:bottom="1dp"
         android:left="3dp"
