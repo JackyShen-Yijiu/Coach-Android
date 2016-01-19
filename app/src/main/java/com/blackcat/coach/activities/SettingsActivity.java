@@ -33,9 +33,6 @@ import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.blackcat.coach.widgets.ShSwitchView;
 import com.easemob.EMCallBack;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -59,7 +56,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +67,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     private void initData() {
@@ -143,7 +138,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError arg0) {
-//                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+//                        ToastHelper.getInstance(d.getInstance()).toast(R.string.net_err);
                     }
                 });
         // 请求加上Tag,用于取消请求
