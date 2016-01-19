@@ -32,33 +32,7 @@ public class SplashActivity extends BaseNoFragmentActivity{
     }
 
     private void initData() {
-        boolean isFirstOpen = SharedPreferencesUtil.getBoolean(
-                getApplicationContext(), IS_APP_FIRST_OPEN, true);
-        if (isFirstOpen) {
-            new Handler().postDelayed(new Runnable() {
 
-                @Override
-                public void run() {
-                    Intent intent = new Intent(SplashActivity.this,
-                            GuideActivity.class);
-                    startActivity(intent);
-                    SplashActivity.this.finish();
-                }
-            }, 1000);
-            // startActivity(new Intent(WelcomeActivity.this,
-            // GuideActivity.class));
-        } else {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(SplashActivity.this,
-                            LoginActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
-            }, 1000);
-
-        }
 
     }
 
@@ -109,12 +83,20 @@ public class SplashActivity extends BaseNoFragmentActivity{
 
     public static final String SHOW_GUIDE_TOUR = "ShowGuideTour";
     private void go2IndexActivity() {
+
         Intent intent = null;
-        if (Session.isUserInfoEmpty()) {
-            intent = new Intent(this, LoginActivity.class);
-        } else {
-            intent = new Intent(this, IndexActivity.class);
+        boolean isFirstOpen = SharedPreferencesUtil.getBoolean(
+                getApplicationContext(), IS_APP_FIRST_OPEN, true);
+        if (isFirstOpen) {
+            intent = new Intent(this,GuideActivity.class);
+        }else{
+            if (Session.isUserInfoEmpty()) {
+                intent = new Intent(this, LoginActivity.class);
+            } else {
+                intent = new Intent(this, IndexActivity.class);
+            }
         }
+
         startActivity(intent);
         finish();
         overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
