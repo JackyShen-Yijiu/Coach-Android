@@ -54,8 +54,20 @@ public class Reservation implements Serializable {
             case UNCOMMENTS:
                 id = R.string.reservation_uncomments;
                 break;
+            case ONCOMMENTED:
+                id = R.string.reservation_oncomments;
+                break;
             case FINISH:
                 id = R.string.reservation_finish;
+                break;
+            case SYSTEM_CANCEL:
+                id = R.string.reservation_canceled;
+                break;
+            case SIGNIN:
+                id = R.string.reservation_sign_in;
+                break;
+            case UNSINGIN://未签到
+                 id = R.string.reservation_leakage_class;
                 break;
             case UNKNOWN:
                 default:

@@ -77,6 +77,7 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
         wordWrapView = (WordWrapView) findViewById(R.id.view_wordwrap);
         //白色
         wordWrapView.setFirstColor(true);
+        wordWrapView.showColor(true);
         mTvName = (TextView) findViewById(R.id.tv_name);
         mTvId = (TextView) findViewById(R.id.tv_id);
         mTvName.setText(Session.getSession().name);
@@ -129,7 +130,10 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
         if(wordWrapView.getChildCount()>0){
             return;
         }
+        LabelBean label = new LabelBean();
+        label.tagname = "个性标签";
         List<LabelBean> list = new ArrayList<LabelBean>();
+        list.add(label);
         for (LabelBean labelBean : Session.getSession().tagslist) {
             list.add(labelBean);
         }

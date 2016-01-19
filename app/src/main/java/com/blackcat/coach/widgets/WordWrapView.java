@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.blackcat.coach.models.LabelBean;
+import com.blackcat.coach.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +26,8 @@ public class WordWrapView extends ViewGroup {
     private static final int TEXT_MARGIN = 24;
 
     private boolean firstWhite = false;
+
+    private boolean showColor = false;
 
     private String[] colors = {"ab414e","9d3e7a","7f3e9d","4249a7","42a3a7","3a93a0","3aa087","3aa063","43a03a",
             "73a03a","98a03a","cd9637"};
@@ -72,6 +75,11 @@ public class WordWrapView extends ViewGroup {
 
             if(i==0 && firstWhite)
                 view.setBackgroundColor(Color.WHITE);
+            else if(showColor){//显示所有的颜色
+                LogUtil.print("showColor-->"+lables.get(i).color);
+                if(i<lables.size() && lables.get(i).color!=null)
+                    view.setBackgroundColor(Color.parseColor(lables.get(i).color));
+            }
             else if(i<lables.size() && !lables.get(i).is_choose){//没有选中 。。颜色灰色
                 view.setBackgroundColor(Color.GRAY);
             }
@@ -119,6 +127,14 @@ public class WordWrapView extends ViewGroup {
             y = rows*(height+TEXT_MARGIN);
         }
         setMeasuredDimension(actualWidth, y);
+    }
+
+    /**
+     * 所有的都显示颜色
+     * @param showColor
+     */
+    public void showColor(boolean showColor){
+        this.showColor = showColor;
     }
 
     public void setFirstColor(boolean flag){
