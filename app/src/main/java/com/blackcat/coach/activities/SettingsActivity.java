@@ -65,8 +65,6 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         initViews();
         initData();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
 
     }
 
@@ -139,7 +137,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError arg0) {
-//                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+//                        ToastHelper.getInstance(d.getInstance()).toast(R.string.net_err);
                     }
                 });
         // 请求加上Tag,用于取消请求
