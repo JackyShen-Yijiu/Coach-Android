@@ -206,11 +206,11 @@ public class VacationActivity extends BaseActivity implements View.OnClickListen
         if (TextUtils.isEmpty(url)) {
             return;
         }
-        VacationParams param = new VacationParams();
+        final VacationParams param = new VacationParams();
         param.coachid = Session.getSession().coachid;
-        long start, end;
-        start = BaseUtils.getTimestamp(mStartDate, mStartTime);
-        end = BaseUtils.getTimestamp(mEndDate, mEndTime);
+//        long start, end;
+        final long start = BaseUtils.getTimestamp(mStartDate, mStartTime);
+        final long end = BaseUtils.getTimestamp(mEndDate, mEndTime);
         if (start >= end) {
             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_vacation_invalid);
         }
@@ -226,6 +226,8 @@ public class VacationActivity extends BaseActivity implements View.OnClickListen
                     public void onResponse(Result response) {
                         if (response != null && response.type == Result.RESULT_OK) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
+                            Session.getSession().leaveendtime = end;
+                            Session.getSession().leavebegintime = start;
                             finish();
                         } else if (!TextUtils.isEmpty(response.msg)) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);

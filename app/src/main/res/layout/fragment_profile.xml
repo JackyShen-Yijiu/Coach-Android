@@ -291,7 +291,8 @@
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@+id/iv_work_time_img"
                     android:background="@null"
-                    android:singleLine="true"
+                    android:maxLines="2"
+                    android:gravity="center"
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
@@ -445,7 +446,19 @@
                     android:textColor="#999999"
                     android:textSize="14sp" />
 
+                <TextView
+                    android:id="@+id/tv_vacation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/ic_vacation"
+                    android:background="@null"
+                    android:singleLine="true"
+                    android:textColor="#999999"
+                    android:textSize="14sp" />
+
                 <ImageView
+                    android:id="@+id/ic_vacation"
                     android:layout_width="@dimen/detail_right_size"
                     android:layout_height="@dimen/detail_right_size"
                     android:layout_alignParentRight="true"

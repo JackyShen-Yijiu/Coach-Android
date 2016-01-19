@@ -305,7 +305,7 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 
 	}
 
-	class ViewHolder {
+	static class ViewHolder {
 		TextView lunarDay; // 农历
 		TextView solarDay;// 阳历
 		ImageView hasOrderView;
