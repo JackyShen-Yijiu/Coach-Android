@@ -166,7 +166,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         if (!TextUtils.isEmpty(mReservation.courseprocessdesc)) {
             mTvProgress.setText(mReservation.courseprocessdesc);
         }
-
+        LogUtil.print("state-->"+mReservation.getReservationstate());
         switch (mReservation.getReservationstate()) {
             case APPLYING:
                 mBtnSend.setVisibility(View.INVISIBLE);
@@ -198,7 +198,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 mBtnSend.setEnabled(false);
                 break;
 
-            case APPLYCONFIRM:
+            case APPLYCONFIRM://已接受 新订单
                 ll_change_reson.setVisibility(View.GONE);
                 mApplyOpView.setVisibility(View.INVISIBLE);
                 mBtnSend.setVisibility(View.VISIBLE);
@@ -236,6 +236,12 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         }
 
     }
+
+    private void showBtn(){
+
+    }
+
+
     private Type mType = new TypeToken<Result<Reservation>>(){}.getType();
     private void fetchReservationRequest(String reservationId) {
         URI uri = URIUtil.getReservationInfo(reservationId);
