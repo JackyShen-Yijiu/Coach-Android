@@ -54,7 +54,33 @@
         android:layout_marginLeft="15dp"
         android:background="#E6E6E6" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="13dp"
+        android:textColor="#333333"
+        android:text="学习进度"
+        android:textSize="14sp" />
 
+    <TextView
+        android:id="@+id/tv_progress_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:text=""
+        android:textColor="@color/text_333" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="13dp"
+        android:textColor="#333333"
+        android:text="课程信息"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tv_date"
@@ -62,6 +88,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="13dp"
+        android:textColor="#333333"
+        android:textSize="14sp" />
+    <TextView
+        android:id="@+id/tv_place"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="8dp"
         android:textColor="#333333"
         android:textSize="14sp" />
 
@@ -94,7 +128,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#333333"
-        android:text="拒绝原因："
+        android:text="取消原因："
         android:textSize="14sp" />
     <TextView
         android:id="@+id/tv_reason"

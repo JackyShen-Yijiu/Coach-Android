@@ -54,9 +54,9 @@ public class Reservation implements Serializable {
             case UNCOMMENTS:
                 id = R.string.reservation_uncomments;
                 break;
-            case ONCOMMENTED:
-                id = R.string.reservation_oncomments;
-                break;
+//            case ONCOMMENTED:
+//                id = R.string.reservation_oncomments;
+//                break;
             case FINISH:
                 id = R.string.reservation_finish;
                 break;
