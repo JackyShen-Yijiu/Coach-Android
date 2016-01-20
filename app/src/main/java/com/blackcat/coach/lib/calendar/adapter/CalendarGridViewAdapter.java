@@ -143,6 +143,7 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 					.findViewById(R.id.day_rl);
 			holder.calender_ll = (LinearLayout) convertView
 					.findViewById(R.id.calender_ll);
+			holder.select = (ImageView) convertView.findViewById(R.id.day_select);
 
 			convertView.setTag(holder);
 		} else {
@@ -167,8 +168,8 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 		//
 		// iv.setGravity(Gravity.CENTER);
 		// iv.setOrientation(1);
-		holder.day_rl.setBackgroundColor(resources.getColor(R.color.white));
-
+//		holder.day_rl.setBackgroundColor(resources.getColor(R.color.white));
+		holder.select.setVisibility(View.GONE);
 		holder.calender_ll.setId(position + 5000);
 		Date myDate = (Date) getItem(position);
 		Calendar calCalendar = Calendar.getInstance();
@@ -199,8 +200,8 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 		CalendarUtil calendarUtil = new CalendarUtil(calCalendar);
 		if (equalsDate(calToday.getTime(), myDate)) {
 			// 当前日期
-			holder.day_rl.setBackgroundColor(resources
-					.getColor(R.color.event_center));
+//			holder.day_rl.setBackgroundResource(R.drawable.calendar_current_date_bg);
+			holder.select.setVisibility(View.VISIBLE);
 			holder.lunarDay.setText(calendarUtil.toString());
 		} else {
 			holder.lunarDay.setText(calendarUtil.toString());
@@ -214,13 +215,15 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 		// 设置背景颜色
 		if (equalsDate(calSelected.getTime(), myDate)) {
 			// 选择的
-			holder.day_rl.setBackgroundColor(resources
-					.getColor(R.color.selection));
+//			holder.day_rl.setBackgroundResource(R.drawable.calendar_current_date_bg);;
+			holder.select.setVisibility(View.VISIBLE);
 		} else {
 			if (equalsDate(calToday.getTime(), myDate)) {
 				// 当前日期
-				holder.day_rl.setBackgroundColor(resources
-						.getColor(R.color.calendar_zhe_day));
+//				holder.day_rl.setBackgroundColor(resources
+//						.getColor(R.color.calendar_zhe_day));
+//				holder.day_rl.setBackgroundResource(R.drawable.calendar_current_date_bg);
+				holder.select.setVisibility(View.VISIBLE);
 			}
 			// }
 		}
@@ -312,5 +315,6 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 		TextView restView;
 		RelativeLayout day_rl;
 		LinearLayout calender_ll;
+		ImageView select;
 	}
 }
