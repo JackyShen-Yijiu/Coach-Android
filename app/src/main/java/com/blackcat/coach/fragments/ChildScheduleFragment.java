@@ -368,8 +368,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
                                 leaveoff = response.data.leaveoff;
                                 //有订单的日期
                                 reservationapply = response.data.reservationapply;
-                                update();
-//                                CreateGirdView();
+//                                update();
+                                CreateGirdView();
                             }
 
                         } else {

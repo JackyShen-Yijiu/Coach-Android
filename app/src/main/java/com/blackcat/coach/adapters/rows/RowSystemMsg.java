@@ -12,8 +12,11 @@ import android.widget.TextView;
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.models.SystemMsg;
+import com.blackcat.coach.utils.DateUtil;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.SimpleFormatter;
 
 /**
@@ -44,8 +47,9 @@ public class RowSystemMsg {
             viewHolder.tv_title_type.setText("行业资讯");//getDate();
             viewHolder.img_Type.setImageResource(R.drawable.money_msg);
         }
-        viewHolder.tv_date.setText(getDate(item.createtime));
-        viewHolder.tv_time.setText(getTime(item.createtime));
+
+//        viewHolder.tv_date.setText(getDate(item.createtime));
+        viewHolder.tv_time.setText(DateUtil.parseTime(item.createtime));
         viewHolder.tv_content.setText(item.description);
         viewHolder.tv_title.setText(item.title);
 
@@ -64,21 +68,28 @@ public class RowSystemMsg {
         }
     }
 
-    private static String getTime(String time){
-        if(null == time || time.length()<20)
-            return time;
-
-        return time.substring(11,16);
-    }
-
-    private static String getDate(String time){
-        if(null == time || time.length()<20)
-            return time;
-
-        return time.substring(0,10);
-    }
-
-
+    /**
+     * 格式化显示
+     * @param time
+     * @return
+     */
+//    private static String getTime1(String time)  {
+////        2015-12-15T15:59:43.308Z
+//        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+//        SimpleDateFormat f1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//
+//        if(null == time){
+//            return time;
+//        }
+//        try {
+//            Date d = f.parse(time);
+//            return f1.format(d);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//            return time;
+//        }
+//
+//    }
 
 
 }

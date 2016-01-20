@@ -47,6 +47,10 @@ public class SelfIntroducationActivity extends BaseActivity implements View.OnCl
         mEtSelfInfo = (EditText)findViewById(R.id.et_self_intro);
         mBtnSubmit = (Button)findViewById(R.id.btn_submit);
         mBtnSubmit.setOnClickListener(this);
+        if (!TextUtils.isEmpty(Session.getSession().introduction)) {
+            mEtSelfInfo.setText(Session.getSession().introduction);
+        }
+
     }
 
     @Override

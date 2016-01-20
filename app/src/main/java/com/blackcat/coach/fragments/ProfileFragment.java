@@ -176,10 +176,17 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
     private String getWorkTime(int[] time,int start,int end){
         if(time[0]+time.length-1 == time[time.length-1]){
+            LogUtil.print("000--->"+time[0]);
+            if(time[0]<1)
+                return "已设置";
             return weeks[time[0]-1] +"至"+ weeks[time[time.length-1]-1] +"\n"+getTime(start)+"-"+getTime(end) ;
         }
         return "已设置";
     }
+
+
+
+
 
     private String getTime(int temp){
         if(temp<10)

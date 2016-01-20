@@ -18,6 +18,7 @@ import com.blackcat.coach.models.User;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.utils.Constants;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.blackcat.coach.widgets.LoadMoreListView;
@@ -133,7 +134,7 @@ public abstract class BaseListFragment<T> extends BaseFragment
 //                    Log.d("tag","user-->"+((User)list.get(i)).leavecoursecount);
 //                }
 //            }
-
+            LogUtil.print("listsize-00-->"+list.size());
             if (refreshType == DicCode.RefreshType.R_PULL_UP) {
                 mListView.setLoadMoreComplete();
                 if (list.size() < NetConstants.REQ_LEN) {
@@ -143,10 +144,12 @@ public abstract class BaseListFragment<T> extends BaseFragment
                 }
                 mAdapter.appendList(list);
             } else {
+                LogUtil.print("listsize-11-->"+list.size());
                 mListView.setNoMoreData(false);
                 mAdapter.setList(list);
             }
             mAdapter.notifyDataSetChanged();
+            LogUtil.print("listsize--->"+mAdapter.getList().size());
         } else if (response != null && !TextUtils.isEmpty(response.msg)) {
             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
         }

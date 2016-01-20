@@ -30,6 +30,7 @@ import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.google.gson.reflect.TypeToken;
@@ -126,6 +127,7 @@ public class DetailStudentFragment extends BaseListFragment<Comment> implements 
         } else {
 
         }
+        LogUtil.print("leavecourseCount-->"+mUser.leavecoursecount);
         if(mUser.leavecoursecount == 0){//报名,显示按钮
             btnBaoKao.setText("可报考"+mUser.subject.name);
             btnBaoKao.setVisibility(View.VISIBLE);

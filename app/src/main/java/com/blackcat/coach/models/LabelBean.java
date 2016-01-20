@@ -10,7 +10,7 @@ public class LabelBean implements Serializable{
     public String coachid;
     public String tagname;
     public int tagtype;
-    public int is_audit;
+    public boolean is_audit;
     public boolean is_choose;
     public String _id;
     public String color;

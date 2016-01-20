@@ -11,6 +11,7 @@ import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.models.OrderMsg;
 import com.blackcat.coach.models.SystemMsg;
+import com.blackcat.coach.utils.DateUtil;
 
 /**
  * Created by aa on 2016/1/14.
@@ -30,8 +31,8 @@ public class RowOrderMsg {
                                           BaseViewHolder holder, final int position, final T info) {
         final Holder viewHolder = (Holder) holder;
         OrderMsg item = (OrderMsg) info;
-        viewHolder.tv_time.setText(getTime(item.createtime));
-        viewHolder.tv_order_data.setText(getDate(item.createtime));
+        viewHolder.tv_time.setText(DateUtil.parseTime(item.createtime));
+//        viewHolder.tv_order_data.setText(getDate(item.createtime));
         viewHolder.tv_content.setText(item.description);
         viewHolder.tv_title.setText(item.title);
 
@@ -49,17 +50,17 @@ public class RowOrderMsg {
         }
     }
 
-    private static String getTime(String time){
-        if(null == time || time.length()<20)
-            return time;
-
-        return time.substring(11,16);
-    }
-
-    private static String getDate(String time){
-        if(null == time || time.length()<20)
-            return time;
-
-        return time.substring(0,10);
-    }
+//    private static String getTime(String time){
+//        if(null == time || time.length()<20)
+//            return time;
+//
+//        return time.substring(11,16);
+//    }
+//
+//    private static String getDate(String time){
+//        if(null == time || time.length()<20)
+//            return time;
+//
+//        return time.substring(0,10);
+//    }
 }
