@@ -23,22 +23,30 @@
             android:layout_alignParentStart="true"
             android:hint="搜索"
             android:singleLine="true"
+            android:padding="3dp"
             android:imeOptions="actionSearch"
-            android:visibility="gone"
+            android:drawableLeft="@mipmap/iconfont_chazhao_2"
+            android:textColor="@color/text_333"
             android:background="@drawable/background_border_edit_white"
+            android:cursorVisible="false"
             android:layout_marginRight="20dp" />
+
         <android.support.v7.widget.SearchView
             android:id="@+id/search_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="3dp"
+            android:layout_margin="5dp"
             android:iconifiedByDefault="false"
             android:inputType="textCapWords"
             android:imeOptions="actionSearch"
             android:goIcon="@drawable/ic_left_disabled"
             android:background="@drawable/background_border_edit_white"
+            android:padding="5dp"
             android:searchIcon="@drawable/ic_left_disabled"
             android:foregroundGravity="center"
+            android:submitBackground="@drawable/background_border_edit_white"
+            android:visibility="gone"
+            android:paddingBottom="-10dp"
             android:gravity="center"
             android:queryHint="搜索" />
 

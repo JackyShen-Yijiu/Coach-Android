@@ -60,7 +60,6 @@ public class CarCoachApplication extends Application {
         if (Constants.DEBUG) {
             JPushInterface.setDebugMode(true);
         }
-
         // 初始化 JPush
         JPushInterface.init(this);
     }

@@ -127,7 +127,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         if (response != null && response.data != null && response.type == Result.RESULT_OK) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.login_ok);
                             Session.save(response.data, true);
-                            JPushInterface.setAlias(CarCoachApplication.getInstance(), Session.getSession().coachid, null);
+                            JPushInterface.setAlias(CarCoachApplication.getInstance(), "123", null);//Session.getSession().coachid
                             String _pwd = mEtPwd.getText().toString().trim();
                             hxLogin(response.data.coachid, BaseUtils.getMD5code(_pwd));
                             startActivity(new Intent(LoginActivity.this, IndexActivity.class));

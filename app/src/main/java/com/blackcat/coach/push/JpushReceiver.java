@@ -10,6 +10,8 @@ import android.util.Log;
 import com.blackcat.coach.activities.AboutActivity;
 import com.blackcat.coach.activities.DetailReservationActivity;
 import com.blackcat.coach.activities.IndexActivity;
+import com.blackcat.coach.activities.OrderMsgActivity;
+import com.blackcat.coach.activities.SystemMsgActivity;
 import com.blackcat.coach.activities.WalletActivity;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.utils.Constants;
@@ -56,7 +58,7 @@ public class JpushReceiver extends BroadcastReceiver {
             Log.d(TAG, "[JpushReceiver] 用户点击打开了通知:  " + extra);
             //打开自定义的Activity
             processNotificationMessage(context, extra);
-            
+            toSystemMsg(context);
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
             Log.d(TAG, "[JpushReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));
             //在这里根据 JPushInterface.EXTRA_EXTRA 的内容处理代码，比如打开新的Activity， 打开一个网页等..
@@ -67,6 +69,32 @@ public class JpushReceiver extends BroadcastReceiver {
         } else {
             Log.d(TAG, "[JpushReceiver] Unhandled intent - " + intent.getAction());
         }
+    }
+
+    private void toSystemMsg(Context context){
+        Intent  intent = new Intent(context, OrderMsgActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 自定义消息
+     */
+    private void toCustoMsg(){
+//        Notification myNotify = new Notification();
+//        myNotify.icon = R.drawable.message;
+//        myNotify.tickerText = "TickerText:您有新短消息，请注意查收！";
+//        myNotify.when = System.currentTimeMillis();
+//        myNotify.flags = Notification.FLAG_NO_CLEAR;// 不能够自动清除
+//        RemoteViews rv = new RemoteViews(getPackageName(),
+//                R.layout.my_notification);
+//        rv.setTextViewText(R.id.text_content, "hello wrold!");
+//        myNotify.contentView = rv;
+//        Intent intent = new Intent(Intent.ACTION_MAIN);
+//        PendingIntent contentIntent = PendingIntent.getActivity(this, 1,
+//                intent, 1);
+//        myNotify.contentIntent = contentIntent;
+//        manager.notify(NOTIFICATION_FLAG, myNotify);
     }
 
     private void processNotificationMessage(Context context, String extra) {
