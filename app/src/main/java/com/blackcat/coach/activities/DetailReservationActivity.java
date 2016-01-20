@@ -183,6 +183,10 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 toolbar_title.setText("新订单");
                 ll_change_reson.setVisibility(View.GONE);
 
+        if ("true".equals(Session.getUserSetting().classremind)) {
+            mBtnRefuse.setVisibility(View.VISIBLE);
+            mBtnAccept.setVisibility(View.VISIBLE);
+        }
                 break;
 
             case APPLYCANCEL://学生取消
@@ -203,9 +207,14 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
 //                mBottomView.setVisibility(View.INVISIBLE);
                 ll_change_reson.setVisibility(View.GONE);
                 mApplyOpView.setVisibility(View.INVISIBLE);
-                mBtnSend.setText(R.string.reservation_finish);
+                mBtnSend.setVisibility(View.GONE);
                 toolbar_title.setText("已学完");
-                mBtnSend.setEnabled(false);
+
+                if ("true".equals(Session.getUserSetting().classremind)) {
+                    mBtnRefuse.setVisibility(View.VISIBLE);
+                    mBtnAccept.setVisibility(View.VISIBLE);
+                }
+                LogUtil.print("111111111111111"+Session.getUserSetting().classremind);
                 break;
 
             case APPLYCONFIRM:
