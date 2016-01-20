@@ -79,8 +79,9 @@ public class CoachInfo implements Serializable {
     public String driveschoolid;
     /**标签*/
     public LabelBean[] tagslist;
-
-
+    //
+    public long leavebegintime;
+    public long leaveendtime;
     // 更新个人信息
     public static void updateRequest(final Activity activity, final UpdateCoachParams params) {
 

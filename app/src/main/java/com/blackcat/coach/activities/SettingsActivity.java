@@ -50,6 +50,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     private int settingAppointment, settingClassNotice, settingNewNotice;
 
     private Type mTokenType;
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -64,8 +65,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         initViews();
         initData();
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
+
     }
 
     private void initData() {

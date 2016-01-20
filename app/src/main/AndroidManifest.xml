@@ -240,7 +240,7 @@
         <!-- black-cat#yibuxuecheprod -->
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="black-cat#yibuxuecheprod" />
+            android:value="black-cat#yibuxuecheprod"/>
         <!-- 声明sdk所需的service -->
         <service android:name="com.easemob.chat.EMChatService" />
         <!-- 声明sdk所需的receiver -->
@@ -446,9 +446,12 @@
             android:label="@string/delegable_subject"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
+        <activity android:name=".activities.GuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
-        <!--<meta-data-->
+
 
 
     </application>

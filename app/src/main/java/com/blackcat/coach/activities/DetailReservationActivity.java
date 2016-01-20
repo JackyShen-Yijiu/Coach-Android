@@ -405,6 +405,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_detail_chat) {
+            LogUtil.print("OnOptionsItemSelected-->"+BlackCatHXSDKHelper.getInstance().isLogined());
             if (!BlackCatHXSDKHelper.getInstance().isLogined()) {
                 return true;
             }

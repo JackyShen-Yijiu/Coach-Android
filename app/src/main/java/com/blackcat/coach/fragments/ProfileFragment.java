@@ -36,7 +36,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
     private ImageView mIvAvatar;
     private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
-    private TextView mWorkTime,mSubject,mClass;
+    private TextView mWorkTime,mSubject,mClass,mVacation;
 //    private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
 //    private TextView mWorkTime,mSubject,mClass;
 
@@ -71,6 +71,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         mWorkTime = (TextView) rootView.findViewById(R.id.tv_work_time);
         mSubject = (TextView) rootView.findViewById(R.id.tv_subjects);
         mClass = (TextView) rootView.findViewById(R.id.tv_class);
+        mVacation = (TextView) rootView.findViewById(R.id.tv_vacation);
 
         RelativeLayout profileHeader = (RelativeLayout) rootView.findViewById(R.id.rl_profile_header);
         profileHeader.setOnClickListener(this);
@@ -128,8 +129,10 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
             mTvFieldName.setText(Session.getSession().trainfieldlinfo.name);
         }
         if(Session.getSession().workweek.length>0){//工作时间
-            mWorkTime.setText("已设置");
-            Log.d("tag", "work--time:" + Session.getSession().workweek.getClass());
+
+            mWorkTime.setText(getWorkTime(Session.getSession().workweek,Session.getSession().worktimespace.begintimeint,
+                    Session.getSession().worktimespace.endtimeint));
+//            Log.d("tag", "work--time:" + Session.getSession().workweek.getClass());
         }else{
             mWorkTime.setText("");
         }
@@ -152,14 +155,6 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         }
        // 授课
 
-
-//            if (!TextUtils.isEmpty(Session.getSession().GenderOne)) {
-//                mSubject.setText(Session.getSession().GenderOne);
-//            }else {
-//                mSubject.setText("已设置");
-//            }
-
-
         if(CLASS_SETTING)
             mClass.setText("已设置");
         else
@@ -169,9 +164,31 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         if (!TextUtils.isEmpty(Session.getSession().GenderJob)) {
             tv_job_category.setText(Session.getSession().GenderJob);
         }
+        //休假
 
+        if(System.currentTimeMillis() < Session.getSession().leavebegintime || System.currentTimeMillis()<Session.getSession().leaveendtime){//已设置
+            mVacation.setText("已设置");
+        }else{
+            mVacation.setText("");
+        }
 
     }
+
+    private String getWorkTime(int[] time,int start,int end){
+        if(time[0]+time.length-1 == time[time.length-1]){
+            return weeks[time[0]-1] +"至"+ weeks[time[time.length-1]-1] +"\n"+getTime(start)+"-"+getTime(end) ;
+        }
+        return "已设置";
+    }
+
+    private String getTime(int temp){
+        if(temp<10)
+            return "0"+temp+":00";
+        else
+            return temp+":00";
+    }
+
+    private String[] weeks = {"星期一","星期二","星期三","星期四","星期五","星期六","星期天"};
 
 
 

@@ -253,7 +253,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
 
         Calendar today = Calendar.getInstance();
         today.setTime(new Date());
-
+        CreateGirdView();
         //获取当月的信息
         obtainMonthApplyData(today.get(Calendar.YEAR) + "", (today.get(Calendar.MONTH) + 1) + "");
 
@@ -368,8 +368,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
                                 leaveoff = response.data.leaveoff;
                                 //有订单的日期
                                 reservationapply = response.data.reservationapply;
-
-                                CreateGirdView();
+                                update();
+//                                CreateGirdView();
                             }
 
                         } else {
@@ -478,10 +478,12 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
     private View.OnClickListener onNextMonthClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            long start = System.currentTimeMillis();
             viewFlipper.setInAnimation(slideLeftIn);
             viewFlipper.setOutAnimation(slideLeftOut);
             viewFlipper.showNext();
             setNextViewItem();
+            LogUtil.print("next--end-->"+(System.currentTimeMillis()-start));
         }
     };
 
@@ -497,6 +499,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         viewFlipper.setId(CAL_LAYOUT_ID);
         calStartDate = getCalendarStartDate();
 //        CreateGirdView();
+
         RelativeLayout.LayoutParams params_cal = new RelativeLayout.LayoutParams(
                 LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         layout.addView(viewFlipper, params_cal);
@@ -514,7 +517,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
      * 用于创建当前将要用于展示的View
      */
     private void CreateGirdView() {
-
+        LogUtil.print("calendar---create");
         Calendar firstCalendar = Calendar.getInstance(); // 临时
         Calendar currentCalendar = Calendar.getInstance(); // 临时
         Calendar lastCalendar = Calendar.getInstance(); // 临时
@@ -528,20 +531,20 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         firstGridAdapter = new CalendarGridViewAdapter(getActivity(), firstCalendar,leaveoff,reservationapply);
         firstGridView.setAdapter(firstGridAdapter);// 设置菜单Adapter
         firstGridView.setId(CAL_LAYOUT_ID);
-
+        LogUtil.print("first00-->" + firstCalendar.get(Calendar.MONTH));
 //        obtainMonthApplyData(currentCalendar.get(Calendar.YEAR) + "", (currentCalendar.get(Calendar.MONTH) + 1) + "");
         currentGridView = new CalendarGridView(mContext);
         currentGridAdapter = new CalendarGridViewAdapter(getActivity(), currentCalendar,leaveoff,reservationapply);
         currentGridView.setAdapter(currentGridAdapter);// 设置菜单Adapter
         currentGridView.setId(CAL_LAYOUT_ID);
-
+        LogUtil.print("first11-->" + currentCalendar.get(Calendar.MONTH));
         lastGridView = new CalendarGridView(mContext);
         lastCalendar.add(Calendar.MONTH, 1);
 //        obtainMonthApplyData(lastCalendar.get(Calendar.YEAR) + "", (lastCalendar.get(Calendar.MONTH) + 1) + "");
         lastGridAdapter = new CalendarGridViewAdapter(getActivity(), lastCalendar,leaveoff,reservationapply);
         lastGridView.setAdapter(lastGridAdapter);// 设置菜单Adapter
         lastGridView.setId(CAL_LAYOUT_ID);
-
+        LogUtil.print("first22-->" + lastCalendar.get(Calendar.MONTH));
         currentGridView.setOnTouchListener(this);
         firstGridView.setOnTouchListener(this);
         lastGridView.setOnTouchListener(this);
@@ -559,8 +562,44 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
                 + NumberHelper.LeftPad_Tow_Zero(calStartDate
                 .get(Calendar.MONTH) + 1);
         mDayMessage.setText(s);
+
+//        lastGridAdapter.setData();
     }
-private void updateGirdView() {
+
+    private void update(){
+        LogUtil.print("calendar---update");
+        Calendar firstCalendar = Calendar.getInstance();
+
+        Calendar currentCalendar = Calendar.getInstance(); // 临时
+        Calendar lastCalendar = Calendar.getInstance(); // 临时
+        firstCalendar.setTime(calStartDate.getTime());
+        currentCalendar.setTime(calStartDate.getTime());
+        lastCalendar.setTime(calStartDate.getTime());
+
+        //第二个
+        currentCalendar.add(Calendar.MONTH, -1);
+        currentGridAdapter.setData(currentCalendar, leaveoff, reservationapply);
+        currentGridAdapter.notifyDataSetChanged();
+//        LogUtil.print("--第2个-->" + currentCalendar.get(Calendar.MONTH));
+        //第一个
+        firstCalendar.add(Calendar.MONTH, -2);
+        firstGridAdapter.setData(firstCalendar, leaveoff, reservationapply);
+        firstGridAdapter.notifyDataSetChanged();
+//        LogUtil.print("--第一个-->" + firstCalendar.get(Calendar.MONTH));
+        //第三个
+//        lastCalendar.add(Calendar.MONTH, 1);
+        lastGridAdapter.setData(lastCalendar, leaveoff, reservationapply);
+        lastGridAdapter.notifyDataSetChanged();
+//        LogUtil.print("--第3个-->" + lastCalendar.get(Calendar.MONTH));
+        String s = calStartDate.get(Calendar.YEAR)
+                + "-"
+                + NumberHelper.LeftPad_Tow_Zero(calStartDate
+                .get(Calendar.MONTH) + 1);
+        mDayMessage.setText(s);
+
+    }
+
+    private void updateGirdView() {
 
         Calendar firstCalendar = Calendar.getInstance(); // 临时
         Calendar currentCalendar = Calendar.getInstance(); // 临时
@@ -569,13 +608,18 @@ private void updateGirdView() {
         currentCalendar.setTime(calStartDate.getTime());
         lastCalendar.setTime(calStartDate.getTime());
 
-        firstGridAdapter.setData(firstCalendar,leaveoff,reservationapply);
+        firstGridAdapter.setData(firstCalendar, leaveoff, reservationapply);
         firstGridView = new CalendarGridView(mContext);
         firstCalendar.add(Calendar.MONTH, -1);
+        firstGridAdapter.notifyDataSetChanged();
 //        obtainMonthApplyData(firstCalendar.get(Calendar.YEAR) + "", (firstCalendar.get(Calendar.MONTH) + 1) + "");
+
         firstGridAdapter = new CalendarGridViewAdapter(getActivity(), firstCalendar,leaveoff,reservationapply);
         firstGridView.setAdapter(firstGridAdapter);// 设置菜单Adapter
         firstGridView.setId(CAL_LAYOUT_ID);
+
+
+        currentGridAdapter.setData(currentCalendar,leaveoff,reservationapply);
 
 //        obtainMonthApplyData(currentCalendar.get(Calendar.YEAR) + "", (currentCalendar.get(Calendar.MONTH) + 1) + "");
         currentGridView = new CalendarGridView(mContext);
@@ -583,11 +627,13 @@ private void updateGirdView() {
         currentGridView.setAdapter(currentGridAdapter);// 设置菜单Adapter
         currentGridView.setId(CAL_LAYOUT_ID);
 
-        lastGridView = new CalendarGridView(mContext);
+//        lastGridView = new CalendarGridView(mContext);
+//        lastGridAdapter.setData();
         lastCalendar.add(Calendar.MONTH, 1);
 //        obtainMonthApplyData(lastCalendar.get(Calendar.YEAR) + "", (lastCalendar.get(Calendar.MONTH) + 1) + "");
-        lastGridAdapter = new CalendarGridViewAdapter(getActivity(), lastCalendar,leaveoff,reservationapply);
-        lastGridView.setAdapter(lastGridAdapter);// 设置菜单Adapter
+
+//        lastGridAdapter = new CalendarGridViewAdapter(getActivity(), lastCalendar,leaveoff,reservationapply);
+//        lastGridView.setAdapter(lastGridAdapter);// 设置菜单Adapter
         lastGridView.setId(CAL_LAYOUT_ID);
 
         currentGridView.setOnTouchListener(this);
@@ -707,6 +753,7 @@ private void updateGirdView() {
         public void onAnimationEnd(Animation animation) {
             // 当动画完成后调用
             CreateGirdView();
+//            update();
         }
     };
     private GridView mWeekName;

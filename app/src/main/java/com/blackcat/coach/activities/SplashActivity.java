@@ -10,22 +10,34 @@ import android.os.Message;
 import com.blackcat.coach.R;
 import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
 import com.blackcat.coach.models.Session;
+import com.blackcat.coach.utils.SharedPreferencesUtil;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
 
-public class SplashActivity extends BaseNoFragmentActivity {
+public class SplashActivity extends BaseNoFragmentActivity{
 
     private static final int sleepTime = 2000;
+
+    public static String IS_APP_FIRST_OPEN = "is_app_first_open";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         initViews();
+        initData();
     }
+
+    private void initData() {
+
+
+    }
+
+
+
 
     private final static int mSplashTime = 1000;
 
@@ -71,12 +83,20 @@ public class SplashActivity extends BaseNoFragmentActivity {
 
     public static final String SHOW_GUIDE_TOUR = "ShowGuideTour";
     private void go2IndexActivity() {
+
         Intent intent = null;
-        if (Session.isUserInfoEmpty()) {
-            intent = new Intent(this, LoginActivity.class);
-        } else {
-            intent = new Intent(this, IndexActivity.class);
+        boolean isFirstOpen = SharedPreferencesUtil.getBoolean(
+                getApplicationContext(), IS_APP_FIRST_OPEN, true);
+        if (isFirstOpen) {
+            intent = new Intent(this,GuideActivity.class);
+        }else{
+            if (Session.isUserInfoEmpty()) {
+                intent = new Intent(this, LoginActivity.class);
+            } else {
+                intent = new Intent(this, IndexActivity.class);
+            }
         }
+
         startActivity(intent);
         finish();
         overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);

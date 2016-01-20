@@ -54,7 +54,19 @@
 
 
     </RelativeLayout>
+    <include layout="@layout/line_gray1"></include>
 
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+
+        android:background="@color/gray_bg1"></View>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        layout="@layout/line_gray1"></include>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -83,20 +95,13 @@
             android:textColor="@color/text_999"
             android:textSize="12sp" />
 
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/tv_id"
-            android:layout_marginTop="17dp"
-            android:background="@color/list_divider" />
+
 
         <TextView
             android:id="@+id/tv_car_info_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/divider"
-            android:layout_marginTop="17dp"
             android:text="学车信息"
             android:textColor="@color/text_333"
             android:textSize="16sp"
