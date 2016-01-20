@@ -53,7 +53,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
     private TextView toolbar_title;
     private ImageView mIvAvatar;
     private TextView mTvStudentName, mTvStudentNum;
-    private TextView mTvProgress, mTvDate, mTvTrainField, mTvPickPlace;
+    private TextView mTvProgress, mTvDate, mTvTrainField, mTvPickPlace,tv_progress_one;
     private Button mBtnSend, mBtnAccept, mBtnRefuse;
     private MapView mMapView;
     private View mBottomView, mApplyOpView;
@@ -111,6 +111,9 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         mTvStudentName = (TextView) findViewById(R.id.tv_name);
      //   mTvStudentNum = (TextView) findViewById(R.id.tv_num);
         mTvProgress = (TextView) findViewById(R.id.tv_progress);
+
+        tv_progress_one=(TextView)findViewById(R.id.tv_progress_one);
+
         mTvDate = (TextView) findViewById(R.id.tv_date);
         mTvTrainField = (TextView) findViewById(R.id.tv_train_field);
 
@@ -118,7 +121,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         tv_reason = (TextView) findViewById(R.id.tv_reason);
         tv_ground=(TextView)findViewById(R.id.tv_ground);
 
-      // mTvPickPlace = (TextView) findViewById(R.id.tv_place);
+       mTvPickPlace = (TextView) findViewById(R.id.tv_place);
         mBtnSend = (Button) findViewById(R.id.btn_send);
         mBtnSend.setOnClickListener(this);
         mBtnRefuse = (Button) findViewById(R.id.btn_refuse);
@@ -160,11 +163,18 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         }
 
 
+        if(mReservation.trainfieldlinfo !=null){
+
+            mTvPickPlace.setText(res.getString(R.string.str_train_field,mReservation.trainfieldlinfo.name));
+        }
+
+
         if (!TextUtils.isEmpty(mReservation.classdatetimedesc)) {
             mTvDate.setText(mReservation.classdatetimedesc);
         }
         if (!TextUtils.isEmpty(mReservation.courseprocessdesc)) {
             mTvProgress.setText(mReservation.courseprocessdesc);
+            tv_progress_one.setText(mReservation.courseprocessdesc);
         }
 
         switch (mReservation.getReservationstate()) {
