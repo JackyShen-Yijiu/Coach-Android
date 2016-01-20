@@ -62,7 +62,6 @@ public class CancelClassActivity extends BaseActivity implements
         mEtCancelIntro = (EditText)findViewById(R.id.et_cancel_intro);
         mBtnSubmit = (Button)findViewById(R.id.btn_submit);
         mBtnSubmit.setOnClickListener(this);
-
     }
     @Override
     public void onClick(View view){

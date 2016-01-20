@@ -173,7 +173,11 @@ public class ItemFragment extends BaseListFragment {
                 break;
         }
         mURI = URIUtil.getAppointMent(Session.getSession().coachid,page,temp);
-        refresh(DicCode.RefreshType.R_PULL_UP, mURI);
+        if(page==1)
+            refresh(DicCode.RefreshType.R_PULL_DOWN, mURI);
+        else{
+            refresh(DicCode.RefreshType.R_PULL_UP, mURI);
+        }
     }
 
     @Override

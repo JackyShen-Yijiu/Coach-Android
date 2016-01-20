@@ -31,6 +31,7 @@
             android:layout_marginTop="18dp"
             android:text="临时有事，无法参加"
             android:textColor="@color/black_text"
+            android:checked="true"
             android:textSize="14sp" />
 
         <RadioButton

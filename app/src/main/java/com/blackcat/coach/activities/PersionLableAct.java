@@ -306,6 +306,8 @@ public class PersionLableAct<T> extends BaseActivity implements View.OnClickList
                         if (response != null && response.type == Result.RESULT_OK) {
                             Log.d("tag", "result-->" + response.data);
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
+                            etLabel.setText("");
+                            addLabel(response.data);
 //                            ReservationOpOk event = new ReservationOpOk();
 //                            event.pos = mReservation.pos;
 //                            event.status = ReservationStatus.FINISH;
