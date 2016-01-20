@@ -558,9 +558,9 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         viewFlipper.addView(firstGridView);
 
         String s = calStartDate.get(Calendar.YEAR)
-                + "-"
+                + "年"
                 + NumberHelper.LeftPad_Tow_Zero(calStartDate
-                .get(Calendar.MONTH) + 1);
+                .get(Calendar.MONTH) + 1)+"月";
         mDayMessage.setText(s);
 
 //        lastGridAdapter.setData();
@@ -592,9 +592,9 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         lastGridAdapter.notifyDataSetChanged();
 //        LogUtil.print("--第3个-->" + lastCalendar.get(Calendar.MONTH));
         String s = calStartDate.get(Calendar.YEAR)
-                + "-"
+                + "年"
                 + NumberHelper.LeftPad_Tow_Zero(calStartDate
-                .get(Calendar.MONTH) + 1);
+                .get(Calendar.MONTH) + 1)+"月";
         mDayMessage.setText(s);
 
     }
@@ -649,9 +649,9 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         viewFlipper.addView(firstGridView);
 
         String s = calStartDate.get(Calendar.YEAR)
-                + "-"
+                + "年"
                 + NumberHelper.LeftPad_Tow_Zero(calStartDate
-                .get(Calendar.MONTH) + 1);
+                .get(Calendar.MONTH) + 1)+"月";
         mDayMessage.setText(s);
     }
 
@@ -698,9 +698,9 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         mMonthViewCurrentYear = calStartDate.get(Calendar.YEAR);// 得到当前日历显示的年
 
         String s = calStartDate.get(Calendar.YEAR)
-                + "-"
+                + "年"
                 + NumberHelper.LeftPad_Tow_Zero(calStartDate
-                .get(Calendar.MONTH) + 1);
+                .get(Calendar.MONTH) + 1)+"月";
         mDayMessage.setText(s);
         // 星期一是2 星期天是1 填充剩余天数
         int iDay = 0;
