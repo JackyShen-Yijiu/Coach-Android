@@ -30,8 +30,8 @@
                 android:id="@+id/calendar_month_year_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:layout_centerHorizontal="true"
                 android:textSize="18dip" />
 
@@ -47,7 +47,8 @@
             android:id="@+id/caldroid_divider_v"
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:layout_marginBottom="2dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
             android:layout_below="@+id/calendar_title_view"
             android:background="@color/caldroid_divider" />
 
