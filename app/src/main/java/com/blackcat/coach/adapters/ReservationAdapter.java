@@ -17,7 +17,7 @@ public class ReservationAdapter extends FragmentPagerAdapter {
 
     private final String[] titles ;
 
-    public static Fragment[] fragments = {new ItemFragment(),new ItemFragment(),new ItemFragment(),new ItemFragment()};
+    public static ItemFragment[] fragments = {new ItemFragment(),new ItemFragment(),new ItemFragment(),new ItemFragment()};
 
     public ReservationAdapter(FragmentManager fm,String[] titles) {
         super(fm);

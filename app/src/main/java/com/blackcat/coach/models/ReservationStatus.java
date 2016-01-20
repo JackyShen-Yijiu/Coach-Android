@@ -27,28 +27,28 @@ public enum ReservationStatus {
     @SerializedName("0")
     APPLYINVALID,//所有订单
     @SerializedName("1")
-    APPLYING,//预约中--------------------------新订单
+    APPLYING,//预约中--------------------------预约中(待接收)
     @SerializedName("2")
     APPLYCANCEL,//学生取消（已取消）-----------学生取消
     @SerializedName("3")
-    APPLYCONFIRM,//已确定 -- ------------------新订单
+    APPLYCONFIRM,//已确定 -- ------------------以确定
     @SerializedName("4")
     APPLYREFUSE,//教练拒绝或者取消(已取消)-----已取消
     @SerializedName("5")
     UNCONFIRMFINISH,//待确认完成(无此状态) ----待确认完成
     @SerializedName("6")
     UNCOMMENTS,//待评论 -----------------------待评论
+//    @SerializedName("7")
+//    ONCOMMENTED,//评论成功(已完成)-------------评论成功   xxx删除
     @SerializedName("7")
-    ONCOMMENTED,//评论成功(已完成)-------------评论成功
-    @SerializedName("8")
     FINISH,//订单完成（已完成）- --------------订单完成
-    @SerializedName("9")
+    @SerializedName("8")
             SYSTEM_CANCEL,//系统取消(已取消)---系统取消
-    @SerializedName("10")
+    @SerializedName("9")
     SIGNIN,//已签到(新订单)------------已签到
-    @SerializedName("11")
+    @SerializedName("10")
     UNSINGIN ,//漏课,未签到
-    @SerializedName("12")
+    @SerializedName("11")
     UNKNOWN//未知
 
 }

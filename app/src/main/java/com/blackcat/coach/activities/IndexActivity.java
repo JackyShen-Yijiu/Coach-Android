@@ -35,6 +35,7 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
+import com.blackcat.coach.adapters.ReservationAdapter;
 import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
 import com.blackcat.coach.easemob.Constant;
 import com.blackcat.coach.easemob.basefunction.HXSDKHelper;
@@ -368,6 +369,8 @@ public class IndexActivity extends BaseActivity implements IKillable,
         refreshView();
         refreshUI();
         registerEnventListener();
+
+
     }
 
     private void registerEnventListener() {
@@ -506,8 +509,12 @@ public class IndexActivity extends BaseActivity implements IKillable,
     private void refreshUI() {
         //更新未读消息显示
         //refreshUnreadLabel();
+        // 刷新当前页面
+        ReservationAdapter.fragments[ReservationFragment.currentPage].reRusume();
+
         //更新fragment消息通知
         EventBus.getDefault().post(new NewMessageReceiveEvent());
+
     }
 
     public void refreshUnreadLabel() {

@@ -40,9 +40,16 @@ public class ItemFragment extends BaseListFragment {
 
     public static  boolean REFRESH3 = false;
 
-    public ItemFragment(){
+//    static ItemFragment frag = null;
+//
+//    public static ItemFragment getInstance(int t){
+//        type = t;
+//        if(null == frag ){
+//            frag = new ItemFragment();
+//        }
+//        return frag;
+//    }
 
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -61,6 +68,8 @@ public class ItemFragment extends BaseListFragment {
     private void initData() {
 
     }
+
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

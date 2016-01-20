@@ -234,15 +234,15 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 toolbar_title.setText("待评价");
                 break;
 
-            case ONCOMMENTED://评论成功(已完成)
-                ll_change_reson.setVisibility(View.GONE);
-                mMapView.setVisibility(View.GONE);
-                mBtnSend.setVisibility(View.VISIBLE);
-                mBtnSend.setText(R.string.reservation_oncomments);
-                mApplyOpView.setVisibility(View.INVISIBLE);
-                toolbar_title.setText("已完成");
-                mBtnSend.setEnabled(false);
-                break;
+//            case ONCOMMENTED://评论成功(已完成)
+//                ll_change_reson.setVisibility(View.GONE);
+//                mMapView.setVisibility(View.GONE);
+//                mBtnSend.setVisibility(View.VISIBLE);
+//                mBtnSend.setText(R.string.reservation_oncomments);
+//                mApplyOpView.setVisibility(View.INVISIBLE);
+//                toolbar_title.setText("已完成");
+//                mBtnSend.setEnabled(false);
+//                break;
         }
 
     }

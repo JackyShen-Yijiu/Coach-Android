@@ -194,7 +194,7 @@ public class URIUtil {
 		params.add(new BasicNameValuePair(NetConstants.KEY_INDEX, "1"));
 //		params.add(new BasicNameValuePair(NetConstants.KEY_AUTHORIZATION, Session.getSession().token));
 		params.add(new BasicNameValuePair(NetConstants.KEY_RESERVATIONSTATE, String.valueOf(pos)));
-		params.add(new BasicNameValuePair(NetConstants.KEY_SEARCH_NAME, key));
+//		params.add(new BasicNameValuePair(NetConstants.KEY_SEARCH_NAME, key));
 
 		try {
 			URI uri = URIUtils.createURI(NetConstants.HTTP,
