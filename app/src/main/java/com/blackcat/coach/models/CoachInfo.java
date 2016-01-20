@@ -82,6 +82,8 @@ public class CoachInfo implements Serializable {
     //
     public long leavebegintime;
     public long leaveendtime;
+
+    public UserSetting usersetting;
     // 更新个人信息
     public static void updateRequest(final Activity activity, final UpdateCoachParams params) {
 
