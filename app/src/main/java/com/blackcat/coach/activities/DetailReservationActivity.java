@@ -2,6 +2,7 @@ package com.blackcat.coach.activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -195,6 +196,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 toolbar_title.setText("已取消");
                 ll_change_reson.setVisibility(View.VISIBLE);
                 tv_style.setText(R.string.reservation_applycancel);
+                mBtnSend.setVisibility(View.GONE);
             case APPLYREFUSE://教练拒绝或者取消(已取消)
                 //已取消
                 ll_change_reson.setVisibility(View.VISIBLE);
@@ -203,6 +205,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 mBtnSend.setText(R.string.reservation_canceled);
                 toolbar_title.setText("已取消");
                 mBtnSend.setEnabled(false);
+                mBtnSend.setVisibility(View.GONE);
                 tv_style.setText(R.string.reservation_applyrefuse);
                 break;
             case FINISH:
@@ -221,11 +224,20 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 toolbar_title.setText("新订单");
                 mBtnSend.setVisibility(View.GONE);
                 ll_change_reson.setVisibility(View.GONE);
-                mBtnRefuse.setVisibility(View.GONE);
-                mBtnAccept.setVisibility(View.GONE);
+
                 if ("true".equals(Session.getUserSetting().classremind)) {
                     mBtnRefuse.setVisibility(View.VISIBLE);
                     mBtnAccept.setVisibility(View.VISIBLE);
+                    //白色接受按钮不可以点击
+                    mBtnAccept.setClickable(false);
+                    mBtnRefuse.setText("拒绝");
+                    mBtnAccept.setBackgroundResource(R.drawable.refuse_btn_bg);
+                    mBtnRefuse.setBackgroundColor(getResources().getColor(R.color.blue));
+                    mBtnAccept.setTextColor(getResources().getColor(R.color.text_333));
+                    mBtnRefuse.setTextColor(getResources().getColor(R.color.white));
+                }else{
+                    mBtnRefuse.setVisibility(View.GONE);
+                    mBtnAccept.setVisibility(View.GONE);
                 }
                 tv_style.setText(R.string.reservation_confirm);
                 break;

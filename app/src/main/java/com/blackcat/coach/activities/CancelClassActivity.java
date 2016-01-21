@@ -15,6 +15,7 @@ import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.events.ReservationOpOk;
+import com.blackcat.coach.fragments.ItemFragment;
 import com.blackcat.coach.models.CoachInfo;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.ReservationStatus;
@@ -125,6 +126,10 @@ public class CancelClassActivity extends BaseActivity implements
                                 event.pos = mReservation.pos;
                                 event.status = ReservationStatus.APPLYREFUSE;
                                 EventBus.getDefault().post(event);
+                                //新订单 刷新
+                                ItemFragment.REFRESH0 = true;
+                                //已取消 刷新
+                                ItemFragment.REFRESH2 = true;
                                 //TODO
                                 finish();
                             } else if (response != null &&!TextUtils.isEmpty(response.msg)) {

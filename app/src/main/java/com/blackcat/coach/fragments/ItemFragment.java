@@ -40,6 +40,7 @@ public class ItemFragment extends BaseListFragment {
 
     public static  boolean REFRESH3 = false;
 
+
 //    static ItemFragment frag = null;
 //
 //    public static ItemFragment getInstance(int t){

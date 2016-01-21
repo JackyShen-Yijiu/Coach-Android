@@ -60,14 +60,22 @@ public class ModifySeniorityActivity extends BaseActivity implements View.OnClic
         switch (id) {
             case R.id.btn_finish:
                 if (TextUtils.isEmpty(mEtNewSeniority.getText().toString().trim())) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_license_empty);
+                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_seniority_empty);
                     return;
                 }
-                String seniority = mEtNewSeniority.getText().toString().trim() + "年";
+                String t = mEtNewSeniority.getText().toString().trim();
+                int t1 = (int) Double.parseDouble(t);
+
+                if (t1 < 0 || t1 > 30) {//0-30
+                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_seniority_size);
+                    return;
+                }
+                String seniority = t1 + "年";
                 if (seniority.equals(Session.getSession().Seniority)) {
                     finish();
                     return;
                 }
+
                 updateRequest(seniority);
                 break;
         }

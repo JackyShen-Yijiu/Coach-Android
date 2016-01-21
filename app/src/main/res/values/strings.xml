@@ -133,6 +133,8 @@
     <string name="sent_ok">发送成功</string>
 
     <!-- 提交审核 -->
+    <string name="verify_seniority_size">驾龄不能大于30</string>
+    <string name="verify_seniority_empty">驾龄不能为空</string>
     <string name="verify_name_empty">姓名不能为空</string>
     <string name="verify_id_empty">身份证号码不能为空</string>
     <string name="verify_school_empty">挂靠驾校不能为空</string>
