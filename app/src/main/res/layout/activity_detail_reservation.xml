@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/rootView"
         android:layout_width="match_parent"
-        android:layout_height="90dp"
+        android:layout_height="120dp"
         android:padding="15dp">
 
         <ImageView

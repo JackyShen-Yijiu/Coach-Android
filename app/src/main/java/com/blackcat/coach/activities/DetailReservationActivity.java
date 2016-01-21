@@ -368,7 +368,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                     case UNCONFIRMFINISH:
                         if (mReservation.subject != null) {
                             if (mReservation.subject.subjectid == 2 || mReservation.subject.subjectid == 3) {
-                                intent = new Intent(this, TeachContentActivity.class);
+                                intent = new Intent(this, SendCommentActivity.class);
                                 intent.putExtra(Constants.DATA, mReservation);
                                 startActivity(intent);
                             }
