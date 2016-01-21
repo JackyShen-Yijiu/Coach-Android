@@ -194,12 +194,12 @@ public class URIUtil {
 		params.add(new BasicNameValuePair(NetConstants.KEY_INDEX, "1"));
 //		params.add(new BasicNameValuePair(NetConstants.KEY_AUTHORIZATION, Session.getSession().token));
 		params.add(new BasicNameValuePair(NetConstants.KEY_RESERVATIONSTATE, String.valueOf(pos)));
-//		params.add(new BasicNameValuePair(NetConstants.KEY_SEARCH_NAME, key));
+		params.add(new BasicNameValuePair(NetConstants.KEY_SEARCH_NAME, key));
 
 		try {
 			URI uri = URIUtils.createURI(NetConstants.HTTP,
 					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
-					NetConstants.PATH_RESERVATION_LIST, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+					NetConstants.PATH_SEARCH, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
 			logRequestUri(uri);
 			return uri;
 		} catch (Exception e) {

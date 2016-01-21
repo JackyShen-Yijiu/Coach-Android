@@ -49,7 +49,7 @@ import de.greenrobot.event.EventBus;
 
 public class DetailReservationActivity extends BaseNoFragmentActivity implements View.OnClickListener {
     private Reservation mReservation;
-
+    private ReservationStatus reservationstate;
     private TextView toolbar_title;
     private ImageView mIvAvatar;
     private TextView mTvStudentName, mTvStudentNum;
@@ -59,7 +59,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
     private View mBottomView, mApplyOpView;
     private LinearLayout ll_change_reson;
     private TextView tv_reason;
-    private TextView tv_ground;
+    private TextView tv_ground,tv_style;
     //private HandleClassParams handleClassParams;
 
 
@@ -106,6 +106,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         toolbar_title=(TextView)findViewById(R.id.toolbar_title);
         mBottomView = findViewById(R.id.fl_bottom);
         mApplyOpView = findViewById(R.id.ll_applying);
+        tv_style=(TextView)findViewById(R.id.tv_style);
         ll_change_reson=(LinearLayout)findViewById(R.id.ll_change_reson);
         mIvAvatar = (ImageView) findViewById(R.id.iv_avatar);
         mTvStudentName = (TextView) findViewById(R.id.tv_name);
@@ -179,9 +180,14 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
 
         switch (mReservation.getReservationstate()) {
             case APPLYING:
-                mBtnSend.setVisibility(View.INVISIBLE);
+                mBtnSend.setVisibility(View.GONE);
                 toolbar_title.setText("新订单");
                 ll_change_reson.setVisibility(View.GONE);
+
+                if ("true".equals(Session.getUserSetting().classremind)) {
+                    mBtnAccept.setEnabled(false);
+                }
+//                tv_style.setText(mReservation.reservationstate);
 
                 break;
 
@@ -203,17 +209,22 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
 //                mBottomView.setVisibility(View.INVISIBLE);
                 ll_change_reson.setVisibility(View.GONE);
                 mApplyOpView.setVisibility(View.INVISIBLE);
-                mBtnSend.setText(R.string.reservation_finish);
+                mBtnSend.setVisibility(View.GONE);
                 toolbar_title.setText("已学完");
-                mBtnSend.setEnabled(false);
+
                 break;
 
+
             case APPLYCONFIRM:
-                ll_change_reson.setVisibility(View.GONE);
-                mApplyOpView.setVisibility(View.INVISIBLE);
-                mBtnSend.setVisibility(View.VISIBLE);
-                mBtnSend.setText(R.string.reservation_btn_cancel);
                 toolbar_title.setText("新订单");
+                mBtnSend.setVisibility(View.GONE);
+                ll_change_reson.setVisibility(View.GONE);
+                mBtnRefuse.setVisibility(View.GONE);
+                mBtnAccept.setVisibility(View.GONE);
+                if ("true".equals(Session.getUserSetting().classremind)) {
+                    mBtnRefuse.setVisibility(View.VISIBLE);
+                    mBtnAccept.setVisibility(View.VISIBLE);
+                }
                 break;
 
             case UNCONFIRMFINISH:
@@ -234,6 +245,13 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 toolbar_title.setText("待评价");
                 break;
 
+            case UNSINGIN:
+                mBtnSend.setVisibility(View.GONE);
+                ll_change_reson.setVisibility(View.GONE);
+                mBtnRefuse.setVisibility(View.GONE);
+                mBtnAccept.setVisibility(View.GONE);
+                toolbar_title.setText("已漏课");
+                break;
 //            case ONCOMMENTED://评论成功(已完成)
 //                ll_change_reson.setVisibility(View.GONE);
 //                mMapView.setVisibility(View.GONE);
@@ -246,6 +264,12 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         }
 
     }
+
+    private void showBtn(){
+
+    }
+
+
     private Type mType = new TypeToken<Result<Reservation>>(){}.getType();
     private void fetchReservationRequest(String reservationId) {
         URI uri = URIUtil.getReservationInfo(reservationId);
