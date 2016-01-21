@@ -166,7 +166,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         if (!TextUtils.isEmpty(mReservation.courseprocessdesc)) {
             mTvProgress.setText(mReservation.courseprocessdesc);
         }
-        LogUtil.print("state-->"+mReservation.getReservationstate());
+
         switch (mReservation.getReservationstate()) {
             case APPLYING:
                 mBtnSend.setVisibility(View.INVISIBLE);
