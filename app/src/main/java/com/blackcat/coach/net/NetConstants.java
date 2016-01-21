@@ -82,6 +82,7 @@ public class NetConstants {
 	public static final String PATH_SIGNIN = "api/v1/courseinfo/coursesignin";
 	/***提醒学员可以报考了*/
 	public static final String PATH_REMINDEXAM = "api/v1/userinfo/remindexam";
+	public static final String PATH_SEARCH = "api/v1/courseinfo/searchreservationlist";
 
 	public static final String PATH_UPLOAD_AVATAR = "user/uploadAvatar";
 	public static final String PATH_ACCOUNT_DETAIL = "account/detail";

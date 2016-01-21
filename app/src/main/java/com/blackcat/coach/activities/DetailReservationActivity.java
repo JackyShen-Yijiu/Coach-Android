@@ -216,6 +216,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 tv_style.setText(R.string.reservation_finish);
                 break;
 
+
             case APPLYCONFIRM:
                 toolbar_title.setText("新订单");
                 mBtnSend.setVisibility(View.GONE);
@@ -275,6 +276,12 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         }
 
     }
+
+    private void showBtn(){
+
+    }
+
+
     private Type mType = new TypeToken<Result<Reservation>>(){}.getType();
     private void fetchReservationRequest(String reservationId) {
         URI uri = URIUtil.getReservationInfo(reservationId);
