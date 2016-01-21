@@ -171,6 +171,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         }
 
 
+
         if (!TextUtils.isEmpty(mReservation.classdatetimedesc)) {
             mTvDate.setText(mReservation.classdatetimedesc);
         }
