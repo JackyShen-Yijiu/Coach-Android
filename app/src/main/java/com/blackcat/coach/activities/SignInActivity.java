@@ -115,23 +115,26 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
         SignInInfo param = new SignInInfo();
 
-        param.coachid = Session.getSession().coachid;
-        if (Session.latitude != null && Session.longitude != null) {
+        if(scanningResult !=null){
+            param.coachid = Session.getSession().coachid;
+            if (Session.latitude != null && Session.longitude != null) {
 
-            param.coachlatitude = Session.latitude;
-            param.coachlongitude = Session.longitude;
-        }else{
-            param.coachlatitude = "";
-            param.coachlongitude = "";
+                param.coachlatitude = Session.latitude;
+                param.coachlongitude = Session.longitude;
+            }else{
+                param.coachlatitude = "";
+                param.coachlongitude = "";
+            }
+
+            param.codecreatetime = scanningResult.createTime;
+            param.reservationid = scanningResult.reservationId;
+            param.userid = scanningResult.studentId;
+            param.userlatitude = scanningResult.latitude;
+            param.userlongitude = scanningResult.longitude;
+
+            LogUtil.print(GsonUtils.toJson(param));
         }
 
-        param.codecreatetime = scanningResult.createTime;
-        param.reservationid = scanningResult.reservationId;
-        param.userid = scanningResult.studentId;
-        param.userlatitude = scanningResult.latitude;
-        param.userlongitude = scanningResult.longitude;
-
-          LogUtil.print(GsonUtils.toJson(param));
 
         Map map = new HashMap<>();
         map.put("authorization", Session.getToken());
