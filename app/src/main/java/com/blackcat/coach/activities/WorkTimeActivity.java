@@ -175,8 +175,9 @@ public class WorkTimeActivity extends BaseActivity implements View.OnClickListen
             sb.deleteCharAt(sb.length() - 1);
         }
         //截取掉最后一位或者多位0
-        int temp3 = worktime.length-1;
+        int temp3 = worktime.length-1>0?worktime.length-1:0;
         int count1 = count;//(worktime[worktime.length-1]==0 && count>1)?count-1:count;
+        LogUtil.print("size;::::>"+temp3);
         while (worktime[temp3]==0 && count>1){
             count1 --;
             temp3--;

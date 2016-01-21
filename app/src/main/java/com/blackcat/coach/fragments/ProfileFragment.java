@@ -29,6 +29,7 @@ import com.blackcat.coach.activities.WorkTimeActivity;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.utils.LogUtil;
+import com.blackcat.coach.utils.ToastHelper;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.TextMessageBody;
 
@@ -209,6 +210,12 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
     @Override
     public void onClick(View v) {
+        //没有审核通过，不是设置
+        if(!Session.getSession().is_validation && v.getId() !=R.id.rl_setting){
+            ToastHelper.getInstance(getActivity().getApplicationContext()).toast(R.string.coach_not_avlidable);
+            return ;
+        }
+
         int id = v.getId();
         switch (id) {
             case R.id.rl_profile_header:

@@ -63,14 +63,14 @@
             android:layout_alignTop="@+id/tv_sign_adress"
             android:layout_toRightOf="@+id/tv_sign_adress" />
 
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
+            android:layout_height="1px"
             android:layout_marginTop="10dp"
             android:background="#333"
-            android:layout_below="@+id/tv_sign_adress">
+            android:layout_below="@+id/sign_adress">
 
-        </LinearLayout>
+        </View>
 
     </RelativeLayout>
 

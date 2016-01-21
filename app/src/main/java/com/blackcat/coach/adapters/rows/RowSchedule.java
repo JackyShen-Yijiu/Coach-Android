@@ -17,6 +17,8 @@ import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.utils.Constants;
 
+import org.w3c.dom.Text;
+
 
 public class RowSchedule {
 
@@ -29,6 +31,9 @@ public class RowSchedule {
         holder.tvEnd = (TextView) view.findViewById(R.id.tv_end_time);
         holder.tvName = (TextView) view.findViewById(R.id.tv_name);
         holder.tvProgress = (TextView) view.findViewById(R.id.tv_learning_item);
+        holder.tvClass = (TextView) view.findViewById(R.id.tv_class);
+        holder.tvClassDetail = (TextView) view.findViewById(R.id.tv_class_detail);
+
         return holder;
     }
 
@@ -39,6 +44,9 @@ public class RowSchedule {
         viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item));
         if (item.userid != null) {
             viewHolder.tvName.setText(item.userid.name);
+            viewHolder.tvClass.setText("剩余"+item.userid.leavecoursecount+"课时漏"+item.userid.missingcoursecount+"课时");
+//            viewHolder.tvClassDetail.setText("剩余"+"课时漏"+"课时");
+
             if (item.userid.headportrait != null && !TextUtils.isEmpty(item.userid.headportrait.originalpic)) {
                 //TODO
 //                PicassoUtil.loadImage(activity, viewHolder.ivAvatar, item.userid.headportrait.originalpic, R.dimen.avatar_size, R.dimen.avatar_size, false, R.mipmap.ic_avatar_small);
@@ -61,6 +69,9 @@ public class RowSchedule {
         private TextView tvBegin, tvEnd;
         private TextView tvName, tvProgress;
         private ImageView ivAvatar;
+        private TextView tvClass;//剩余课时，漏课
+        private TextView tvClassDetail;//倒车入库
+
         public Holder(View itemView) {
             super(itemView);
         }
