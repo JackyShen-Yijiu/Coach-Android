@@ -187,14 +187,14 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 if ("true".equals(Session.getUserSetting().classremind)) {
                     mBtnAccept.setEnabled(false);
                 }
-//                tv_style.setText(mReservation.reservationstate);
+                tv_style.setText(R.string.reservation_applying);
 
                 break;
 
             case APPLYCANCEL://学生取消
                 toolbar_title.setText("已取消");
                 ll_change_reson.setVisibility(View.VISIBLE);
-
+                tv_style.setText(R.string.reservation_applycancel);
             case APPLYREFUSE://教练拒绝或者取消(已取消)
                 //已取消
                 ll_change_reson.setVisibility(View.VISIBLE);
@@ -203,6 +203,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 mBtnSend.setText(R.string.reservation_canceled);
                 toolbar_title.setText("已取消");
                 mBtnSend.setEnabled(false);
+                tv_style.setText(R.string.reservation_applyrefuse);
                 break;
             case FINISH:
                 //已完成
@@ -212,6 +213,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 mBtnSend.setVisibility(View.GONE);
                 toolbar_title.setText("已学完");
 
+                tv_style.setText(R.string.reservation_finish);
                 break;
 
             case APPLYCONFIRM:
@@ -224,6 +226,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                     mBtnRefuse.setVisibility(View.VISIBLE);
                     mBtnAccept.setVisibility(View.VISIBLE);
                 }
+                tv_style.setText(R.string.reservation_confirm);
                 break;
 
             case UNCONFIRMFINISH:
@@ -233,6 +236,8 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 mBtnSend.setVisibility(View.VISIBLE);
                 mBtnSend.setText(R.string.reservation_btn_confirm);
                 toolbar_title.setText("已学完");
+
+                tv_style.setText(R.string.reservation_unconfirmfinish);
                 break;
 
             case UNCOMMENTS:
@@ -242,6 +247,8 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 mBtnSend.setVisibility(View.VISIBLE);
                 mBtnSend.setText(R.string.reservation_btn_comment);
                 toolbar_title.setText("待评价");
+
+                tv_style.setText(R.string.reservation_uncomments);
                 break;
 
             case UNSINGIN:
@@ -249,7 +256,12 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 ll_change_reson.setVisibility(View.GONE);
                 mBtnRefuse.setVisibility(View.GONE);
                 mBtnAccept.setVisibility(View.GONE);
+
+                tv_style.setText(R.string.reservation_leakage_class);
                 toolbar_title.setText("已漏课");
+                break;
+            case SIGNIN:
+                tv_style.setText(R.string.reservation_sign_in);
                 break;
 //            case ONCOMMENTED://评论成功(已完成)
 //                ll_change_reson.setVisibility(View.GONE);
