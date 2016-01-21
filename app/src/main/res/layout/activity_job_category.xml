@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/padding_left"
             android:layout_marginTop="18dp"
-            android:text="挂考教练"
+            android:text="挂靠教练"
             android:paddingLeft="10dp"
             android:textColor="@color/black_text"
             android:textSize="14sp"

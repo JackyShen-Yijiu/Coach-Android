@@ -202,8 +202,10 @@ public class CalendarGridViewAdapter extends BaseAdapter {
 			// 当前日期
 //			holder.day_rl.setBackgroundResource(R.drawable.calendar_current_date_bg);
 			holder.select.setVisibility(View.VISIBLE);
+			holder.select.setBackgroundResource(R.drawable.calendar_current_date_bg);
 			holder.lunarDay.setText(calendarUtil.toString());
 		} else {
+			holder.select.setBackgroundResource(R.drawable.calendar_select_date_bg);
 			holder.lunarDay.setText(calendarUtil.toString());
 		}
 

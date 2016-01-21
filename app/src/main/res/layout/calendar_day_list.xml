@@ -15,7 +15,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerInParent="true"
-            android:background="@drawable/calendar_current_date_bg"/>
+            android:background="@drawable/calendar_select_date_bg"/>
         <TextView
             android:id="@+id/rest"
             android:layout_width="wrap_content"

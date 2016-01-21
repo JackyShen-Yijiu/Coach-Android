@@ -42,6 +42,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/activity_padding"
         android:layout_marginRight="@dimen/activity_padding"
+        android:maxLength="18"
         android:layout_marginTop="@dimen/activity_padding"
         android:background="@drawable/background_border"
         android:hint="@string/str_new_id_card"
