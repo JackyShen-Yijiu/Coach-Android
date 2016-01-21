@@ -45,7 +45,7 @@ public class ModifyIdCardActivity extends BaseActivity implements View.OnClickLi
                 if (TextUtils.isEmpty(mEtNewIdCard.getText().toString().trim())) {
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_idcard_empty);
                     return;
-                } else if (mEtNewIdCard.getText().length() != 16 && mEtNewIdCard.getText().length() != 19) {
+                } else if (mEtNewIdCard.getText().length() != 16 && mEtNewIdCard.getText().length() != 18) {
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_idcardnumber_invalid);
                     return;
                 }

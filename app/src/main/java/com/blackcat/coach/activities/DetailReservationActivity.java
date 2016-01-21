@@ -171,6 +171,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
         }
 
 
+
         if (!TextUtils.isEmpty(mReservation.classdatetimedesc)) {
             mTvDate.setText(mReservation.classdatetimedesc);
         }
@@ -181,7 +182,10 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
 
         switch (mReservation.getReservationstate()) {
             case APPLYING:
+
+                mMapView.setVisibility(View.GONE);
                 mBtnSend.setVisibility(View.GONE);
+                mBtnRefuse.setText("取消");
                 toolbar_title.setText("新订单");
                 ll_change_reson.setVisibility(View.GONE);
 
@@ -193,6 +197,8 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 break;
 
             case APPLYCANCEL://学生取消
+
+                mMapView.setVisibility(View.GONE);
                 toolbar_title.setText("已取消");
                 ll_change_reson.setVisibility(View.VISIBLE);
                 tv_style.setText(R.string.reservation_applycancel);
@@ -203,6 +209,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
 //                mBottomView.setVisibility(View.INVISIBLE);
                 mApplyOpView.setVisibility(View.INVISIBLE);
                 mBtnSend.setText(R.string.reservation_canceled);
+                mMapView.setVisibility(View.GONE);
                 toolbar_title.setText("已取消");
                 mBtnSend.setEnabled(false);
                 mBtnSend.setVisibility(View.GONE);
@@ -215,7 +222,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 mApplyOpView.setVisibility(View.INVISIBLE);
                 mBtnSend.setVisibility(View.GONE);
                 toolbar_title.setText("已学完");
-
+                mMapView.setVisibility(View.GONE);
                 tv_style.setText(R.string.reservation_finish);
                 break;
 
@@ -223,6 +230,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
             case APPLYCONFIRM:
                 toolbar_title.setText("新订单");
                 mBtnSend.setVisibility(View.GONE);
+                mMapView.setVisibility(View.GONE);
                 ll_change_reson.setVisibility(View.GONE);
 
                 if ("true".equals(Session.getUserSetting().classremind)) {
@@ -269,12 +277,13 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 ll_change_reson.setVisibility(View.GONE);
                 mBtnRefuse.setVisibility(View.GONE);
                 mBtnAccept.setVisibility(View.GONE);
-
+                mMapView.setVisibility(View.GONE);
                 tv_style.setText(R.string.reservation_leakage_class);
                 toolbar_title.setText("已漏课");
                 break;
             case SIGNIN:
                 tv_style.setText(R.string.reservation_sign_in);
+                mMapView.setVisibility(View.GONE);
                 break;
 //            case ONCOMMENTED://评论成功(已完成)
 //                ll_change_reson.setVisibility(View.GONE);

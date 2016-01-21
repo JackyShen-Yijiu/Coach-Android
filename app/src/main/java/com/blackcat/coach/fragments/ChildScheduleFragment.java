@@ -465,8 +465,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
     private View.OnClickListener onPreMonthClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            viewFlipper.setInAnimation(slideRightIn);
-            viewFlipper.setOutAnimation(slideRightOut);
+//            viewFlipper.setInAnimation(slideRightIn);
+//            viewFlipper.setOutAnimation(slideRightOut);
             viewFlipper.showPrevious();
             setPrevViewItem();
         }
@@ -479,8 +479,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         @Override
         public void onClick(View view) {
             long start = System.currentTimeMillis();
-            viewFlipper.setInAnimation(slideLeftIn);
-            viewFlipper.setOutAnimation(slideLeftOut);
+//            viewFlipper.setInAnimation(slideLeftIn);
+//            viewFlipper.setOutAnimation(slideLeftOut);
             viewFlipper.showNext();
             setNextViewItem();
             LogUtil.print("next--end-->"+(System.currentTimeMillis()-start));
@@ -773,16 +773,16 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
                 // right to left swipe
                 if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
                         && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    viewFlipper.setInAnimation(slideLeftIn);
-                    viewFlipper.setOutAnimation(slideLeftOut);
+//                    viewFlipper.setInAnimation(slideLeftIn);
+//                    viewFlipper.setOutAnimation(slideLeftOut);
                     viewFlipper.showNext();
                     setNextViewItem();
                     return true;
 
                 } else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
                         && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                    viewFlipper.setInAnimation(slideRightIn);
-                    viewFlipper.setOutAnimation(slideRightOut);
+//                    viewFlipper.setInAnimation(slideRightIn);
+//                    viewFlipper.setOutAnimation(slideRightOut);
                     viewFlipper.showPrevious();
                     setPrevViewItem();
                     return true;

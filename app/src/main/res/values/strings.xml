@@ -98,7 +98,7 @@
     <string name="str_coach_num">教练证</string>
     <string name="str_appointment">预约提醒</string>
     <string name="str_new_notice">新消息通知</string>
-    <string name="str_class_notice">自动接收预约</string>
+    <string name="str_class_notice">自动接受预约</string>
     <string name="str_about_we">关于我们</string>
     <string name="str_go_score">去评分</string>
     <string name="str_feedback">反馈</string>
@@ -125,6 +125,8 @@
     <string name="register_resend">重新发送</string>
     <string name="register_time_left">剩余(%ds)</string>
     <string name="phonenum_empty">手机号码不能空</string>
+    <string name="phonenum_enrro">手机号格式不正确</string>
+    <string name="phonenum_enrros">请输入正确的手机号</string>
     <string name="sms_empty">验证码不能为空</string>
     <string name="pwd_empty">密码不能为空</string>
     <string name="pwd_not_match">两次密码输入不一致</string>
@@ -310,6 +312,7 @@
     <string name="qiandao">签到</string>
     <string name="title_modify_name">修改姓名</string>
     <string name="system_msg">系统消息</string>
+    <string name="order_msg">行业资讯</string>
     <string name="sigin_detail">签到详情</string>
     <string name="about_server">许可服务协议</string>
     <string name="job_category">工作性质</string>
