@@ -26,6 +26,7 @@ public class Session implements Serializable {
 	private static final String KEY_USR = "usr";
 	private static CoachInfo mUsrInfo;
 
+	private static UserSetting mUserSetting;
 	public static boolean isUserInfoEmpty() {
 		return Session.mUsrInfo == null;
 	}
@@ -39,7 +40,14 @@ public class Session implements Serializable {
 		return res;
 	}
 	
-	
+	public static UserSetting getUserSetting(){
+		return Session.mUserSetting;
+	}
+
+	public static void setUserSetting(UserSetting userSetting){
+		Session.mUserSetting = userSetting;
+	}
+
 	public static CoachInfo getSession() {
 		return Session.mUsrInfo;
 	}
@@ -68,6 +76,7 @@ public class Session implements Serializable {
     
     public static void save(CoachInfo wrapper, boolean needFlush) {
     	Session.mUsrInfo = wrapper;
+		Session.mUserSetting = wrapper.usersetting;
     	if (needFlush) {
     		if (wrapper == null) {
     			clearSavedSession();

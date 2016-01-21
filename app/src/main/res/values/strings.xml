@@ -81,6 +81,7 @@
     <string name="title_activity_students">学员列表</string>
     <string name="title_activity_self_introducation">自我介绍</string>
     <string name="title_activity_setting">设置</string>
+    <string name="setting_success">设置成功</string>
     <string name="title_activity_vacation">休假</string>
     <string name="title_activity_work_time">工作时间</string>
     <string name="title_activity_classes_setting">班型设置</string>
@@ -97,7 +98,7 @@
     <string name="str_coach_num">教练证</string>
     <string name="str_appointment">预约提醒</string>
     <string name="str_new_notice">新消息通知</string>
-    <string name="str_class_notice">开课提醒</string>
+    <string name="str_class_notice">自动接收预约</string>
     <string name="str_about_we">关于我们</string>
     <string name="str_go_score">去评分</string>
     <string name="str_feedback">反馈</string>

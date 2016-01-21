@@ -74,8 +74,15 @@ public class WalletActivity extends BaseNoFragmentActivity
 
     private void bindViewData(Wallet wallet) {
         mTvAmount.setText(String.valueOf(wallet.wallet));
-        mAdapter.setList(wallet.list);
+//        mAdapter.setList(wallet.list);
+        mAdapter.appendList(wallet.list);
         mAdapter.notifyDataSetChanged();
+        mListView.setLoadMoreComplete();
+        if (wallet.list.size() < NetConstants.REQ_LEN) {
+            mListView.setNoMoreData(true);
+        } else {
+            mListView.setNoMoreData(false);
+        }
         money = wallet.wallet;
     }
 

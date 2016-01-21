@@ -19,6 +19,7 @@ import com.blackcat.coach.models.CoachInfo;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 
+import com.blackcat.coach.models.UserSetting;
 import com.blackcat.coach.models.params.SettingParams;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
@@ -68,27 +69,32 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
     }
 
+    private boolean firstOpen = true;
+    private UserSetting userSetting;
     private void initData() {
-        settingAppointment = PrefUtils.getIntData(Constant.SETTING_APPOINTMENT, 1);
-        settingClassNotice = PrefUtils.getIntData(Constant.SETTING_CLASS_NOTICE, 1);
-        settingNewNotice = PrefUtils.getIntData(Constant.SETTING_NEW_NOTICE, 1);
 
-        LogUtil.print("settingAppointment"+settingAppointment);
-        LogUtil.print("settingClassNotice"+settingClassNotice);
-        LogUtil.print("settingNewNotice"+settingNewNotice);
+        userSetting = Session.getSession().usersetting;
 
-        if (settingAppointment == 1) {
-            sv_appointment.setOn(true);
+        if(userSetting !=null){
+            if ("true".equals(userSetting.reservationreminder)) {
+                settingAppointment = 1;
+                sv_appointment.setOn(true);
+            }
+
+            if ("true".equals(userSetting.classremind)) {
+                settingClassNotice =1;
+                sv_class_notice.setOn(true);
+            }
+
+
+            if ("true".equals(userSetting.newmessagereminder)) {
+                settingNewNotice = 1;
+                sv_new_notice.setOn(true);
+            }
+
+            firstOpen = false;
         }
 
-        if (settingClassNotice == 1) {
-            sv_class_notice.setOn(true);
-        }
-
-
-        if (settingNewNotice == 1) {
-            sv_new_notice.setOn(true);
-        }
 
     }
 
@@ -123,9 +129,25 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                     public void onResponse(Result<CoachInfo> response) {
                         if (response != null && response.data != null && response.type == Result.RESULT_OK) {
                             //设置成功，保存状态
-                            PrefUtils.saveIntData(Constant.SETTING_APPOINTMENT, settingAppointment);
-                            PrefUtils.saveIntData(Constant.SETTING_CLASS_NOTICE, settingClassNotice);
-                            PrefUtils.saveIntData(Constant.SETTING_NEW_NOTICE, settingNewNotice);
+                            if(settingAppointment == 1){
+                                userSetting.reservationreminder = "true";
+                            }else{
+                                userSetting.reservationreminder = "false";
+                            }
+
+                            if(settingClassNotice == 1){
+                                userSetting.classremind = "true";
+                            }else{
+                                userSetting.classremind = "false";
+                            }
+
+                            if(settingNewNotice == 1){
+                                userSetting.newmessagereminder = "true";
+                            }else{
+                                userSetting.newmessagereminder = "false";
+                            }
+                            Session.setUserSetting(userSetting);
+                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.setting_success);
                         } else {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
                         }
@@ -158,25 +180,32 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         sv_appointment.setOnSwitchStateChangeListener(new ShSwitchView.OnSwitchStateChangeListener() {
             @Override
             public void onSwitchStateChange(boolean isOn) {
-                LogUtil.print("设置预约提醒");
-                settingAppointment = sv_appointment.isOn() ? 1 : 0;
-                obtainPersonalSetting();
+                if (!firstOpen) {
+                    LogUtil.print("设置预约提醒");
+                    settingAppointment = sv_appointment.isOn() ? 1 : 0;
+                    obtainPersonalSetting();
+                }
             }
         });
         sv_new_notice = (ShSwitchView) findViewById(R.id.sv_new_notice);
         sv_new_notice.setOnSwitchStateChangeListener(new ShSwitchView.OnSwitchStateChangeListener() {
             @Override
             public void onSwitchStateChange(boolean isOn) {
-                settingNewNotice = sv_new_notice.isOn() ? 1 : 0;
-                obtainPersonalSetting();
+                if (!firstOpen) {
+                    settingNewNotice = sv_new_notice.isOn() ? 1 : 0;
+                    obtainPersonalSetting();
+                }
             }
         });
         sv_class_notice = (ShSwitchView) findViewById(R.id.sv_class_notice);
         sv_class_notice.setOnSwitchStateChangeListener(new ShSwitchView.OnSwitchStateChangeListener() {
             @Override
             public void onSwitchStateChange(boolean isOn) {
-                settingClassNotice = sv_class_notice.isOn() ? 1 : 0;
-                obtainPersonalSetting();
+                if (!firstOpen) {
+                    settingClassNotice = sv_class_notice.isOn() ? 1 : 0;
+                    obtainPersonalSetting();
+                }
+
             }
         });
         if (Session.isUserInfoEmpty()) {
