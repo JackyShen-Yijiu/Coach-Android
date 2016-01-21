@@ -122,13 +122,14 @@
 
 
     <TextView
+        android:id="@+id/tv_proto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_padding"
         android:layout_marginRight="@dimen/activity_padding"
         android:layout_marginTop="15dp"
         android:text="@string/register_word"
-        android:textColor="#666666"
+        android:textColor="@color/text_blue"
         android:textSize="13sp" />
 
 

@@ -21,6 +21,7 @@ public class TermsActivity extends BaseActivity implements View.OnClickListener 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_question);
 		configToolBar(R.mipmap.ic_back);
+
 		webView = (WebView) findViewById(R.id.question_webview);
 		webView.setOnClickListener(this);
 		initListener();
@@ -28,7 +29,7 @@ public class TermsActivity extends BaseActivity implements View.OnClickListener 
 
 
 	protected void initListener() {
-		String url = "http://www.ifanying.com/userAgreement.html";
+		String url = "http://www.yibuxueche.com/coachAgreement.html";
 		WebSettings webSettings = webView.getSettings();
 		webView.setWebViewClient(new WebViewClient() {
 			@Override

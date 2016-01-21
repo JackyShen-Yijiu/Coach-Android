@@ -25,6 +25,7 @@ import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.timer.VerifyCodeTimer;
 import com.blackcat.coach.utils.BaseUtils;
+import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.ToastHelper;
@@ -44,6 +45,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
 
     private EditText mEtPhoneNum, mEtVerifyCode, mEtPwd, mEtPwd2, mEtInivte;
     private TextView mTvSendCode;
+    private TextView tv_proto;
     private Button mBtnRegister;
 
     private Type mSmsType = new TypeToken<Result>(){}.getType();
@@ -66,6 +68,8 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         mEtInivte = (EditText) findViewById(R.id.et_invite_code);
         mTvSendCode = (TextView) findViewById(R.id.tv_send_code);
         mTvSendCode.setOnClickListener(this);
+        tv_proto = (TextView) findViewById(R.id.tv_proto);
+        tv_proto.setOnClickListener(this);
         mBtnRegister = (Button) findViewById(R.id.btn_register);
         mBtnRegister.setOnClickListener(this);
     }
@@ -75,11 +79,31 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         int id = v.getId();
         switch (id) {
             case R.id.tv_send_code:
-                if (TextUtils.isEmpty(mEtPhoneNum.getText())) {
+//                if (TextUtils.isEmpty(mEtPhoneNum.getText())) {
+//                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_empty);
+//                    return;
+//                }
+
+
+                String phone = mEtPhoneNum.getText().toString();
+                if (TextUtils.isEmpty(phone)) {
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_empty);
-                    return;
+                    return ;
+                } else {
+                    if (!CommonUtil.isMobile(phone)) {
+                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_enrro);
+                        return ;
+                    }
+                }
+                if (phone.length() != 11) {
+                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_enrros);
+                    return ;
                 }
                 sendSmsRequest(mEtPhoneNum.getText().toString());
+                break;
+            case R.id.tv_proto:
+                Intent intent = new Intent(this, TermsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.btn_register:
                 if (TextUtils.isEmpty(mEtPhoneNum.getText())) {

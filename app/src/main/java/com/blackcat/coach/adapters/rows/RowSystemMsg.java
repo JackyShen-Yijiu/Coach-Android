@@ -2,6 +2,7 @@ package com.blackcat.coach.adapters.rows;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.activities.DetailReservationActivity;
+import com.blackcat.coach.activities.WebViewMsg;
 import com.blackcat.coach.adapters.BaseViewHolder;
+import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.SystemMsg;
+import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.DateUtil;
 
 import java.text.ParseException;
@@ -32,13 +37,17 @@ public class RowSystemMsg {
         holder.tv_content = (TextView) view.findViewById(R.id.tv_content);
         holder.tv_date = (TextView) view.findViewById(R.id.tv_date);
         holder.img_Type = (ImageView) view.findViewById(R.id.money_iv);
+        holder.rootView = view.findViewById(R.id.rootView);
         return holder;
     }
 
     public static <T> void bindViewHolder(final Activity activity,
                                           BaseViewHolder holder, final int position, final T info) {
         final Holder viewHolder = (Holder) holder;
+
         SystemMsg item = (SystemMsg) info;
+
+        viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item));
 
         if(item.newstype.equals("1")){
             viewHolder.tv_title_type.setText("笑话");//getDate();
@@ -63,8 +72,25 @@ public class RowSystemMsg {
         private TextView tv_title;
         private TextView tv_date;
         private ImageView img_Type;
+        public View rootView;
+
         public Holder(View itemView) {
             super(itemView);
+        }
+    }
+
+    static class MyOnClickListener implements View.OnClickListener {
+        private Activity activity;
+        private SystemMsg item;
+        public MyOnClickListener(Activity act, SystemMsg item) {
+            this.activity = act;
+            this.item= item;
+        }
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(activity, WebViewMsg.class);
+            intent.putExtra(Constants.DETAIL, item.contenturl);
+            activity.startActivity(intent);
         }
     }
 

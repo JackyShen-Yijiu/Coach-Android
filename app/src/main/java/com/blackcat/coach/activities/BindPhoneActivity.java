@@ -21,6 +21,7 @@ import com.blackcat.coach.models.params.UpdateMobileParams;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.timer.VerifyCodeTimer;
+import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.ToastHelper;
@@ -71,13 +72,28 @@ public class BindPhoneActivity extends BaseActivity implements
         int id = view.getId();
         switch (id) {
             case R.id.tv_send_code: {
-                if (TextUtils.isEmpty(mEtNewPhoneNum.getText())) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_empty);
-                    return;
+//                if (TextUtils.isEmpty(mEtNewPhoneNum.getText())) {
+//                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_empty);
+//                    return;
+
+                    String phone = mEtNewPhoneNum.getText().toString();
+                    if (TextUtils.isEmpty(phone)) {
+                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_empty);
+                        return ;
+                    } else {
+                        if (!CommonUtil.isMobile(phone)) {
+                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_enrro);
+                            return ;
+                        }
+                    }
+                    if (phone.length() != 11) {
+                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_enrros);
+                        return ;
+                    }
                 }
                 sendSmsRequest(mEtNewPhoneNum.getText().toString());
                 break;
-            }
+
             case R.id.btn_finish:
                 if (TextUtils.isEmpty(mEtNewPhoneNum.getText())) {
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_empty);

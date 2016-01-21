@@ -415,7 +415,7 @@
             android:theme="@style/AppTheme"></activity>
 
         <activity android:name=".activities.SystemMsgActivity"
-            android:label="@string/system_msg"
+            android:label="@string/order_msg"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
 
@@ -447,6 +447,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
         <activity android:name=".activities.GuideActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".activities.WebViewMsg"
+            android:label="@string/order_msg"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
         <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
