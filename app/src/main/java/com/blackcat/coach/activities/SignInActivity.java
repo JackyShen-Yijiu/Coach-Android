@@ -77,9 +77,11 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     }
 
     private void initData() {
-        sign_name.setText(scanningResult.studentName);
-        sign_class.setText(scanningResult.courseProcessDesc);
-        sign_adress.setText(scanningResult.locationAddress);
+        if(scanningResult!=null){
+            sign_name.setText(scanningResult.studentName);
+            sign_class.setText(scanningResult.courseProcessDesc);
+            sign_adress.setText(scanningResult.locationAddress);
+        }
     }
 
     @Override
@@ -143,7 +145,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                             startActivity(intent);
                             finish();
 
-                        } else if (!TextUtils.isEmpty(response.msg)) {
+                         } else if (!TextUtils.isEmpty(response.msg)) {
                             //ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
                             Intent intent = new Intent(SignInActivity.this, SignInFaild.class);
                             startActivity(intent);
