@@ -26,6 +26,9 @@ public class Session implements Serializable {
     private static final String KEY_USR = "usr";
     private static CoachInfo mUsrInfo;
 
+
+    public static String longitude;  //经度
+    public static String latitude;  //纬度
     private static UserSetting mUserSetting;
 
     public static boolean isUserInfoEmpty() {
@@ -41,6 +44,10 @@ public class Session implements Serializable {
         return res;
     }
 
+    public  static void saveUserLocation(String longitude,String latitude){
+        Session.longitude = longitude;
+        Session.latitude = latitude;
+    }
     public static UserSetting getUserSetting() {
         return Session.mUserSetting;
     }

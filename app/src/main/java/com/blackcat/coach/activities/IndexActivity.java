@@ -54,6 +54,7 @@ import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.once.Once;
 import com.blackcat.coach.utils.AppEnv;
 import com.blackcat.coach.utils.Constants;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.UIUtils;
 import com.blackcat.coach.utils.Utils;
 import com.blackcat.coach.utils.VolleyUtil;
@@ -213,9 +214,11 @@ public class IndexActivity extends BaseActivity implements IKillable,
             if (location.getLocType() == BDLocation.TypeGpsLocation ||
                     location.getLocType() == BDLocation.TypeNetWorkLocation ||
                     location.getLocType() == BDLocation.TypeOffLineLocation ) {
-                CarCoachApplication.latitude =  Double.toString(location.getLatitude());
-                CarCoachApplication.longitude = Double.toString(location.getLongitude());
+                Session.saveUserLocation(Double.toString(location.getLongitude()),
+                        Double.toString(location.getLatitude()));
 
+                LogUtil.print("getLongitude---" + Double.toString(location.getLongitude()));
+                LogUtil.print("getLatitude---"+Double.toString(location.getLatitude()));
             } else if (location.getLocType() == BDLocation.TypeServerError) {
 
             } else if (location.getLocType() == BDLocation.TypeNetWorkException) {

@@ -30,8 +30,7 @@ public class CarCoachApplication extends Application {
     public static String currentUserNick = "";
     public static BlackCatHXSDKHelper hxSDKHelper = new BlackCatHXSDKHelper();
 
-    public static String longitude;  //经度
-    public static String latitude;  //纬度
+
 
     @Override
     protected void attachBaseContext(Context base) {

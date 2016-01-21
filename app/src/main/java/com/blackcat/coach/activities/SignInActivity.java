@@ -26,6 +26,7 @@ import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.google.gson.reflect.TypeToken;
@@ -40,8 +41,8 @@ import de.greenrobot.event.EventBus;
 /**
  * Created by aa on 2016/1/15.
  */
-public class SignInActivity extends BaseActivity implements View.OnClickListener{
-    private TextView sign_name,sign_adress,sign_class;
+public class SignInActivity extends BaseActivity implements View.OnClickListener {
+    private TextView sign_name, sign_adress, sign_class;
     private Button sign_commit;
     ScanningResult scanningResult;
 //    private String reservationid="string,预约id";
@@ -68,16 +69,16 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
     private void initViews() {
 
-        sign_name=(TextView)findViewById(R.id.sign_name);
-        sign_class=(TextView)findViewById(R.id.sign_class);
-        sign_adress=(TextView)findViewById(R.id.sign_adress);
+        sign_name = (TextView) findViewById(R.id.sign_name);
+        sign_class = (TextView) findViewById(R.id.sign_class);
+        sign_adress = (TextView) findViewById(R.id.sign_adress);
 
-        sign_commit=(Button)findViewById(R.id.sign_commit);
+        sign_commit = (Button) findViewById(R.id.sign_commit);
         sign_commit.setOnClickListener(this);
     }
 
     private void initData() {
-        if(scanningResult!=null){
+        if (scanningResult != null) {
             sign_name.setText(scanningResult.studentName);
             sign_class.setText(scanningResult.courseProcessDesc);
             sign_adress.setText(scanningResult.locationAddress);
@@ -93,9 +94,11 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 //                sendCommentRequest(String.coachid,String.coachlatitude,String.coachlongitude,String codecreatetime,String reservationid,
 //                    String userid,String userlatitude,String userlongitude);
 
+        }
     }
-}
-    private Type mTokenType = new TypeToken<Result>() {}.getType();
+
+    private Type mTokenType = new TypeToken<Result>() {
+    }.getType();
 
     private void sendCommentRequest() {
         URI uri = URIUtil.getSignin();
@@ -113,19 +116,22 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         SignInInfo param = new SignInInfo();
 
         param.coachid = Session.getSession().coachid;
-        if(CarCoachApplication.latitude!=null&&CarCoachApplication.longitude!=null){
+        if (Session.latitude != null && Session.longitude != null) {
 
-        param.coachlatitude = CarCoachApplication.latitude;
-        param.coachlongitude = CarCoachApplication.longitude;
+            param.coachlatitude = Session.latitude;
+            param.coachlongitude = Session.longitude;
+        }else{
+            param.coachlatitude = "";
+            param.coachlongitude = "";
+        }
+
         param.codecreatetime = scanningResult.createTime;
         param.reservationid = scanningResult.reservationId;
         param.userid = scanningResult.studentId;
         param.userlatitude = scanningResult.latitude;
         param.userlongitude = scanningResult.longitude;
-        }
 
-
-      //  Log.i("TAG", GsonUtils.toJson(param) + "coachid-->" + coachid + "reservationid-->" + reservationid + "level-->" + commentcontent + starlevel + learningcontent);
+          LogUtil.print(GsonUtils.toJson(param));
 
         Map map = new HashMap<>();
         map.put("authorization", Session.getToken());
@@ -135,7 +141,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
                     @Override
                     public void onResponse(Result response) {
-                        if (response != null && response.type == Result.RESULT_OK&&response.data!=null) {
+                        if (response != null && response.type == Result.RESULT_OK && response.data != null) {
 //                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
 //                            ReservationOpOk event = new ReservationOpOk();
 //                            event.pos = mReservation.pos;
@@ -145,7 +151,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                             startActivity(intent);
                             finish();
 
-                         } else if (!TextUtils.isEmpty(response.msg)) {
+                        } else if (!TextUtils.isEmpty(response.msg)) {
                             //ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
                             Intent intent = new Intent(SignInActivity.this, SignInFaild.class);
                             startActivity(intent);
@@ -159,9 +165,9 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError arg0) {
-                     //   ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+                        //   ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
 
-                        Intent intent = new Intent(SignInActivity.this, SignInSucceed.class);
+                        Intent intent = new Intent(SignInActivity.this, SignInFaild.class);
                         startActivity(intent);
                     }
                 });
