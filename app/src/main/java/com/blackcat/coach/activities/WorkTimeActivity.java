@@ -30,6 +30,7 @@ import com.blackcat.coach.utils.BaseUtils;
 import com.blackcat.coach.utils.BaseUtils.TimeOfDay;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.google.gson.reflect.TypeToken;
@@ -145,11 +146,21 @@ public class WorkTimeActivity extends BaseActivity implements View.OnClickListen
         param.begintimeint = mStartTime.hourOfDay + "";
         param.endtimeint = mEndTime.hourOfDay + "";
         param.worktimedesc = "";
-
+//        mAdapter.notifyDataSetChanged();
         SparseBooleanArray sparseArray = mListView.getCheckedItemPositions();
-        int count = sparseArray.size();
-        final int[] worktime = new int[count];
+//        int temp = 0;
         int size = mListView.getCount();
+//        for(int k = 0;k < sparseArray.size();k++){
+//            LogUtil.print(k+"work--week-count->"+sparseArray.get(k));
+////            if(sparseArray.get(k)){
+////                temp++;
+////            }
+//        }
+
+        int count = sparseArray.size();
+
+        final int[] worktime = new int[count];
+
         StringBuilder sb = new StringBuilder();
         int j = 0;
         for (int i = 0; i < size; i++) {
@@ -163,7 +174,31 @@ public class WorkTimeActivity extends BaseActivity implements View.OnClickListen
         if (sb.length() > 0) {
             sb.deleteCharAt(sb.length() - 1);
         }
+        //截取掉最后一位或者多位0
+        int temp3 = worktime.length-1;
+        int count1 = count;//(worktime[worktime.length-1]==0 && count>1)?count-1:count;
+        while (worktime[temp3]==0 && count>1){
+            count1 --;
+            temp3--;
+        }
+
+        final int[] worktime1 = new int[count1];
+        if(worktime[worktime.length-1]==0 && count>1){
+
+            for (int i = 0;i<worktime1.length;i++) {
+                worktime1[i] = worktime[i];
+            }
+        }else{
+            for (int i = 0;i<worktime1.length;i++) {
+                worktime1[i] = worktime[i];
+            }
+        }
+
+        for (int i : worktime1) {
+            LogUtil.print("work--week-result->"+i);
+        }
         param.workweek = sb.toString();
+
 
 
         Map map = new HashMap();
@@ -175,7 +210,7 @@ public class WorkTimeActivity extends BaseActivity implements View.OnClickListen
                     public void onResponse(Result response) {
                         if (response != null && response.type == Result.RESULT_OK) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
-                            Session.getSession().workweek = worktime;
+                            Session.getSession().workweek = worktime1;
                             Session.getSession().worktimespace = new Worktimespace(mStartTime.hourOfDay, mEndTime.hourOfDay);
                             Session.save(Session.getSession(), true);
                             finish();
