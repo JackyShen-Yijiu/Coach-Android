@@ -283,6 +283,11 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                 break;
             case SIGNIN:
                 tv_style.setText(R.string.reservation_sign_in);
+                toolbar_title.setText("已签到");
+                mBtnSend.setVisibility(View.GONE);
+                ll_change_reson.setVisibility(View.GONE);
+                mBtnRefuse.setVisibility(View.GONE);
+                mBtnAccept.setVisibility(View.GONE);
                 mMapView.setVisibility(View.GONE);
                 break;
 //            case ONCOMMENTED://评论成功(已完成)

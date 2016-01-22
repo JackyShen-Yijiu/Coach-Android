@@ -55,7 +55,7 @@ public class RowWallet {
 
         public static final String TYPE_STR_1 = "注册发放";
         public static final String TYPE_STR_2 = "邀请好友发放";
-        public static final String TYPE_STR_3 = "购买商";
+        public static final String TYPE_STR_3 = "购买商品";
     }
 
     static class Holder extends BaseViewHolder {
