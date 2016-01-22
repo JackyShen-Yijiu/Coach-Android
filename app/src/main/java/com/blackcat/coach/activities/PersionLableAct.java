@@ -214,6 +214,7 @@ public class PersionLableAct<T> extends BaseActivity implements View.OnClickList
         if(TextUtils.isEmpty(etLabel.getText().toString())){//不能为空
             return false;
         }else if(etLabel.getText().toString().trim().length()>5){//不能超过5个字
+//            Toast.makeText(this,"",Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
@@ -417,9 +418,10 @@ public class PersionLableAct<T> extends BaseActivity implements View.OnClickList
         if (TextUtils.isEmpty(url)) {
             return;
         }
-        SetTagParams param = new SetTagParams();
+        final SetTagParams param = new SetTagParams();
         param.coachid = Session.getSession().coachid;
         param.tagslist = getSelectedystemTag();
+        final String tagsList = param.tagslist;
         LogUtil.print("tags-->"+param.tagslist);
         Map map = new HashMap<>();
         map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
@@ -430,11 +432,12 @@ public class PersionLableAct<T> extends BaseActivity implements View.OnClickList
                     public void onResponse(Result response) {
                         if (response != null && response.type == Result.RESULT_OK) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
+//                            Session.getSession().tagslist = tagsList;
 //                            ReservationOpOk event = new ReservationOpOk();
 //                            event.pos = mReservation.pos;
 //                            event.status = ReservationStatus.FINISH;
 //                            EventBus.getDefault().post(event);
-//                            finish();
+                            finish();
                         } else if (!TextUtils.isEmpty(response.msg)) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
                         }
@@ -460,6 +463,7 @@ public class PersionLableAct<T> extends BaseActivity implements View.OnClickList
     private String getSelectedystemTag(){
         String temp ="";
         String temp1 ="";
+//        List<LabelBean> list = new
         //系统标签
         for (LabelBean labelBean : systemlabel) {
             if(labelBean.is_choose)

@@ -214,15 +214,12 @@ public class IndexActivity extends BaseActivity implements IKillable,
             if (location.getLocType() == BDLocation.TypeGpsLocation ||
                     location.getLocType() == BDLocation.TypeNetWorkLocation ||
                     location.getLocType() == BDLocation.TypeOffLineLocation ) {
-//                CarCoachApplication.latitude =  Double.toString(location.getLatitude());
-//                CarCoachApplication.longitude = Double.toString(location.getLongitude());
                 LogUtil.print("location---->"+location.getLatitude()+"Longitude:>>>"+location.getLongitude());
 
-                Session.saveUserLocation(Double.toString(location.getLongitude()),
-                        Double.toString(location.getLatitude()));
+                Session.saveUserLocation(location.getLongitude()+"",location.getLatitude()+"");
 
-                LogUtil.print("getLongitude---" + Double.toString(location.getLongitude()));
-                LogUtil.print("getLatitude---"+Double.toString(location.getLatitude()));
+//                LogUtil.print("getLongitude---" + Double.toString(location.getLongitude()));
+//                LogUtil.print("getLatitude---"+Double.toString(location.getLatitude()));
             } else if (location.getLocType() == BDLocation.TypeServerError) {
 
             } else if (location.getLocType() == BDLocation.TypeNetWorkException) {
@@ -789,6 +786,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 //		case R.id.toolbar_title:
 //			break;
             case R.id.toolbar_title_right://签到
+            case R.id.toobar_title_right_tv:
                 if(ReservationFragment.currentPage == 0){//签到
                     Intent intent = new Intent(this, CaptureActivity.class);
                     startActivity(intent);

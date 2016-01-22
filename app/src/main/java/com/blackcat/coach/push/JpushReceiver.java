@@ -13,6 +13,7 @@ import com.blackcat.coach.activities.IndexActivity;
 import com.blackcat.coach.activities.OrderMsgActivity;
 import com.blackcat.coach.activities.SystemMsgActivity;
 import com.blackcat.coach.activities.WalletActivity;
+import com.blackcat.coach.models.JpushNew;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
@@ -58,7 +59,7 @@ public class JpushReceiver extends BroadcastReceiver {
             Log.d(TAG, "[JpushReceiver] 用户点击打开了通知:  " + extra);
             //打开自定义的Activity
             processNotificationMessage(context, extra);
-            toSystemMsg(context);
+//            toSystemMsg(context);
         } else if (JPushInterface.ACTION_RICHPUSH_CALLBACK.equals(intent.getAction())) {
             Log.d(TAG, "[JpushReceiver] 用户收到到RICH PUSH CALLBACK: " + bundle.getString(JPushInterface.EXTRA_EXTRA));
             //在这里根据 JPushInterface.EXTRA_EXTRA 的内容处理代码，比如打开新的Activity， 打开一个网页等..
@@ -171,6 +172,8 @@ public class JpushReceiver extends BroadcastReceiver {
         }
     }
 
+
+
     // 打印所有的 intent extra 数据
     private static String printBundle(Bundle bundle) {
         StringBuilder sb = new StringBuilder();
@@ -203,4 +206,9 @@ public class JpushReceiver extends BroadcastReceiver {
             e.printStackTrace();
         }
     }
+
+    private void showNotifycation(){
+
+    }
+
 }

@@ -734,6 +734,8 @@ public class BaseUtils {
         if (event == null) {
             return 0;
         }
+//        LogUtil.print("time-->"+event.year+"month--->"+event.month+"day-->"+event.day);
+//        LogUtil.print("time--hour>"+event2.hourOfDay+"minutes--->"+event2.minutes);
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, event.year);
         cal.set(Calendar.DAY_OF_MONTH, event.day);

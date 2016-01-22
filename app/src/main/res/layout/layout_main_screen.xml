@@ -47,6 +47,8 @@
                 android:clickable="true"
                 android:textSize="@dimen/profile_text_size"
                 android:gravity="center_vertical"
+                android:longClickable="true"
+                android:onClick="onClick"
                 android:textColor="@color/textColorPrimary" />
 
 

@@ -44,7 +44,7 @@ public class RowSchedule {
         viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item));
         if (item.userid != null) {
             viewHolder.tvName.setText(item.userid.name);
-            viewHolder.tvClass.setText("剩余"+item.userid.leavecoursecount+"课时漏"+item.userid.missingcoursecount+"课时");
+            viewHolder.tvClass.setText("剩余"+item.leavecoursecount+"课时漏"+item.missingcoursecount+"课时");
 //            viewHolder.tvClassDetail.setText("剩余"+"课时漏"+"课时");
 
             if (item.userid.headportrait != null && !TextUtils.isEmpty(item.userid.headportrait.originalpic)) {

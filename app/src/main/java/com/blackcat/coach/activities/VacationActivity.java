@@ -27,6 +27,7 @@ import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.BaseUtils;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.google.gson.reflect.TypeToken;
@@ -214,9 +215,9 @@ public class VacationActivity extends BaseActivity implements View.OnClickListen
         if (start >= end) {
             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_vacation_invalid);
         }
-        param.begintime = start + "";
-        param.endtime = end + "";
-
+        param.begintime = (start/1000) + "";
+        param.endtime = (end/1000) + "";
+//        LogUtil.print("start-->"+start+"end-->"+end);
         Map map = new HashMap();
         map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
         GsonIgnoreCacheHeadersRequest<Result> request = new GsonIgnoreCacheHeadersRequest<Result>(

@@ -22,6 +22,8 @@ public class Reservation implements Serializable {
     public TrainField trainfieldlinfo;
 
     public Cancelreason cancelreason;
+    public int leavecoursecount;
+    public int missingcoursecount;
 
     //用来更新Reservation状态
     public int pos;
