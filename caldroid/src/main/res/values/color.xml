@@ -26,7 +26,7 @@
 
 
     <color name="white">#ffffffff</color>
-    <color name="calendar_background">#e3eef4</color>
+    <color name="calendar_background">#f00</color>
     <color name="selection">#FF529bd0</color>
     <color name="calendar_zhe_day">#FF529bd0</color>
     <color name="event_center">#ff6bd697</color>

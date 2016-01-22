@@ -208,12 +208,12 @@ public class URIUtil {
 		return null;
 	}
 
-	public static URI getScheduleList(String coachid, int pos, String date) {
+	public static URI getScheduleList(String coachid,String date) {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 		fillBasicParams(CarCoachApplication.getInstance(), params);
 		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, coachid));
 //		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, "5616352721ec29041a9af889"));
-		params.add(new BasicNameValuePair(NetConstants.KEY_INDEX, String.valueOf(pos)));
+//		params.add(new BasicNameValuePair(NetConstants.KEY_INDEX, String.valueOf(pos)));
 		params.add(new BasicNameValuePair(NetConstants.KEY_DATE, date));
 		try {
 			URI uri = URIUtils.createURI(NetConstants.HTTP,
