@@ -234,20 +234,25 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mContext = getActivity();
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_child_schedule, container, false);
-        initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_SCHEDULE);
+//       View view= View.inflate(mContext,R.layout.fragment_child_schedule_head,null);
+        initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_SCHEDULE,R.layout.fragment_child_schedule_head);
 
+//        mListView.addHeaderView(view);
+//        mPullToRefreshView.setRefreshListener(null);
+        mListView.setOnLoadMoreListener(null);
         formatter = new SimpleDateFormat("yyyy-MM-dd");
         mCurrentDate = formatter.format(new Date());// 当期日期
         mType = new TypeToken<Result<List<Reservation>>>() {
         }.getType();
-        mPage = 1;
+//        mPage = 1;
         if (!Session.isUserInfoEmpty()) {
-            mURI = URIUtil.getScheduleList(Session.getSession().coachid, mPage, mCurrentDate);
+            mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);
             refresh(DicCode.RefreshType.R_INIT, mURI);
         }
-        mContext = getActivity();
+
         initView(rootView);
         initData();
 
@@ -508,8 +513,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         RelativeLayout.LayoutParams params_br = new RelativeLayout.LayoutParams(
                 LinearLayout.LayoutParams.FILL_PARENT, 1);
         params_br.addRule(RelativeLayout.BELOW, CAL_LAYOUT_ID);
-        // br.setBackgroundColor(getResources().getColor(
-        // R.color.calendar_background));
+//         br.setBackgroundColor(getResources().getColor(
+//         R.color.calendar_background));
         layout.addView(br, params_br);
     }
 
@@ -826,7 +831,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
                     mPage = 1;
                     if (!Session.isUserInfoEmpty()) {
                     LogUtil.print(message);
-                        mURI = URIUtil.getScheduleList(Session.getSession().coachid, mPage, mCurrentDate);
+                        mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);
                         refresh(DicCode.RefreshType.R_INIT, mURI);
                     }
                 }
@@ -846,26 +851,30 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         }
     }
 
-
     @Override
-    protected void initViews(View rootView, LayoutInflater inflater,
-                             int adapterType) {
-        super.initViews(rootView, inflater, adapterType);
+    protected void initViews(View rootView, LayoutInflater inflater, int adapterType, int headerLayoutRes) {
+        super.initViews(rootView, inflater, adapterType, headerLayoutRes);
     }
+
+//    @Override
+//    protected void initViews(View rootView, LayoutInflater inflater,
+//                             int adapterType) {
+//        super.initViews(rootView, inflater, adapterType);
+//    }
 
 
     @Override
     public void onRefresh() {
         mPage = 1;
-        mURI = URIUtil.getScheduleList(Session.getSession().coachid, mPage, mCurrentDate);
+        mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);
         refresh(DicCode.RefreshType.R_PULL_DOWN, mURI);
     }
 
     @Override
     public void onLoadMore() {
-        mPage++;
-        mURI = URIUtil.getScheduleList(Session.getSession().coachid, mPage, mCurrentDate);
-        refresh(DicCode.RefreshType.R_PULL_UP, mURI);
+//        mPage++;
+//        mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);
+//        refresh(DicCode.RefreshType.R_PULL_UP, mURI);
     }
 
     @Override
@@ -874,5 +883,6 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         if (refreshType == DicCode.RefreshType.R_PULL_UP) {
             mPage--;
         }
+
     }
 }

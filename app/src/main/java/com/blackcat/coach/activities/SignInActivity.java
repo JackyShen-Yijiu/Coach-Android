@@ -168,10 +168,11 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError arg0) {
-                        //   ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+//                           ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
 
                         Intent intent = new Intent(SignInActivity.this, SignInFaild.class);
                         startActivity(intent);
+                        finish();
                     }
                 });
         // 请求加上Tag,用于取消请求

@@ -58,4 +58,12 @@ public class CalendarGridView extends GridView {
 		int x = j / 2;
 		setPadding(x, 0, 0, 0);// 居中
 	}
+
+	@Override
+	public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+		int expandSpec = MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2,
+				MeasureSpec.AT_MOST);
+		super.onMeasure(widthMeasureSpec, expandSpec);
+	}
 }
