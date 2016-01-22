@@ -199,10 +199,16 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
             case APPLYCANCEL://学生取消
 
                 mMapView.setVisibility(View.GONE);
-                toolbar_title.setText("已取消");
+                toolbar_title.setText("学员取消");
                 ll_change_reson.setVisibility(View.VISIBLE);
                 tv_style.setText(R.string.reservation_applycancel);
                 mBtnSend.setVisibility(View.GONE);
+
+                mBtnRefuse.setVisibility(View.GONE);
+                mBtnAccept.setVisibility(View.GONE);
+
+
+                break;
             case APPLYREFUSE://教练拒绝或者取消(已取消)
                 //已取消
                 ll_change_reson.setVisibility(View.VISIBLE);

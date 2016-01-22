@@ -151,7 +151,7 @@
 
     <!--Reservation status -->
     <string name="reservation_applying">待接受</string>
-    <string name="reservation_applycancel">学生取消</string>
+    <string name="reservation_applycancel">学员取消</string>
     <string name="reservation_confirm">已接受</string>
     <string name="reservation_applyrefuse">已取消</string>
     <string name="reservation_unconfirmfinish">待确认完成</string>
