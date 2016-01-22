@@ -272,7 +272,7 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onError() {
                 ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.upload_avatar_err);
-                mIvAvatar.setImageResource(R.mipmap.ic_avatar_small);
+//                mIvAvatar.setImageResource(R.mipmap.ic_avatar_small);
                 mDialog.dismiss();
                 mDialog = null;
             }
