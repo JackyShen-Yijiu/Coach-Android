@@ -340,6 +340,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
 //        // Setup Caldroid
 //        caldroidFragment.setCaldroidListener(listener);
 
+//
         return rootView;
     }
 
@@ -444,6 +445,9 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         mPreMonthImg.setOnClickListener(onPreMonthClickListener);
 
         mNextMonthImg.setOnClickListener(onNextMonthClickListener);
+//        RelativeLayout r2 = (RelativeLayout)rootView.findViewById(R.id.calendar_layout);
+//        mListView.addHeaderView(r2);
+
     }
 
 

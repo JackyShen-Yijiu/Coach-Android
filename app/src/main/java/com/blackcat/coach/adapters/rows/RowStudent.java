@@ -40,7 +40,13 @@ public class RowStudent {
         viewHolder.tvName.setText(item.name);
         viewHolder.tvProgress.setText(item.subjectprocess);
         //sun
-        viewHolder.tvLast.setText("预约剩余"+item.leavecoursecount +"课时");
+        if(item.subject.subjectid==2^item.subject.subjectid==3){
+        viewHolder.tvLast.setText("预约剩余" + item.leavecoursecount + "课时");}
+        else{
+            viewHolder.tvLast.setVisibility(View.GONE);
+            viewHolder.tvProgress.setText(item.subject.name);
+        }
+
         if (item.headportrait != null && !TextUtils.isEmpty(item.headportrait.originalpic)) {
             //TODO
 //            PicassoUtil.loadImage(activity, viewHolder.ivAvatar, item.headportrait.originalpic, R.dimen.avatar_size, R.dimen.avatar_size, false, R.mipmap.ic_avatar_small);

@@ -164,7 +164,8 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 //        工作性质
         if (!TextUtils.isEmpty(Session.getSession().GenderJob)) {
             tv_job_category.setText(Session.getSession().GenderJob);
-        }
+        }else{
+            tv_job_category.setText(R.string.str_direct_coach);}
         //休假
 
         if(System.currentTimeMillis() < Session.getSession().leavebegintime || System.currentTimeMillis()<Session.getSession().leaveendtime){//已设置

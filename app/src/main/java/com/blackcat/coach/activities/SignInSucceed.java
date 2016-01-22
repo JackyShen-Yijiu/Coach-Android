@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.fragments.ItemFragment;
 
 /**
  * Created by aa on 2016/1/15.
@@ -32,6 +33,8 @@ public class SignInSucceed extends BaseActivity implements View.OnClickListener 
             case R.id.sign_commit:
 //                Intent intent = new Intent(SignInSucceed.this, IndexActivity.class);
 //                startActivity(intent);
+                ItemFragment.REFRESH0 = true;
+                ItemFragment.REFRESH1 = true;
                 this.finish();
                 break;
 
