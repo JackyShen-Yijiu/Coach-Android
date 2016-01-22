@@ -127,9 +127,9 @@ public class DetailStudentFragment extends BaseListFragment<Comment> implements 
         } else {
 
         }
-        LogUtil.print("leavecourseCount-->"+mUser);
-
-        LogUtil.print("leavecourseCount-->"+mUser.subject);
+//        LogUtil.print("leavecourseCount-->"+mUser);
+//
+//        LogUtil.print("leavecourseCount-->"+mUser.subject);
         if(mUser.leavecoursecount == 0 && mUser.subject!=null){//报名,显示按钮
             btnBaoKao.setText("可报考"+mUser.subject.name);
             btnBaoKao.setVisibility(View.VISIBLE);
