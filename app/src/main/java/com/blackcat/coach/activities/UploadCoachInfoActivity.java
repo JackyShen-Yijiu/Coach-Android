@@ -166,6 +166,11 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_id_empty);
                     return;
                 }
+                if (mEtCard.getText().toString().length()!=15 ||mEtCard.getText().toString().length()!=18) {
+                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_idcardnumber_invalid);
+                    return;
+                }
+
                 if (TextUtils.isEmpty(mEtName.getText())) {
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_name_empty);
                     return;
@@ -174,10 +179,10 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.drivingschool_empty);
                     return;
                 }
-                if (TextUtils.isEmpty(mEtCarCert.getText())) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_drivingcard_empty);
-                    return;
-                }
+//                if (TextUtils.isEmpty(mEtCarCert.getText())) {
+//                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_drivingcard_empty);
+//                    return;
+//                }
                 if (TextUtils.isEmpty(mEtCoachCert.getText())) {
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_coachcard_empty);
                     return;
