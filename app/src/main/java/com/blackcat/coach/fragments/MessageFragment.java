@@ -79,7 +79,11 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
 
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_message, container, false);
-        initViews(rootView);
+        mListView = (ListView) rootView.findViewById(R.id.inner_list);
+        mRLNetErrorItem = rootView.findViewById(R.id.rl_error_item);
+        View headerView = View.inflate(mActivity,R.layout.fragment_system_message,null);
+        mListView.addHeaderView(headerView);
+        initViews(headerView);
         EventBus.getDefault().register(this);
         refreshMessagesList();
         MessageInfo();
@@ -88,7 +92,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
 
     
     private void initViews(View rootView) {
-        mListView = (ListView) rootView.findViewById(R.id.inner_list);
+
 
         tv_unread_count=(TextView)rootView.findViewById(R.id.tv_unread_count);
         TV_system_messeage=(TextView)rootView.findViewById(R.id.TV_system_messeage);
@@ -106,7 +110,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 if (!BlackCatHXSDKHelper.getInstance().isLogined()) {
                     return;
                 }
-                Message message = mAdapter.getItem(position);
+                Message message = mAdapter.getItem(position-1);
                 Intent intent = new Intent(getActivity(), ChatActivity.class);
                 intent.putExtra(Constant.MESSAGE_USERID_ATR_KEY, message.getUserName());
                 intent.putExtra(Constant.MESSAGE_NAME_ATTR_KEY, message.getShowName());
@@ -120,7 +124,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         system_msg=(RelativeLayout)rootView.findViewById(R.id.rl_system_messeage);
         system_msg.setOnClickListener(this);
                 
-        mRLNetErrorItem = rootView.findViewById(R.id.rl_error_item);
+
         mTvErrorMsg = (TextView)rootView.findViewById(R.id.tv_connect_errormsg);
 
     }

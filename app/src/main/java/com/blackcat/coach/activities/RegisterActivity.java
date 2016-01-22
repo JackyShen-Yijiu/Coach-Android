@@ -119,6 +119,12 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.pwd_empty);
                     return;
                 }
+                String password = mEtPwd.getText().toString();
+                String conPass = mEtPwd2.getText().toString();
+                if (!conPass.equals(password)) {
+                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.pwd_not_match);
+                    return ;
+                }
                 registerRequest(mEtPhoneNum.getText().toString(), mEtVerifyCode.getText().toString(), mEtPwd.getText().toString(), mEtInivte.getText().toString());
 //                registerAccount();
                 EventBus.getDefault().post(new RegisterOkEvent());
