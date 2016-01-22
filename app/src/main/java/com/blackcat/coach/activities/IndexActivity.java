@@ -209,7 +209,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
         @Override
         public void onReceiveLocation(BDLocation location) {
-
+            LogUtil.print("location----0000>");
             //Receive Location
             if (location.getLocType() == BDLocation.TypeGpsLocation ||
                     location.getLocType() == BDLocation.TypeNetWorkLocation ||
