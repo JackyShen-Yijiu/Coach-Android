@@ -27,6 +27,7 @@ import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.BaseUtils;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.easemob.EMCallBack;
@@ -158,6 +159,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     public void onEvent(RegisterOkEvent event) {
+        LogUtil.print("onevent-->finish");
         finish();
     }
 

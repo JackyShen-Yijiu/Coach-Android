@@ -390,6 +390,27 @@ public class URIUtil {
 		return null;
 	}
 
+	/**
+	 * 个人信息 评论
+	 * @param userId
+	 * @param page
+	 * @return
+	 */
+	public static URI getCommentPersonal(String userId, int page) {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_GET_COMMENTS_CAOCH + userId + "/" + page, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+
+			return uri;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static URI getFieldsList(String schoolid) {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 		fillBasicParams(CarCoachApplication.getInstance(), params);

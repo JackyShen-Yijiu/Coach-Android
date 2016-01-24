@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.view.ViewGroup;
 
 import com.blackcat.coach.adapters.rows.RowComment;
+import com.blackcat.coach.adapters.rows.RowCommentPersonal;
 import com.blackcat.coach.adapters.rows.RowCourse;
 import com.blackcat.coach.adapters.rows.RowDrivingSchool;
 import com.blackcat.coach.adapters.rows.RowMessage;
@@ -42,6 +43,8 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
         public static final int TYPE_ADAPTER_PRODUCT = 12;
         public static final int TYPE_ADAPTER_SYSTEMMSG = 13;
         public static final int TYPE_ADAPTER_ORDERMSG = 14;
+        /***个人信息*/
+        public static final int TYPE_ADAPTER_COMMMENT_TEACHER = 15;
     }
     
     public List<T> getList() {
@@ -137,6 +140,8 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
                 return RowSystemMsg.createViewHolder(parent, parent.getContext());
             case AdapterType.TYPE_ADAPTER_ORDERMSG:
                 return RowOrderMsg.createViewHolder(parent, parent.getContext());
+            case AdapterType.TYPE_ADAPTER_COMMMENT_TEACHER://个人信息 教练评论
+                return RowCommentPersonal.createViewHolder(parent,parent.getContext());
             default:
                 return RowNone.createViewHolder(parent, parent.getContext());
         }
@@ -177,6 +182,9 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
                 break;
             case AdapterType.TYPE_ADAPTER_ORDERMSG:
                 RowOrderMsg.bindViewHolder(mActivity, holder, position, mList.get(position));
+                break;
+            case AdapterType.TYPE_ADAPTER_COMMMENT_TEACHER://个人信息 教练评论
+                 RowCommentPersonal.bindViewHolder(mActivity, holder,position,mList.get(position));
                 break;
             default:
                 RowNone.bindViewHolder(holder);

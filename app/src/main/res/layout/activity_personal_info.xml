@@ -6,7 +6,6 @@
     android:orientation="vertical"
     tools:context="com.blackcat.coach.activities.PersonalInfoActivity">
 
-    <include layout="@layout/layout_toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
