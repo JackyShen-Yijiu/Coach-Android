@@ -245,6 +245,30 @@ public class URIUtil {
 		}
 		return null;
 	}
+
+	public static URI getStudentsList1(String coachid, int pos,int type) {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, coachid));
+		params.add(new BasicNameValuePair(NetConstants.STUDENT_TYPE, String.valueOf(type)));
+
+
+		params.add(new BasicNameValuePair(NetConstants.KEY_INDEX, String.valueOf(pos)));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_GET_STUDENTS, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+
+
 	//系统消息（新加）
 	public static URI getStystemMsgList(String coachid, int pos) {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();

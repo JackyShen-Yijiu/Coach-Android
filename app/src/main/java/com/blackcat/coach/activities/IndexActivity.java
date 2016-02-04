@@ -166,6 +166,8 @@ public class IndexActivity extends BaseActivity implements IKillable,
     private TextView tvQianDao;
     private ImageView imgQuery;
 
+    private int currentPage = 0;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -706,26 +708,30 @@ public class IndexActivity extends BaseActivity implements IKillable,
 //			if (reClicked) {
 //	        }
                 mToolBarTitle.setText(R.string.title_reservation);
-                showHideQianDao(true, ReservationFragment.currentPage);
+                showHideQianDao(true, ReservationFragment.currentPage, 0);
+
                 break;
             case TAB_SCHEDULE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_schedule);
-                showHideQianDao(false,-1);
+                showHideQianDao(false, -1, 1);
+
                 break;
             case TAB_MESSAGE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_message);
-                showHideQianDao(false,-1);
+                showHideQianDao(false,-1,2);
+
 //			mMenuItemRight.setVisible(false);
                 break;
             case TAB_PROFILE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_profile);
-                showHideQianDao(false,-1);
+                showHideQianDao(false, -1,3);
+
 //		    mMenuItemRight.setVisible(false);
                 break;
             default:
@@ -738,21 +744,32 @@ public class IndexActivity extends BaseActivity implements IKillable,
      *
      * @param flag
      */
-    public void showHideQianDao(boolean flag,int position) {
+    public void showHideQianDao(boolean flag,int position,int type) {
+        currentPage = type;
         if (flag){
             llQianDao.setVisibility(View.VISIBLE);
             if(position==0){//签到
                 tvQianDao.setVisibility(View.VISIBLE);
+                tvQianDao.setText("签到");
                 imgQuery.setImageResource(R.drawable.iconfont_icon);
-            }else{
+            }else {
                 tvQianDao.setVisibility(View.GONE);
                 imgQuery.setImageResource(R.drawable.iconfont_query);
             }
+            imgQuery.setVisibility(View.VISIBLE);
+        }else if(type == 2){
+            llQianDao.setVisibility(View.VISIBLE);
+            tvQianDao.setVisibility(View.VISIBLE);
+            tvQianDao.setText("群发短信");
+            imgQuery.setVisibility(View.GONE);
+
         }else{
             llQianDao.setVisibility(View.GONE);
         }
 
     }
+
+
 
 //	private MenuItem mMenuItemRight;
 //	@Override
@@ -788,13 +805,22 @@ public class IndexActivity extends BaseActivity implements IKillable,
 //			break;
             case R.id.toolbar_title_right://签到
             case R.id.toobar_title_right_tv:
-                if(ReservationFragment.currentPage == 0){//签到
-                    Intent intent = new Intent(this, CaptureActivity.class);
-                    startActivity(intent);
-                }else{//搜索
-                    Intent intent1 = new Intent(this, QueryAct.class);
+
+//                LogUtil.print("current---page" + mMainContainer.getCurrentTabType());
+                if(currentPage == 0){
+                    if(ReservationFragment.currentPage == 0){//签到
+                        Intent intent = new Intent(this, CaptureActivity.class);
+                        startActivity(intent);
+                    }else{//搜索
+                        Intent intent1 = new Intent(this, QueryAct.class);
+                        startActivity(intent1);
+                    }
+                }else if(currentPage == 2){
+                    Intent intent1 = new Intent(this, StudentsActivity1.class);
+                    intent1.setFlags(1);
                     startActivity(intent1);
                 }
+
                 break;
             default:
                 break;

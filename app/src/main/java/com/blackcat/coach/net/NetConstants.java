@@ -126,6 +126,7 @@ public class NetConstants {
 	public static final String KEY_AUTHORIZATION = "authorization";
 	public static final String KEY_PRODUCT_ID = "productid";
 	public static final String KEY_SEARCH_NAME = "searchname";
+	public static final String STUDENT_TYPE = "studenttype";
 
 
 	public static final String KEY_COACH_ID = "coachid";

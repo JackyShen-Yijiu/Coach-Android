@@ -22,8 +22,8 @@ public class User implements Serializable {
     public String subjectprocess;
     public String address;
     /**剩余课程*/
-    public int leavecoursecount;
+    public String leavecoursecount;
     /**遗漏课程*/
-    public int missingcoursecount;
+    public String missingcoursecount;
 
 }

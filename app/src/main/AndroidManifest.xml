@@ -47,7 +47,6 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-
     <application
         android:name=".CarCoachApplication"
         android:allowBackup="true"
@@ -243,7 +242,7 @@
         <!-- black-cat#yibuxuecheprod -->
         <meta-data
             android:name="EASEMOB_APPKEY"
-            android:value="black-cat#yibuxuecheprod"/>
+            android:value="black-cat#yibuxuecheprod" />
         <!-- 声明sdk所需的service -->
         <service android:name="com.easemob.chat.EMChatService" />
         <!-- 声明sdk所需的receiver -->
@@ -263,11 +262,11 @@
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="9ooYNv5VgreXO2lFfL5U76yt" />
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
-        </service>
+            android:process=":remote"></service>
 
         <!-- Required SDK核心功能 -->
         <activity
@@ -406,66 +405,73 @@
             android:label="@string/title_custom_label"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-
-
-
         <activity
             android:name=".activities.ModifyCoachNameAct"
             android:label="@string/title_modify_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity android:name=".activities.QueryAct">
-            android:theme="@style/AppTheme"></activity>
-
-        <activity android:name=".activities.OrderMsgActivity"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
+            android:name=".activities.OrderMsgActivity"
             android:label="@string/system_msg"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-
-        <activity android:name=".activities.SystemMsgActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.SystemMsgActivity"
             android:label="@string/order_msg"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-
-        <activity android:name=".activities.SignInActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.SignInActivity"
             android:label="@string/sigin_detail"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-
-        <activity android:name=".activities.SignInSucceed"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.SignInSucceed"
             android:label="@string/sigin_detail"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".activities.SignInFaild"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.SignInFaild"
             android:label="@string/sigin_detail"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-
-        <activity android:name=".activities.TermsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.TermsActivity"
             android:label="@string/about_server"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-
-        <activity android:name=".activities.JobCategory"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.JobCategory"
             android:label="@string/job_category"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".activities.NewTrainSubjectActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.NewTrainSubjectActivity"
             android:label="@string/delegable_subject"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".activities.GuideActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.GuideActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".activities.WebViewMsg"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.WebViewMsg"
             android:label="@string/order_msg"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
-        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+            android:theme="@style/AppTheme" />
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
 
-
-
+        <activity android:name=".activities.StudentsActivity1"
+            android:label="@string/title_activity_students"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            ></activity>
     </application>
 
 </manifest>

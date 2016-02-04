@@ -21,6 +21,7 @@ import com.blackcat.coach.activities.NewTrainSubjectActivity;
 import com.blackcat.coach.activities.PersonalInfoActivity;
 import com.blackcat.coach.activities.SettingsActivity;
 import com.blackcat.coach.activities.StudentsActivity;
+import com.blackcat.coach.activities.StudentsActivity1;
 import com.blackcat.coach.activities.TrainFieldActivity;
 import com.blackcat.coach.activities.TrainingSubjectActivity;
 import com.blackcat.coach.activities.VacationActivity;
@@ -241,7 +242,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
                 startActivity(new Intent(mActivity, VacationActivity.class));
                 break;
             case R.id.rl_students://学员列表
-                startActivity(new Intent(mActivity, StudentsActivity.class));
+                startActivity(new Intent(mActivity, StudentsActivity1.class));//
                 break;
             case R.id.rl_setting:
                 startActivity(new Intent(mActivity, SettingsActivity.class));

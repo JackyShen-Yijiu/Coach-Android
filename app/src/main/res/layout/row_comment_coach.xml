@@ -47,8 +47,7 @@
         style="@style/roomRatingBar"
         android:layout_alignBottom="@+id/iv_cmt_coach_avatar"
         android:layout_alignParentRight="true"
-        android:longClickable="false"
-        android:saveEnabled="false"
+        android:isIndicator="true"
         android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

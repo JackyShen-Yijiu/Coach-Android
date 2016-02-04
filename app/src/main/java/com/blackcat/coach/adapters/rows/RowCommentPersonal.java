@@ -14,6 +14,7 @@ import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Comment;
+import com.blackcat.coach.utils.LogUtil;
 
 /**
  * Created by zou on 15/10/17.
@@ -47,11 +48,13 @@ public class RowCommentPersonal {
             }
         } else {
             viewHolder.tvName.setText("");
+
             viewHolder.ivAvatar.setImageResource(R.mipmap.ic_avatar_small);
         }
         if (item.comment != null) {
             viewHolder.tvContent.setText(item.comment.commentcontent);
-            viewHolder.ratebar.setProgress(Integer.parseInt(item.comment.starlevel));
+            LogUtil.print("star-->"+item.comment.starlevel);
+            viewHolder.ratebar.setRating(Integer.parseInt(item.comment.starlevel));
         } else {
             viewHolder.tvContent.setText("");
         }
