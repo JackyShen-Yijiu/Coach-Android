@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -18,6 +20,7 @@ import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.User;
 import com.blackcat.coach.utils.BaseUtils;
 import com.blackcat.coach.utils.Constants;
+import com.blackcat.coach.utils.LogUtil;
 
 /**
  * Created by pengdonghua on 2016/2/4.
@@ -31,10 +34,12 @@ public class RowStudentSms {
         holder.tvName = (TextView) view.findViewById(R.id.tv_name);
         holder.tvProgress = (TextView) view.findViewById(R.id.tv_progress);
         holder.ivAvatar = (ImageView) view.findViewById(R.id.iv_avatar);
+        holder.checkBox = (CheckBox) view.findViewById(R.id.item_student_sms_check);
 //        holder.tvLast = (TextView) view.findViewById(R.id.tv_last);
 //        holder.tvMissing = (TextView) view.findViewById(R.id.tv_missing);
 //        holder.rl3 = (RelativeLayout) view.findViewById(R.id.item_student_rl3);
 //        holder.imgIphone = (ImageView) view.findViewById(R.id.item_student_phone);
+
         return holder;
     }
 
@@ -66,6 +71,13 @@ public class RowStudentSms {
             viewHolder.ivAvatar.setImageResource(R.mipmap.ic_avatar_small);
         }
 
+        viewHolder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                LogUtil.print(position+"change---"+b+"infor"+((User) info).name);
+                ((User) info).seleted = b?1:0;
+            }
+        });
 
 
     }
@@ -76,6 +88,7 @@ public class RowStudentSms {
         private ImageView ivAvatar;
         private TextView tvName;
         private TextView tvProgress;
+        private CheckBox checkBox;
         //剩余课程的数量  : 预约剩余课程20学时
 //        private TextView tvLast;
 //        private TextView tvMissing;

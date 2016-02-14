@@ -1,6 +1,7 @@
 package com.blackcat.coach.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
@@ -10,11 +11,12 @@ import android.widget.Toast;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.StudentsAdapter;
-import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
-import com.blackcat.coach.easemob.Constant;
 import com.blackcat.coach.fragments.StudentFragment1;
 import com.blackcat.coach.lib.PagerSlidingTab;
-import com.blackcat.coach.utils.BaseUtils;
+import com.blackcat.coach.models.User;
+import com.blackcat.coach.utils.LogUtil;
+
+import java.util.List;
 
 public class StudentsActivity1 extends BaseActivity{
 
@@ -90,6 +92,7 @@ public class StudentsActivity1 extends BaseActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_sms) {
+            sendMsg();
             Toast.makeText(StudentsActivity1.this, "发送短信", Toast.LENGTH_SHORT).show();
             return true;
         }
@@ -98,6 +101,30 @@ public class StudentsActivity1 extends BaseActivity{
 
     private void sendMsg(){
 
+        String add = getAddress(students[viewPager.getCurrentItem()].getAdapter().getList());
+        if(add.length()<1){
+            Toast.makeText(StudentsActivity1.this, "请选择需要发送的学员", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        Uri smsUri = Uri.parse("smsto:"+add);
+        Intent intent = new Intent(Intent.ACTION_SENDTO,smsUri);
+        intent.putExtra("sms_body", "");
+        startActivity(intent);
+    }
+
+    /**
+     * 获取需要发送的手机号
+     * @return
+     */
+    private String getAddress(List<User> list){
+        StringBuilder sb = new StringBuilder();
+        for (User user : list) {
+            LogUtil.print("address---00>" );
+            if(user.seleted==1)
+                sb.append(user.mobile).append(";");
+        }
+        return sb.toString();
     }
 
 
