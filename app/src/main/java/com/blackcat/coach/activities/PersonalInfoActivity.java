@@ -85,7 +85,6 @@ public class PersonalInfoActivity extends BaseActivity implements View.OnClickLi
 
         mIvAvatar = (ImageView) findViewById(R.id.ic_avatar);
         if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
-//            PicassoUtil.loadImage(this, mIvAvatar, Session.getSession().headportrait.originalpic, R.dimen.avatar_size, R.dimen.avatar_size, false, R.mipmap.ic_avatar_small);
             UILHelper.loadImage(mIvAvatar, Session.getSession().headportrait.originalpic, false, R.mipmap.ic_avatar_small);
         }
     }

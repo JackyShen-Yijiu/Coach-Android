@@ -18,6 +18,7 @@
         android:layout_marginRight="@dimen/activity_padding"
         android:layout_marginTop="@dimen/activity_padding"
         android:background="@drawable/background_border"
+        android:maxLength="11"
         android:hint="@string/login_user_name"
         android:inputType="phone"
         android:paddingLeft="15dp"
