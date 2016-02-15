@@ -739,6 +739,15 @@ public class IndexActivity extends BaseActivity implements IKillable,
         }
     }
 
+    public void setmToolBarTitle(String title){
+        mToolBarTitle.setText(title);
+    }
+    public void setRightTitleWithoutImg(String title){
+        llQianDao.setVisibility(View.VISIBLE);
+        imgQuery.setVisibility(View.GONE);
+        tvQianDao.setText(title);
+    }
+
     /**
      * 是否显示  签到
      *
@@ -823,6 +832,8 @@ public class IndexActivity extends BaseActivity implements IKillable,
 //                    Intent intent1 = new Intent(this, StudentsActivity1.class);
                     intent1.setFlags(1);
                     startActivity(intent1);
+                }else if(currentPage == 1){
+                    Toast.makeText(this,"预约",Toast.LENGTH_SHORT).show();
                 }
 
                 break;

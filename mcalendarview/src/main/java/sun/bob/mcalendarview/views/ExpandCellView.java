@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import sun.bob.mcalendarview.MarkStyleExp;
-import sun.bob.mcalendarview.R;
 
 
 /**
@@ -14,15 +13,13 @@ import sun.bob.mcalendarview.R;
  */
 public class ExpandCellView extends DefaultCellView {
 
-private Context context;
+
     public ExpandCellView(Context context) {
         super(context);
-        this.context =context;
     }
 
     public ExpandCellView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.context =context;
     }
 
     public void setText_Color(String text, int color) {
@@ -43,14 +40,13 @@ private Context context;
      * 下面三个可以做一个判断，且回调。 执行是否自动换页的功能
      */
     public boolean setDateChoose() {
-//        setBackgroundDrawable(MarkStyleExp.choose);
-        textView.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.point));
+        setBackgroundDrawable(MarkStyleExp.choose);
         textView.setTextColor(Color.WHITE);
         return true ;
     }
 
     public void setDateToday(){
-        textView.setBackgroundDrawable(null);
+        setBackgroundDrawable(null);
         textView.setTextColor(Color.rgb(40,121,243));
     }
 
@@ -66,7 +62,7 @@ private Context context;
 
     public void setDateNormal() {
         textView.setTextColor(Color.parseColor("#999999"));
-        textView.setBackgroundDrawable(null);
+        setBackgroundDrawable(null);
     }
 
     @Override

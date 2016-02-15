@@ -327,4 +327,5 @@
     <string name="delete_tag">确定删除此定义标签</string>
     <string name="send_sms_all">群发短信</string>
 
+    <string name = "student_appointment">学员预约</string>
 </resources>

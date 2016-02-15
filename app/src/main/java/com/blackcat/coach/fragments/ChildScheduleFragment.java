@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
+import com.blackcat.coach.activities.IndexActivity;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.caldroid.CaldroidFragment;
 
@@ -29,6 +30,8 @@ import com.blackcat.coach.models.params.MonthApplyData;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
+
+import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
@@ -58,7 +61,7 @@ import sun.bob.mcalendarview.vo.DateData;
 public class ChildScheduleFragment extends BaseListFragment<Reservation> {
 
     // 基本变量
-    private Context mContext;
+    private IndexActivity mContext;
 
 
     private  SimpleDateFormat formatter;
@@ -107,7 +110,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mContext = getActivity();
+        mContext = (IndexActivity) getActivity();
+        mContext.setRightTitleWithoutImg(CommonUtil.getString(mContext,R.string.student_appointment));
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_child_schedule, container, false);
 //       View view= View.inflate(mContext,R.layout.fragment_child_schedule_head,null);
@@ -128,10 +132,13 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
         Calendar today = Calendar.getInstance();
         today.setTime(new Date());
         //获取当月的信息
-        obtainMonthApplyData(today.get(Calendar.YEAR) + "", today.get(Calendar.MONTH) + "");
+        obtainMonthApplyData(today.get(Calendar.YEAR) + "", (today.get(Calendar.MONTH)+1) + "");
 
         return rootView;
     }
+
+    private int mYear;
+    private int mMonth;
 
     private void initView(View rootView) {
 
@@ -140,14 +147,24 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
 //        YearMonthTv = (TextView) rootView.findViewById(R.id.main_YYMM_Tv);
 //        YearMonthTv.setText(Calendar.getInstance().get(Calendar.YEAR) + "年" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "月");
 
-
+        mYear = Calendar.getInstance().get(Calendar.YEAR);
+        mMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1);
+        mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
+        imageInit();
 
 //      Set up listeners.
         expCalendarView.setOnDateClickListener(new OnExpDateClickListener()).setOnMonthScrollListener(new OnMonthScrollListener() {
             @Override
             public void onMonthChange(int year, int month) {
 //                YearMonthTv.setText(String.format("%d年%d月", year, month));
-                obtainMonthApplyData(year+"", month+"");
+                if(!(mYear == year&&mMonth == month)){
+                    mMonth = month;
+                    mYear = year;
+                    mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
+                    obtainMonthApplyData(mYear + "", mMonth + "");
+                }
+                LogUtil.print(String.format("%d年%d月", year, month));
+
             }
 
             @Override
@@ -173,7 +190,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
                 }
             }
         });
-        imageInit();
+
     }
 
     private void imageInit() {
@@ -218,6 +235,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
                                     for (int i =0 ;i<reservationapply.length;i++){
                                         Calendar c=Calendar.getInstance();
                                         c.set(Integer.parseInt(year),Integer.parseInt(month),reservationapply[i]);
+                                        LogUtil.print(month+"iii"+c.get(Calendar.MONTH));
                                         list.add(c);
                                     }
                                     expCalendarView.setPointDisplay(list);
