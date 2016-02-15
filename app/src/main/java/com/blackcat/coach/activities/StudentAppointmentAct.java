@@ -38,7 +38,7 @@ public class StudentAppointmentAct extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_appointment);
-
+        configToolBar(R.mipmap.ic_back);
         initView();
     }
 

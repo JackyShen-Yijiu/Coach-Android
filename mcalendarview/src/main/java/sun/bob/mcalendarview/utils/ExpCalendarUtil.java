@@ -61,10 +61,9 @@ public class ExpCalendarUtil {
     public static DateData position2Week(int absPos) {
         Log.i("ExpDateData", CellConfig.w2mPointDate.toString());
         Calendar calendar = Calendar.getInstance();
-        calendar.set(CellConfig.w2mPointDate.getYear(), CellConfig.w2mPointDate.getMonth() - 1, CellConfig.w2mPointDate.getDay());
+//        calendar.set(CellConfig.w2mPointDate.getYear(), CellConfig.w2mPointDate.getMonth() - 1, CellConfig.w2mPointDate.getDay());
         int distance = absPos - CellConfig.Month2WeekPos;
         calendar.add(Calendar.DATE, distance * 7);
-
         return new DateData(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, 1);
     }
 

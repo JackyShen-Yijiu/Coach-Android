@@ -48,8 +48,9 @@ public class PersonalInfoActivity extends BaseActivity  {
 //        initViews();
         fragment = PersonalInforFragment.newInstance();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fl_container,fragment);
+        transaction.add(R.id.fl_container, fragment);
         transaction.commitAllowingStateLoss();
+
 
 
 

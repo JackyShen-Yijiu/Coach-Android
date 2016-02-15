@@ -4,12 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.blackcat.coach.activities.StudentAppointmentAct">
-
-    <com.blackcat.coach.widgets.ScrollTimeLayout
-        android:id="@+id/appointment_student_time"
+    <include layout="@layout/layout_toolbar" />
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        ></com.blackcat.coach.widgets.ScrollTimeLayout>
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
+
+        <com.blackcat.coach.widgets.ScrollTimeLayout
+            android:id="@+id/appointment_student_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            ></com.blackcat.coach.widgets.ScrollTimeLayout>
+    </RelativeLayout>
+
 
 </RelativeLayout>

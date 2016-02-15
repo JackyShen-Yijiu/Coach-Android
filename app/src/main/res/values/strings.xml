@@ -258,6 +258,7 @@
     <string name="attach_take_pic">拍照</string>
     <string name="title_activity_show_image">显示图片</string>
     <string name="title_activity_show_normal_file">显示图片</string>
+    <string name="title_activity_order_student">预约学员列表</string>
     <string name="title_coach_type">工作性质</string>
     <string name="str_picture">[图片]</string>
     <string name="str_voice">声音</string>
@@ -328,4 +329,5 @@
     <string name="send_sms_all">群发短信</string>
 
     <string name = "student_appointment">学员预约</string>
+    <string name = "toady">今天</string>
 </resources>

@@ -1,13 +1,8 @@
 package com.blackcat.coach.fragments;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,6 +17,7 @@ import com.blackcat.coach.activities.IndexActivity;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.caldroid.CaldroidFragment;
 
+import com.blackcat.coach.events.MonthApplyEvent;
 import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.Result;
@@ -48,6 +44,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.greenrobot.event.EventBus;
 import sun.bob.mcalendarview.CellConfig;
 import sun.bob.mcalendarview.listeners.OnExpDateClickListener;
 import sun.bob.mcalendarview.listeners.OnMonthScrollListener;
@@ -95,8 +92,24 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+    public void onEvent(MonthApplyEvent event){
+        LogUtil.print("点击今天");
+//        expCalendarView.setCurrentItem(CellConfig.middlePosition);
+        Calendar calendar = Calendar.getInstance();
+        DateData dateData =  new DateData(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.DAY_OF_MONTH));
+        expCalendarView.travelTo(dateData);
+    }
+
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -111,7 +124,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mContext = (IndexActivity) getActivity();
-        mContext.setRightTitleWithoutImg(CommonUtil.getString(mContext,R.string.student_appointment));
+//        mContext.setRightTitleWithoutImg(CommonUtil.getString(mContext,R.string.student_appointment));
+//        mContext.setLeftTitle(CommonUtil.getString(mContext,R.string.toady));
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_child_schedule, container, false);
 //       View view= View.inflate(mContext,R.layout.fragment_child_schedule_head,null);
@@ -178,6 +192,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
             public void onDateClick(View view, DateData date) {
                 super.onDateClick(view, date);
                 String str = formatter.format(date.getDate());
+                LogUtil.print("formatter"+str);
                 if (!mCurrentDate.equals(str)) {
                     mCurrentDate = str;
                     mAdapter.setList(null);

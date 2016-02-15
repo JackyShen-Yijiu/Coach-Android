@@ -18,6 +18,7 @@ import com.blackcat.coach.activities.ClassesSettingsActivity;
 import com.blackcat.coach.activities.DrivingSchoolActivity;
 import com.blackcat.coach.activities.JobCategory;
 import com.blackcat.coach.activities.NewTrainSubjectActivity;
+import com.blackcat.coach.activities.OrderStudentActivity;
 import com.blackcat.coach.activities.PersonalInfoActivity;
 import com.blackcat.coach.activities.SettingsActivity;
 import com.blackcat.coach.activities.StudentsActivity;

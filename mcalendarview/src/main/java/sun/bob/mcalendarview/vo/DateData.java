@@ -23,16 +23,15 @@ public class DateData {
 
     public Calendar getCalendar(){
        Calendar calendar = Calendar.getInstance();
-        calendar.set(year,month-1,day);
-
+        calendar.set(year, month-1, day);
         return calendar;
     }
+
     public Date getDate(){
         Calendar calendar = Calendar.getInstance();
-        calendar.set(year,month-1,day);
+        calendar.set(year, month-1, day);
         return calendar.getTime();
     }
-
 
     public int getYear() {
         return year;
