@@ -22,6 +22,8 @@ import com.blackcat.coach.activities.IndexActivity;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.caldroid.CaldroidFragment;
 
+import com.blackcat.coach.events.MonthApplyEvent;
+import com.blackcat.coach.events.NewMessageReceiveEvent;
 import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.Result;
@@ -48,6 +50,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.greenrobot.event.EventBus;
 import sun.bob.mcalendarview.CellConfig;
 import sun.bob.mcalendarview.listeners.OnExpDateClickListener;
 import sun.bob.mcalendarview.listeners.OnMonthScrollListener;
@@ -95,7 +98,18 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    public void onEventAsync(MonthApplyEvent event){
+        obtainMonthApplyData(mYear + "", mMonth + "");
     }
 
     @Override
@@ -161,7 +175,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
                     mMonth = month;
                     mYear = year;
                     mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
-                    obtainMonthApplyData(mYear + "", mMonth + "");
+                    EventBus.getDefault().post(new MonthApplyEvent());
                 }
                 LogUtil.print(String.format("%d年%d月", year, month));
 
@@ -178,6 +192,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
             public void onDateClick(View view, DateData date) {
                 super.onDateClick(view, date);
                 String str = formatter.format(date.getDate());
+                LogUtil.print("formatter"+str);
                 if (!mCurrentDate.equals(str)) {
                     mCurrentDate = str;
                     mAdapter.setList(null);

@@ -3,14 +3,9 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:id="@+id/day_rl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="8dp">
 
       <!--  <ImageView
             android:id="@+id/day_select"
@@ -39,9 +34,10 @@
 
             <TextView
                 android:id="@+id/solar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center_horizontal"
+                android:gravity="center"
                 android:textSize="13sp"
                 android:text="13" />
             <ImageView
@@ -49,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
                 android:background="@drawable/point"
                 />
             <TextView
@@ -58,10 +54,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="4dp"
+                android:layout_marginBottom="0dp"
                 android:textSize="9sp"
                 android:text="初一" />
 
         </LinearLayout>
-    </RelativeLayout>
 
 </RelativeLayout>

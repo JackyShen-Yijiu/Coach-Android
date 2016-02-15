@@ -19,13 +19,14 @@ public abstract class OnMonthScrollListener implements ViewPager.OnPageChangeLis
 
     @Override
     public void onPageSelected(int position) {
-        System.out.println("===qqq"+position);
         CellConfig.middlePosition = position;
+        System.out.println(CellConfig.middlePosition+"==="+position);
         DateData date;
         if (CellConfig.ifMonth)
             date = ExpCalendarUtil.position2Month(position);
         else
             date = ExpCalendarUtil.position2Week(position);
+        System.out.println(date.getYear()+"==="+ date.getMonth());
         onMonthChange(date.getYear(), date.getMonth());
     }
 

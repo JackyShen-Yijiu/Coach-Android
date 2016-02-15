@@ -66,7 +66,6 @@ public class ExpCalendarView extends ViewPager {
         }
         // TODO: 15/8/28 Will this cause trouble when achieved?
         if (this.getId() == View.NO_ID) {
-
             this.setId(R.id.calendarViewPager);
         }
         adapter = new CalendarViewExpAdapter(activity.getSupportFragmentManager()).setDate(currentDate);
