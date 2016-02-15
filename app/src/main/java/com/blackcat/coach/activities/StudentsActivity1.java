@@ -37,7 +37,6 @@ public class StudentsActivity1 extends BaseActivity{
         configToolBar(R.mipmap.ic_back);
         initView();
 
-
     }
 
     private void initView() {

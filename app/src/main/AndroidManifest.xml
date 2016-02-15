@@ -208,6 +208,10 @@
             android:name=".activities.ShowNormalFileActivity"
             android:label="@string/title_activity_show_normal_file"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.OrderStudentActivity"
+            android:label="@string/title_activity_order_student"
+            android:screenOrientation="portrait" />
         <!-- 选择 教练类型 -->
 
         <activity

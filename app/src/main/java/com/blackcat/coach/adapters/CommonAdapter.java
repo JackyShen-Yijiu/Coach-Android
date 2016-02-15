@@ -11,6 +11,7 @@ import com.blackcat.coach.adapters.rows.RowDrivingSchool;
 import com.blackcat.coach.adapters.rows.RowMessage;
 import com.blackcat.coach.adapters.rows.RowNone;
 import com.blackcat.coach.adapters.rows.RowOrderMsg;
+import com.blackcat.coach.adapters.rows.RowOrderStudent;
 import com.blackcat.coach.adapters.rows.RowProduct;
 import com.blackcat.coach.adapters.rows.RowReservation;
 import com.blackcat.coach.adapters.rows.RowSchedule;
@@ -36,8 +37,6 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
 		public static final int TYPE_ADAPTER_RESERVATION_OP = 4;
 		public static final int TYPE_ADAPTER_DRIVING = 5;
 		public static final int TYPE_ADAPTER_STUDENT = 6;
-
-
 		public static final int TYPE_ADAPTER_COMMENT = 7;
 		public static final int TYPE_ADAPTER_AVATAR = 8;
         public static final int TYPE_ADAPTER_COURSE = 9;
@@ -50,6 +49,8 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
         public static final int TYPE_ADAPTER_COMMMENT_TEACHER = 15;
         /**发送短信*/
         public static final int TYPE_ADAPTER_STUDENT_SMS = 16;
+        /**学员预约列表*/
+        public static final int TYPE_ADAPTER_ORDER_STUDENT = 17;
     }
     
     public List<T> getList() {
@@ -149,6 +150,8 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
                 return RowCommentPersonal.createViewHolder(parent,parent.getContext());
             case AdapterType.TYPE_ADAPTER_STUDENT_SMS:
                 return RowStudentSms.createViewHolder(parent,parent.getContext());
+            case AdapterType.TYPE_ADAPTER_ORDER_STUDENT://学员预约列表
+                return RowOrderStudent.createViewHolder(parent, parent.getContext());
             default:
                 return RowNone.createViewHolder(parent, parent.getContext());
         }
@@ -196,6 +199,11 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
             case AdapterType.TYPE_ADAPTER_STUDENT_SMS:
                 RowStudentSms.bindViewHolder(mActivity,holder,position,mList.get(position));
                 break;
+
+            case AdapterType.TYPE_ADAPTER_ORDER_STUDENT:
+                RowOrderStudent.bindViewHolder(mActivity,holder,position,mList.get(position));
+                break;
+
             default:
                 RowNone.bindViewHolder(holder);
                 break;

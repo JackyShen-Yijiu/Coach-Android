@@ -46,17 +46,14 @@ public class PersonalInfoActivity extends BaseActivity  {
 //        initViews();
         fragment = PersonalInforFragment.newInstance();
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fl_container,fragment);
+        transaction.add(R.id.fl_container, fragment);
         transaction.commitAllowingStateLoss();
 
 
-<<<<<<< HEAD
-        mIvAvatar = (ImageView) findViewById(R.id.ic_avatar);
+        ImageView mIvAvatar = (ImageView) findViewById(R.id.ic_avatar);
         if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
             UILHelper.loadImage(mIvAvatar, Session.getSession().headportrait.originalpic, false, R.mipmap.ic_avatar_small);
         }
-=======
->>>>>>> b070c1a1bb10a5f0febf321ae91f62534e6723be
     }
     @Override
     protected void onResume() {
