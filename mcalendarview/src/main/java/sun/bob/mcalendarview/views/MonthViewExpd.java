@@ -26,10 +26,6 @@ public class MonthViewExpd extends MonthView {
 
     public void setDisplayData(List<Calendar> selectDate){
         this.selectDate = selectDate;
-        if(adapter!=null){
-            adapter.notifyDataSetChanged();
-        }
-
     }
     public void initMonthAdapter(int pagePosition, int cellView, int markView) {
         System.out.println(pagePosition+"----pagePosition");
