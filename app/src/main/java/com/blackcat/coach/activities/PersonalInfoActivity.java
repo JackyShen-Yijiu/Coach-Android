@@ -50,13 +50,10 @@ public class PersonalInfoActivity extends BaseActivity  {
         transaction.commitAllowingStateLoss();
 
 
-<<<<<<< HEAD
-        mIvAvatar = (ImageView) findViewById(R.id.ic_avatar);
-        if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
-            UILHelper.loadImage(mIvAvatar, Session.getSession().headportrait.originalpic, false, R.mipmap.ic_avatar_small);
-        }
-=======
->>>>>>> b070c1a1bb10a5f0febf321ae91f62534e6723be
+//        mIvAvatar = (ImageView) findViewById(R.id.ic_avatar);
+//        if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
+//            UILHelper.loadImage(mIvAvatar, Session.getSession().headportrait.originalpic, false, R.mipmap.ic_avatar_small);
+//        }
     }
     @Override
     protected void onResume() {

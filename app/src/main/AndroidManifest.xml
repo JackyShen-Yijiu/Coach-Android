@@ -475,7 +475,8 @@
             android:label="@string/title_activity_students"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name=".activities.StudentAppointmentAct"></activity>
+        <activity android:name=".activities.StudentAppointmentAct"
+            android:label="@string/title_activity_students"/>
     </application>
 
 </manifest>
