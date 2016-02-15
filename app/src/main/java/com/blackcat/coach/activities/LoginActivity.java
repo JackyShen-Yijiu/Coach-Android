@@ -27,6 +27,7 @@ import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.BaseUtils;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.easemob.EMCallBack;
@@ -127,7 +128,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                         if (response != null && response.data != null && response.type == Result.RESULT_OK) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.login_ok);
                             Session.save(response.data, true);
-                            JPushInterface.setAlias(CarCoachApplication.getInstance(), "123", null);//Session.getSession().coachid
+                            JPushInterface.setAlias(CarCoachApplication.getInstance(), Session.getSession().coachid, null);//"123"
                             String _pwd = mEtPwd.getText().toString().trim();
                             hxLogin(response.data.coachid, BaseUtils.getMD5code(_pwd));
                             startActivity(new Intent(LoginActivity.this, IndexActivity.class));
@@ -158,6 +159,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     }
 
     public void onEvent(RegisterOkEvent event) {
+        LogUtil.print("onevent-->finish");
         finish();
     }
 

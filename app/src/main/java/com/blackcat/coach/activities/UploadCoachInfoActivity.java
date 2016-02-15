@@ -30,7 +30,9 @@ import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.Constants;
+import com.blackcat.coach.utils.DateUtil;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.google.gson.reflect.TypeToken;
@@ -48,7 +50,8 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
     private Button mBtnCommit;
     private TextView mTvSchool,mTvCoach;
     private DrivingSchool mDrivingSchool;
-   private  int type;
+   private  int type = 1;
+    private String schoolId = "";
 
 
     @Override
@@ -79,6 +82,8 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
         mBtnCommit = (Button) findViewById(R.id.btn_commit);
         mBtnCommit.setOnClickListener(this);
         mTvSchool.setOnClickListener(this);
+
+        mTvCoach.setText("直营教练");
     }
 
     private Type mType = new TypeToken<Result>() {
@@ -162,42 +167,69 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
         int id = v.getId();
         switch (id) {
             case R.id.btn_commit:
-                if (TextUtils.isEmpty(mEtCard.getText())) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_id_empty);
-                    return;
+                if(check()){
+                    applyVerifyRequest(mEtName.getText().toString(), mEtCard.getText().toString(), mDrivingSchool.id, mEtCarCert.getText().toString(), mEtCoachCert.getText().toString(),type);
                 }
-                if (mEtCard.getText().toString().length()!=15 ||mEtCard.getText().toString().length()!=18) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_idcardnumber_invalid);
-                    return;
-                }
+                 break;
+            case R.id.rl_choose_school://选择驾校
 
-                if (TextUtils.isEmpty(mEtName.getText())) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_name_empty);
-                    return;
-                }
-                if (mDrivingSchool == null || TextUtils.isEmpty(mDrivingSchool.name)) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.drivingschool_empty);
-                    return;
-                }
+                Intent i = new Intent(this, DrivingSchoolActivity.class);
+                i.putExtra("regist",true);
+                startActivityForResult(i, 1);
+                break;
+            case R.id.rl_choose_coach_type://选择教练类型
+                Intent i1 = new Intent(this, JobCategory.class);
+                i1.putExtra("regist",true);
+                startActivityForResult(i1,1);
+//                startActivity(i1);
+                break;
+        }
+    }
+
+    private boolean check(){
+        if (TextUtils.isEmpty(mEtCard.getText())) {
+            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_id_empty);
+            return false;
+        }
+//16
+        if (!DateUtil.isIdCard(mEtCard.getText().toString().trim())) {
+            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_idcardnumber_invalid);
+            return false;
+        }
+//        else if(mEtCard.getText().toString().length()!=15){
+//            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_idcardnumber_invalid);
+//            return false;
+//        }
+
+//        if (mEtCard.getText().toString().length()!=15 || mEtCard.getText().toString().length()!=18) {
+//            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.str_idcardnumber_invalid);
+//            return false;
+//        }
+
+        if (TextUtils.isEmpty(mEtName.getText())) {
+            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_name_empty);
+            return false;
+        }
+
+        if (mDrivingSchool == null || TextUtils.isEmpty(mDrivingSchool.name)) {
+            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.drivingschool_empty);
+            return false;
+        }
 //                if (TextUtils.isEmpty(mEtCarCert.getText())) {
 //                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_drivingcard_empty);
 //                    return;
 //                }
-                if (TextUtils.isEmpty(mEtCoachCert.getText())) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_coachcard_empty);
-                    return;
-                }
-                applyVerifyRequest(mEtName.getText().toString(), mEtCard.getText().toString(), mDrivingSchool.id, mEtCarCert.getText().toString(), mEtCoachCert.getText().toString(),type);
-                break;
-            case R.id.rl_choose_school://选择驾校
-                startActivity(new Intent(this, DrivingSchoolActivity.class));
-                break;
-            case R.id.rl_choose_coach_type://选择教练类型
-                Intent i1 = new Intent(this, PickCoachTypeAct.class);
-                startActivityForResult(i1, 2);
-                break;
+        if (TextUtils.isEmpty(mEtCoachCert.getText())) {
+            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.verify_coachcard_empty);
+            return false;
         }
+//        if(type==2){
+//            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast("请选择工作性质");
+//            return false;
+//        }
+        return true;
     }
+
 
     public void onEvent(DrivingSchool event) {
         this.mDrivingSchool = event;
@@ -233,11 +265,25 @@ public class UploadCoachInfoActivity extends BaseActivity implements View.OnClic
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         // TODO Auto-generated method stub
-        if(data!=null && requestCode==2){//选择 教练类型
-            String name = data.getStringExtra("name");
-            type = data.getIntExtra("type",0);
+        if(data!=null && resultCode==3){//选择 教练类型
+            String name = data.getStringExtra("bean");
+            LogUtil.print("name---->"+name);
+            //
+            if(name.equals(getString(R.string.str_direct_coach))){
+                type = 1;
+            }else if(name.equals(getString(R.string.str_hangon_coach))){
+                type = 0;
+            }else{
+                type = 1;
+            }
+
             if(null!=name)
                 mTvCoach.setText(name);
+        }
+        if(data!=null && resultCode==2){//驾校
+            mDrivingSchool = (DrivingSchool)data.getSerializableExtra("bean");
+            mTvSchool.setText(mDrivingSchool.name);
+            schoolId = mDrivingSchool.id;
         }
         super.onActivityResult(requestCode, resultCode, data);
 

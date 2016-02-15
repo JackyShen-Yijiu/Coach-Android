@@ -1,5 +1,6 @@
 package com.blackcat.coach.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -56,11 +57,15 @@ public class DrivingSchoolActivity extends BaseActivity implements View.OnClickL
     public BDLocationListener mLocationListener = new BCLocationListener();
 
     private MenuItem mCityItem;
+
+    boolean regist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driving_school);
         configToolBar(R.mipmap.ic_back);
+        /**是否是注册页面*/
+        regist = getIntent().getBooleanExtra("regist",false);
         initViews();
         getLocation();
     }
@@ -217,8 +222,15 @@ public class DrivingSchoolActivity extends BaseActivity implements View.OnClickL
 //            Session.getSession().driveschoolinfo = ds;
 //            Session.save(Session.getSession(), true);
 //            finish();
+            if(!regist){
+                updateRequest(ds);
+            }else{
+                Intent i = new Intent(DrivingSchoolActivity.this,UploadCoachInfoActivity.class);
+                i.putExtra("bean",ds);
+                setResult(2,i);
+                finish();
+            }
 
-            updateRequest(ds);
         }
     }
 

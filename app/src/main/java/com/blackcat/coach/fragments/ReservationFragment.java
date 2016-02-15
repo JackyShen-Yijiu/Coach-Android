@@ -156,9 +156,9 @@ public class ReservationFragment extends BaseFragment {
 //                Toast.makeText(getActivity(),"position"+position,Toast.LENGTH_SHORT).show();
                 currentPage = position;
                 if(position==0){//新订单,显示签到
-                    ((IndexActivity) getActivity()).showHideQianDao(true,position);
+                    ((IndexActivity) getActivity()).showHideQianDao(true,position,0);
                 }else
-                    ((IndexActivity) getActivity()).showHideQianDao(true,position);
+                    ((IndexActivity) getActivity()).showHideQianDao(true,position,0);
 
                 ((ItemFragment) adapter.getItem(position)).reRusume();
             }

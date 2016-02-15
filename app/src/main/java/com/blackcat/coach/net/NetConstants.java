@@ -12,10 +12,10 @@ public class NetConstants {
 	public static final boolean BASE64_ENCODING = true;
 
 //	public static final String HOSTNAME = "101.200.204.240";
-//	public static final String HOSTNAME = "123.57.63.15";
-	public static final String HOSTNAME = "123.56.185.59";
+//	public static final String HOSTNAME = "123.57.63.15";、、123.56.185.59
+	public static final String HOSTNAME = "api.yibuxueche.com";
 
-	public static final int DEFAULT_PORT = 8181;
+	public static final int DEFAULT_PORT = 80;
 
     //七牛相关
     public static final String PATH_QINIU_TOKEN = "api/v1/info/qiniuuptoken";
@@ -61,6 +61,8 @@ public class NetConstants {
 	//添加
 	public static final String PATH_SYSTEMMSG = "api/v1/userinfo/getnews";
 	public static final String PATH_OREDERMSG = "api/v1/userinfo/getsysteminfo";
+	/***教练评论*/
+	public static final String PATH_GET_COMMENTS_CAOCH = "api/v1/courseinfo/getusercomment/2/";
 
 
 	public static final String PATH_GET_GETMONTHAPPLYDATA = "api/v1/courseinfo/getmonthapplydata";
@@ -124,6 +126,7 @@ public class NetConstants {
 	public static final String KEY_AUTHORIZATION = "authorization";
 	public static final String KEY_PRODUCT_ID = "productid";
 	public static final String KEY_SEARCH_NAME = "searchname";
+	public static final String STUDENT_TYPE = "studenttype";
 
 
 	public static final String KEY_COACH_ID = "coachid";

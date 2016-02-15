@@ -7,4 +7,8 @@ public class Comment {
     public String _id;
     public CoachInfo coachid;
     public CoachComment coachcomment;
+    public CoachComment comment;
+    public CoachInfo userid;
+    public String finishtime;
+    public String timestamp;
 }
