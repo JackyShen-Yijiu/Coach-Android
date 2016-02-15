@@ -227,6 +227,31 @@ public class URIUtil {
 		return null;
 	}
 
+	/**
+	 * 教练某一节课的详情
+	 * @param coachId
+	 * @param courseId
+	 * @return
+	 */
+	public static URI getScheduleDetail(String coachId,String courseId){
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, coachId));
+		params.add(new BasicNameValuePair(NetConstants.KEY_COURSE_ID, courseId));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_COURSE_DETAIL, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+
+
+	}
+
 	public static URI getStudentsList(String coachid, int pos) {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 		fillBasicParams(CarCoachApplication.getInstance(), params);

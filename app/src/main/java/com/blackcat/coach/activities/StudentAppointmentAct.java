@@ -32,6 +32,8 @@ public class StudentAppointmentAct extends BaseActivity {
 
     protected Type mType = null;
 
+    private float aspect = 180f / 112f;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +45,16 @@ public class StudentAppointmentAct extends BaseActivity {
     private void initView() {
         scrollTimeLayout = (ScrollTimeLayout) findViewById(R.id.appointment_student_time);
         scrollTimeLayout.setColumn(4);
+        scrollTimeLayout.setOnTimeLayoutSelectedListener(new ScrollTimeLayout.OnTimeLayoutSelectedListener() {
+
+            @Override
+            public void TimeLayoutSelectedListener(CoachCourseVO coachCourseVO, boolean selected) {
+                if (selected) {//选中该项 ，发起请求
+//                    .getCoursetime().getTimeid();
+                    requestDetail(coachCourseVO.get_id());
+                }
+            }
+        });
         mType = new TypeToken<Result<List<CoachCourseVO>>>(){}.getType();
         requestTime("2016-2-15");
     }
@@ -76,7 +88,7 @@ public class StudentAppointmentAct extends BaseActivity {
                         public void onResponse(Result<List<CoachCourseVO>> response) {
                             List<CoachCourseVO> list = response.data;
                             LogUtil.print("list--size::"+list.size());
-                            scrollTimeLayout.setData(list,1f);
+                            scrollTimeLayout.setData(list,aspect);
 //                            onFeedsResponse(response, refreshType);
                         }
                     },
@@ -96,6 +108,11 @@ public class StudentAppointmentAct extends BaseActivity {
 
             VolleyUtil.getQueue(this).add(request);
 //        }
+
+    }
+
+    private void requestDetail(String courseId){
+        URI uri =  URIUtil.getScheduleDetail(Session.getSession().coachid,courseId);
 
     }
 
