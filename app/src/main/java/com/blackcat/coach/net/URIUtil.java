@@ -266,6 +266,29 @@ public class URIUtil {
 		return null;
 	}
 
+	/**
+	 * 日程-- 预约时间表
+	 * @return
+	 */
+	public static URI getAppointStudentTime(String time){
+
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, Session.getSession().coachid));
+		params.add(new BasicNameValuePair(NetConstants.KEY_DATE, time));
+//		params.add(new BasicNameValuePair(NetConstants.KEY_INDEX, String.valueOf(pos)));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.GET_COURSE_BY_COACH, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 
 

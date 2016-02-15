@@ -130,7 +130,6 @@ public class ReservationFragment extends BaseFragment {
                 .findViewById(R.id.fragment_reservation_sliding_tab);
         viewPager = (ViewPager) rootView
                 .findViewById(R.id.fragment_reservation_view_pager);
-
 //
     }
 

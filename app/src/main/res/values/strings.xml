@@ -326,6 +326,7 @@
     <string name="str_other_content_intro">写点评论吧，对其他小伙伴很有很大帮助哦</string>
     <string name="title_activity_detail_reservation">已取消</string>
     <string name="delete_tag">确定删除此定义标签</string>
-    <string name = "send_sms_all">群发短信</string>
+    <string name="send_sms_all">群发短信</string>
 
+    <string name = "student_appointment">学员预约</string>
 </resources>

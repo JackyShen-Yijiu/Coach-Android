@@ -3,7 +3,6 @@ package com.blackcat.coach.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -11,15 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
+
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -28,33 +19,26 @@ import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.IndexActivity;
-import com.blackcat.coach.activities.LoginActivity;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.caldroid.CaldroidFragment;
-import com.blackcat.coach.caldroid.CaldroidListener;
-import com.blackcat.coach.lib.calendar.adapter.CalendarGridView;
-import com.blackcat.coach.lib.calendar.adapter.CalendarGridViewAdapter;
-import com.blackcat.coach.lib.calendar.adapter.WeekNameAdapter;
-import com.blackcat.coach.lib.calendar.util.CalendarUtil;
-import com.blackcat.coach.lib.calendar.util.NumberHelper;
-import com.blackcat.coach.models.CoachInfo;
+
+import com.blackcat.coach.events.MonthApplyEvent;
+import com.blackcat.coach.events.NewMessageReceiveEvent;
 import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
-import com.blackcat.coach.models.params.LoginParams;
 import com.blackcat.coach.models.params.MonthApplyData;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
-import com.blackcat.coach.utils.BaseUtils;
+
+import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.Constants;
-import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.google.gson.reflect.TypeToken;
-import android.view.View.OnTouchListener;
 
 import java.lang.reflect.Type;
 import java.net.URI;
@@ -66,26 +50,21 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.view.animation.Animation.AnimationListener;
-
-import cn.jpush.android.api.JPushInterface;
+import de.greenrobot.event.EventBus;
 import sun.bob.mcalendarview.CellConfig;
 import sun.bob.mcalendarview.listeners.OnExpDateClickListener;
 import sun.bob.mcalendarview.listeners.OnMonthScrollListener;
 import sun.bob.mcalendarview.views.ExpCalendarView;
 import sun.bob.mcalendarview.vo.DateData;
 
+
 /**
  * create an instance of this fragment.
  */
 public class ChildScheduleFragment extends BaseListFragment<Reservation> {
 
-
-
-
-
     // 基本变量
-    private Context mContext;
+    private IndexActivity mContext;
 
 
     private  SimpleDateFormat formatter;
@@ -119,7 +98,18 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    public void onEventAsync(MonthApplyEvent event){
+        obtainMonthApplyData(mYear + "", mMonth + "");
     }
 
     @Override
@@ -134,7 +124,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mContext = getActivity();
+        mContext = (IndexActivity) getActivity();
+        mContext.setRightTitleWithoutImg(CommonUtil.getString(mContext,R.string.student_appointment));
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_child_schedule, container, false);
 //       View view= View.inflate(mContext,R.layout.fragment_child_schedule_head,null);
@@ -155,10 +146,13 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
         Calendar today = Calendar.getInstance();
         today.setTime(new Date());
         //获取当月的信息
-        obtainMonthApplyData(today.get(Calendar.YEAR) + "", today.get(Calendar.MONTH) + "");
+        obtainMonthApplyData(today.get(Calendar.YEAR) + "", (today.get(Calendar.MONTH)+1) + "");
 
         return rootView;
     }
+
+    private int mYear;
+    private int mMonth;
 
     private void initView(View rootView) {
 
@@ -167,14 +161,24 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
 //        YearMonthTv = (TextView) rootView.findViewById(R.id.main_YYMM_Tv);
 //        YearMonthTv.setText(Calendar.getInstance().get(Calendar.YEAR) + "年" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "月");
 
-
+        mYear = Calendar.getInstance().get(Calendar.YEAR);
+        mMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1);
+        mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
+        imageInit();
 
 //      Set up listeners.
         expCalendarView.setOnDateClickListener(new OnExpDateClickListener()).setOnMonthScrollListener(new OnMonthScrollListener() {
             @Override
             public void onMonthChange(int year, int month) {
 //                YearMonthTv.setText(String.format("%d年%d月", year, month));
-                obtainMonthApplyData(year+"", month+"");
+                if(!(mYear == year&&mMonth == month)){
+                    mMonth = month;
+                    mYear = year;
+                    mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
+                    EventBus.getDefault().post(new MonthApplyEvent());
+                }
+                LogUtil.print(String.format("%d年%d月", year, month));
+
             }
 
             @Override
@@ -188,6 +192,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
             public void onDateClick(View view, DateData date) {
                 super.onDateClick(view, date);
                 String str = formatter.format(date.getDate());
+                LogUtil.print("formatter"+str);
                 if (!mCurrentDate.equals(str)) {
                     mCurrentDate = str;
                     mAdapter.setList(null);
@@ -200,7 +205,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
                 }
             }
         });
-        imageInit();
+
     }
 
     private void imageInit() {
@@ -245,6 +250,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
                                     for (int i =0 ;i<reservationapply.length;i++){
                                         Calendar c=Calendar.getInstance();
                                         c.set(Integer.parseInt(year),Integer.parseInt(month),reservationapply[i]);
+                                        LogUtil.print(month+"iii"+c.get(Calendar.MONTH));
                                         list.add(c);
                                     }
                                     expCalendarView.setPointDisplay(list);
