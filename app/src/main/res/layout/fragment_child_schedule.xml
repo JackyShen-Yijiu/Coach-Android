@@ -28,7 +28,7 @@
             android:id="@+id/calendar_exp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".MainActivity" />
+            />
 
     </LinearLayout>
 

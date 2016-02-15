@@ -3,7 +3,6 @@ package com.blackcat.coach.fragments;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -11,15 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
+
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -27,34 +18,22 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
-import com.blackcat.coach.activities.IndexActivity;
-import com.blackcat.coach.activities.LoginActivity;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.caldroid.CaldroidFragment;
-import com.blackcat.coach.caldroid.CaldroidListener;
-import com.blackcat.coach.lib.calendar.adapter.CalendarGridView;
-import com.blackcat.coach.lib.calendar.adapter.CalendarGridViewAdapter;
-import com.blackcat.coach.lib.calendar.adapter.WeekNameAdapter;
-import com.blackcat.coach.lib.calendar.util.CalendarUtil;
-import com.blackcat.coach.lib.calendar.util.NumberHelper;
-import com.blackcat.coach.models.CoachInfo;
+
 import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
-import com.blackcat.coach.models.params.LoginParams;
 import com.blackcat.coach.models.params.MonthApplyData;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
-import com.blackcat.coach.utils.BaseUtils;
 import com.blackcat.coach.utils.Constants;
-import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.google.gson.reflect.TypeToken;
-import android.view.View.OnTouchListener;
 
 import java.lang.reflect.Type;
 import java.net.URI;
@@ -66,23 +45,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import android.view.animation.Animation.AnimationListener;
-
-import cn.jpush.android.api.JPushInterface;
 import sun.bob.mcalendarview.CellConfig;
 import sun.bob.mcalendarview.listeners.OnExpDateClickListener;
 import sun.bob.mcalendarview.listeners.OnMonthScrollListener;
 import sun.bob.mcalendarview.views.ExpCalendarView;
 import sun.bob.mcalendarview.vo.DateData;
 
+
 /**
  * create an instance of this fragment.
  */
 public class ChildScheduleFragment extends BaseListFragment<Reservation> {
-
-
-
-
 
     // 基本变量
     private Context mContext;

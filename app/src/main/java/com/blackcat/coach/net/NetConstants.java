@@ -64,6 +64,8 @@ public class NetConstants {
 	/***教练评论*/
 	public static final String PATH_GET_COMMENTS_CAOCH = "api/v1/courseinfo/getusercomment/2/";
 
+	/***某一教练的预约情况*/
+	public static final String GET_COURSE_BY_COACH = "api/v1/courseinfo/getcoursebycoach";
 
 	public static final String PATH_GET_GETMONTHAPPLYDATA = "api/v1/courseinfo/getmonthapplydata";
 
