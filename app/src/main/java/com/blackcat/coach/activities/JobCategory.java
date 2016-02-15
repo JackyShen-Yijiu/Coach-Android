@@ -1,5 +1,6 @@
 package com.blackcat.coach.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -19,6 +20,7 @@ public class JobCategory extends BaseActivity implements View.OnClickListener {
     private RadioButton mRBtnMale;
     private RadioButton mRBtnFemale;
     private Button mBtnFinish;
+    private boolean regist;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,7 @@ public class JobCategory extends BaseActivity implements View.OnClickListener {
         mGroupViewSex = (RadioGroup)findViewById(R.id.rg_sex_choice);
         mRBtnMale = (RadioButton)findViewById(R.id.rb_male);
         mRBtnFemale = (RadioButton)findViewById(R.id.rb_female);
+        regist = getIntent().getBooleanExtra("regist",false);
         if (!TextUtils.isEmpty(Session.getSession().GenderJob)) {
             if(Session.getSession().GenderJob.equals(getString(R.string.str_direct_coach))) {
                 mRBtnMale.setChecked(true);
@@ -51,10 +54,20 @@ public class JobCategory extends BaseActivity implements View.OnClickListener {
                     return;
                 }
                 String gender = ((RadioButton)findViewById(checkedId)).getText().toString();
+
+                if(regist){
+//
+                    Intent i = new Intent(JobCategory.this,UploadCoachInfoActivity.class);
+                    i.putExtra("bean",gender);
+                    setResult(3, i);
+                    finish();
+                    return;
+                }
                 if (gender.equals(Session.getSession().GenderJob)) {
                     finish();
                     return;
                 }
+
                 updateRequest(gender);
                 break;
         }

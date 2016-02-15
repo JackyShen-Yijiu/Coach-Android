@@ -37,6 +37,8 @@
     <dimen name="height_button">46dp</dimen>
 
     <dimen name="comment_avatar">24dp</dimen>
+    <dimen name="comment_coach_avatar">50dp</dimen>
+
     <dimen name="top_image_w">320dp</dimen>
     <dimen name="top_image_h">240dp</dimen>
 

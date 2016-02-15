@@ -28,6 +28,7 @@ import com.blackcat.coach.utils.BaseUtils;
 import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
+import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.easemob.EMError;
@@ -55,6 +56,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_register);
         configToolBar(R.mipmap.ic_back);
         initViews();
@@ -126,7 +128,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 }
                 registerRequest(mEtPhoneNum.getText().toString(), mEtVerifyCode.getText().toString(), mEtPwd.getText().toString(), mEtInivte.getText().toString());
 //                registerAccount();
-                EventBus.getDefault().post(new RegisterOkEvent());
+
                 //
                 break;
         }
@@ -200,13 +202,16 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                     @Override
                     public void onResponse(Result<CoachInfo> response) {
                         if (response != null) {
+                            LogUtil.print("-----------"+response+"msg"+response.msg);
                             if (response.type == Result.RESULT_OK && response.data != null) {
+//                                EventBus.getDefault().post(new RegisterOkEvent());
                                 Session.save(response.data, true);
                                 ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.register_ok);
                                 startActivity(new Intent(RegisterActivity.this, UploadCoachInfoActivity.class));
                                 EventBus.getDefault().post(new RegisterOkEvent());
                                 finish();
                             } else if (!TextUtils.isEmpty(response.msg)) {
+
                                 ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
                             }
                         } else {
@@ -214,6 +219,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         }
                         if (Constants.DEBUG) {
                             VolleyLog.v("Response:%n %s", response);
+
                         }
                     }
                 },

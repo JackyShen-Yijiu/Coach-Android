@@ -20,6 +20,7 @@
         android:background="@drawable/background_border"
         android:maxLength="11"
         android:hint="@string/login_user_name"
+        android:maxLength="11"
         android:inputType="phone"
         android:paddingLeft="15dp"
         android:singleLine="true"

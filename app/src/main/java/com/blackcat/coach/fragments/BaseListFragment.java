@@ -155,6 +155,11 @@ public abstract class BaseListFragment<T> extends BaseFragment
         }
     }
 
+    public CommonAdapter<T> getAdapter(){
+        return mAdapter;
+    }
+
+
     @Override
     public void onDestroyView() {
         VolleyUtil.getQueue(mActivity).cancelAll(this);

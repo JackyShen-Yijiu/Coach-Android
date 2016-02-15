@@ -22,8 +22,10 @@ public class User implements Serializable {
     public String subjectprocess;
     public String address;
     /**剩余课程*/
-    public int leavecoursecount;
+    public String leavecoursecount;
     /**遗漏课程*/
-    public int missingcoursecount;
+    public String missingcoursecount;
+    /**发送短信  是否需要发送，1：发送 0.不发送*/
+    public int seleted = 1;
 
 }

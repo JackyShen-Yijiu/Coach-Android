@@ -5,7 +5,32 @@
     android:orientation="vertical"
     tools:context="com.blackcat.coach.fragments.ChildScheduleFragment">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#f0f0f0"
+        >
 
+
+        <sun.bob.mcalendarview.views.WeekColumnView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="6dp"
+            android:paddingTop="10dp" />
+
+        <!--  <View
+              android:layout_width="match_parent"
+              android:layout_height="1px"
+              android:background="#ccc" />-->
+
+        <sun.bob.mcalendarview.views.ExpCalendarView
+            android:id="@+id/calendar_exp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".MainActivity" />
+
+    </LinearLayout>
 
 
     <include layout="@layout/layout_pulltorefresh_list" />
