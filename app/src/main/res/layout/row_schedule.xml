@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootView"
     android:layout_width="match_parent"
-    android:layout_height="90dp"
+    android:layout_height="110dp"
     android:background="@drawable/sl_default_background"
     android:padding="15dp">
 
@@ -33,17 +33,17 @@
     <View
         android:id="@+id/divider"
         android:layout_width="2dp"
-        android:layout_height="60dp"
-        android:layout_marginRight="15dp"
+        android:layout_height="80dp"
+        android:layout_marginRight="12dp"
         android:layout_toRightOf="@+id/rl_time_range"
         android:background="@color/blue" />
 
     <ImageView
         android:id="@+id/iv_avatar"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_centerVertical="true"
-        android:layout_marginRight="12dp"
+        android:layout_marginRight="10dp"
         android:layout_toRightOf="@+id/divider"
         android:scaleType="centerCrop"
         android:src="@mipmap/ic_avatar_small" />
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#333333"
-            android:text=";"
+            android:text="李燕飞"
             android:textSize="16sp" />
 
         <TextView
@@ -71,21 +71,55 @@
             android:layout_alignParentRight="true"
             android:textColor="@color/text_999"
             android:gravity="right"
-            android:text=""
+            android:text="已约24课时"
             android:singleLine="true"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:layout_toRightOf="@+id/tv_name"
             android:layout_toEndOf="@+id/tv_name" />
 
         <TextView
             android:id="@+id/tv_learning_item"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:layout_marginTop="6dp"
+            android:singleLine="true"
+            android:text="科目二弟22课时"
+            android:textColor="@color/text_999"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_learning_item"
+            android:layout_marginTop="7dp"
+            android:singleLine="true"
+            android:text="官方24课时"
+            android:textColor="@color/text_999"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tv_leave_clss"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_name"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="6dp"
+            android:textColor="@color/text_999"
+            android:gravity="right"
+            android:text="剩余23课时"
             android:singleLine="true"
-            android:textColor="@color/text_333"
-            android:textSize="14sp" />
+            android:layout_alignParentRight="true"
+            android:textSize="12sp" />
+        <TextView
+            android:id="@+id/tv_miss_clss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_leave_clss"
+            android:layout_marginTop="7dp"
+            android:textColor="@color/text_999"
+            android:gravity="right"
+            android:text="漏1课时"
+            android:singleLine="true"
+            android:layout_alignParentRight="true"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_class_detail"
@@ -94,10 +128,10 @@
             android:textColor="@color/text_999"
             android:layout_below="@+id/tv_name"
             android:visibility="gone"
-            android:layout_marginTop="9dp"
+            android:layout_marginTop="7dp"
             android:layout_alignParentRight="true"
 
-            android:text=""
+            android:text="dhgfh"
             android:textSize="16sp" />
     </RelativeLayout>
 </RelativeLayout>

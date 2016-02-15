@@ -8,7 +8,7 @@
     <color name="app_mask_bg">#999999</color>
     <color name="colorPrimary">#2F7CEF</color>
     <color name="colorPrimaryDark">#2F7CEF</color>
-    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textColorPrimary">#ffffff</color>
     <color name="black">#000000</color>
     <color name="white_grey">#F5F5F5</color>
     <color name="white_absolute">#ffffff</color>

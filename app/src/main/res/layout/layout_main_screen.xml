@@ -9,6 +9,18 @@
         android:minHeight="@dimen/actionBarSize">
 
         <TextView
+            android:id="@+id/toolbar_left_title"
+            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:text="@string/toady"
+            android:visibility="gone"
+            android:clickable="true"
+            android:onClick="onClick"
+            android:textSize="@dimen/profile_text_size"
+            android:textColor="@color/textColorPrimary" />
+        <TextView
             android:id="@+id/toolbar_title"
             style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
             android:layout_width="wrap_content"

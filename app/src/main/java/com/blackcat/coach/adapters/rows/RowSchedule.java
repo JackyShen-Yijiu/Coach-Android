@@ -32,6 +32,8 @@ public class RowSchedule {
         holder.tvName = (TextView) view.findViewById(R.id.tv_name);
         holder.tvProgress = (TextView) view.findViewById(R.id.tv_learning_item);
         holder.tvClass = (TextView) view.findViewById(R.id.tv_class);
+        holder.tvLeaveClass = (TextView) view.findViewById(R.id.tv_leave_clss);
+        holder.tvMissClass = (TextView) view.findViewById(R.id.tv_miss_clss);
         holder.tvClassDetail = (TextView) view.findViewById(R.id.tv_class_detail);
 
         return holder;
@@ -44,7 +46,9 @@ public class RowSchedule {
         viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item));
         if (item.userid != null) {
             viewHolder.tvName.setText(item.userid.name);
-            viewHolder.tvClass.setText("剩"+item.leavecoursecount+",漏"+item.missingcoursecount+"课时");
+            viewHolder.tvClass.setText("已约"+(item.leavecoursecount+item.missingcoursecount)+"课时");
+            viewHolder.tvLeaveClass.setText("剩余"+item.leavecoursecount+"课时");
+            viewHolder.tvMissClass.setText("漏"+item.missingcoursecount+"课时");
 //            viewHolder.tvClassDetail.setText("剩余"+"课时漏"+"课时");
 
             if (item.userid.headportrait != null && !TextUtils.isEmpty(item.userid.headportrait.originalpic)) {
@@ -69,7 +73,9 @@ public class RowSchedule {
         private TextView tvBegin, tvEnd;
         private TextView tvName, tvProgress;
         private ImageView ivAvatar;
-        private TextView tvClass;//剩余课时，漏课
+        private TextView tvClass;//总课时
+        private TextView tvLeaveClass;//剩余课时
+        private TextView tvMissClass;//漏课
         private TextView tvClassDetail;//倒车入库
 
         public Holder(View itemView) {
