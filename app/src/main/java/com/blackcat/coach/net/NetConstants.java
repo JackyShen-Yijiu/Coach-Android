@@ -66,6 +66,8 @@ public class NetConstants {
 
 	/***某一教练的预约情况*/
 	public static final String GET_COURSE_BY_COACH = "api/v1/courseinfo/getcoursebycoach";
+	/*** 教练给学员预约*/
+	public static final String COACH_APPOINT_CAR = "api/v1/courseinfo/userreservationcourse";
 
 	public static final String PATH_GET_GETMONTHAPPLYDATA = "api/v1/courseinfo/getmonthapplydata";
 
@@ -140,6 +142,11 @@ public class NetConstants {
 	public static final String KEY_COACH_ID = "coachid";
 	public static final String KEY_YEAR = "year";
 	public static final String KEY_MONTH = "month";
+	public static final String KEY_IS_SHUTTLE = "is_shuttle";
+	public static final String KEY_COURSELIST = "courselist";
+	public static final String KEY_ADDRESS = "address";
+	public static final String KEY_BEGIN_TIME= "begintime";
+	public static final String KEY_END_TIME= "endtime";
 
 
 

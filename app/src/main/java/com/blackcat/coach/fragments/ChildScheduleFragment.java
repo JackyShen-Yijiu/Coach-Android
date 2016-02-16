@@ -143,6 +143,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
         formatter = new SimpleDateFormat("yyyy-MM-dd");
         mCurrentDate = formatter.format(new Date());// 当期日期
 
+        mType = new TypeToken<Result<List<Reservation>>>(){}.getType();
 //        mPage = 1;
         if (!Session.isUserInfoEmpty()) {
             mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);
@@ -341,13 +342,15 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
         map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
 //        map.put(NetConstants.STUDENT_TYPE, type+"");
 
-        mType = new TypeToken<Result<List<CoachCourseVO>>>(){}.getType();
+       Type type = new TypeToken<Result<List<CoachCourseVO>>>(){}.getType();
 
         GsonIgnoreCacheHeadersRequest<Result<List<CoachCourseVO>>> request = new GsonIgnoreCacheHeadersRequest<Result<List<CoachCourseVO>>>(
-                url, mType, map,
+                url, type, map,
                 new Response.Listener<Result<List<CoachCourseVO>>>() {
                     @Override
                     public void onResponse(Result<List<CoachCourseVO>> response) {
+                        if (response != null && response.type == Result.RESULT_OK) {
+
                         List<CoachCourseVO> list = response.data;
                         LogUtil.print("list--size::"+list.size());
                         if(list.size()>0)
@@ -358,6 +361,9 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
                         timeLayout.clearData();
                         timeLayout.setData(list,aspect);
 //                            onFeedsResponse(response, refreshType);
+                        }else{
+                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
+                        }
                     }
                 },
                 new Response.ErrorListener() {
