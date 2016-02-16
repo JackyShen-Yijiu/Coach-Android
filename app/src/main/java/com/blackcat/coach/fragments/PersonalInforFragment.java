@@ -85,15 +85,16 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mType = new TypeToken<Result<List<Comment>>>(){}.getType();
+
         View rootView = inflater.inflate(R.layout.fragment_personal_infor, container, false);
         initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_COMMMENT_TEACHER, R.layout.activity_personal_info);
 //        fetchUserInfo(mUser._id);
         mPage = 1;
-        if (Session.getSession().coachid!=null) {
-            mURI = URIUtil.getCommentPersonal(Session.getSession().coachid, mPage);
-            refresh(DicCode.RefreshType.R_INIT, mURI);
-        }
+        mType = new TypeToken<Result<List<Comment>>>(){}.getType();
+//        if (Session.getSession().coachid!=null) {
+//            mURI = URIUtil.getCommentPersonal(Session.getSession().coachid, mPage);
+//            refresh(DicCode.RefreshType.R_INIT, mURI);
+//        }
         return rootView;
     }
 
@@ -122,6 +123,7 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
         //白色
         wordWrapView.setFirstColor(true);
         wordWrapView.showColor(true);
+        wordWrapView.setOnClickListener(this);
         mTvName = (TextView) mHeaderView.findViewById(R.id.tv_name);
         mTvId = (TextView) mHeaderView.findViewById(R.id.tv_id);
         mTvName.setText(Session.getSession().name);
@@ -156,16 +158,16 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
 
     @Override
     public void onRefresh() {
-        mPage = 1;
-        mURI = URIUtil.getCommentPersonal(Session.getSession().coachid, mPage);
-        refresh(DicCode.RefreshType.R_PULL_DOWN, mURI);
+//        mPage = 1;
+//        mURI = URIUtil.getCommentPersonal(Session.getSession().coachid, mPage);
+//        refresh(DicCode.RefreshType.R_PULL_DOWN, mURI);
     }
 
     @Override
     public void onLoadMore() {
-        mPage++;
-        mURI = URIUtil.getCommentPersonal(Session.getSession().coachid, mPage);
-        refresh(DicCode.RefreshType.R_PULL_UP, mURI);
+//        mPage++;
+//        mURI = URIUtil.getCommentPersonal(Session.getSession().coachid, mPage);
+//        refresh(DicCode.RefreshType.R_PULL_UP, mURI);
     }
 
     @Override

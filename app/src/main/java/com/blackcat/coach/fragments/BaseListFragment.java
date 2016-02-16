@@ -56,6 +56,7 @@ public abstract class BaseListFragment<T> extends BaseFragment
         mListView.setAdapter(mAdapter);
         mPullToRefreshView.setRefreshListener(this);
         mListView.setOnLoadMoreListener(this);
+        mType = new TypeToken<Result<List<Reservation>>>() {}.getType();
     }
 
     protected void initViews(View rootView, LayoutInflater inflater, int adapterType, int headerLayoutRes) {
@@ -86,7 +87,7 @@ public abstract class BaseListFragment<T> extends BaseFragment
         Map map = new HashMap<>();
         map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
 //        map.put("authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI1NjE2MzUyNzIxZWMyOTA0MWE5YWY4ODkiLCJ0aW1lc3RhbXAiOiIyMDE1LTEwLTA4VDA5OjIzOjQ4LjY5NloiLCJhdWQiOiJibGFja2NhdGUiLCJpYXQiOjE0NDQyOTYyMjh9.-iOZ5fIQjdmdHBthsCP7VQWRYYM68zWWHWWnIUxRSEg");
-        mType = new TypeToken<Result<List<Reservation>>>() {}.getType();
+
         GsonIgnoreCacheHeadersRequest<Result<List<T>>> request = new GsonIgnoreCacheHeadersRequest<Result<List<T>>>(
                 url, mType, map,
                 new Response.Listener<Result<List<T>>>() {

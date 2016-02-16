@@ -499,7 +499,7 @@
                 android:layout_height="wrap_content">
             <com.blackcat.coach.widgets.WordWrapView
                 android:id="@+id/view_wordwrap"
-                android:onClick="onClick"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"

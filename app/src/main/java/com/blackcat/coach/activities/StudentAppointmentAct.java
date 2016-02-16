@@ -31,9 +31,6 @@ import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.blackcat.coach.widgets.ScrollTimeLayout;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -87,11 +84,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
     private TextView studentContent;
 
     private User userInfo;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,9 +98,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
         //获取当月的信息
         obtainMonthApplyData(today.get(Calendar.YEAR) + "", (today.get(Calendar.MONTH) + 1) + "");
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
     }
 
     private void initView() {
@@ -369,7 +360,9 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
                     public void onResponse(Result<List<CoachCourseVO>> response) {
                         List<CoachCourseVO> list = response.data;
                         LogUtil.print("list--size::" + list.size());
+                        scrollTimeLayout.clearData();
                         scrollTimeLayout.setData(list, aspect);
+
 //                            onFeedsResponse(response, refreshType);
                     }
                 },
@@ -406,6 +399,8 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
                 break;
         }
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

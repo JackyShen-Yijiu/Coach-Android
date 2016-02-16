@@ -43,6 +43,8 @@ public class AppointmentCarTimeLayout extends LinearLayout implements
 	private TimeLayoutSelectedChangeListener selectedListener;
 	private CoachCourseVO coachCourseVO;
 
+	private int type = 0;
+
 	public interface TimeLayoutSelectedChangeListener {
 		public void onTimeLayoutSelectedChange(AppointmentCarTimeLayout layout,
 											   CoachCourseVO coachCourseVO, boolean selected);
@@ -69,7 +71,11 @@ public class AppointmentCarTimeLayout extends LinearLayout implements
 		init(context);
 	}
 
-	private void setOver(boolean isOver, int type) {
+	public void setType(int type){
+		this.type = type;
+	}
+
+	public void setOver(boolean isOver, int type) {
 		ck.setEnabled(!isOver);
 		if (isOver) {
 			setTextColor(over, type);
@@ -87,8 +93,8 @@ public class AppointmentCarTimeLayout extends LinearLayout implements
 			startTimeTv.setText("暂无");
 			endTimeTv.setText("可约0人");
 			endTv.setText("已约0人");
-
 			countTv.setText("签到0人");
+
 			setOver(true, other);
 			return;
 		}
@@ -97,6 +103,15 @@ public class AppointmentCarTimeLayout extends LinearLayout implements
 		startTimeTv.setText(beginTime);
 		endTimeTv.setText("可约"+coachCourseVO.getCoursestudentcount()+"人");
 		endTv.setText("已约"+coachCourseVO.getSelectedstudentcount()+"人");
+		countTv.setText("签到"+coachCourseVO.signinstudentcount+"人");
+		if(type == 1){
+			String endTime = coachCourseVO.getCoursetime().getEndtime();
+			endTime = endTime.substring(0, endTime.lastIndexOf(":"));
+			endTimeTv.setText(endTime+"结束");
+			endTv.setText("");
+			int temp = Integer.parseInt(coachCourseVO.getCoursestudentcount())  - Integer.parseInt(coachCourseVO.getSelectedstudentcount());
+			countTv.setText("剩余"+temp+"个名额");
+		}
 
 
 //		String endTime = coachCourseVO.getCoursetime().getEndtime();
@@ -186,27 +201,35 @@ public class AppointmentCarTimeLayout extends LinearLayout implements
 			}
 		} else if (style == selected) {
 			startTimeTv.setTextColor(getResources().getColorStateList(
-					R.color.app_bg));
+					R.color.blue));
 			endTimeTv.setTextColor(getResources().getColorStateList(
-					R.color.app_bg));
+					R.color.blue));
 			endTv.setTextColor(getResources().getColorStateList(
-					R.color.app_bg));
+					R.color.blue));
 			countTv.setTextColor(getResources().getColorStateList(
-					R.color.app_bg));
+					R.color.blue));
 		} else if (style == noSelected) {
-			startTimeTv.setTextColor(Color.parseColor("#333333"));
-			endTimeTv.setTextColor(Color.parseColor("#333333"));
-			endTv.setTextColor(Color.parseColor("#333333"));
-			countTv.setTextColor(Color.parseColor("#999999"));
+//			startTimeTv.setTextColor(Color.parseColor("#333333"));
+//			endTimeTv.setTextColor(Color.parseColor("#333333"));
+//			endTv.setTextColor(Color.parseColor("#333333"));
+//			countTv.setTextColor(Color.parseColor("#999999"));
+			startTimeTv.setTextColor(getResources().getColorStateList(
+					R.color.text_333));
+			endTimeTv.setTextColor(getResources().getColorStateList(
+					R.color.text_333));
+			endTv.setTextColor(getResources().getColorStateList(
+					R.color.text_333));
+			countTv.setTextColor(getResources().getColorStateList(
+					R.color.text_999));
 		}
 	}
 
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-		if (isChecked) {
-//			setTextColor(selected, other);
-		} else {
-//			setTextColor(noSelected, other);
+		if (isChecked &&type == 1) {
+			setTextColor(selected, other);
+		} else if(type == 1){
+			setTextColor(noSelected, other);
 		}
 		selectedListener.onTimeLayoutSelectedChange(this, coachCourseVO,
 				isChecked);
@@ -214,6 +237,12 @@ public class AppointmentCarTimeLayout extends LinearLayout implements
 
 	public void setCheckBoxState(boolean isChecked) {
 		ck.setChecked(isChecked);
+		if(type == 1 && isChecked){
+			setTextColor(selected, other);
+		}else if(type == 1 && !isChecked){
+//			setTextColor(noSelected, other);
+		}
 		setTextColor(noSelected, other);
+
 	}
 }

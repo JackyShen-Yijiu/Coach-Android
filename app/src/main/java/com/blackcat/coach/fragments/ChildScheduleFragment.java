@@ -142,7 +142,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
         mListView.setOnLoadMoreListener(null);
         formatter = new SimpleDateFormat("yyyy-MM-dd");
         mCurrentDate = formatter.format(new Date());// 当期日期
-
+        mType = new TypeToken<Result<List<Reservation>>>() {}.getType();
 //        mPage = 1;
         if (!Session.isUserInfoEmpty()) {
             mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);

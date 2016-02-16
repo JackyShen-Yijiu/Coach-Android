@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Typeface;
@@ -246,9 +247,10 @@ public class PagerSlidingTab extends HorizontalScrollView {
 		tab.setText(title);
 		tab.setFocusable(true);
 		tab.setGravity(Gravity.CENTER);
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-		params.weight = 1;
-		tab.setLayoutParams(params);
+
+//		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+//		params.weight = 1;
+//		tab.setLayoutParams(params);
 		tab.setSingleLine();
 //		tab.setLayoutParams();
 		tab.setOnClickListener(new OnClickListener() {
