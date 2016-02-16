@@ -305,16 +305,16 @@ public class MessageAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 if (message.direct == EMMessage.Direct.RECEIVE) {
-                    User user = new User();
-                    try {
-                        user._id = message.getStringAttribute(Constant.MESSAGE_USERID_ATR_KEY);
-                        Intent intent = new Intent();
-                        intent.setClass(mContext, DetailStudentActivity.class);
-                        intent.putExtra(Constants.DATA, user);
-                        mContext.startActivity(intent);
-                    }catch (Exception e) {
-
-                    }
+//                    User user = new User();
+//                    try {
+//                        user._id = message.getStringAttribute(Constant.MESSAGE_USERID_ATR_KEY);
+//                        Intent intent = new Intent();
+//                        intent.setClass(mContext, DetailStudentActivity.class);
+//                        intent.putExtra(Constants.DATA, user);
+//                        mContext.startActivity(intent);
+//                    }catch (Exception e) {
+//
+//                    }
 
                 }else {
                     Intent intent = new Intent();

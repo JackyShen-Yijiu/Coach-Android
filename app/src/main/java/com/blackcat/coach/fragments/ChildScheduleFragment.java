@@ -136,7 +136,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_child_schedule, container, false);
 //       View view= View.inflate(mContext,R.layout.fragment_child_schedule_head,null);
-        initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_SCHEDULE);
+        initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_SCHEDULE,R.layout.schedule_list_header);
 
         initView(rootView);
         mListView.setOnLoadMoreListener(null);

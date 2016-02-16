@@ -352,6 +352,7 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
                 Intent i1 = new Intent(mActivity, WorkTimeActivity.class);
 //                startActivityForResult(i1,1);
                 startActivity(i1);
+                break;
             case R.id.rl_tech_subject://可授科目
                 startActivity(new Intent(mActivity, TrainingSubjectActivity.class));
                 break;
