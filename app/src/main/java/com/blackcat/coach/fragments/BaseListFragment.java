@@ -12,6 +12,7 @@ import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.models.DicCode;
+import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.User;
@@ -24,6 +25,7 @@ import com.blackcat.coach.utils.VolleyUtil;
 import com.blackcat.coach.widgets.LoadMoreListView;
 import com.blackcat.coach.widgets.PullToRefreshListView;
 import com.blackcat.coach.widgets.PullToRefreshView;
+import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.net.URI;
@@ -84,7 +86,7 @@ public abstract class BaseListFragment<T> extends BaseFragment
         Map map = new HashMap<>();
         map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
 //        map.put("authorization", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiI1NjE2MzUyNzIxZWMyOTA0MWE5YWY4ODkiLCJ0aW1lc3RhbXAiOiIyMDE1LTEwLTA4VDA5OjIzOjQ4LjY5NloiLCJhdWQiOiJibGFja2NhdGUiLCJpYXQiOjE0NDQyOTYyMjh9.-iOZ5fIQjdmdHBthsCP7VQWRYYM68zWWHWWnIUxRSEg");
-
+        mType = new TypeToken<Result<List<Reservation>>>() {}.getType();
         GsonIgnoreCacheHeadersRequest<Result<List<T>>> request = new GsonIgnoreCacheHeadersRequest<Result<List<T>>>(
                 url, mType, map,
                 new Response.Listener<Result<List<T>>>() {

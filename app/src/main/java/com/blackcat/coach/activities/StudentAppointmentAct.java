@@ -167,6 +167,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
         //预约列表
         scrollTimeLayout = (ScrollTimeLayout) findViewById(R.id.appointment_student_time);
         scrollTimeLayout.setColumn(4);
+        scrollTimeLayout.setType(1);
         scrollTimeLayout.setOnTimeLayoutSelectedListener(new ScrollTimeLayout.OnTimeLayoutSelectedListener() {
 
             @Override
@@ -214,7 +215,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
     /**
      * 提交预约
      */
-    private void commitAppointment(User user ,) {
+    private void commitAppointment(String time) {
         URI uri = URIUtil.getAppointStudentTime(time);
         String url = null;
         if (uri != null) {
@@ -241,6 +242,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
                         List<CoachCourseVO> list = response.data;
                         LogUtil.print("list--size::" + list.size());
                         scrollTimeLayout.setData(list, aspect);
+
 //                            onFeedsResponse(response, refreshType);
                     }
                 },

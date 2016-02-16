@@ -16,7 +16,6 @@
         android:orientation="vertical"
         android:background="#f0f0f0"
         >
-<!--#F8F9FB -->
 
         <sun.bob.mcalendarview.views.WeekColumnView
             android:layout_width="match_parent"
@@ -127,7 +126,7 @@
 
             </RelativeLayout>
         </RelativeLayout>
-       <Button
+        <Button
             android:id="@+id/add_apply_student"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -145,4 +144,4 @@
         android:text="提交"
         android:textColor="@color/white"
         />
-</RelativeLayout>
+    </RelativeLayout>
