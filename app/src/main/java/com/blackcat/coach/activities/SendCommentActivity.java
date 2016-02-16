@@ -85,10 +85,10 @@ public class SendCommentActivity extends BaseNoFragmentActivity {
             public void onClick(View v) {
                 //TODO
                 String learningContent = makeCheckedContent();
-                if (TextUtils.isEmpty(mEtComment.getText())) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.comment_empty);
-                    return;
-                }
+//                if (TextUtils.isEmpty(mEtComment.getText())) {
+//                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.comment_empty);
+//                    return;
+//                }
 
                // sendCommentRequest(String.valueOf(mRbOverall.getRating()),mEtComment.getText().toString());
                 sendCommentRequest(Session.getSession().coachid,mReservation._id,mEtComment.getText().toString(), String.valueOf(mRbOverall.getRating()),learningContent);

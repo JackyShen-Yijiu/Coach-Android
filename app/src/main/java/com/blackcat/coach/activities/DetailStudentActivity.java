@@ -29,6 +29,7 @@ public class DetailStudentActivity extends BaseActivity {
             finish();
             return;
         }
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fl_container, DetailStudentFragment.newInstance(mUser));
         transaction.commitAllowingStateLoss();

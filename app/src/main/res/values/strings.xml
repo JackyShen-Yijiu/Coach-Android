@@ -77,7 +77,7 @@
 
     <string name="str_avatar">头像</string>
     <string name="str_username">用户名</string>
-    <string name="title_activity_driving_school">挂靠驾校</string>
+    <string name="title_activity_driving_school">所属驾校</string>
     <string name="title_activity_students">学员列表</string>
     <string name="title_activity_self_introducation">自我介绍</string>
     <string name="title_activity_setting">设置</string>
@@ -238,7 +238,7 @@
     <string name="str_job_category">请选择工作性质</string>
 
     <string name="str_app_version">V%s</string>
-    <string name="str_idcardnumber_invalid">请输入15/18位的身份证号码</string>
+    <string name="str_idcardnumber_invalid">请输入正确的的身份证号码</string>
     <string name="str_worktime_invalid">工作开始时间不能大于结束时间</string>
     <string name="str_vacation_invalid">请假开始时间不能大于结束时间</string>
 

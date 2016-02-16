@@ -18,6 +18,7 @@ import com.blackcat.coach.events.UpdatePwdOk;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.URIUtil;
+import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
@@ -60,12 +61,23 @@ public class ForgetPwdActivity extends BaseNoFragmentActivity implements View.On
         int id = v.getId();
         switch (id) {
             case R.id.tv_send_code:
-                if (TextUtils.isEmpty(mEtPhoneNum.getText())) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_empty);
-                    return;
-                }
-                sendSmsRequest(mEtPhoneNum.getText().toString());
-                break;
+
+                    String phone = mEtPhoneNum.getText().toString();
+                    if (TextUtils.isEmpty(phone)) {
+                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_empty);
+                        return ;
+                    } else {
+                        if (!CommonUtil.isMobile(phone)) {
+                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_enrro);
+                            return ;
+                        }
+                    }
+                    if (phone.length() != 11) {
+                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_enrros);
+                        return ;
+                    }
+                    sendSmsRequest(mEtPhoneNum.getText().toString());
+                    break;
             case R.id.btn_next:
                 if (TextUtils.isEmpty(mEtVerifyCode.getText())) {
                     ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.sms_empty);
