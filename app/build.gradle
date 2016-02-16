@@ -53,4 +53,5 @@ dependencies {
     //    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     //支持 布局 图片 按照比例显示
     compile project(':mcalendarview')
+    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
 }

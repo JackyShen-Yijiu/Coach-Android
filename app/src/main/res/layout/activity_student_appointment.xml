@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8F9FB"
+    android:background="#E6E6E6"
     tools:context="com.blackcat.coach.activities.StudentAppointmentAct">
 
     <include layout="@layout/layout_toolbar" />
@@ -16,7 +16,7 @@
         android:orientation="vertical"
         android:background="#f0f0f0"
         >
-<!--f0f0f0 -->
+<!--#F8F9FB -->
 
         <sun.bob.mcalendarview.views.WeekColumnView
             android:layout_width="match_parent"
@@ -67,7 +67,7 @@
             android:id="@+id/rl_selected_student"
             android:layout_width="200dp"
             android:layout_height="100dp"
-            android:visibility="gone"
+            android:visibility="visible"
             android:background="@drawable/button_org_white"
             >
 
@@ -84,6 +84,7 @@
                 android:layout_height="70dp"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
+                android:layout_marginLeft="5dp"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/ic_avatar_small" />
 
@@ -103,7 +104,7 @@
 
 
                 <TextView
-                    android:id="@+id/tv_learning_item"
+                    android:id="@+id/tv_class"
                     android:layout_width="110dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/tv_name"
@@ -113,9 +114,10 @@
                     android:textColor="@color/text_999"
                     android:textSize="14sp" />
                 <TextView
+                    android:id="@+id/tv_leaning_contents"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_learning_item"
+                    android:layout_below="@+id/tv_class"
                     android:layout_marginTop="7dp"
                     android:singleLine="true"
                     android:text="官方24课时"
@@ -129,8 +131,18 @@
             android:id="@+id/add_apply_student"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+           android:visibility="gone"
             style="@style/dialog_btn_style"
             android:layout_centerInParent="true"
             android:text="添加学员"/>
         </RelativeLayout>
+    <Button
+        android:id="@+id/appointment_student_commit_btn"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_blue_selector"
+        android:text="提交"
+        android:textColor="@color/white"
+        />
 </RelativeLayout>

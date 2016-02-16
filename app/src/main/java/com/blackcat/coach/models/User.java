@@ -27,5 +27,6 @@ public class User implements Serializable {
     public String missingcoursecount;
     /**发送短信  是否需要发送，1：发送 0.不发送*/
     public int seleted = 1;
+    public String leaningContents;
 
 }

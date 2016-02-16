@@ -9,6 +9,11 @@ import com.blackcat.coach.R;
  */
 public class OrderStudentActivity extends BaseActivity {
 
+    /**
+     *   1-学员预约时，点击返回
+     *   2-
+     */
+    public static int orderStudentType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -33,7 +33,7 @@
 
         <Button
             android:id="@+id/dialog_no_login_confirm_btn"
-            style="@style/dialog_btn_style"
+            style="@style/btn_style"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="8dp"
