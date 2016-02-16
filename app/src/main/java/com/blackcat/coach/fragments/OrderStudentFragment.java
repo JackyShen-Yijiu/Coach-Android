@@ -37,10 +37,10 @@ public class OrderStudentFragment extends BaseListFragment<User> {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        mType = new TypeToken<Result<List<User>>>(){}.getType();
+
         View rootView = inflater.inflate(R.layout.fragment_order_student, container, false);
         initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_ORDER_STUDENT);
-
+        mType = new TypeToken<Result<List<User>>>(){}.getType();
         mPage = 1;
         if (!Session.isUserInfoEmpty()) {
             mURI = URIUtil.getStudentsList(Session.getSession().coachid, mPage);

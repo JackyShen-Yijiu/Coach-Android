@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -359,7 +360,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
      * 提交预约
      */
     private void commitAppointment(User user, List<CoachCourseVO> courseList) {
-        URI uri = URIUtil.getStudentAppointList(user, courseList,selectDate);
+        URI uri = URIUtil.getStudentAppointList(user, courseList, selectDate);
         String url = null;
         try {
             url = uri.toURL().toString();
@@ -406,7 +407,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
                     public void onResponse(Result response) {
                         String msg = response.msg;
                         if (response != null && response.type == Result.RESULT_OK) {
-                            ApplySuccessDialog dialog = new ApplySuccessDialog(StudentAppointmentAct.this);
+                            final ApplySuccessDialog dialog = new ApplySuccessDialog(StudentAppointmentAct.this);
                             dialog.setTextAndImage("是",
                                     "恭喜您预约成功，是否短信通知学员", "否",
                                     R.drawable.ic_dialog);
@@ -415,8 +416,9 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
                                 @Override
                                 public void onClick(View arg0) {
                                     //发短信
-                                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast("发短差");
-
+//                                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast("发短差");
+                                    sendMsg(userInfo.mobile);
+                                    dialog.dismiss();
                                 }
                             });
                             dialog.show();
@@ -441,6 +443,13 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
         VolleyUtil.getQueue(this).add(request);
     }
 
+    private void sendMsg(String phone){
+
+        Uri smsUri = Uri.parse("smsto:"+phone);
+        Intent intent = new Intent(Intent.ACTION_SENDTO,smsUri);
+        intent.putExtra("sms_body", "");
+        startActivity(intent);
+    }
 
 
     @Override

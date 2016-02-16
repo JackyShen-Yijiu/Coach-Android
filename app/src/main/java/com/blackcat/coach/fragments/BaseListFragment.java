@@ -56,7 +56,7 @@ public abstract class BaseListFragment<T> extends BaseFragment
         mListView.setAdapter(mAdapter);
         mPullToRefreshView.setRefreshListener(this);
         mListView.setOnLoadMoreListener(this);
-        mType = new TypeToken<Result<List<Reservation>>>() {}.getType();
+
     }
 
     protected void initViews(View rootView, LayoutInflater inflater, int adapterType, int headerLayoutRes) {

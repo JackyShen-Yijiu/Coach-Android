@@ -172,10 +172,15 @@ public class ScrollTimeLayout extends LinearLayout implements
 			AppointmentCarTimeLayout timeLayout = new AppointmentCarTimeLayout(
 					context);
 			timeLayout.setSelectedChangeListener(this);
-
+			timeLayout.setType(type);
 			// 参数
 			timeLayout.setVaule(list.get((row - 1) * column + i));
+
+
 			innerLayout.addView(timeLayout, timeParams);
+			if(type == 1){//预约报名，设置不可以点击
+				notClick(timeLayout,list.get((row - 1) * column + i));
+			}
 			if (i != column - 1) {
 				ImageView devider = new ImageView(context);
 				devider.setBackgroundColor(Color.parseColor("#cccccc"));
@@ -198,10 +203,11 @@ public class ScrollTimeLayout extends LinearLayout implements
 	 * @param coach
 	 */
 	private void  notClick(AppointmentCarTimeLayout timeLayout,CoachCourseVO coach){
+//		LogUtil.print("Enable--->" +beginTime+ "type-->" + type);
 		if(coach.getSelectedstudentcount().equals(coach.getCoursestudentcount())){
-			timeLayout.setEnabled(false);
+			timeLayout.setEnableM(false);
 		}else{
-			timeLayout.setEnabled(true);
+//			timeLayout.setEnableM(true);
 		}
 	}
 

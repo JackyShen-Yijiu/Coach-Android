@@ -1,0 +1,36 @@
+﻿Merge branch 'master' of https://github.com/JackyShen-Yijiu/Coach-Android
+
+Conflicts:
+	app/src/main/java/com/blackcat/coach/fragments/BaseListFragment.java
+	app/src/main/java/com/blackcat/coach/fragments/ChildScheduleFragment.java
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 5 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   app/src/main/java/com/blackcat/coach/activities/StudentAppointmentAct.java
+#	modified:   app/src/main/java/com/blackcat/coach/fragments/BaseListFragment.java
+#	modified:   app/src/main/java/com/blackcat/coach/fragments/ChildScheduleFragment.java
+#	modified:   app/src/main/java/com/blackcat/coach/fragments/DetailStudentFragment.java
+#	modified:   app/src/main/java/com/blackcat/coach/fragments/PersonalInforFragment.java
+#	new file:   app/src/main/java/com/blackcat/coach/models/params/CoachAppointParams.java
+#	modified:   app/src/main/java/com/blackcat/coach/net/GsonIgnoreCacheHeadersRequest.java
+#	modified:   app/src/main/java/com/blackcat/coach/net/NetConstants.java
+#	modified:   app/src/main/java/com/blackcat/coach/net/URIUtil.java
+#	modified:   app/src/main/res/drawable/bg_btn.xml
+#	modified:   app/src/main/res/layout/dialog_apply_success.xml
+#	modified:   app/src/main/res/layout/row_student.xml
+#
+
