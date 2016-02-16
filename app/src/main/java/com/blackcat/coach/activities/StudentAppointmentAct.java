@@ -140,6 +140,7 @@ public class StudentAppointmentAct extends BaseActivity {
         //预约列表
         scrollTimeLayout = (ScrollTimeLayout) findViewById(R.id.appointment_student_time);
         scrollTimeLayout.setColumn(4);
+        scrollTimeLayout.setType(1);
         scrollTimeLayout.setOnTimeLayoutSelectedListener(new ScrollTimeLayout.OnTimeLayoutSelectedListener() {
 
             @Override
