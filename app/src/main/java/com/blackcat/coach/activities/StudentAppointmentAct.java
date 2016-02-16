@@ -180,6 +180,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
         scrollTimeLayout = (ScrollTimeLayout) findViewById(R.id.appointment_student_time);
         scrollTimeLayout.setColumn(4);
         scrollTimeLayout.setType(1);
+//        scrollTimeLayout.getSelectCourseList();
         scrollTimeLayout.setOnTimeLayoutSelectedListener(new ScrollTimeLayout.OnTimeLayoutSelectedListener() {
 
             @Override
