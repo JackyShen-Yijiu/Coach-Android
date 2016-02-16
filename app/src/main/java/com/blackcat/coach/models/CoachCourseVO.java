@@ -17,6 +17,9 @@ public class CoachCourseVO {
 	private CourseTime coursetime;
 	private String coursebegintime;
 	private String coursendtime;
+	public String signinstudentcount;
+
+
 
 	public String getCoursedate() {
 		return coursedate;

@@ -141,8 +141,14 @@ public class ScrollTimeLayout extends LinearLayout implements
 						context);
 				timeLayout.setSelectedChangeListener(this);
 				timeLayout.setOnClickListener(this);
+				timeLayout.setType(type);
 				// 参数
 				timeLayout.setVaule(list.get(i * column + j));
+
+				if(type == 1){//预约报名，设置不可以点击
+					notClick(timeLayout,list.get(i * column + j));
+				}
+
 				innerLayout.addView(timeLayout, timeParams);
 				if (j < column - 1) {
 					ImageView devider = new ImageView(context);
@@ -184,6 +190,19 @@ public class ScrollTimeLayout extends LinearLayout implements
 			addView(devider, horitalDeviderParams);
 		}
 
+	}
+
+	/**
+	 * 设置不可以点击
+	 * @param timeLayout
+	 * @param coach
+	 */
+	private void  notClick(AppointmentCarTimeLayout timeLayout,CoachCourseVO coach){
+		if(coach.getSelectedstudentcount().equals(coach.getCoursestudentcount())){
+			timeLayout.setEnabled(false);
+		}else{
+			timeLayout.setEnabled(true);
+		}
 	}
 
 	private String currentId = "";
@@ -266,6 +285,8 @@ public class ScrollTimeLayout extends LinearLayout implements
 		}
 		return true;
 	}
+
+
 
 	@Override
 	public void onClick(View view) {
