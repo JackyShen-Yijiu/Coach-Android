@@ -18,6 +18,7 @@ import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.caldroid.CaldroidFragment;
 
 import com.blackcat.coach.events.MonthApplyEvent;
+import com.blackcat.coach.models.CoachCourseVO;
 import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.Result;
@@ -32,6 +33,7 @@ import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
+import com.blackcat.coach.widgets.ScrollTimeLayout;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -79,6 +81,11 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
     private String mCurrentDate;
 
     private ExpCalendarView expCalendarView;
+
+    private ScrollTimeLayout timeLayout;
+
+    private float aspect = 180f / 112f;
+
 
     public static ChildScheduleFragment newInstance(String param1, String param2) {
         ChildScheduleFragment fragment = new ChildScheduleFragment();
@@ -135,8 +142,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
         mListView.setOnLoadMoreListener(null);
         formatter = new SimpleDateFormat("yyyy-MM-dd");
         mCurrentDate = formatter.format(new Date());// 当期日期
-        mType = new TypeToken<Result<List<Reservation>>>() {
-        }.getType();
+
 //        mPage = 1;
         if (!Session.isUserInfoEmpty()) {
             mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);
@@ -146,7 +152,11 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
         Calendar today = Calendar.getInstance();
         today.setTime(new Date());
         //获取当月的信息
-        obtainMonthApplyData(today.get(Calendar.YEAR) + "", (today.get(Calendar.MONTH)+1) + "");
+        obtainMonthApplyData(today.get(Calendar.YEAR) + "", (today.get(Calendar.MONTH) + 1) + "");
+//        String s = today.get(Calendar.YEAR) + "-"+(today.get(Calendar.MONTH)+1)+"-"+today.get(Calendar.DAY_OF_MONTH);
+//        String str = formatter.format(today);
+//        LogUtil.print("initDate--->>>"+str);
+        requestTime(mCurrentDate);
 
         return rootView;
     }
@@ -158,12 +168,38 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
 
         //      Get instance.
         expCalendarView = ((ExpCalendarView) rootView.findViewById(R.id.calendar_exp));
+        timeLayout = (ScrollTimeLayout) rootView.findViewById(R.id.appointment_student_time);
+
+        timeLayout.setColumn(4);
+        timeLayout.setOnTimeLayoutSelectedListener(new ScrollTimeLayout.OnTimeLayoutSelectedListener() {
+
+            @Override
+            public void TimeLayoutSelectedListener(CoachCourseVO coachCourseVO, boolean selected) {
+                if (selected) {//选中该项 ，发起请求
+//                    .getCoursetime().getTimeid();
+//                    requestDetail();
+
+                    mAdapter.setList(null);
+                    mAdapter.notifyDataSetChanged();
+                    mPage = 1;
+                    if (!Session.isUserInfoEmpty()) {
+                        mURI = URIUtil.getScheduleDetail(Session.getSession().coachid, coachCourseVO.get_id());
+                        refresh(DicCode.RefreshType.R_INIT, mURI);
+                    }
+
+                }
+            }
+        });
+
+//        appointment_student_time
 //        YearMonthTv = (TextView) rootView.findViewById(R.id.main_YYMM_Tv);
 //        YearMonthTv.setText(Calendar.getInstance().get(Calendar.YEAR) + "年" + (Calendar.getInstance().get(Calendar.MONTH) + 1) + "月");
 
         mYear = Calendar.getInstance().get(Calendar.YEAR);
         mMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1);
         mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
+
+
         imageInit();
 
 //      Set up listeners.
@@ -176,6 +212,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
                     mYear = year;
                     mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
                     obtainMonthApplyData(mYear + "", mMonth + "");
+
                 }
                 LogUtil.print(String.format("%d年%d月", year, month));
 
@@ -194,14 +231,15 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
                 String str = formatter.format(date.getDate());
                 LogUtil.print("formatter"+str);
                 if (!mCurrentDate.equals(str)) {
-                    mCurrentDate = str;
-                    mAdapter.setList(null);
-                    mAdapter.notifyDataSetChanged();
-                    mPage = 1;
-                    if (!Session.isUserInfoEmpty()) {
-                        mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);
-                        refresh(DicCode.RefreshType.R_INIT, mURI);
-                    }
+                        mCurrentDate = str;
+                        mAdapter.setList(null);
+                        mAdapter.notifyDataSetChanged();
+                        mPage = 1;
+                        if (!Session.isUserInfoEmpty()) {
+                            mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);
+                            refresh(DicCode.RefreshType.R_INIT, mURI);
+                        }
+                    requestTime(str);
                 }
             }
         });
@@ -279,6 +317,62 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
         request.setShouldCache(false);
 
         VolleyUtil.getQueue(getActivity()).add(request);
+    }
+
+    /**
+     * 获取某一日期的预约情况
+     */
+    private void requestTime(String time){
+        URI uri =  URIUtil.getAppointStudentTime(time);
+        String url = null;
+        if (uri != null) {
+            try {
+                url = uri.toURL().toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
+
+        Map map = new HashMap<>();
+        map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
+//        map.put(NetConstants.STUDENT_TYPE, type+"");
+
+        mType = new TypeToken<Result<List<CoachCourseVO>>>(){}.getType();
+
+        GsonIgnoreCacheHeadersRequest<Result<List<CoachCourseVO>>> request = new GsonIgnoreCacheHeadersRequest<Result<List<CoachCourseVO>>>(
+                url, mType, map,
+                new Response.Listener<Result<List<CoachCourseVO>>>() {
+                    @Override
+                    public void onResponse(Result<List<CoachCourseVO>> response) {
+                        List<CoachCourseVO> list = response.data;
+                        LogUtil.print("list--size::"+list.size());
+                        if(list.size()>0)
+                            LogUtil.print("list--size::222"+list.get(0).getClass());
+                        for (CoachCourseVO coachCourseVO : list) {
+                            LogUtil.print(coachCourseVO.getCoursetime().getBegintime()+"list--size::3333"+coachCourseVO.getSelectedstudentcount());
+                        }
+                        timeLayout.clearData();
+                        timeLayout.setData(list,aspect);
+//                            onFeedsResponse(response, refreshType);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError arg0) {
+//                            onFeedsErrorResponse(arg0, refreshType);
+                    }
+                });
+        // 请求加上Tag,用于取消请求
+        request.setTag(this);
+
+
+        VolleyUtil.getQueue(getActivity()).add(request);
+//        }
+
     }
 
 

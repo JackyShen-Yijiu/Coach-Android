@@ -204,9 +204,9 @@ public class AppointmentCarTimeLayout extends LinearLayout implements
 	@Override
 	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 		if (isChecked) {
-			setTextColor(selected, other);
+//			setTextColor(selected, other);
 		} else {
-			setTextColor(noSelected, other);
+//			setTextColor(noSelected, other);
 		}
 		selectedListener.onTimeLayoutSelectedChange(this, coachCourseVO,
 				isChecked);
