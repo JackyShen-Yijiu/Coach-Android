@@ -12,13 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.BindPhoneActivity;
+import com.blackcat.coach.activities.ClassesSettingsActivity;
 import com.blackcat.coach.activities.DrivingLicenseActivity;
+import com.blackcat.coach.activities.JobCategory;
 import com.blackcat.coach.activities.ModifyCoachNameAct;
 import com.blackcat.coach.activities.ModifyCoachNumberActivity;
 import com.blackcat.coach.activities.ModifyGenderActivity;
@@ -26,6 +29,9 @@ import com.blackcat.coach.activities.ModifyIdCardActivity;
 import com.blackcat.coach.activities.ModifySeniorityActivity;
 import com.blackcat.coach.activities.PersionLableAct;
 import com.blackcat.coach.activities.SelfIntroducationActivity;
+import com.blackcat.coach.activities.TrainFieldActivity;
+import com.blackcat.coach.activities.TrainingSubjectActivity;
+import com.blackcat.coach.activities.WorkTimeActivity;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.dialogs.AsyncProgressDialog;
 import com.blackcat.coach.dialogs.BaseDialogWrapper;
@@ -62,6 +68,8 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
     private Button btnBaoKao;
 
     private WordWrapView  wordWrapView;
+    private TextView tv_job_category;
+    private TextView mTvFieldName,mWorkTime,mSubject,mClass;
 
     public static PersonalInforFragment newInstance() {
         PersonalInforFragment fragment = new PersonalInforFragment();
@@ -118,6 +126,23 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
         mTvId = (TextView) mHeaderView.findViewById(R.id.tv_id);
         mTvName.setText(Session.getSession().name);
         mTvId.setText(Session.getSession().displaycoachid);
+        //新加、
+        mTvFieldName = (TextView) rootView.findViewById(R.id.tv_field_name);
+        mWorkTime = (TextView) rootView.findViewById(R.id.tv_work_time);
+        mSubject = (TextView) rootView.findViewById(R.id.tv_subjects);
+        mClass = (TextView) rootView.findViewById(R.id.tv_class);
+
+        RelativeLayout job_category = (RelativeLayout) rootView.findViewById(R.id.rl_job_category);
+        job_category.setOnClickListener(this);
+        tv_job_category=(TextView)rootView.findViewById(R.id.tv_job_category);
+        tv_job_category.setOnClickListener(this);
+        RelativeLayout workTime = (RelativeLayout) rootView.findViewById(R.id.rl_work_time);
+        workTime.setOnClickListener(this);
+        RelativeLayout techClass = (RelativeLayout) rootView.findViewById(R.id.rl_tech_subject);
+        techClass.setOnClickListener(this);
+
+        RelativeLayout trainfield = (RelativeLayout) rootView.findViewById(R.id.rl_train_field);
+        trainfield.setOnClickListener(this);
 
         mIvAvatar = (ImageView) mHeaderView.findViewById(R.id.ic_avatar);
         if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
@@ -180,11 +205,60 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
         if (!TextUtils.isEmpty(Session.getSession().introduction)) {
             mTvIntroduction.setText(Session.getSession().introduction);
         }
+        if (Session.getSession().trainfieldlinfo != null && !TextUtils.isEmpty(Session.getSession().trainfieldlinfo.name)) {
+            mTvFieldName.setText(Session.getSession().trainfieldlinfo.name);
+        }
+       // 工作性质
+        if (!TextUtils.isEmpty(Session.getSession().GenderJob)) {
+            tv_job_category.setText(Session.getSession().GenderJob);
+        }else{
+            tv_job_category.setText(R.string.str_direct_coach);}
 
+
+        if(Session.getSession().subject.size()>0){//可授科目
+            if(Session.getSession().subject.size()==1){
+                mSubject.setText(Session.getSession().subject.get(0).name);
+            }else
+                mSubject.setText("已设置");
+        }else{
+            mSubject.setText("");
+        }
+        if(Session.getSession().workweek.length>0){//工作时间
+
+            mWorkTime.setText(getWorkTime(Session.getSession().workweek,Session.getSession().worktimespace.begintimeint,
+                    Session.getSession().worktimespace.endtimeint));
+//            Log.d("tag", "work--time:" + Session.getSession().workweek.getClass());
+        }else{
+            mWorkTime.setText("");
+        }
         Log.d("tag", "Introduction-->" + Session.getSession().introduction);
         addTags();
     }
+    private String getTime(int temp){
+        if(temp<10)
+            return "0"+temp+":00";
+        else
+            return temp+":00";
+    }
+    private String[] weeks = {"星期一","星期二","星期三","星期四","星期五","星期六","星期天"};
 
+    private String getWorkTime(int[] time,int start,int end){
+        for (int i : time) {
+            LogUtil.print("time>>"+i);
+        }
+        LogUtil.print(time[0] + "<<000--->" + (time.toString()) + "End::-->" + time[time.length - 1]);
+
+        if(time[0]+time.length-1 == time[time.length-1]){
+
+            if(time[0]<1)
+                return "已设置";
+            else if(time.length==1){
+                return weeks[time[0]-1]+"\n"+getTime(start)+"-"+getTime(end);
+            }
+            return weeks[time[0]-1] +"至"+ weeks[time[time.length-1]-1] +"\n"+getTime(start)+"-"+getTime(end) ;
+        }
+        return "已设置";
+    }
     /**
      * 设置标签
      */
@@ -267,6 +341,19 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
                 break;
             case R.id.view_wordwrap:// 标签页面
                 startActivity(new Intent(getActivity(),PersionLableAct.class));
+                break;
+            case R.id.rl_job_category://工作性质
+                startActivity(new Intent(mActivity, JobCategory.class));
+                break;
+            case R.id.rl_work_time://工作时间
+                Intent i1 = new Intent(mActivity, WorkTimeActivity.class);
+//                startActivityForResult(i1,1);
+                startActivity(i1);
+            case R.id.rl_tech_subject://可授科目
+                startActivity(new Intent(mActivity, TrainingSubjectActivity.class));
+                break;
+            case R.id.rl_train_field://训练场地
+                startActivity(new Intent(mActivity, TrainFieldActivity.class));
                 break;
             default:
                 break;
