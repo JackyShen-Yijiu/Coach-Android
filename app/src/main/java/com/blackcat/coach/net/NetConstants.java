@@ -82,6 +82,10 @@ public class NetConstants {
 
 	public static final String PATH_COACH_SET_TAG = "api/v1/userinfo/coachsetselftags";
 
+	/***教练获取某一节课的课时详情*/
+	public static final String PATH_COURSE_DETAIL = "api/v1/courseinfo/coursereservationlist";
+//	get /
+
 	//新加（签到）
 	public static final String PATH_SIGNIN = "api/v1/courseinfo/coursesignin";
 	/***提醒学员可以报考了*/
@@ -112,6 +116,8 @@ public class NetConstants {
 	public static final String KEY_DATE = "date";
 	public static final String KEY_PAGE = "page";
 	public static final String KEY_COUNT = "count";
+	public static final String KEY_COURSE_ID = "courseid";
+
 	public static final String KEY_ORDER_ID = "orderId";
 	public static final String KEY_ORDER_MONEY = "money";
 	public static final String KEY_ORDER_REMARK = "remark";

@@ -40,6 +40,7 @@ import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
 import com.blackcat.coach.easemob.Constant;
 import com.blackcat.coach.easemob.basefunction.HXSDKHelper;
 import com.blackcat.coach.events.LogoutEvent;
+import com.blackcat.coach.events.MonthApplyEvent;
 import com.blackcat.coach.events.NetStateEvent;
 import com.blackcat.coach.events.NewMessageReceiveEvent;
 import com.blackcat.coach.fragments.ReservationFragment;
@@ -53,6 +54,7 @@ import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.once.Once;
 import com.blackcat.coach.utils.AppEnv;
+import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.UIUtils;
@@ -110,7 +112,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
     private final List<WeakReference<IResourceDischarger>> mFragDischargerList = new ArrayList<WeakReference<IResourceDischarger>>();
     private final List<WeakReference<IKillable>> mFragKillableList = new ArrayList<WeakReference<IKillable>>();
 
-    private TextView mToolBarTitle, mVerificationWarning;
+    private TextView mToolBarLeftTitle,mToolBarTitle, mVerificationWarning;
     private RadioGroup mRadioGroupReservation;
 
     // 是否是OnCreate之后的第一次onResume调用
@@ -571,6 +573,8 @@ public class IndexActivity extends BaseActivity implements IKillable,
     private void init() {
         Utils.setContentView(this, R.layout.activity_index);
         mToolBarTitle = (TextView) findViewById(R.id.toolbar_title);
+        mToolBarLeftTitle = (TextView) findViewById(R.id.toolbar_left_title);
+
         llQianDao = (LinearLayout) findViewById(R.id.toolbar_title_right);
         tvQianDao = (TextView) findViewById(R.id.toobar_title_right_tv);
         imgQuery = (ImageView) findViewById(R.id.toobar_title_right_img);
@@ -700,6 +704,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
     @Override
     public void onTabSelected(int index, boolean reClicked) {
+        mToolBarLeftTitle.setVisibility(View.GONE);
         switch (index) {
             case TAB_RESERVATION:
                 mToolBarTitle.setVisibility(View.VISIBLE);
@@ -712,10 +717,12 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
                 break;
             case TAB_SCHEDULE:
+//                setRightTitleWithoutImg(CommonUtil.getString(mContext, R.string.student_appointment));
+                setLeftTitle(CommonUtil.getString(mContext, R.string.toady));
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_schedule);
-                showHideQianDao(false, -1, 1);
+                showHideQianDao(false, ReservationFragment.currentPage, 1);
 
                 break;
             case TAB_MESSAGE:
@@ -742,11 +749,16 @@ public class IndexActivity extends BaseActivity implements IKillable,
     public void setmToolBarTitle(String title){
         mToolBarTitle.setText(title);
     }
-    public void setRightTitleWithoutImg(String title){
-        llQianDao.setVisibility(View.VISIBLE);
-        imgQuery.setVisibility(View.GONE);
-        tvQianDao.setText(title);
+    public void setLeftTitle(String title){
+        mToolBarLeftTitle.setVisibility(View.VISIBLE);
+        mToolBarLeftTitle.setText(title);
     }
+//    public void setRightTitleWithoutImg(String title){
+//        llQianDao.setVisibility(View.VISIBLE);
+//        imgQuery.setVisibility(View.GONE);
+//        tvQianDao.setText(title);
+//    }
+
 
     /**
      * 是否显示  签到
@@ -772,6 +784,11 @@ public class IndexActivity extends BaseActivity implements IKillable,
             tvQianDao.setText("群发短信");
             imgQuery.setVisibility(View.GONE);
 
+        }else if(type==1){
+            llQianDao.setVisibility(View.VISIBLE);
+            imgQuery.setVisibility(View.GONE);
+            tvQianDao.setVisibility(View.VISIBLE);
+            tvQianDao.setText("学员预约");
         }else{
             llQianDao.setVisibility(View.GONE);
         }
@@ -833,9 +850,15 @@ public class IndexActivity extends BaseActivity implements IKillable,
                     intent1.setFlags(1);
                     startActivity(intent1);
                 }else if(currentPage == 1){
-                    Toast.makeText(this,"预约",Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(this, StudentAppointmentAct.class);
+                    startActivity(intent);
                 }
 
+                break;
+            case R.id.toolbar_left_title:
+                //点击今天按钮
+                LogUtil.print("点击今天---");
+                EventBus.getDefault().post(new MonthApplyEvent());
                 break;
             default:
                 break;

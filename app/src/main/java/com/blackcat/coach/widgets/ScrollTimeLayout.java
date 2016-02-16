@@ -9,6 +9,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -18,10 +19,10 @@ import com.blackcat.coach.utils.LogUtil;
 
 @SuppressLint("NewApi")
 public class ScrollTimeLayout extends LinearLayout implements
-		AppointmentCarTimeLayout.TimeLayoutSelectedChangeListener {
+		AppointmentCarTimeLayout.TimeLayoutSelectedChangeListener, View.OnClickListener {
 
 	private Context context;
-	private int column = 3;
+	private int column = 4;
 	private Comparator<Object> courseComp;
 	// 用户选择时间段的课程
 	private List<CoachCourseVO> selectCourseList = new ArrayList<CoachCourseVO>();
@@ -46,7 +47,7 @@ public class ScrollTimeLayout extends LinearLayout implements
 	private void init(Context context) {
 		this.context = context;
 		screenWidth = getResources().getDisplayMetrics().widthPixels;
-		setLayoutDirection(VERTICAL);
+		setLayoutDirection(LinearLayout.VERTICAL);
 		courseComp = new Comparator<Object>() {
 			@Override
 			public int compare(Object o1, Object o2) {
@@ -112,7 +113,7 @@ public class ScrollTimeLayout extends LinearLayout implements
 
 		LayoutParams timeParams = new LayoutParams(
 				LayoutParams.MATCH_PARENT, (int) (screenWidth
-						/ aspect / 3), 1);
+						/ aspect / column), 1);
 
 		LayoutParams rowParams = new LayoutParams(
 				LayoutParams.MATCH_PARENT,
@@ -128,6 +129,7 @@ public class ScrollTimeLayout extends LinearLayout implements
 				AppointmentCarTimeLayout timeLayout = new AppointmentCarTimeLayout(
 						context);
 				timeLayout.setSelectedChangeListener(this);
+				timeLayout.setOnClickListener(this);
 				// 参数
 				timeLayout.setVaule(list.get(i * column + j));
 				innerLayout.addView(timeLayout, timeParams);
@@ -172,26 +174,42 @@ public class ScrollTimeLayout extends LinearLayout implements
 
 	}
 
+	private String currentId = "";
+	/***上一次 选中的布局*/
+	private AppointmentCarTimeLayout lastLayout;
+
 	@Override
 	public void onTimeLayoutSelectedChange(AppointmentCarTimeLayout layout,
 			CoachCourseVO coachCourseVO, boolean selected) {
 		if (coachCourseVO == null) {
 			return;
 		}
-		if (selected) {
-			selectCourseList.add(coachCourseVO);
-		} else {
-			selectCourseList.remove(coachCourseVO);
+		LogUtil.print(selected+"layout--begintime->"+currentId+"id-->"+coachCourseVO.getCoursetime().getBegintime());
+
+//		if(coa)
+		//获取当前选择的项
+		if(!currentId.equals(coachCourseVO.get_id()) && !currentId.equals("") ){//不一样的,不是第一次
+			lastLayout.setCheckBoxState(false);
+		}else{
+
 		}
-		onTimeLayoutSelectedListener.TimeLayoutSelectedListener(selected);
-		isTimeBlockCon = checkTimeBlockCon();
-		if (!isTimeBlockCon) {
+		currentId = coachCourseVO.get_id();
+		lastLayout = layout;
+
+//		if (selected) {
+//			selectCourseList.add(coachCourseVO);
+//		} else {
+//			selectCourseList.remove(coachCourseVO);
+//		}
+		onTimeLayoutSelectedListener.TimeLayoutSelectedListener(coachCourseVO,selected);
+//		isTimeBlockCon = checkTimeBlockCon();
+//		if (!isTimeBlockCon) {
 //			CustomDialog dialog = new CustomDialog(context,
 //					CustomDialog.APPOINTMENT_TIME_ERROR);
 //			dialog.show();
 //			// 选择不连续，给出提示后，就取消该项选择
 //			layout.setCheckBoxState(true);
-		}
+//		}
 	}
 
 	private boolean checkTimeBlockCon() {
@@ -207,8 +225,13 @@ public class ScrollTimeLayout extends LinearLayout implements
 		return true;
 	}
 
+	@Override
+	public void onClick(View view) {
+		LogUtil.print("click");
+	}
+
 	public interface OnTimeLayoutSelectedListener {
-		void TimeLayoutSelectedListener(boolean selected);
+		void TimeLayoutSelectedListener(CoachCourseVO coachCourseVO,boolean selected);
 	}
 
 	private OnTimeLayoutSelectedListener onTimeLayoutSelectedListener;

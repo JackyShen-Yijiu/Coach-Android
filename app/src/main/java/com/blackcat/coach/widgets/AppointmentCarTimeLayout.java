@@ -7,6 +7,7 @@ import java.util.Date;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.provider.MediaStore;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;
@@ -35,6 +37,8 @@ public class AppointmentCarTimeLayout extends LinearLayout implements
 	public TextView startTimeTv, endTimeTv, countTv, endTv;
 
 	public CheckBox ck;
+
+	public RadioButton rb;
 
 	private TimeLayoutSelectedChangeListener selectedListener;
 	private CoachCourseVO coachCourseVO;
@@ -81,14 +85,20 @@ public class AppointmentCarTimeLayout extends LinearLayout implements
 			ck.setChecked(false);
 			ck.setOnCheckedChangeListener(this);
 			startTimeTv.setText("暂无");
-			endTimeTv.setText("暂无");
-			countTv.setText("剩余0个名额");
+			endTimeTv.setText("可约0人");
+			endTv.setText("已约0人");
+
+			countTv.setText("签到0人");
 			setOver(true, other);
 			return;
 		}
 		String beginTime = coachCourseVO.getCoursetime().getBegintime();
 		beginTime = beginTime.substring(0, beginTime.lastIndexOf(":"));
 		startTimeTv.setText(beginTime);
+		endTimeTv.setText("可约"+coachCourseVO.getCoursestudentcount()+"人");
+		endTv.setText("已约"+coachCourseVO.getSelectedstudentcount()+"人");
+
+
 //		String endTime = coachCourseVO.getCoursetime().getEndtime();
 //		endTime = endTime.substring(0, endTime.lastIndexOf(":"));
 //		endTimeTv.setText(endTime);
@@ -142,11 +152,18 @@ public class AppointmentCarTimeLayout extends LinearLayout implements
 
 		startTimeTv = (TextView) view
 				.findViewById(R.id.appointment_car_starttime_tv);
+		//可约1人
 		endTimeTv = (TextView) view
 				.findViewById(R.id.appointment_car_endtime_tv);
+		//签到0 人
 		countTv = (TextView) view.findViewById(R.id.appointment_car_count_tv);
+		//已约 4 人
 		endTv = (TextView) view.findViewById(R.id.appointment_car_end_tv);
 		ck = (CheckBox) view.findViewById(R.id.appointment_car_ck);
+
+		rb = (RadioButton) view.findViewById(R.id.appointment_car_rb);
+
+		rb.setOnCheckedChangeListener(this);
 
 		ck.setOnCheckedChangeListener(this);
 

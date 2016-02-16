@@ -3,16 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:background="#F8F9FB"
     tools:context="com.blackcat.coach.activities.StudentAppointmentAct">
+
     <include layout="@layout/layout_toolbar" />
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/calendar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:layout_marginTop="0px"
+        android:layout_below="@+id/toolbar"
+        android:orientation="vertical"
+        android:background="#f0f0f0"
+        >
+<!--f0f0f0 -->
+
+        <sun.bob.mcalendarview.views.WeekColumnView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="6dp"
+            android:paddingTop="10dp" />
+
+        <!--  <View
+              android:layout_width="match_parent"
+              android:layout_height="1px"
+              android:background="#ccc" />-->
+
+        <sun.bob.mcalendarview.views.ExpCalendarView
+            android:id="@+id/calendar_exp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/appointment_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/calendar"
+        >
 
         <com.blackcat.coach.widgets.ScrollTimeLayout
             android:id="@+id/appointment_student_time"
@@ -21,6 +50,87 @@
             android:orientation="vertical"
             ></com.blackcat.coach.widgets.ScrollTimeLayout>
     </RelativeLayout>
+    <View
+        android:id="@+id/dividing_line"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_below="@+id/appointment_list"
+        android:background="#E6E6E6" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:layout_below="@+id/dividing_line"
+        android:padding="15dp"
+        android:background="@color/white"
+        >
+        <RelativeLayout
+            android:id="@+id/rl_selected_student"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:visibility="gone"
+            android:background="@drawable/button_org_white"
+            >
+
+            <ImageView
+                android:id="@+id/iv_selected_student"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_selected_student"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"/>
+            <ImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_avatar_small" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_avatar">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    android:text="李燕飞"
+                    android:textSize="16sp" />
 
 
+                <TextView
+                    android:id="@+id/tv_learning_item"
+                    android:layout_width="110dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_name"
+                    android:layout_marginTop="6dp"
+                    android:singleLine="true"
+                    android:text="科目二弟22课时"
+                    android:textColor="@color/text_999"
+                    android:textSize="14sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_learning_item"
+                    android:layout_marginTop="7dp"
+                    android:singleLine="true"
+                    android:text="官方24课时"
+                    android:textColor="@color/text_999"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+       <Button
+            android:id="@+id/add_apply_student"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/dialog_btn_style"
+            android:layout_centerInParent="true"
+            android:text="添加学员"/>
+        </RelativeLayout>
 </RelativeLayout>

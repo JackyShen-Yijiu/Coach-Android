@@ -1,13 +1,8 @@
 package com.blackcat.coach.fragments;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,7 +18,6 @@ import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.caldroid.CaldroidFragment;
 
 import com.blackcat.coach.events.MonthApplyEvent;
-import com.blackcat.coach.events.NewMessageReceiveEvent;
 import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.Result;
@@ -107,10 +101,15 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
-
-    public void onEventAsync(MonthApplyEvent event){
-        obtainMonthApplyData(mYear + "", mMonth + "");
+    public void onEvent(MonthApplyEvent event){
+        LogUtil.print("点击今天");
+//        expCalendarView.setCurrentItem(CellConfig.middlePosition);
+        Calendar calendar = Calendar.getInstance();
+        DateData dateData =  new DateData(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.DAY_OF_MONTH));
+        expCalendarView.travelTo(dateData);
     }
+
+
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -125,7 +124,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         mContext = (IndexActivity) getActivity();
-        mContext.setRightTitleWithoutImg(CommonUtil.getString(mContext,R.string.student_appointment));
+//        mContext.setRightTitleWithoutImg(CommonUtil.getString(mContext,R.string.student_appointment));
+//        mContext.setLeftTitle(CommonUtil.getString(mContext,R.string.toady));
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_child_schedule, container, false);
 //       View view= View.inflate(mContext,R.layout.fragment_child_schedule_head,null);
@@ -175,7 +175,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> {
                     mMonth = month;
                     mYear = year;
                     mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
-                    EventBus.getDefault().post(new MonthApplyEvent());
+                    obtainMonthApplyData(mYear + "", mMonth + "");
                 }
                 LogUtil.print(String.format("%d年%d月", year, month));
 

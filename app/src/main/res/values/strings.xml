@@ -329,4 +329,5 @@
     <string name="send_sms_all">群发短信</string>
 
     <string name = "student_appointment">学员预约</string>
+    <string name = "toady">今天</string>
 </resources>
