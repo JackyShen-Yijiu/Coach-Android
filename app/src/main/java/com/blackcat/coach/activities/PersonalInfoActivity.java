@@ -50,7 +50,10 @@ public class PersonalInfoActivity extends BaseActivity  {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fl_container, fragment);
         transaction.commitAllowingStateLoss();
+<<<<<<< HEAD
 
+=======
+>>>>>>> c49eba1212a041019d964c7f7c412799b501311e
 //        mIvAvatar = (ImageView) findViewById(R.id.ic_avatar);
 //        if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
 //            UILHelper.loadImage(mIvAvatar, Session.getSession().headportrait.originalpic, false, R.mipmap.ic_avatar_small);

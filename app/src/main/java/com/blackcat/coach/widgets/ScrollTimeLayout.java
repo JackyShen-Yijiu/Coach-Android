@@ -12,6 +12,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.blackcat.coach.models.CoachCourseVO;
 import com.blackcat.coach.utils.LogUtil;
@@ -28,6 +29,8 @@ public class ScrollTimeLayout extends LinearLayout implements
 	private List<CoachCourseVO> selectCourseList = new ArrayList<CoachCourseVO>();
 	private int screenWidth;
 	private boolean isTimeBlockCon;
+	/**0 单选，， 1 多选，用来预约 报名*/
+	private int  type = 0;
 
 	public ScrollTimeLayout(Context context) {
 		super(context);
@@ -42,6 +45,14 @@ public class ScrollTimeLayout extends LinearLayout implements
 	public ScrollTimeLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init(context);
+	}
+
+	/**
+	 * 设置 类型
+	 * @param type
+	 */
+	public void setType(int type){
+		this.type = type;
 	}
 
 	private void init(Context context) {
@@ -155,6 +166,7 @@ public class ScrollTimeLayout extends LinearLayout implements
 			AppointmentCarTimeLayout timeLayout = new AppointmentCarTimeLayout(
 					context);
 			timeLayout.setSelectedChangeListener(this);
+
 			// 参数
 			timeLayout.setVaule(list.get((row - 1) * column + i));
 			innerLayout.addView(timeLayout, timeParams);
@@ -184,7 +196,12 @@ public class ScrollTimeLayout extends LinearLayout implements
 		if (coachCourseVO == null) {
 			return;
 		}
-		LogUtil.print(selected+"layout--begintime->"+currentId+"id-->"+coachCourseVO.getCoursetime().getBegintime());
+		if(type==1){
+			doAppoint(layout,coachCourseVO,selected);
+			return ;
+		}
+
+		LogUtil.print(selected + "layout--begintime->" + currentId + "id-->" + coachCourseVO.getCoursetime().getBegintime());
 
 //		if(coa)
 		//获取当前选择的项
@@ -210,6 +227,31 @@ public class ScrollTimeLayout extends LinearLayout implements
 //			// 选择不连续，给出提示后，就取消该项选择
 //			layout.setCheckBoxState(true);
 //		}
+	}
+
+	/***
+	 * 预约
+	 */
+	private void doAppoint(AppointmentCarTimeLayout layout,
+						   CoachCourseVO coachCourseVO, boolean selected){
+		if (selected) {
+//			Toast.makeText(context, "时间不能超过", Toast.LENGTH_SHORT).show();
+			selectCourseList.add(coachCourseVO);
+		} else {
+			selectCourseList.remove(coachCourseVO);
+		}
+			onTimeLayoutSelectedListener.TimeLayoutSelectedListener(coachCourseVO,selected);
+		isTimeBlockCon = checkTimeBlockCon();
+		LogUtil.print("time--conn"+isTimeBlockCon);
+		if (!isTimeBlockCon) {
+//			CustomDialog dialog = new CustomDialog(context,
+//					CustomDialog.APPOINTMENT_TIME_ERROR);
+//			dialog.show();
+			Toast.makeText(context, "时间不连续,请选择连续的时间段", Toast.LENGTH_SHORT).show();
+			// 选择不连续，给出提示后，就取消该项选择
+			layout.setCheckBoxState(false);
+			selectCourseList.remove(coachCourseVO);
+		}
 	}
 
 	private boolean checkTimeBlockCon() {

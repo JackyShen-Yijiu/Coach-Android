@@ -1,9 +1,11 @@
 package com.blackcat.coach.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.android.volley.VolleyError;
 import com.blackcat.coach.R;
@@ -13,6 +15,7 @@ import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.User;
 import com.blackcat.coach.net.URIUtil;
+import com.blackcat.coach.utils.LogUtil;
 import com.google.gson.reflect.TypeToken;
 
 import java.util.List;
@@ -43,6 +46,7 @@ public class OrderStudentFragment extends BaseListFragment<User> {
             mURI = URIUtil.getStudentsList(Session.getSession().coachid, mPage);
             refresh(DicCode.RefreshType.R_INIT, mURI);
         }
+
         return rootView;
     }
 
