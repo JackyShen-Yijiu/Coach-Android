@@ -86,9 +86,13 @@ public class RowOrderStudent {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.rootView:
-                    Intent intent = new Intent(activity, DetailStudentActivity.class);
-                    intent.putExtra(Constants.DATA, user);
-                    activity.startActivity(intent);
+//                    Intent intent = new Intent(activity, DetailStudentActivity.class);
+//                    intent.putExtra(Constants.DATA, user);
+//                    activity.startActivity(intent);
+                    Intent i = new Intent();
+                    i.putExtra("student", user);
+                    activity.setResult(3, i);
+                    activity.finish();
                     break;
                 case R.id.item_student_phone:
                     if (!TextUtils.isEmpty(user.mobile)) {
