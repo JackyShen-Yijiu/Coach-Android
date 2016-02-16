@@ -152,7 +152,7 @@ public class NetConstants {
 
 
 	public static final boolean DEBUG = Constants.DEBUG;
-	public static final int REQ_LEN = 20;
+	public static final int REQ_LEN = 10;//20
 	public static final int VOLLEY_TIMEOUT = 10000;
 
 	public static final String DOMAIN_IMGS = "http://7xnjg0.com1.z0.glb.clouddn.com/";

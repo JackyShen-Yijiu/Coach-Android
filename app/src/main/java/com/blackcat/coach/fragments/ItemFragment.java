@@ -162,7 +162,9 @@ public class ItemFragment extends BaseListFragment {
 
     @Override
     public void onLoadMore() {
+        LogUtil.print("LoadMore--->"+mPage);
         mPage++;
+        LogUtil.print("LoadMore-00->"+mPage);
         request(mPage);
     }
 

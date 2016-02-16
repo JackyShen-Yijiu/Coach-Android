@@ -447,7 +447,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
 
         Uri smsUri = Uri.parse("smsto:"+phone);
         Intent intent = new Intent(Intent.ACTION_SENDTO,smsUri);
-        intent.putExtra("sms_body", "");
+        intent.putExtra("sms_body", "成功预约我的课程，请准时练车");
         startActivity(intent);
     }
 
