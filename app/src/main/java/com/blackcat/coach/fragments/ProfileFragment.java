@@ -38,8 +38,8 @@ import com.easemob.chat.TextMessageBody;
 public class ProfileFragment extends BaseFragment implements OnClickListener {
 
     private ImageView mIvAvatar;
-    private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
-    private TextView mWorkTime,mSubject,mClass,mVacation;
+    private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName;
+    private TextView mClass,mVacation;
 //    private TextView mTvName, mTvNum, mTvSelfDesc, mTvSchoolName, mTvFieldName,tv_job_category;
 //    private TextView mWorkTime,mSubject,mClass;
 
@@ -69,10 +69,10 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         mTvFocde = (TextView) rootView.findViewById(R.id.tv_focde);
       //  mTvSelfDesc = (TextView) rootView.findViewById(R.id.tv_self_description);
         mTvSchoolName = (TextView) rootView.findViewById(R.id.tv_school_name);
-        mTvFieldName = (TextView) rootView.findViewById(R.id.tv_field_name);
+      //  mTvFieldName = (TextView) rootView.findViewById(R.id.tv_field_name);
 
-        mWorkTime = (TextView) rootView.findViewById(R.id.tv_work_time);
-        mSubject = (TextView) rootView.findViewById(R.id.tv_subjects);
+      //  mWorkTime = (TextView) rootView.findViewById(R.id.tv_work_time);
+      //  mSubject = (TextView) rootView.findViewById(R.id.tv_subjects);
         mClass = (TextView) rootView.findViewById(R.id.tv_class);
         mVacation = (TextView) rootView.findViewById(R.id.tv_vacation);
 
@@ -83,17 +83,17 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         drivingSchool.setOnClickListener(this);
 
         //工作性质（新加）
-        RelativeLayout job_category = (RelativeLayout) rootView.findViewById(R.id.rl_job_category);
-        job_category.setOnClickListener(this);
+//        RelativeLayout job_category = (RelativeLayout) rootView.findViewById(R.id.rl_job_category);
+//        job_category.setOnClickListener(this);
+//
+//        tv_job_category=(TextView)rootView.findViewById(R.id.tv_job_category);
+//        tv_job_category.setOnClickListener(this);
 
-        tv_job_category=(TextView)rootView.findViewById(R.id.tv_job_category);
-        tv_job_category.setOnClickListener(this);
+//        RelativeLayout workTime = (RelativeLayout) rootView.findViewById(R.id.rl_work_time);
+//        workTime.setOnClickListener(this);
 
-        RelativeLayout workTime = (RelativeLayout) rootView.findViewById(R.id.rl_work_time);
-        workTime.setOnClickListener(this);
-
-        RelativeLayout techClass = (RelativeLayout) rootView.findViewById(R.id.rl_tech_subject);
-        techClass.setOnClickListener(this);
+//        RelativeLayout techClass = (RelativeLayout) rootView.findViewById(R.id.rl_tech_subject);
+//        techClass.setOnClickListener(this);
 
         RelativeLayout shuttle = (RelativeLayout) rootView.findViewById(R.id.rl_shuttle);
         shuttle.setOnClickListener(this);
@@ -109,7 +109,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         RelativeLayout setting = (RelativeLayout) rootView.findViewById(R.id.rl_setting);
         setting.setOnClickListener(this);
 
-        rootView.findViewById(R.id.rl_train_field).setOnClickListener(this);
+//        rootView.findViewById(R.id.rl_train_field).setOnClickListener(this);
     }
 
     private void bindUserInfo() {
@@ -128,18 +128,18 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         if (Session.getSession().driveschoolinfo != null && !TextUtils.isEmpty(Session.getSession().driveschoolinfo.name)) {
             mTvSchoolName.setText(Session.getSession().driveschoolinfo.name);
         }
-        if (Session.getSession().trainfieldlinfo != null && !TextUtils.isEmpty(Session.getSession().trainfieldlinfo.name)) {
-            mTvFieldName.setText(Session.getSession().trainfieldlinfo.name);
-        }
-        if(Session.getSession().workweek.length>0){//工作时间
-
-            mWorkTime.setText(getWorkTime(Session.getSession().workweek,Session.getSession().worktimespace.begintimeint,
-                    Session.getSession().worktimespace.endtimeint));
+//        if (Session.getSession().trainfieldlinfo != null && !TextUtils.isEmpty(Session.getSession().trainfieldlinfo.name)) {
+//            mTvFieldName.setText(Session.getSession().trainfieldlinfo.name);
+//        }
+//        if(Session.getSession().workweek.length>0){//工作时间
+//
+//            mWorkTime.setText(getWorkTime(Session.getSession().workweek,Session.getSession().worktimespace.begintimeint,
+//                    Session.getSession().worktimespace.endtimeint));
 //            Log.d("tag", "work--time:" + Session.getSession().workweek.getClass());
-        }else{
-            mWorkTime.setText("");
-        }
-        LogUtil.print("可授科目：：--》"+Session.getSession().subject.size());
+//        }else{
+//            mWorkTime.setText("");
+//        }
+//        LogUtil.print("可授科目：：--》"+Session.getSession().subject.size());
 //        if(Session.getSession().subject.size()>0){//可授科目
 //            mSubject.setText("已设置");
 //        }else{
@@ -147,15 +147,15 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 //        }
         //授课
 
-
-        if(Session.getSession().subject.size()>0){//可授科目
-            if(Session.getSession().subject.size()==1){
-                mSubject.setText(Session.getSession().subject.get(0).name);
-            }else
-                mSubject.setText("已设置");
-        }else{
-            mSubject.setText("");
-        }
+//
+//        if(Session.getSession().subject.size()>0){//可授科目
+//            if(Session.getSession().subject.size()==1){
+//                mSubject.setText(Session.getSession().subject.get(0).name);
+//            }else
+//                mSubject.setText("已设置");
+//        }else{
+//            mSubject.setText("");
+//        }
        // 授课
 
         if(CLASS_SETTING)
@@ -163,11 +163,11 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         else
             mClass.setText("");
 
-//        工作性质
-        if (!TextUtils.isEmpty(Session.getSession().GenderJob)) {
-            tv_job_category.setText(Session.getSession().GenderJob);
-        }else{
-            tv_job_category.setText(R.string.str_direct_coach);}
+////        工作性质
+//        if (!TextUtils.isEmpty(Session.getSession().GenderJob)) {
+//            tv_job_category.setText(Session.getSession().GenderJob);
+//        }else{
+//            tv_job_category.setText(R.string.str_direct_coach);}
         //休假
 
         if(System.currentTimeMillis() < Session.getSession().leavebegintime || System.currentTimeMillis()<Session.getSession().leaveendtime){//已设置
@@ -231,11 +231,11 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
             case R.id.rl_driving_school:
                 startActivity(new Intent(mActivity, DrivingSchoolActivity.class));
                 break;
-            case R.id.rl_work_time://工作时间
-                Intent i1 = new Intent(mActivity, WorkTimeActivity.class);
+//            case R.id.rl_work_time://工作时间
+//                Intent i1 = new Intent(mActivity, WorkTimeActivity.class);
 //                startActivityForResult(i1,1);
-                startActivity(i1);
-                break;
+//                startActivity(i1);
+//                break;
             case R.id.rl_shuttle:
                 startActivity(new Intent(mActivity, ClassesSettingsActivity.class));
                 break;

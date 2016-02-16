@@ -37,6 +37,7 @@ import java.util.List;
 public class PersonalInfoActivity extends BaseActivity  {
 
     PersonalInforFragment fragment;
+    private ImageView mIvAvatar;
 
     ImageView mIvAvatar;
 
@@ -52,13 +53,23 @@ public class PersonalInfoActivity extends BaseActivity  {
         transaction.commitAllowingStateLoss();
 
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 515337f22a057cee0673789b6aca89a1ecbc4dbc
 //        mIvAvatar = (ImageView) findViewById(R.id.ic_avatar);
 //        if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
 //            UILHelper.loadImage(mIvAvatar, Session.getSession().headportrait.originalpic, false, R.mipmap.ic_avatar_small);
 //        }
+<<<<<<< HEAD
+//        mIvAvatar = (ImageView) findViewById(R.id.ic_avatar);
+//        if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
+//            UILHelper.loadImage(mIvAvatar, Session.getSession().headportrait.originalpic, false, R.mipmap.ic_avatar_small);
+//        }
+=======
 
+>>>>>>> 515337f22a057cee0673789b6aca89a1ecbc4dbc
     }
     @Override
     protected void onResume() {

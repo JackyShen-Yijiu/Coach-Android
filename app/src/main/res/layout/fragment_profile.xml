@@ -154,7 +154,7 @@
                 android:layout_marginLeft="15dp"
                 android:background="#e6e6e6" />
 
-            <RelativeLayout
+           <!-- <RelativeLayout
                 android:id="@+id/rl_job_category"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
@@ -356,7 +356,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="@dimen/padding_left"
                     android:src="@mipmap/ic_right" />
-            </RelativeLayout>
+            </RelativeLayout>-->
 
             <View
                 android:layout_width="match_parent"
