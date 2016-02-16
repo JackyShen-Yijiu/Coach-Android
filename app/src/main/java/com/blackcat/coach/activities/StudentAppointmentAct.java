@@ -194,6 +194,7 @@ public class StudentAppointmentAct extends BaseActivity {
                         public void onResponse(Result<List<CoachCourseVO>> response) {
                             List<CoachCourseVO> list = response.data;
                             LogUtil.print("list--size::"+list.size());
+                            scrollTimeLayout.clearData();
                             scrollTimeLayout.setData(list,aspect);
 //                            onFeedsResponse(response, refreshType);
                         }
