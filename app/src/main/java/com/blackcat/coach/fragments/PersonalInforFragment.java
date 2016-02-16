@@ -102,6 +102,7 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
     @Override
     protected void initViews(View rootView, LayoutInflater inflater, int adapterType, int headerLayoutRes) {
         super.initViews(rootView, inflater, adapterType, headerLayoutRes);
+        mHeaderView.findViewById(R.id.rl_name).setOnClickListener(this);
         mHeaderView.findViewById(R.id.rl_avatar).setOnClickListener(this);
         mHeaderView.findViewById(R.id.rl_id_card).setOnClickListener(this);
         mHeaderView.findViewById(R.id.rl_modify_phone).setOnClickListener(this);

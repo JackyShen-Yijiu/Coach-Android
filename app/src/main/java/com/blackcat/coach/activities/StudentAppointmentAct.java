@@ -17,21 +17,31 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
+import com.blackcat.coach.dialogs.ApplySuccessDialog;
+import com.blackcat.coach.events.ReservationOpOk;
+import com.blackcat.coach.fragments.ItemFragment;
 import com.blackcat.coach.models.CoachCourseVO;
 import com.blackcat.coach.models.DicCode;
+import com.blackcat.coach.models.ReservationStatus;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.User;
+import com.blackcat.coach.models.params.CoachAppointParams;
+import com.blackcat.coach.models.params.HandleClassParams;
 import com.blackcat.coach.models.params.MonthApplyData;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.Constants;
+import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.LogUtil;
+import com.blackcat.coach.utils.SharedPreferencesUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.blackcat.coach.widgets.ScrollTimeLayout;
 import com.google.gson.reflect.TypeToken;
+
+import org.apache.http.message.BasicNameValuePair;
 
 import java.lang.reflect.Type;
 import java.net.URI;
@@ -43,6 +53,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import de.greenrobot.event.EventBus;
 import sun.bob.mcalendarview.CellConfig;
 import sun.bob.mcalendarview.listeners.OnExpDateClickListener;
 import sun.bob.mcalendarview.listeners.OnMonthScrollListener;
@@ -73,6 +84,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
     private int mMonth;
     private ExpCalendarView expCalendarView;
     private SimpleDateFormat formatter;
+    private String selectDate;
 
     private Button addStudent;
     private Button commit;
@@ -121,8 +133,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
                 if (!(mYear == year && mMonth == month)) {
                     mMonth = month;
                     mYear = year;
-//                    mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
-//                    obtainMonthApplyData(mYear + "", mMonth + "");
+                    obtainMonthApplyData(mYear + "", mMonth + "");
                 }
                 LogUtil.print(String.format("%d年%d月", year, month));
 
@@ -140,6 +151,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
                 super.onDateClick(view, date);
                 String str = formatter.format(date.getDate());
                 LogUtil.print("formatter" + str);
+                selectDate = str;
                 requestTime(str);
 //                if (!mCurrentDate.equals(str)) {
 //                    mCurrentDate = str;
@@ -175,6 +187,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
         Calendar today = Calendar.getInstance();
         today.setTime(new Date());
         LogUtil.print("+++" + formatter.format(new Date()));
+        selectDate = formatter.format(new Date());
         requestTime(formatter.format(new Date()));
 
         //添加学员
@@ -204,58 +217,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
 
     }
 
-    /**
-     * 提交预约
-     */
-    private void commitAppointment(String time) {
-        URI uri = URIUtil.getAppointStudentTime(time);
-        String url = null;
-        if (uri != null) {
-            try {
-                url = uri.toURL().toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
 
-        if (TextUtils.isEmpty(url)) {
-            return;
-        }
-
-        Map map = new HashMap<>();
-        map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
-//        map.put(NetConstants.STUDENT_TYPE, type+"");
-
-        GsonIgnoreCacheHeadersRequest<Result<List<CoachCourseVO>>> request = new GsonIgnoreCacheHeadersRequest<Result<List<CoachCourseVO>>>(
-                url, mType, map,
-                new Response.Listener<Result<List<CoachCourseVO>>>() {
-                    @Override
-                    public void onResponse(Result<List<CoachCourseVO>> response) {
-                        List<CoachCourseVO> list = response.data;
-                        LogUtil.print("list--size::" + list.size());
-                        scrollTimeLayout.setData(list, aspect);
-
-//                            onFeedsResponse(response, refreshType);
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError arg0) {
-//                            onFeedsErrorResponse(arg0, refreshType);
-                    }
-                });
-        // 请求加上Tag,用于取消请求
-        request.setTag(this);
-//            if (refreshType == DicCode.RefreshType.R_PULL_DOWN) {
-//                request.setManuallyRefresh(true);
-//            } else if (refreshType == DicCode.RefreshType.R_PULL_UP) {
-//                request.setShouldCache(false);
-//            }
-
-        VolleyUtil.getQueue(this).add(request);
-//        }
-
-    }
 
     private void requestDetail(String courseId) {
         URI uri = URIUtil.getScheduleDetail(Session.getSession().coachid, courseId);
@@ -352,18 +314,25 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
         Map map = new HashMap<>();
         map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
 //        map.put(NetConstants.STUDENT_TYPE, type+"");
-
+        mType = new TypeToken<Result<List<CoachCourseVO>>>(){}.getType();
         GsonIgnoreCacheHeadersRequest<Result<List<CoachCourseVO>>> request = new GsonIgnoreCacheHeadersRequest<Result<List<CoachCourseVO>>>(
                 url, mType, map,
                 new Response.Listener<Result<List<CoachCourseVO>>>() {
                     @Override
                     public void onResponse(Result<List<CoachCourseVO>> response) {
+                        LogUtil.print("zzzz-0-00");
+                        if (response != null && response.type == Result.RESULT_OK) {
+
                         List<CoachCourseVO> list = response.data;
                         LogUtil.print("list--size::" + list.size());
                         scrollTimeLayout.clearData();
                         scrollTimeLayout.setData(list, aspect);
 
 //                            onFeedsResponse(response, refreshType);
+                        }else{
+                            LogUtil.print("list--size::090909" );
+                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
+                        }
                     }
                 },
                 new Response.ErrorListener() {
@@ -384,6 +353,96 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
 //        }
 
     }
+
+
+    /**
+     * 提交预约
+     */
+    private void commitAppointment(User user, List<CoachCourseVO> courseList) {
+        URI uri = URIUtil.getStudentAppointList(user, courseList,selectDate);
+        String url = null;
+        try {
+            url = uri.toURL().toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
+
+
+        String courselistString = "";
+        int length = courseList.size();
+        for (int i = 0; i < length; i++) {
+            courselistString += courseList.get(i).get_id();
+            courselistString += ",";
+        }
+        courselistString = courselistString.substring(0, courselistString.length() - 1);
+        int shuttle=0;
+        if(Session.getSession().is_shuttle){
+            shuttle =1;
+        }else{
+            shuttle=0;
+        }
+//
+        CoachAppointParams params = new CoachAppointParams();
+        params.userid = user._id;
+        params.coachid = Session.getSession().coachid;
+        params.courselist =courselistString;
+        params.is_shuttle =shuttle;
+        params.address = Session.getSession().address;
+        params.begintime =selectDate + " " + courseList.get(0).getCoursetime().getBegintime();
+        params.endtime =selectDate + " " + courseList.get(length - 1).getCoursetime().getEndtime();
+
+        LogUtil.print(GsonUtils.toJson(params));
+        Map map = new HashMap<>();
+        map.put("authorization", Session.getToken());
+         Type mTokenType = new TypeToken<Result>(){}.getType();
+        GsonIgnoreCacheHeadersRequest<Result> request = new GsonIgnoreCacheHeadersRequest<Result>(
+                Request.Method.POST, url, GsonUtils.toJson(params), mTokenType, map,
+                new Response.Listener<Result>() {
+                    @Override
+                    public void onResponse(Result response) {
+                        String msg = response.msg;
+                        if (response != null && response.type == Result.RESULT_OK) {
+                            ApplySuccessDialog dialog = new ApplySuccessDialog(StudentAppointmentAct.this);
+                            dialog.setTextAndImage("是",
+                                    "恭喜您预约成功，是否短信通知学员", "否",
+                                    R.drawable.ic_dialog);
+                            dialog.setListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View arg0) {
+                                    //发短信
+                                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast("发短差");
+
+                                }
+                            });
+                            dialog.show();
+                        } else if (response != null &&!TextUtils.isEmpty(response.msg)) {
+                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
+                        }
+                        if (Constants.DEBUG) {
+                            VolleyLog.v("Response:%n %s", response);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError arg0) {
+                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+                    }
+                });
+        // 请求加上Tag,用于取消请求
+        request.setTag(this);
+        request.setShouldCache(false);
+
+        VolleyUtil.getQueue(this).add(request);
+    }
+
+
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -393,9 +452,19 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
                 startActivityForResult(intent, 1);
                 break;
             case R.id.appointment_student_commit_btn:
-
+                List<CoachCourseVO> courseList= scrollTimeLayout.getSelectCourseList();
+                if(userInfo ==null){
+                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast("请选择学员");
+                    return;
+                }
+                if(courseList !=null&&courseList.size()>0){
+                    commitAppointment(userInfo,courseList);
+                }else{
+                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast("请选择课程");
+                }
                 break;
             default:
+
                 break;
         }
     }
@@ -408,14 +477,17 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
 
         switch (requestCode) {
             case 1:
+                if(null!=data){
                 addStudent.setVisibility(View.GONE);
                 studentInfo.setVisibility(View.VISIBLE);
+
                 userInfo = (User) data.getSerializableExtra("student");
                 if(userInfo!=null){
                     LogUtil.print("userInfo");
                     studentName.setText(userInfo.name);
                     studentClass.setText(userInfo.subjectprocess);
                     studentContent.setText(userInfo.leaningContents==null?"":userInfo.leaningContents);
+                }
                 }
                 break;
             default:

@@ -95,7 +95,7 @@ public class DetailStudentFragment extends BaseListFragment<Comment> implements 
 
         btnBaoKao = (Button) rootView.findViewById(R.id.student_detail_btn);
         btnBaoKao.setOnClickListener(this);
-        bindStudentInfo();
+//        bindStudentInfo();
     }
 
     private void bindStudentInfo() {
