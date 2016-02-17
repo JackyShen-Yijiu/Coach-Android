@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'view-inspector'
+//apply plugin: 'view-inspector' 3
 
 android {
     compileSdkVersion 23
@@ -8,7 +8,7 @@ android {
         applicationId "com.blackcat.coach"
         minSdkVersion 11
         targetSdkVersion 20
-        versionCode 3
+        versionCode 4
         versionName "1.2.0"
     }
     def keyStorePath = "./bc.keystore.jks"
