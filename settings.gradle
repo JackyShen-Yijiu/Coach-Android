@@ -1,2 +1,2 @@
-include ':app', ':caldroid'
+include ':app', ':caldroid', ':SwipeBackLayout', ':library'
 include ':app', ':mcalendarview'
