@@ -1,7 +1,5 @@
 package com.blackcat.coach.net;
 
-import android.util.Log;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.NetworkResponse;

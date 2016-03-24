@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.widget.Toast;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
@@ -32,7 +33,7 @@ public class SplashActivity extends BaseNoFragmentActivity{
     }
 
     private void initData() {
-
+//        Toast.makeText(this,"data-->"+this.getPackageName(),Toast.LENGTH_SHORT).show();
 
     }
 

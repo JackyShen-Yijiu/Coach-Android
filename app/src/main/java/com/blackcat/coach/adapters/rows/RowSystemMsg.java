@@ -3,7 +3,6 @@ package com.blackcat.coach.adapters.rows;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,18 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;
-import com.blackcat.coach.activities.DetailReservationActivity;
 import com.blackcat.coach.activities.WebViewMsg;
 import com.blackcat.coach.adapters.BaseViewHolder;
-import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.SystemMsg;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.DateUtil;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.SimpleFormatter;
 
 /**
  * Created by aa on 2016/1/14.

@@ -17,7 +17,6 @@ import android.widget.BaseAdapter;
 import com.blackcat.coach.activities.AlertDialog;
 import com.blackcat.coach.activities.ChatActivity;
 import com.blackcat.coach.activities.ContextMenu;
-import com.blackcat.coach.activities.DetailStudentActivity;
 import com.blackcat.coach.activities.PersonalInfoActivity;
 import com.blackcat.coach.activities.ShowBigImage;
 import com.blackcat.coach.easemob.listener.VoicePlayClickListener;
@@ -26,8 +25,6 @@ import com.blackcat.coach.easemob.utils.DateUtils;
 import com.blackcat.coach.easemob.utils.ImageCache;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Session;
-import com.blackcat.coach.models.User;
-import com.blackcat.coach.utils.Constants;
 import com.easemob.EMCallBack;
 import com.easemob.EMError;
 import com.easemob.chat.EMChatManager;
@@ -40,7 +37,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blackcat.coach.activities.ShowNormalFileActivity;
 

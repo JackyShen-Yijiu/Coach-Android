@@ -15,7 +15,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
-import com.blackcat.coach.activities.CaptureActivity;
 import com.blackcat.coach.activities.ChatActivity;
 import com.blackcat.coach.activities.OrderMsgActivity;
 import com.blackcat.coach.activities.SystemMsgActivity;

@@ -18,7 +18,6 @@ import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.events.UpdateCoachInfoError;
-import com.blackcat.coach.events.UpdateCoachInfoOk;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Comment;
 import com.blackcat.coach.models.DicCode;

@@ -1,7 +1,5 @@
 package com.blackcat.coach.activities;
 
-import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -16,7 +14,6 @@ import com.android.volley.VolleyError;
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.fragments.ReservationFragment;
-import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
@@ -35,7 +32,6 @@ import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.lang.reflect.*;
 
 public class QueryAct extends BaseActivity implements PullToRefreshView.OnRefreshListener, LoadMoreListView.OnLoadMoreListener {
 

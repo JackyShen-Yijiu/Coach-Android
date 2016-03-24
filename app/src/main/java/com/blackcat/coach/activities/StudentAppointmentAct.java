@@ -2,7 +2,6 @@ package com.blackcat.coach.activities;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,7 +9,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -19,16 +17,11 @@ import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.dialogs.ApplySuccessDialog;
-import com.blackcat.coach.events.ReservationOpOk;
-import com.blackcat.coach.fragments.ItemFragment;
 import com.blackcat.coach.models.CoachCourseVO;
-import com.blackcat.coach.models.DicCode;
-import com.blackcat.coach.models.ReservationStatus;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.User;
 import com.blackcat.coach.models.params.CoachAppointParams;
-import com.blackcat.coach.models.params.HandleClassParams;
 import com.blackcat.coach.models.params.MonthApplyData;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
@@ -36,13 +29,10 @@ import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.LogUtil;
-import com.blackcat.coach.utils.SharedPreferencesUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.blackcat.coach.widgets.ScrollTimeLayout;
 import com.google.gson.reflect.TypeToken;
-
-import org.apache.http.message.BasicNameValuePair;
 
 import java.lang.reflect.Type;
 import java.net.URI;
@@ -54,7 +44,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.greenrobot.event.EventBus;
 import sun.bob.mcalendarview.CellConfig;
 import sun.bob.mcalendarview.listeners.OnExpDateClickListener;
 import sun.bob.mcalendarview.listeners.OnMonthScrollListener;

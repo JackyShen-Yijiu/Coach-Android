@@ -25,7 +25,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.blackcat.coach.easemob.basefunction.HXPreferenceUtils;
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.ContactAdapter;
 import com.easemob.util.DensityUtil;

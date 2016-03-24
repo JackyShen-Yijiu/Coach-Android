@@ -19,7 +19,6 @@ import com.blackcat.coach.adapters.rows.RowStudent;
 import com.blackcat.coach.adapters.rows.RowStudentSms;
 import com.blackcat.coach.adapters.rows.RowSystemMsg;
 import com.blackcat.coach.adapters.rows.RowWallet;
-import com.blackcat.coach.models.SystemMsg;
 
 import java.util.ArrayList;
 import java.util.List;

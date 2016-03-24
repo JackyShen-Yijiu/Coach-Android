@@ -22,10 +22,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import com.easemob.chat.EMMessage;
-import com.easemob.chat.TextMessageBody;
-import com.blackcat.coach.easemob.Constant;
-import com.blackcat.coach.R;
-import com.easemob.util.EMLog;
 
 public class CommonUtils {
 	private static final String TAG = "CommonUtils";

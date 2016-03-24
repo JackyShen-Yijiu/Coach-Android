@@ -29,7 +29,7 @@ public class TermsActivity extends BaseActivity implements View.OnClickListener 
 
 
 	protected void initListener() {
-		String url = "http://www.yibuxueche.com/coachAgreement.html";
+		String url = "http://www.yibuxueche.com/jzjfcoachgreement.htm";
 		WebSettings webSettings = webView.getSettings();
 		webView.setWebViewClient(new WebViewClient() {
 			@Override

@@ -2,7 +2,6 @@ package com.blackcat.coach.activities;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -25,7 +24,6 @@ import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.ReservationStatus;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
-import com.blackcat.coach.models.params.CommentParams;
 import com.blackcat.coach.models.params.NewParams;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.URIUtil;

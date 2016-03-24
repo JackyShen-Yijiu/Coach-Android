@@ -8,16 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;
-import com.blackcat.coach.activities.DetailStudentActivity;
 import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.User;
 import com.blackcat.coach.utils.BaseUtils;
-import com.blackcat.coach.utils.Constants;
 
 /**
  * Created by zou on 15/10/17.

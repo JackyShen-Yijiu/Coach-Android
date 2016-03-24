@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.blackcat.coach.fragments.ItemFragment;
-import com.blackcat.coach.utils.LogUtil;
 
 
 /**

@@ -2,20 +2,15 @@ package com.blackcat.coach.models;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.android.volley.Request;
 import com.blackcat.coach.R;
 import com.blackcat.coach.easemob.Constant;
-import com.blackcat.coach.easemob.domain.*;
 import com.blackcat.coach.easemob.domain.User;
 import com.blackcat.coach.easemob.utils.DateUtils;
-import com.blackcat.coach.imgs.UILHelper;
-import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMContact;
 import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.NormalFileMessageBody;
 import com.easemob.chat.TextMessageBody;
-import com.easemob.exceptions.EaseMobException;
 
 import java.util.Date;
 

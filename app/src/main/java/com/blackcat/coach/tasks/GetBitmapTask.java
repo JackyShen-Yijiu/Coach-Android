@@ -8,8 +8,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.ImageSize;
 
-import java.io.IOException;
-
 public class GetBitmapTask extends BaseTask<Uri, Void, Bitmap> {
 
     private Uri mUri;
