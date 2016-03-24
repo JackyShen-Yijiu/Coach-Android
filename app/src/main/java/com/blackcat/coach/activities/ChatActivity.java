@@ -1,7 +1,6 @@
 package com.blackcat.coach.activities;
 
 
-import android.app.Activity;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;

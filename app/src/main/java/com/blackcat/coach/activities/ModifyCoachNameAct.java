@@ -1,6 +1,5 @@
 package com.blackcat.coach.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -8,28 +7,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
-import com.blackcat.coach.events.UpdatePwdOk;
-import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.params.UpdateCoachParams;
-import com.blackcat.coach.models.params.UpdatePwdParams;
-import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
-import com.blackcat.coach.net.URIUtil;
-import com.blackcat.coach.utils.BaseUtils;
-import com.blackcat.coach.utils.Constants;
-import com.blackcat.coach.utils.GsonUtils;
-import com.blackcat.coach.utils.ToastHelper;
-import com.blackcat.coach.utils.VolleyUtil;
-
-import java.net.URI;
-
-import de.greenrobot.event.EventBus;
 
 public class ModifyCoachNameAct extends BaseActivity {
 

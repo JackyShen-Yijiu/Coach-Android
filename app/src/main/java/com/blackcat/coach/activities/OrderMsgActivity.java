@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.blackcat.coach.R;
-import com.blackcat.coach.fragments.ReservationFragment;
 
 /**
  * Created by aa on 2016/1/14.

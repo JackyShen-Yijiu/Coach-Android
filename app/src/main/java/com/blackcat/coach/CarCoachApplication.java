@@ -3,8 +3,6 @@ package com.blackcat.coach;
 import android.app.Application;
 import android.content.Context;
 
-import com.baidu.mapapi.SDKInitializer;
-import com.blackcat.coach.easemob.basefunction.HXSDKHelper;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.once.Once;
 import com.blackcat.coach.utils.Constants;

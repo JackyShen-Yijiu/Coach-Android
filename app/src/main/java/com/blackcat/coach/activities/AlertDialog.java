@@ -25,7 +25,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.blackcat.coach.activities.BaseActivity;
 import com.blackcat.coach.R;
 import com.blackcat.coach.easemob.task.DownloadImageTask;
 import com.blackcat.coach.easemob.utils.ImageCache;

@@ -21,8 +21,6 @@ import android.view.View;
 import com.easemob.chat.EMMessage;
 import com.blackcat.coach.R;
 
-import org.jivesoftware.smack.Chat;
-
 public class ContextMenu extends ChatBaseActivity {
 
 	private int position;
