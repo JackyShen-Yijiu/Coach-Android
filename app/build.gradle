@@ -11,6 +11,7 @@ android {
         versionCode 4
         versionName "1.2.0"
     }
+
     def keyStorePath = "./bc.keystore.jks"
     signingConfigs {
         release {
