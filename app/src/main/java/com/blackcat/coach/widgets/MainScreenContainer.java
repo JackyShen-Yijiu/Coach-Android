@@ -20,6 +20,7 @@ import com.blackcat.coach.fragments.ReservationFragment;
 import com.blackcat.coach.i.IIndicateMainTabNotification;
 import com.blackcat.coach.i.INewIntent;
 import com.blackcat.coach.i.IOnKeyDown;
+import com.blackcat.coach.utils.LogUtil;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -101,6 +102,7 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
 
     @Override
     public void onClick(View v) {
+        LogUtil.print("jumpTabaaaaaaaaaaa");
         int type = (Integer) v.getTag();
         showTab(type);
     }
@@ -150,6 +152,7 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
     }
 
     public void jumpTab(int type, Intent intent) {
+
         if (type <= IndexActivity.TAB_SCHEDULE && type >= IndexActivity.TAB_RESERVATION) {
             for (int i = 0; i < mTabs.size(); i++) {
                 TabInfo tb = mTabs.get(i);

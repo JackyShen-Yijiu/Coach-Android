@@ -608,6 +608,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
     }
 
     private void selectTabByIntent(Intent intent) {
+
         int tab = 0;
         if (intent != null) {
             tab = intent.getIntExtra(SELECT_TAB_NAME, 0);
