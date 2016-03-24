@@ -6,7 +6,7 @@ android {
     buildToolsVersion '23.0.0'
     defaultConfig {
         applicationId "com.blackcat.coach"
-        minSdkVersion 11
+        minSdkVersion 110
         targetSdkVersion 20
         versionCode 4
         versionName "1.2.0"
