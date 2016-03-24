@@ -16,7 +16,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
-import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
 import com.blackcat.coach.events.RegisterOkEvent;
 import com.blackcat.coach.models.CoachInfo;
 import com.blackcat.coach.models.Result;

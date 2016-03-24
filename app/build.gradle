@@ -1,16 +1,17 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'view-inspector' 3
+//apply plugin: 'view-inspector'
 
 android {
     compileSdkVersion 23
     buildToolsVersion '23.0.0'
     defaultConfig {
-        applicationId "com.blackcat.coach"
+        applicationId "com.jzjf.coach"
         minSdkVersion 11
         targetSdkVersion 20
-        versionCode 4
-        versionName "1.2.0"
+        versionCode 1
+        versionName "1.0.0"
     }
+
     def keyStorePath = "./bc.keystore.jks"
     signingConfigs {
         release {

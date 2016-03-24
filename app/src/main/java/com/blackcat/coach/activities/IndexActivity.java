@@ -1,6 +1,5 @@
 package com.blackcat.coach.activities;
 
-import android.app.*;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -33,7 +32,6 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.ReservationAdapter;
 import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
@@ -52,7 +50,6 @@ import com.blackcat.coach.models.Session;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
-import com.blackcat.coach.once.Once;
 import com.blackcat.coach.utils.AppEnv;
 import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.Constants;
@@ -611,6 +608,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
     }
 
     private void selectTabByIntent(Intent intent) {
+
         int tab = 0;
         if (intent != null) {
             tab = intent.getIntExtra(SELECT_TAB_NAME, 0);

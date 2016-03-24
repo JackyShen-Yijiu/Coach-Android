@@ -1,36 +1,17 @@
 package com.blackcat.coach.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
-import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.params.UpdateCoachParams;
-import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
-import com.blackcat.coach.net.URIUtil;
-import com.blackcat.coach.utils.Constants;
-import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.ToastHelper;
-import com.blackcat.coach.utils.VolleyUtil;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
-import java.net.URI;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ModifySeniorityActivity extends BaseActivity implements View.OnClickListener {
 
