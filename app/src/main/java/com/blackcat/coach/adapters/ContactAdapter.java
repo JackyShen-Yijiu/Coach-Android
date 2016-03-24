@@ -29,13 +29,10 @@ import android.widget.ImageView;
 import android.widget.SectionIndexer;
 import android.widget.TextView;
 
-import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMConversation;
 import com.blackcat.coach.easemob.Constant;
 import com.blackcat.coach.R;
 import com.blackcat.coach.easemob.domain.User;
 import com.blackcat.coach.easemob.utils.UserUtils;
-import com.blackcat.coach.easemob.widget.Sidebar;
 import com.easemob.util.EMLog;
 
 /**

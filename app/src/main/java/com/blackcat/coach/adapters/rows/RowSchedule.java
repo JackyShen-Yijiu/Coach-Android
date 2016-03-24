@@ -17,8 +17,6 @@ import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.utils.Constants;
 
-import org.w3c.dom.Text;
-
 
 public class RowSchedule {
 

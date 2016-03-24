@@ -7,9 +7,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.easemob.EMValueCallBack;
-import com.blackcat.coach.easemob.basefunction.HXPreferenceUtils;
 import com.easemob.chat.EMChatManager;
-import com.blackcat.coach.easemob.Constant;
 import com.blackcat.coach.easemob.domain.User;
 import com.blackcat.coach.easemob.utils.UserUtils;
 import com.easemob.util.EMLog;

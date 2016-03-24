@@ -1,7 +1,6 @@
 package com.blackcat.coach.activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,7 +12,6 @@ import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
-import com.blackcat.coach.easemob.Constant;
 import com.blackcat.coach.events.LogoutEvent;
 import com.blackcat.coach.models.CoachInfo;
 import com.blackcat.coach.models.Result;
@@ -28,7 +26,6 @@ import com.blackcat.coach.utils.BaseUtils;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.LogUtil;
-import com.blackcat.coach.utils.PrefUtils;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.blackcat.coach.widgets.ShSwitchView;

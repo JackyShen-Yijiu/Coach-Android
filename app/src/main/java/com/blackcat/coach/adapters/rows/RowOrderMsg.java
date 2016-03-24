@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.models.OrderMsg;
-import com.blackcat.coach.models.SystemMsg;
 import com.blackcat.coach.utils.DateUtil;
 
 /**

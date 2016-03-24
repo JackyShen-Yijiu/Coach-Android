@@ -36,8 +36,6 @@ import com.blackcat.coach.adapters.ContactAdapter;
 import com.blackcat.coach.easemob.domain.User;
 import com.blackcat.coach.easemob.widget.Sidebar;
 
-import org.jivesoftware.smack.Chat;
-
 public class PickContactNoCheckboxActivity extends ChatBaseActivity {
 
 	private ListView listView;

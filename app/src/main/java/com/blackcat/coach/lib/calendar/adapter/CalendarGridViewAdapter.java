@@ -3,7 +3,6 @@ package com.blackcat.coach.lib.calendar.adapter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.lib.calendar.util.CalendarUtil;
-import com.blackcat.coach.utils.LogUtil;
 
 
 /**

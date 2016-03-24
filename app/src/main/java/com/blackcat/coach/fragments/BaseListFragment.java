@@ -1,7 +1,6 @@
 package com.blackcat.coach.fragments;
 
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -12,10 +11,8 @@ import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.models.DicCode;
-import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
-import com.blackcat.coach.models.User;
 import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.utils.Constants;
@@ -25,7 +22,6 @@ import com.blackcat.coach.utils.VolleyUtil;
 import com.blackcat.coach.widgets.LoadMoreListView;
 import com.blackcat.coach.widgets.PullToRefreshListView;
 import com.blackcat.coach.widgets.PullToRefreshView;
-import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.net.URI;

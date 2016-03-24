@@ -1,9 +1,7 @@
 package com.blackcat.coach.timer;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.CountDownTimer;
-import android.view.View;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;

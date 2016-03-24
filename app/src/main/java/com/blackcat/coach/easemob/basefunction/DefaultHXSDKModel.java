@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.blackcat.coach.easemob.basefunction.HXPreferenceUtils;
 import com.blackcat.coach.easemob.db.UserDao;
 
 import android.content.Context;

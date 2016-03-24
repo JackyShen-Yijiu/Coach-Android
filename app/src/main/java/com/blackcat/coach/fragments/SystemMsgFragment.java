@@ -13,7 +13,6 @@ import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.SystemMsg;
-import com.blackcat.coach.models.User;
 import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.SpHelper;

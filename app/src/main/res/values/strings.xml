@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">一步教练</string>
+    <string name="app_name">极致教练</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">设置</string>
@@ -305,7 +305,7 @@
     <string name="my_invit_code">我的邀请码</string>
     <string name="invite_friends">赚积分</string>
     <string name="exchange_commodity">兑换商品</string>
-    <string name="invite_friends_get_bonus">一步学车设计了最先进的用户激励机制\n推荐用户和学员，可以长久的获利\n赶快去邀请小伙伴来用吧！\n记得让他们在注册时填写你的邀请码哟</string>
+    <string name="invite_friends_get_bonus">极致驾服设计了最先进的用户激励机制\n推荐用户和学员，可以长久的获利\n赶快去邀请小伙伴来用吧！\n记得让他们在注册时填写你的邀请码哟</string>
     <string name="default_label">默认标签</string>
     <string name="custom_label">自定义标签</string>
     <string name="title_custom_label">个性标签</string>

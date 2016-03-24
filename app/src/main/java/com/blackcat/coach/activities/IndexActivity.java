@@ -843,9 +843,6 @@ public class IndexActivity extends BaseActivity implements IKillable,
                         startActivity(intent1);
                     }
                 }else if(currentPage == 2){
-
-
-
 //                    Intent intent1 = new Intent(this, StudentAppointmentAct.class);
                     Intent intent1 = new Intent(this, StudentsActivity1.class);
                     intent1.setFlags(1);

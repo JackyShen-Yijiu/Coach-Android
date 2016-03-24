@@ -14,11 +14,9 @@
 package com.blackcat.coach.easemob;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.json.JSONObject;
 
@@ -27,13 +25,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.blackcat.coach.activities.ChatActivity;
-import com.blackcat.coach.models.Message;
 import com.easemob.EMCallBack;
 import com.easemob.EMChatRoomChangeListener;
 import com.easemob.EMEventListener;
@@ -42,7 +38,6 @@ import com.blackcat.coach.easemob.basefunction.HXSDKHelper;
 import com.blackcat.coach.easemob.basefunction.HXNotifier;
 import com.blackcat.coach.easemob.basefunction.HXNotifier.HXNotificationInfoProvider;
 import com.blackcat.coach.easemob.basefunction.HXSDKModel;
-import com.easemob.chat.CmdMessageBody;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMChatOptions;
 import com.easemob.chat.EMMessage;

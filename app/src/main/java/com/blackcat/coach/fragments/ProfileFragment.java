@@ -1,10 +1,8 @@
 package com.blackcat.coach.fragments;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,23 +15,17 @@ import com.blackcat.coach.R;
 import com.blackcat.coach.activities.ClassesSettingsActivity;
 import com.blackcat.coach.activities.DrivingSchoolActivity;
 import com.blackcat.coach.activities.JobCategory;
-import com.blackcat.coach.activities.NewTrainSubjectActivity;
-import com.blackcat.coach.activities.OrderStudentActivity;
 import com.blackcat.coach.activities.PersonalInfoActivity;
 import com.blackcat.coach.activities.SettingsActivity;
-import com.blackcat.coach.activities.StudentsActivity;
 import com.blackcat.coach.activities.StudentsActivity1;
 import com.blackcat.coach.activities.TrainFieldActivity;
 import com.blackcat.coach.activities.TrainingSubjectActivity;
 import com.blackcat.coach.activities.VacationActivity;
 import com.blackcat.coach.activities.WalletActivity;
-import com.blackcat.coach.activities.WorkTimeActivity;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
-import com.easemob.chat.EMMessage;
-import com.easemob.chat.TextMessageBody;
 
 public class ProfileFragment extends BaseFragment implements OnClickListener {
 
