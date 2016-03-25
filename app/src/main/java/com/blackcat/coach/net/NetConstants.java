@@ -17,7 +17,10 @@ public class NetConstants {
 
 	public static final int DEFAULT_PORT = 80;
 
-    //七牛相关
+	public static final String VERSION = "api/v1/";
+
+
+	//七牛相关
     public static final String PATH_QINIU_TOKEN = "api/v1/info/qiniuuptoken";
     
 
@@ -52,7 +55,7 @@ public class NetConstants {
 	public static final String PATH_SAVE_CLASSES = "api/v1/userinfo/coachsetclass";
 	public static final String PATH_SET_WORKTIME = "api/v1/userinfo/coachsetworktime";
 	public static final String PATH_SET_VACATION = "api/v1/courseinfo/putcoachleave";
-	public static final String PATH_QINIU_UPTOKEN = "api/v1/info/qiniuuptoken";
+	public static final String PATH_QINIU_UPTOKEN = PATH_QINIU_TOKEN;
 	public static final String PATH_UPDATE_FEEDBACK = "api/v1/userfeedback";
 	public static final String PATH_GET_MY_WALLET = "api/v1/userinfo/getmywallet";
 	public static final String PATH_GET_MALL_PRODUCT = "api/v1/getmailproduct";

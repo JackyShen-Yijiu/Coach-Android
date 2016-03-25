@@ -15,6 +15,7 @@ import com.blackcat.coach.activities.ChatActivity;
 import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Message;
+import com.blackcat.coach.widgets.SelectableRoundedImageView;
 
 
 public class RowMessage {
@@ -23,7 +24,11 @@ public class RowMessage {
         View view = LayoutInflater.from(context).inflate(R.layout.row_message, parent, false);
         Holder holder = new Holder(view);
         holder.rootView = view.findViewById(R.id.rootView);
-        holder.ivAvatar = (ImageView)view.findViewById(R.id.iv_avatar);
+        holder.ivAvatar = (SelectableRoundedImageView)view.findViewById(R.id.iv_avatar);
+        holder.ivAvatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        holder.ivAvatar.setImageResource(R.mipmap.ic_reservation_avatar);
+        holder.ivAvatar.setOval(true);
+
         holder.tvName = (TextView)view.findViewById(R.id.tv_name);
         holder.tvDesc = (TextView)view.findViewById(R.id.tv_desc);
         holder.tvTime = (TextView)view.findViewById(R.id.tv_time);
@@ -54,7 +59,7 @@ public class RowMessage {
     static class Holder extends BaseViewHolder {
 
         private View rootView;
-        private ImageView ivAvatar;
+        private SelectableRoundedImageView ivAvatar;
         private TextView tvName;
         private TextView tvDesc;
         private TextView tvTime;

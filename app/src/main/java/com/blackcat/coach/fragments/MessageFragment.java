@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -35,6 +36,7 @@ import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.SpHelper;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
+import com.blackcat.coach.widgets.SelectableRoundedImageView;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMConversation;
 import com.google.gson.reflect.TypeToken;
@@ -92,6 +94,12 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
     
     private void initViews(View rootView) {
 
+        SelectableRoundedImageView imgSystemInfor = (SelectableRoundedImageView) rootView
+                .findViewById(R.id.iv_messeage);
+
+        imgSystemInfor.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imgSystemInfor.setImageResource(R.drawable.messeage);
+        imgSystemInfor.setOval(true);
 
         tv_unread_count=(TextView)rootView.findViewById(R.id.tv_unread_count);
         TV_system_messeage=(TextView)rootView.findViewById(R.id.TV_system_messeage);
@@ -100,6 +108,8 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         Tv_system_toast = (TextView) rootView.findViewById(R.id.Tv_system_toast);
         order_time=(TextView)rootView.findViewById(R.id.order_time);
         system_time=(TextView)rootView.findViewById(R.id.system_time);
+
+//
 
         mAdapter = new CommonAdapter<Message>(mActivity, null, CommonAdapter.AdapterType.TYPE_ADAPTER_MSG);
         mListView.setAdapter(mAdapter);
