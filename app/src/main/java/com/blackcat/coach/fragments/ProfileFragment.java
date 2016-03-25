@@ -100,7 +100,6 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
         RelativeLayout setting = (RelativeLayout) rootView.findViewById(R.id.rl_setting);
         setting.setOnClickListener(this);
-
 //        rootView.findViewById(R.id.rl_train_field).setOnClickListener(this);
     }
 
