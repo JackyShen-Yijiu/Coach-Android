@@ -17,6 +17,7 @@ import com.blackcat.coach.adapters.rows.RowReservation;
 import com.blackcat.coach.adapters.rows.RowSchedule;
 import com.blackcat.coach.adapters.rows.RowStudent;
 import com.blackcat.coach.adapters.rows.RowStudentSms;
+import com.blackcat.coach.adapters.rows.RowStudentsNew;
 import com.blackcat.coach.adapters.rows.RowSystemMsg;
 import com.blackcat.coach.adapters.rows.RowWallet;
 
@@ -50,6 +51,8 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
         public static final int TYPE_ADAPTER_STUDENT_SMS = 16;
         /**学员预约列表*/
         public static final int TYPE_ADAPTER_ORDER_STUDENT = 17;
+        /**新版 学员列表*/
+        public static final int TYPE_ADAPTER_STUDENT_NEW = 18;
     }
     
     public List<T> getList() {
@@ -151,6 +154,8 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
                 return RowStudentSms.createViewHolder(parent,parent.getContext());
             case AdapterType.TYPE_ADAPTER_ORDER_STUDENT://学员预约列表
                 return RowOrderStudent.createViewHolder(parent, parent.getContext());
+            case AdapterType.TYPE_ADAPTER_STUDENT_NEW://新的学员列表
+                return RowStudentsNew.createViewHolder(parent,parent.getContext());
             default:
                 return RowNone.createViewHolder(parent, parent.getContext());
         }
