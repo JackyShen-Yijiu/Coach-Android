@@ -918,7 +918,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                         // 显示帐号已经被移除
                     } else if (error == EMError.CONNECTION_CONFLICT) {
                         // 显示帐号在其他设备登陆dialog
-                        showConflictDialog();
+                      //  showConflictDialog();
                     } else {
                         NetStateEvent event = new NetStateEvent();
                         event.mIsNetOk = false;
