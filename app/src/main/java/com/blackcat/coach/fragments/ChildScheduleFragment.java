@@ -54,7 +54,7 @@ import sun.bob.mcalendarview.vo.DateData;
 
 
 /**
- * create an instance of this fragment.
+ * 日程
  */
 public class ChildScheduleFragment extends BaseListFragment<Reservation> {
 
