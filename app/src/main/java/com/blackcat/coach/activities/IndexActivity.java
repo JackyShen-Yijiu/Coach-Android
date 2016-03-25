@@ -83,7 +83,7 @@ import de.greenrobot.event.EventBus;
 
 public class IndexActivity extends BaseActivity implements IKillable,
         EMEventListener,
-        MainScreenContainer.OnTabLisener, View.OnClickListener {
+        MainScreenContainer.OnTabLisener, View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     private static final String TAG = "MainScreen";
     public static final int RESULT_CODE_EXIT_APP = 20;
@@ -118,6 +118,12 @@ public class IndexActivity extends BaseActivity implements IKillable,
     private boolean mIsConflict = false;
 
     private BCConnectionListener connectionListener;
+
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+    }
 
 
     // 防止内存泄漏
@@ -181,11 +187,16 @@ public class IndexActivity extends BaseActivity implements IKillable,
         refreshCheck();
 
         init();
+        setListener();
 
         //定位
         getLocation();
         EventBus.getDefault().register(this);
 
+    }
+
+    private void setListener(){
+        mRadioGroupReservation.setOnCheckedChangeListener(this);
     }
 
     public LocationClient mLocationClient = null;
@@ -617,7 +628,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
     }
 
     public static final String SELECT_TAB_NAME = "SELECT_TAB_NAME";
-    public static final int TAB_RESERVATION = 1;//预约
+    public static final int TAB_STUDENT = 1;//学员
     public static final int TAB_MESSAGE = 2;//消息
     public static final int TAB_PROFILE = 3;//我的
     public static final int TAB_SCHEDULE = 4;//日程
@@ -683,7 +694,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
         super.onSaveInstanceState(outState);
         outState.putInt(STATE_KEY_INT_SELECTED_TAB,
                 mMainContainer != null ? mMainContainer.getCurrentTabType()
-                        : IndexActivity.TAB_RESERVATION);
+                        : IndexActivity.TAB_STUDENT);
         outState.putBoolean(Constant.LOGIN_STATE_CONFLICT, isConflict());
     }
 
@@ -704,7 +715,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
     public void onTabSelected(int index, boolean reClicked) {
         mToolBarLeftTitle.setVisibility(View.GONE);
         switch (index) {
-            case TAB_RESERVATION:
+            case TAB_STUDENT:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
 //			mMenuItemRight.setVisible(true);

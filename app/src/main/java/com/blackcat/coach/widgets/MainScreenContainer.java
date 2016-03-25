@@ -17,6 +17,7 @@ import com.blackcat.coach.fragments.ChildScheduleFragment;
 import com.blackcat.coach.fragments.MessageFragment;
 import com.blackcat.coach.fragments.ProfileFragment;
 import com.blackcat.coach.fragments.ReservationFragment;
+import com.blackcat.coach.fragments.StudentTabFragment;
 import com.blackcat.coach.i.IIndicateMainTabNotification;
 import com.blackcat.coach.i.INewIntent;
 import com.blackcat.coach.i.IOnKeyDown;
@@ -77,10 +78,12 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
         mContentId = R.id.fl_content;
         mTabContainer = findViewById(R.id.ll_tab_container);
         mTabs = new ArrayList<TabInfo>();
-        mTabs.add(getTabInfo(R.id.tab_grab_order, new ReservationFragment(), IndexActivity.TAB_RESERVATION,
-                R.string.tab_indicator_title_reservation, R.drawable.sl_tab_icon_reservation));
         mTabs.add(getTabInfo(R.id.tab_schedule, new ChildScheduleFragment(), IndexActivity.TAB_SCHEDULE,
                 R.string.tab_indicator_title_schedule, R.drawable.sl_tab_icon_schedule));
+//        new ReservationFragment()  预约
+        mTabs.add(getTabInfo(R.id.tab_grab_order, new StudentTabFragment(), IndexActivity.TAB_STUDENT,
+                R.string.tab_indicator_title_student, R.drawable.sl_tab_icon_reservation));
+
         mTabs.add(getTabInfo(R.id.tab_my_orders, new MessageFragment(), IndexActivity.TAB_MESSAGE,
                 R.string.tab_indicator_title_message, R.drawable.sl_tab_icon_message));
         mTabs.add(getTabInfo(R.id.tab_profile, new ProfileFragment(), IndexActivity.TAB_PROFILE,
@@ -153,7 +156,7 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
 
     public void jumpTab(int type, Intent intent) {
 
-        if (type <= IndexActivity.TAB_SCHEDULE && type >= IndexActivity.TAB_RESERVATION) {
+        if (type <= IndexActivity.TAB_SCHEDULE && type >= IndexActivity.TAB_STUDENT) {
             for (int i = 0; i < mTabs.size(); i++) {
                 TabInfo tb = mTabs.get(i);
                 if (tb.type == type) {
@@ -164,7 +167,7 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
                 }
             }
         } else {
-            type = IndexActivity.TAB_RESERVATION;
+            type = IndexActivity.TAB_SCHEDULE;
         }
         showTab(type);
     }
@@ -225,7 +228,7 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
 
     private void removeAllFragment() {
         mAddedTabs = new HashSet<TabInfo>();
-        int[] tags = new int[] { IndexActivity.TAB_RESERVATION, IndexActivity.TAB_MESSAGE, IndexActivity.TAB_PROFILE ,IndexActivity.TAB_SCHEDULE};
+        int[] tags = new int[] { IndexActivity.TAB_STUDENT, IndexActivity.TAB_MESSAGE, IndexActivity.TAB_PROFILE ,IndexActivity.TAB_SCHEDULE};
 
         FragmentTransaction ft = null;
         for (int tag : tags) {
@@ -268,7 +271,7 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
         if (mCurrentTab != null) {
             return mCurrentTab.type;
         }
-        return IndexActivity.TAB_RESERVATION;
+        return IndexActivity.TAB_STUDENT;
     }
     
     public Fragment getCurrentFragment() {

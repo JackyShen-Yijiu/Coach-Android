@@ -72,7 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="gone"
+            android:visibility="visible"
             android:background="@drawable/bg_title_tab"
             android:orientation="horizontal">
 
@@ -84,7 +84,7 @@
                 android:button="@null"
                 android:checked="true"
                 android:gravity="center"
-                android:text="@string/title_reservation"
+                android:text="@string/title_time"
                 android:textColor="@drawable/sl_tab_title_textcolor" />
 
             <RadioButton
@@ -94,7 +94,7 @@
                 android:background="@drawable/bg_title_tab_item"
                 android:button="@null"
                 android:gravity="center"
-                android:text="@string/title_schedule"
+                android:text="@string/title_list"
                 android:textColor="@drawable/sl_tab_title_textcolor" />
         </RadioGroup>
     </android.support.v7.widget.Toolbar>
@@ -132,19 +132,20 @@
         android:orientation="horizontal">
 
         <com.blackcat.coach.widgets.MainScreenTab
-            android:id="@+id/tab_grab_order"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/sl_tab_indicator_bg"
-            android:duplicateParentState="true" />
-        <com.blackcat.coach.widgets.MainScreenTab
             android:id="@+id/tab_schedule"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/sl_tab_indicator_bg"
             android:duplicateParentState="true" />
+        <com.blackcat.coach.widgets.MainScreenTab
+            android:id="@+id/tab_grab_order"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/sl_tab_indicator_bg"
+            android:duplicateParentState="true" />
+
 
         <com.blackcat.coach.widgets.MainScreenTab
             android:id="@+id/tab_my_orders"
