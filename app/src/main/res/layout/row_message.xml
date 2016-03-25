@@ -12,13 +12,16 @@
         android:layout_height="64dp"
         android:layout_alignParentLeft="true">
 
-        <ImageView
+        <com.blackcat.coach.widgets.SelectableRoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/iv_avatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginRight="12dp"
             android:layout_centerVertical="true"
             android:scaleType="fitXY"
+            app:sriv_border_color="#00000000"
+            app:sriv_border_width="1dip"
             android:src="@mipmap/ic_reservation_avatar" />
 
         <TextView
@@ -46,7 +49,7 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:text="课程预约消息"
-            android:textColor="#333333"
+            android:textColor="@color/new_txt_blacks"
             android:textSize="16sp" />
 
         <TextView
@@ -56,7 +59,7 @@
             android:layout_marginTop="8dp"
             android:singleLine="true"
             android:text="16个预约请求待处理"
-            android:textColor="#999999"
+            android:textColor="@color/new_txt_lights"
             android:textSize="14sp" />
     </LinearLayout>
 
@@ -72,10 +75,9 @@
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:textColor="@color/new_txt_lights"
             android:singleLine="true"
             android:text="周四"
-            android:textColor="#999999"
             android:textSize="12sp" />
 
 
