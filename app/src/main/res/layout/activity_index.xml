@@ -3,6 +3,6 @@
     android:id="@+id/main_screen_container"
     android:orientation="vertical"
     android:fitsSystemWindows="true"
-    android:background="@color/new_main_color"
+    android:background="@color/new_main_colors"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent" />

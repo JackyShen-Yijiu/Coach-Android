@@ -14,13 +14,7 @@ import android.widget.TextView;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.ClassesSettingsActivity;
-import com.blackcat.coach.activities.DrivingSchoolActivity;
-import com.blackcat.coach.activities.JobCategory;
-import com.blackcat.coach.activities.PersonalInfoActivity;
 import com.blackcat.coach.activities.SettingsActivity;
-import com.blackcat.coach.activities.StudentsActivity1;
-import com.blackcat.coach.activities.TrainFieldActivity;
-import com.blackcat.coach.activities.TrainingSubjectActivity;
 import com.blackcat.coach.activities.VacationActivity;
 import com.blackcat.coach.activities.WalletActivity;
 import com.blackcat.coach.imgs.UILHelper;
