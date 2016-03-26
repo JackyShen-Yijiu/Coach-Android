@@ -38,9 +38,9 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
-                android:textSize="13sp"
+                android:textSize="14sp"
                 android:text="13" />
-            <ImageView
+           <!-- <ImageView
                 android:id="@+id/has_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginBottom="0dp"
                 android:textSize="9sp"
-                android:text="初一" />
+                android:text="初一" />-->
 
         </LinearLayout>
 

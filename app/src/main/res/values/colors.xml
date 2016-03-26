@@ -4,15 +4,18 @@
 
     <!-- 新的颜色 配色-->
 
-    <color name="new_main_color">#5b8efb</color>
+    <color name="new_main_colors">#5b8efb</color>
 
-    <color name="new_red">#e62e48</color>
+    <color name="new_reds">#e62e48</color>
 
-    <color name="new_txt_blue">#627cff</color>
+    <color name="new_txt_blues">#627cff</color>
 
-    <color name="new_txt_light">#b7b7b7</color>
+    <color name="new_txt_lights">#b7b7b7</color>
 
-    <color name="new_txt_black">#6e6e6e</color>
+    <color name="new_txt_blacks">#6e6e6e</color>
+
+
+
 
     <!-- 版本分割线 =================================-->
     <color name="splash_screen_bg">#ebebeb</color>

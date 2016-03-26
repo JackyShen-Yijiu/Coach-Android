@@ -17,8 +17,8 @@ import sun.bob.mcalendarview.R;
  */
 public class DefaultCellView extends BaseCellView {
     public TextView textView;
-    public ImageView point;
-    public TextView lunarTextView;
+//    public ImageView point;
+//    public TextView lunarTextView;
     private AbsListView.LayoutParams matchParentParams;
     public DefaultCellView(Context context) {
         super(context);
@@ -45,8 +45,8 @@ private Context mContext;
 //        imageView.setBackgroundResource(R.drawable.point);
         View view = View.inflate(getContext(),R.layout.calendar_date,null);
         textView = (TextView) view.findViewById(R.id.solar);
-        lunarTextView = (TextView) view.findViewById(R.id.lunar);
-         point = (ImageView) view.findViewById(R.id.has_order);
+//        lunarTextView = (TextView) view.findViewById(R.id.lunar);
+//         point = (ImageView) view.findViewById(R.id.has_order);
 
         this.addView(view);
 //        this.addView(imageView);
@@ -59,16 +59,17 @@ private Context mContext;
 
     @Override
     public void setDisplayLunarText(String text) {
-        lunarTextView.setText(text);
+
+//        lunarTextView.setText(text);
     }
 
     @Override
     public void showPoint(boolean b) {
-        if(b){
-            point.setVisibility(View.VISIBLE);
-        }else{
-            point.setVisibility(View.INVISIBLE);
-        }
+//        if(b){
+//            point.setVisibility(View.VISIBLE);
+//        }else{
+//            point.setVisibility(View.INVISIBLE);
+//        }
     }
 
     @Override

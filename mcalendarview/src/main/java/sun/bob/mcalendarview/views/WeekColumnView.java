@@ -36,7 +36,7 @@ public class WeekColumnView extends LinearLayout {
     }
 
     private void initParams() {
-        backgroundColor = Color.rgb(47,124,239);
+        backgroundColor = Color.rgb(255,255,255);
         startendTextColor = Color.LTGRAY;
         midTextColor = Color.LTGRAY;
     }
@@ -56,13 +56,13 @@ public class WeekColumnView extends LinearLayout {
         textView[0].setText(ExpCalendarUtil.number2Week(7));
         textView[0].setTextColor(startendTextColor);
         textView[0].setGravity(Gravity.CENTER);
-        textView[0].setTextSize(10);
+        textView[0].setTextSize(12);
         this.addView(textView[0], lp);
 
         for (int i = 1; i < 6; i++) {
             textView[i] = new TextView(getContext());
             textView[i].setGravity(Gravity.CENTER);
-            textView[i].setTextSize(10);
+            textView[i].setTextSize(12);
             textConfig(textView[i], ExpCalendarUtil.number2Week(i), midTextColor);
             this.addView(textView[i], lp);
         }
@@ -71,7 +71,7 @@ public class WeekColumnView extends LinearLayout {
         textView[6].setText(ExpCalendarUtil.number2Week(6));
         textView[6].setTextColor(startendTextColor);
         textView[6].setGravity(Gravity.CENTER);
-        textView[6].setTextSize(10);
+        textView[6].setTextSize(12);
         this.addView(textView[6], lp);
     }
 
