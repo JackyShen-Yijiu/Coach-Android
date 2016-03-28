@@ -108,9 +108,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         Tv_system_toast = (TextView) rootView.findViewById(R.id.Tv_system_toast);
         order_time=(TextView)rootView.findViewById(R.id.order_time);
         system_time=(TextView)rootView.findViewById(R.id.system_time);
-
 //
-
         mAdapter = new CommonAdapter<Message>(mActivity, null, CommonAdapter.AdapterType.TYPE_ADAPTER_MSG);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

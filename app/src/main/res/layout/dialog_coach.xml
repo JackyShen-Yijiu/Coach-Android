@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="center"
+    android:padding="21dp"
+    android:layout_width="260dp"
+    android:layout_height="280dp">
+
+<TextView
+    android:id="@+id/tv_1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textSize="12sp"
+    android:textColor="@color/new_txt_lights"
+    android:text="教龄"/>
+    <NumberPicker
+        android:id="@+id/np1"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/tv_1"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
+
+    <TextView
+        android:id="@+id/tv_true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/new_main_colors"
+        android:textSize="12sp"
+        android:text="确定"/>
+    <TextView
+        android:id="@+id/tv_false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/tv_true"
+        android:layout_alignBottom="@+id/tv_true"
+        android:layout_marginRight="32dp"
+        android:textSize="12sp"
+        android:text="取消"/>
+</RelativeLayout>
