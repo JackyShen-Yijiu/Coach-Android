@@ -1,4 +1,10 @@
 <resources>
+    <!--1.1 -->
+    <string name="title_study_confirm">确认完成</string>
+
+
+
+<!-- 1.0 -->
     <string name="app_name">极致教练</string>
 
     <string name="hello_world">Hello world!</string>
@@ -323,18 +329,15 @@
     <string name="coach_not_avlidable">您提交的资料尚未通过审核 暂时不能开展业务</string>
 
 
-
-
     <string name="str_other_content_intro">写点评论吧，对其他小伙伴很有很大帮助哦</string>
     <string name="title_activity_detail_reservation">已取消</string>
     <string name="delete_tag">确定删除此定义标签</string>
     <string name="send_sms_all">群发短信</string>
 
-    <string name = "student_appointment">学员预约</string>
-    <string name = "toady">今天</string>
+    <string name="student_appointment">学员预约</string>
+    <string name="toady">今天</string>
 
 
-
-    <string name = "title_time">时间</string>
-    <string name = "title_list">列表</string>
+    <string name="title_time">时间</string>
+    <string name="title_list">列表</string>
 </resources>

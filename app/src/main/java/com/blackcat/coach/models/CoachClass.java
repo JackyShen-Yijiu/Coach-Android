@@ -6,6 +6,7 @@ package com.blackcat.coach.models;
 public class CoachClass {
     private String className;
     private boolean checked;
+    public boolean is_choose;
 
     public CoachClass() {
         className = "";
