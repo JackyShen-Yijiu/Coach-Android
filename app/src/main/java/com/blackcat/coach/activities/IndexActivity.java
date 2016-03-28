@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -120,6 +121,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
     private boolean mIsConflict = false;
 
     private BCConnectionListener connectionListener;
+    private Toolbar toolBar;
 
 
     @Override
@@ -601,6 +603,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
     private void init() {
         Utils.setContentView(this, R.layout.activity_index);
+        toolBar = (Toolbar) findViewById(R.id.toolbar);
         mToolBarTitle = (TextView) findViewById(R.id.toolbar_title);
         mToolBarLeftTitle = (TextView) findViewById(R.id.toolbar_left_title);
 
@@ -634,6 +637,11 @@ public class IndexActivity extends BaseActivity implements IKillable,
         connectionListener = new BCConnectionListener();
         EMChatManager.getInstance().addConnectionListener(connectionListener);
     }
+
+    public Toolbar getToolBar(){
+        return toolBar;
+    }
+
 
     private void refreshView() {
         mMainContainer.refreshTab();

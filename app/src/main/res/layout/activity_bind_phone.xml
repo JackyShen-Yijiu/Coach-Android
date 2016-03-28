@@ -20,7 +20,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/padding_left"
             android:text="已绑定手机号："
-            android:textColor="@color/caldroid_333"
+            android:textColor="@color/black_text"
             android:textSize="15sp" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/padding_left"
             android:layout_toRightOf="@+id/tv_bind_phone"
-            android:textColor="@color/caldroid_333"
+            android:textColor="@color/black_text"
             android:textSize="15sp" />
     </RelativeLayout>
 

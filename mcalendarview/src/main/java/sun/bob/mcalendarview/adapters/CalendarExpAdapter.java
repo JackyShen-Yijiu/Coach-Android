@@ -34,6 +34,7 @@ public class CalendarExpAdapter extends ArrayAdapter {
         this.data = data;
     }
 
+
     public CalendarExpAdapter setCellViews(int cellView, int markView) {
         this.cellView = cellView;
         this.markView = markView;
@@ -63,12 +64,13 @@ public class CalendarExpAdapter extends ArrayAdapter {
             }
         } else {
             if (cellView > 0) {
+                System.out.println("cccc----=-=-=-"+dayData.getText());
                 BaseCellView baseCellView = (BaseCellView) View.inflate(getContext(), cellView, null);
                 baseCellView.setDisplayText(dayData.getText());
                 baseCellView.setDisplayLunarText(lunar.toString());
                 ret = baseCellView;
             } else {
-//                System.out.println(dayData.getMonth()+"--"+dayData.getText()+"qqq-----"+selectDate);
+                System.out.println(dayData.getMonth()+"--"+dayData.getText()+"qqq-----"+selectDate);
                 ret = new ExpandCellView(getContext());
                 ((ExpandCellView) ret).setText_Color(dayData.getText(), dayData.getTextColor());
                 ((ExpandCellView) ret).setLunarText(lunar.toString(), dayData.getTextColor());
