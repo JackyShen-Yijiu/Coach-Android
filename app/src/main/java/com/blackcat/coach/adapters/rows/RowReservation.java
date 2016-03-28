@@ -3,13 +3,16 @@ package com.blackcat.coach.adapters.rows;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.DetailReservationActivity;
@@ -17,6 +20,7 @@ import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.utils.Constants;
+import com.blackcat.coach.widgets.SelectableRoundedImageView;
 
 
 public class RowReservation {
@@ -31,8 +35,13 @@ public class RowReservation {
 		holder.tvStatus = (TextView) view.findViewById(R.id.tv_status);
 		holder.tvPickPlace = (TextView) view.findViewById(R.id.tv_place);
 		holder.tvTrainField = (TextView) view.findViewById(R.id.tv_train_field);
-		holder.ivAvatar = (ImageView) view.findViewById(R.id.iv_avatar);
+		holder.ivAvatar = (SelectableRoundedImageView) view.findViewById(R.id.iv_avatar);
+
+		holder.ivAvatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
+		holder.ivAvatar.setImageResource(R.mipmap.ic_avatar_small);
+		holder.ivAvatar.setOval(true);
 		holder.statusLine = view.findViewById(R.id.status_line);
+		holder.imgPhone = (ImageView) view.findViewById(R.id.row_reservation_phone);
 		return holder;
 	}
 
@@ -42,6 +51,8 @@ public class RowReservation {
 		Reservation item = (Reservation) info;
 		item.pos = position;
 		viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item));
+		viewHolder.imgPhone.setOnClickListener(new MyOnClickListener(activity, item));
+
 		if (!TextUtils.isEmpty(item.courseprocessdesc)) {
 			viewHolder.tvSchoolName.setText(item.courseprocessdesc);
 		} else {
@@ -73,9 +84,11 @@ public class RowReservation {
 		} else {
 			viewHolder.tvTrainField.setText("");
 		}
-		viewHolder.tvPickPlace.setText(res.getString(R.string.str_pick_place, item.shuttleaddress));
-		viewHolder.tvTime.setText(item.classdatetimedesc);
+		viewHolder.tvPickPlace.setText(item.classdatetimedesc);//res.getString(R.string.str_pick_place, item.shuttleaddress)
+//		viewHolder.tvTime.setText(item.classdatetimedesc);
 		viewHolder.tvStatus.setText(item.getReservationStatusDescId());
+		//点击电话
+
 
 //		int id = R.color.text_999;
 //		switch (item.getReservationstate()) {
@@ -116,9 +129,10 @@ public class RowReservation {
 		public TextView tvPickPlace, tvTrainField;
 		public TextView tvName;
 		public TextView tvSchoolName;
-		public ImageView ivAvatar;
+		public SelectableRoundedImageView ivAvatar;
 		public View statusLine;
 		public View rootView;
+		public ImageView imgPhone;
 
 		public Holder(View itemView) {
 			super(itemView);
@@ -134,9 +148,34 @@ public class RowReservation {
 		}
 		@Override
 		public void onClick(View v) {
-			Intent intent = new Intent(activity, DetailReservationActivity.class);
-			intent.putExtra(Constants.DETAIL, item);
-			activity.startActivity(intent);
+			switch(v.getId()){
+				case R.id.rootView://点击 item
+					Intent intent = new Intent(activity, DetailReservationActivity.class);
+					intent.putExtra(Constants.DETAIL, item);
+					activity.startActivity(intent);
+					break;
+				case R.id.row_reservation_phone://电话
+					if(hasPermation(activity)){
+						String mobile = item.userid.mobile;//得到了用户输入的手机号
+						Intent intent2 = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + mobile));  //意图    Intent(行为, 行为数据)   intent类用于描述一个应用将会做什么事          在windos中就有种东西  开始菜单》》运行》》 http://www.baidu.com    它可以直接打开，这是为什么？   是因为浏览器   认出了http:
+						activity.startActivity(intent2); //这就是内部类访问外部类的实例
+					}
+					break;
+			}
+
+		}
+	}
+
+	private static boolean hasPermation(Activity activity){
+		PackageManager pm = activity.getPackageManager();
+		boolean permission = (PackageManager.PERMISSION_GRANTED ==
+				pm.checkPermission("android.permission.RECORD_AUDIO", "packageName"));
+		if (permission) {
+			return true;
+		}else {
+//			showToast("木有这个权限");
+			Toast.makeText(activity,"无拨打电话权限！",Toast.LENGTH_SHORT).show();
+			return false;
 		}
 	}
 }

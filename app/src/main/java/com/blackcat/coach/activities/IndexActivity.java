@@ -124,7 +124,18 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
+        if(mMainContainer.getCurrentFragment().equals(mMainContainer.scheduleTabFragment)){
+            mMainContainer.scheduleTabFragment.switchFragment();
+            if(mMainContainer.scheduleTabFragment.type==0){
+                showHideQianDao(false, -1, 3);
+                mToolBarLeftTitle.setVisibility(View.GONE);
 
+            }else{
+
+                mToolBarLeftTitle.setVisibility(View.VISIBLE);
+                showHideQianDao(false, ReservationFragment.currentPage, 1);
+            }
+        }
     }
 
 
@@ -737,8 +748,8 @@ public class IndexActivity extends BaseActivity implements IKillable,
             case TAB_SCHEDULE:
 //                setRightTitleWithoutImg(CommonUtil.getString(mContext, R.string.student_appointment));
                 setLeftTitle(CommonUtil.getString(mContext, R.string.toady));
-                mToolBarTitle.setVisibility(View.VISIBLE);
-                mRadioGroupReservation.setVisibility(View.GONE);
+                mToolBarTitle.setVisibility(View.GONE);
+                mRadioGroupReservation.setVisibility(View.VISIBLE);
                 mToolBarTitle.setText(R.string.title_schedule);
                 showHideQianDao(false, ReservationFragment.currentPage, 1);
                 mMainContainer.stttop(120);
@@ -940,7 +951,8 @@ public class IndexActivity extends BaseActivity implements IKillable,
                         // 显示帐号已经被移除
                     } else if (error == EMError.CONNECTION_CONFLICT) {
                         // 显示帐号在其他设备登陆dialog
-                      //  showConflictDialog();
+                        //TODO 上线时要显示
+//                        showConflictDialog();
                     } else {
                         NetStateEvent event = new NetStateEvent();
                         event.mIsNetOk = false;

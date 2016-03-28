@@ -33,10 +33,10 @@ private Context context;
     }
 
     public void setLunarText(String text, int color){
-        if (color != 0) {
-            lunarTextView.setTextColor(color);
-        }
-        lunarTextView.setText(text);
+//        if (color != 0) {
+//            lunarTextView.setTextColor(color);
+//        }
+//        lunarTextView.setText(text);
     }
 
     /**
@@ -57,10 +57,10 @@ private Context context;
     public void showDay(boolean isShow){
         if(isShow){
             textView.setVisibility(View.VISIBLE);
-            lunarTextView.setVisibility(View.VISIBLE);
+//            lunarTextView.setVisibility(View.VISIBLE);
         }else{
             textView.setVisibility(INVISIBLE);
-            lunarTextView.setVisibility(INVISIBLE);
+//            lunarTextView.setVisibility(INVISIBLE);
         }
     }
 
@@ -72,9 +72,9 @@ private Context context;
     @Override
     public void showPoint(boolean b) {
         if(b){
-            point.setVisibility(View.VISIBLE);
+//            point.setVisibility(View.VISIBLE);
         }else{
-            point.setVisibility(View.INVISIBLE);
+//            point.setVisibility(View.INVISIBLE);
         }
     }
 }
