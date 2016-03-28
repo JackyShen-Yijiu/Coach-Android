@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/line_bg"
     tools:context="com.blackcat.coach.activities.TrainFieldActivity">
 
     <include layout="@layout/layout_toolbar" />
@@ -22,7 +23,8 @@
     <ListView
         android:id="@+id/lv_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:background="@color/white"
+        android:layout_height="wrap_content">
 
     </ListView>
 </LinearLayout>

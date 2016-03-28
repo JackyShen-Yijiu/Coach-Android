@@ -3,16 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.blackcat.coach.fragments.       ">
+    tools:context="com.blackcat.coach.fragments.ChildScheduleFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="@color/white_absolute"
         >
 
 
       <LinearLayout
+          android:id="@+id/schedule_calendar_layout"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:orientation="horizontal">
@@ -21,11 +23,15 @@
               android:layout_height="wrap_content"
               android:layout_weight="1"
               android:orientation="vertical">
+              <!--<com.prolificinteractive.materialcalendarview.MaterialCalendarView-->
+                  <!--android:id="@+id/calendarView"-->
+                  <!--android:layout_width="match_parent"-->
+                  <!--android:layout_height="wrap_content"-->
+                  <!--/>-->
           <sun.bob.mcalendarview.views.WeekColumnView
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:paddingBottom="6dp"
-              android:layout_marginLeft="4dp"
               android:paddingTop="10dp" />
 
           <!--  -->
@@ -33,15 +39,16 @@
           <sun.bob.mcalendarview.views.ExpCalendarView
               android:id="@+id/calendar_exp"
               android:layout_width="match_parent"
-              android:layout_marginRight="3dp"
               android:layout_height="wrap_content"
               />
           </LinearLayout>
           <ImageView
+              android:id="@+id/schedule_expand_calendar"
               android:layout_width="40dp"
               android:layout_height="wrap_content"
-              android:layout_gravity="center_vertical"
-              android:src="@mipmap/ic_arrow_down"/>
+              android:layout_marginTop="17dp"
+              android:layout_marginRight="5dp"
+              android:src="@mipmap/schedule_fold_down"/>
       </LinearLayout>
         <View
             android:layout_width="match_parent"

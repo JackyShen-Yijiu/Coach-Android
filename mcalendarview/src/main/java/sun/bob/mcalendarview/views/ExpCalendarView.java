@@ -1,9 +1,11 @@
 package sun.bob.mcalendarview.views;
 
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import java.util.Calendar;
@@ -49,6 +51,15 @@ public class ExpCalendarView extends ViewPager {
         }
     }
 
+    public ExpCalendarView(Fragment f) {
+
+        super(f.getActivity());
+        Log.d("tag", "ExpCalendarView--init-frag");
+        initFrag(f);
+        Log.d("tag", "ExpCalendarView--end     ");
+    }
+
+
     public ExpCalendarView(Context context, AttributeSet attrs) {
         super(context, attrs);
         if (context instanceof FragmentActivity) {
@@ -56,10 +67,10 @@ public class ExpCalendarView extends ViewPager {
         }
     }
 
-    public void init(FragmentActivity activity) {
-        if (initted) {
-            return;
-        }
+    public void initFrag(Fragment fragment){
+//        if (initted) {
+//            return;
+//        }
         initted = true;
         if (currentDate == null) {
             currentDate = CurrentCalendar.getCurrentDateData();
@@ -68,6 +79,31 @@ public class ExpCalendarView extends ViewPager {
         if (this.getId() == View.NO_ID) {
             this.setId(R.id.calendarViewPager);
         }
+
+        adapter = new CalendarViewExpAdapter(fragment.getChildFragmentManager()).setDate(currentDate);
+        this.setAdapter(adapter);
+        this.setCurrentItem(500);
+//        addBackground();
+        float density = getContext().getResources().getSystem().getDisplayMetrics().density;
+        CellConfig.cellHeight = getContext().getResources().getSystem().getDisplayMetrics().widthPixels / 12 / density;
+        CellConfig.cellWidth = getContext().getResources().getSystem().getDisplayMetrics().widthPixels / 7 / density;
+
+    }
+    
+    public void init(FragmentActivity activity) {
+        System.out.println("dddddddddd00000-0-0-");
+//        if (initted) {
+//            return;
+//        }
+        initted = true;
+        if (currentDate == null) {
+            currentDate = CurrentCalendar.getCurrentDateData();
+        }
+        // TODO: 15/8/28 Will this cause trouble when achieved?
+//        if (this.getId() == View.NO_ID) {
+//            this.setId(R.id.calendarViewPager);
+//        }
+        
         adapter = new CalendarViewExpAdapter(activity.getSupportFragmentManager()).setDate(currentDate);
         this.setAdapter(adapter);
         this.setCurrentItem(500);

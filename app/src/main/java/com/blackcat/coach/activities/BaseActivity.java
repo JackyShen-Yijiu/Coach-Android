@@ -1,10 +1,12 @@
 package com.blackcat.coach.activities;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -28,6 +30,8 @@ public class BaseActivity extends AppCompatActivity {
 	@Override
 	public void setContentView(int layoutResID) {
 		super.setContentView(layoutResID);
+
+
 		View v = findViewById(R.id.toolbar);
 
 		if (v != null) {

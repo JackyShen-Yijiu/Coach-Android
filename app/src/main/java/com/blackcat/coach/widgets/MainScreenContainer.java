@@ -9,6 +9,10 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+<<<<<<< HEAD
+import android.view.ViewGroup;
+=======
+>>>>>>> ebe9a74208b0108ecb7b719d55f4a08901b4a5c0
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
@@ -137,6 +141,15 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
             ft.hide(tab.fragment);
             ft.commitAllowingStateLoss();
         }
+    }
+
+
+    public void stttop(int top){
+        FrameLayout fragment=(FrameLayout)findViewById(mContentId);
+        LayoutParams l=new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+        l.setMargins(0,top,0,0);
+        fragment.setLayoutParams(l);
+
     }
 
     private void showOneTab(TabInfo tab) {

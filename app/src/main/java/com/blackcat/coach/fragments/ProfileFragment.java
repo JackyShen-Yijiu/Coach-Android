@@ -16,21 +16,28 @@ import com.blackcat.coach.R;
 import com.blackcat.coach.activities.ClassesSettingsActivity;
 import com.blackcat.coach.activities.SettingsActivity;
 import com.blackcat.coach.activities.StudyConfirmsAct;
+
+import com.blackcat.coach.activities.StudentsActivity1;
+import com.blackcat.coach.activities.SystemMsgActivity;
+
 import com.blackcat.coach.activities.VacationActivity;
 import com.blackcat.coach.activities.WalletActivity;
+import com.blackcat.coach.activities.WorkTimeActivity;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
+import com.blackcat.coach.widgets.SelectableRoundedImageView;
 
 public class ProfileFragment extends BaseFragment implements OnClickListener {
 
     public static boolean CLASS_SETTING = false;
 
-    private ImageView mIvAvatar;
+    private SelectableRoundedImageView mIvAvatar;
     private TextView mTvName, mTvSchoolName;
     private TextView mClass;
     private TextView mTvFocde;
+    private TextView mWorkTime;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,11 +55,17 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
     }
 
     private void initViews(View rootView) {
-        mIvAvatar = (ImageView) rootView.findViewById(R.id.iv_avatar);
+        mIvAvatar = (SelectableRoundedImageView) rootView.findViewById(R.id.iv_avatar);
+        mIvAvatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        mIvAvatar.setImageResource(R.mipmap.ic_avatar_small);
+        mIvAvatar.setOval(true);
+
+
         mTvName = (TextView) rootView.findViewById(R.id.tv_name);
         mTvFocde = (TextView) rootView.findViewById(R.id.tv_focde);
         mTvSchoolName = (TextView) rootView.findViewById(R.id.tv_school_name);
         mClass = (TextView) rootView.findViewById(R.id.tv_class);
+        mWorkTime = (TextView) rootView.findViewById(R.id.tv_time);
 
         RelativeLayout rl_class=(RelativeLayout) rootView.findViewById(R.id.rl_class);
         rl_class.setOnClickListener(this);
@@ -70,6 +83,13 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         LinearLayout setting = (LinearLayout) rootView.findViewById(R.id.ll_setting);
         setting.setOnClickListener(this);
         rootView.findViewById(R.id.ll_add).setOnClickListener(this);
+
+        LinearLayout score = (LinearLayout) rootView.findViewById(R.id.ll_score);
+        score.setOnClickListener(this);
+
+
+
+
     }
 
     private void bindUserInfo() {
@@ -92,7 +112,13 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         else
             mClass.setText("");
 
+        if(Session.getSession().workweek.length>0){//工作时间
 
+            mWorkTime.setText(getWorkTime(Session.getSession().workweek,Session.getSession().worktimespace.begintimeint,
+                    Session.getSession().worktimespace.endtimeint));
+        }else{
+            mWorkTime.setText("");
+        }
 
     }
 
@@ -113,10 +139,6 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         }
         return "已设置";
     }
-
-
-
-
 
     private String getTime(int temp){
         if(temp<10)
@@ -154,10 +176,15 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
                 break;
             case R.id.ll_vacation:
                 startActivity(new Intent(mActivity, VacationActivity.class));
+
                 break;
-//            case R.id.rl_students://学员列表
-//                startActivity(new Intent(mActivity, StudentsActivity1.class));//
-//                break;
+
+            case R.id. ll_informations:
+                startActivity(new Intent(mActivity, SystemMsgActivity.class));
+                break;
+            case R.id.ll_score://学员列表
+                startActivity(new Intent(mActivity, StudentsActivity1.class));//
+                break;
             case R.id.ll_setting:
                 startActivity(new Intent(mActivity, SettingsActivity.class));
                 break;
@@ -165,7 +192,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
                 startActivity(new Intent(mActivity, WalletActivity.class));
                 break;
             case R.id.rl_time:
-                startActivity(new Intent(mActivity, WalletActivity.class));
+                startActivity(new Intent(mActivity, WorkTimeActivity.class));
                 break;
             case R.id.ll_add://添加
                 startActivity(new Intent(getActivity(), StudyConfirmsAct.class));

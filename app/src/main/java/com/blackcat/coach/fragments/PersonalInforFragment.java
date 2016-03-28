@@ -1,5 +1,7 @@
 package com.blackcat.coach.fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,10 +12,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 import com.blackcat.coach.CarCoachApplication;
@@ -21,6 +26,7 @@ import com.blackcat.coach.R;
 import com.blackcat.coach.activities.BindPhoneActivity;
 import com.blackcat.coach.activities.DrivingLicenseActivity;
 import com.blackcat.coach.activities.JobCategory;
+import com.blackcat.coach.activities.MainActivity;
 import com.blackcat.coach.activities.ModifyCoachNameAct;
 import com.blackcat.coach.activities.ModifyCoachNumberActivity;
 import com.blackcat.coach.activities.ModifyGenderActivity;
@@ -40,15 +46,18 @@ import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.LabelBean;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
+import com.blackcat.coach.models.params.UpdateCoachParams;
 import com.blackcat.coach.qiniu.PhotoUtil;
 import com.blackcat.coach.qiniu.QiniuUploadManager;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
+import com.blackcat.coach.widgets.SelectableRoundedImageView;
 import com.blackcat.coach.widgets.WordWrapView;
 import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -61,13 +70,14 @@ import java.util.List;
 public class PersonalInforFragment extends BaseListFragment<Comment> implements View.OnClickListener {
 
     private TextView mTvIdCard, mTvDriverLicense,mTvSenioritymTvPhone,mTvSeniority,mTvPhone,mTvSeniorityId,mTvSex,mTvIntroduction,mTvName,mTvId;
-    private ImageView mIvAvatar;
+    private SelectableRoundedImageView mIvAvatar;
 
     private Button btnBaoKao;
 
-    private WordWrapView  wordWrapView;
+//    private WordWrapView  wordWrapView;
     private TextView tv_job_category;
-    private TextView mTvFieldName,mWorkTime,mSubject,mClass;
+    private TextView mTvFieldName,mSubject,mClass;
+    private AlertDialog alertDialog;
 
     public static PersonalInforFragment newInstance() {
         PersonalInforFragment fragment = new PersonalInforFragment();
@@ -85,7 +95,7 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
         // Inflate the layout for this fragment
 
         View rootView = inflater.inflate(R.layout.fragment_personal_infor, container, false);
-        initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_COMMMENT_TEACHER, R.layout.activity_personal_info);
+        initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_COMMMENT_TEACHER, R.layout.new_personal_info);
 //        fetchUserInfo(mUser._id);
         mPage = 1;
         mType = new TypeToken<Result<List<Comment>>>(){}.getType();
@@ -101,7 +111,6 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
     protected void initViews(View rootView, LayoutInflater inflater, int adapterType, int headerLayoutRes) {
         super.initViews(rootView, inflater, adapterType, headerLayoutRes);
         mHeaderView.findViewById(R.id.rl_name).setOnClickListener(this);
-        mHeaderView.findViewById(R.id.rl_avatar).setOnClickListener(this);
         mHeaderView.findViewById(R.id.rl_id_card).setOnClickListener(this);
         mHeaderView.findViewById(R.id.rl_modify_phone).setOnClickListener(this);
         mHeaderView.findViewById(R.id.rl_driving_license).setOnClickListener(this);
@@ -118,18 +127,17 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
         mTvSex = (TextView)mHeaderView.findViewById(R.id.tv_sex);
         mTvSex.setOnClickListener(this);
         mTvIntroduction = (TextView)mHeaderView.findViewById(R.id.tv_self);
-        wordWrapView = (WordWrapView) mHeaderView.findViewById(R.id.view_wordwrap);
-        //白色
-        wordWrapView.setFirstColor(true);
-        wordWrapView.showColor(true);
-        wordWrapView.setOnClickListener(this);
+//        wordWrapView = (WordWrapView) mHeaderView.findViewById(R.id.view_wordwrap);
+//        //白色
+//        wordWrapView.setFirstColor(true);
+//        wordWrapView.showColor(true);
+//        wordWrapView.setOnClickListener(this);
         mTvName = (TextView) mHeaderView.findViewById(R.id.tv_name);
-        mTvId = (TextView) mHeaderView.findViewById(R.id.tv_id);
+       // mTvId = (TextView) mHeaderView.findViewById(R.id.tv_id);
         mTvName.setText(Session.getSession().name);
-        mTvId.setText(Session.getSession().displaycoachid);
+     //   mTvId.setText(Session.getSession().displaycoachid);
         //新加、
         mTvFieldName = (TextView) rootView.findViewById(R.id.tv_field_name);
-        mWorkTime = (TextView) rootView.findViewById(R.id.tv_work_time);
         mSubject = (TextView) rootView.findViewById(R.id.tv_subjects);
         mClass = (TextView) rootView.findViewById(R.id.tv_class);
 
@@ -137,15 +145,18 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
         job_category.setOnClickListener(this);
         tv_job_category=(TextView)rootView.findViewById(R.id.tv_job_category);
         tv_job_category.setOnClickListener(this);
-        RelativeLayout workTime = (RelativeLayout) rootView.findViewById(R.id.rl_work_time);
-        workTime.setOnClickListener(this);
+//        RelativeLayout workTime = (RelativeLayout) rootView.findViewById(R.id.rl_work_time);
+//        workTime.setOnClickListener(this);
         RelativeLayout techClass = (RelativeLayout) rootView.findViewById(R.id.rl_tech_subject);
         techClass.setOnClickListener(this);
 
         RelativeLayout trainfield = (RelativeLayout) rootView.findViewById(R.id.rl_train_field);
         trainfield.setOnClickListener(this);
 
-        mIvAvatar = (ImageView) mHeaderView.findViewById(R.id.ic_avatar);
+        mIvAvatar = (SelectableRoundedImageView) mHeaderView.findViewById(R.id.iv_head);
+        mIvAvatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        mIvAvatar.setImageResource(R.mipmap.ic_avatar_small);
+        mIvAvatar.setOval(true);
         if (Session.getSession().headportrait != null && !TextUtils.isEmpty(Session.getSession().headportrait.originalpic)) {
 //            PicassoUtil.loadImage(this, mIvAvatar, Session.getSession().headportrait.originalpic, R.dimen.avatar_size, R.dimen.avatar_size, false, R.mipmap.ic_avatar_small);
             UILHelper.loadImage(mIvAvatar, Session.getSession().headportrait.originalpic, false, R.mipmap.ic_avatar_small);
@@ -193,7 +204,13 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
             mTvDriverLicense.setText(Session.getSession().drivinglicensenumber);
         }
         if (!TextUtils.isEmpty(Session.getSession().Seniority)) {
-            mTvSeniority.setText(Session.getSession().Seniority);
+//
+            if (Session.getSession().Seniority.contains("年")){
+                String[] s=Session.getSession().Seniority.split("年");
+                mTvSeniority.setText(s[0]+"年");
+            }
+            mTvSeniority.setText(Session.getSession().Seniority+"年");
+
         }
         if (!TextUtils.isEmpty(Session.getSession().coachnumber)) {
             mTvSeniorityId.setText(Session.getSession().coachnumber);
@@ -224,16 +241,8 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
         }else{
             mSubject.setText("");
         }
-        if(Session.getSession().workweek.length>0){//工作时间
 
-            mWorkTime.setText(getWorkTime(Session.getSession().workweek,Session.getSession().worktimespace.begintimeint,
-                    Session.getSession().worktimespace.endtimeint));
-//            Log.d("tag", "work--time:" + Session.getSession().workweek.getClass());
-        }else{
-            mWorkTime.setText("");
-        }
-        Log.d("tag", "Introduction-->" + Session.getSession().introduction);
-        addTags();
+        //addTags();
     }
     private String getTime(int temp){
         if(temp<10)
@@ -263,38 +272,38 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
     /**
      * 设置标签
      */
-    private void addTags(){
-        if(Session.getSession().tagslist==null)
-            return ;
-        if(wordWrapView.getChildCount()>0){
-            return;
-        }
-        LabelBean label = new LabelBean();
-        label.tagname = "个性标签";
-        List<LabelBean> list = new ArrayList<LabelBean>();
-        list.add(label);
-        for (LabelBean labelBean : Session.getSession().tagslist) {
-            list.add(labelBean);
-        }
-        wordWrapView.setData(list);
-        wordWrapView.removeAllViews();
-//        String[] strs = {"个性标签","包接送","五星级教练","不吸烟","态度极好","免费提供水服务","不收彩礼"};
-        for (int i = 0; i < list.size(); i++) {
-            TextView textview = new TextView(getActivity());
-            textview.setText(list.get(i).tagname);
-            wordWrapView.addView(textview);
-        }
-    }
+//    private void addTags(){
+//        if(Session.getSession().tagslist==null)
+//            return ;
+////        if(wordWrapView.getChildCount()>0){
+////            return;
+////        }
+//        LabelBean label = new LabelBean();
+//        label.tagname = "个性标签";
+//        List<LabelBean> list = new ArrayList<LabelBean>();
+//        list.add(label);
+//        for (LabelBean labelBean : Session.getSession().tagslist) {
+//            list.add(labelBean);
+//        }
+//        wordWrapView.setData(list);
+//        wordWrapView.removeAllViews();
+////        String[] strs = {"个性标签","包接送","五星级教练","不吸烟","态度极好","免费提供水服务","不收彩礼"};
+//        for (int i = 0; i < list.size(); i++) {
+//            TextView textview = new TextView(getActivity());
+//            textview.setText(list.get(i).tagname);
+//            wordWrapView.addView(textview);
+//        }
+//    }
 
     @Override
     public void onClick(View v) {
         int id = v.getId();
         switch (id) {
-            case R.id.rl_name://姓名
-                Intent i = new Intent(getActivity(), ModifyCoachNameAct.class);
-//                i.putExtra("name",Session.getSession().name)
-                startActivity(i);
-                break;
+//            case R.id.rl_name://姓名
+//                Intent i = new Intent(getActivity(), ModifyCoachNameAct.class);
+////                i.putExtra("name",Session.getSession().name)
+//                startActivity(i);
+//                break;
             case R.id.rl_self_intro:
                 startActivity(new Intent(getActivity(), SelfIntroducationActivity.class));
                 break;
@@ -302,6 +311,16 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
                 startActivity(new Intent(getActivity(), BindPhoneActivity.class));
                 break;
             case R.id.rl_avatar:
+                break;
+            case R.id.tv_true:
+//                String seniority =age;//mTvSeniority.getText().toString().trim();
+                mTvSeniority.setText(age+"年");
+                updateRequest(String.valueOf(age));
+                alertDialog.dismiss();
+                break;
+            case R.id.tv_false:
+                alertDialog.dismiss();
+                break;
             case R.id.ic_avatar:
                 if (mAvatarDialog == null) {
                     mAvatarDialog = new BaseDialogWrapper(getActivity(), getPhotoDialogView());
@@ -325,32 +344,33 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
             case R.id.tv_choose_cancel:
                 mAvatarDialog.dismissDialog();
                 break;
-            case R.id.rl_id_card:
-                startActivity(new Intent(getActivity(), ModifyIdCardActivity.class));
-                break;
+//            case R.id.rl_id_card:
+//                startActivity(new Intent(getActivity(), ModifyIdCardActivity.class));
+//                break;
             case R.id.rl_driving_license:
                 startActivity(new Intent(getActivity(),DrivingLicenseActivity.class));
                 break;
             case R.id.rl_seniority:
-                startActivity(new Intent(getActivity(), ModifySeniorityActivity.class));
+//                startActivity(new Intent(getActivity(), ModifySeniorityActivity.class));
+                showCoachDialog();
                 break;
             case R.id.rl_coach_num:
                 startActivity(new Intent(getActivity(), ModifyCoachNumberActivity.class));
                 break;
-            case R.id.rl_gender:
-                startActivity(new Intent(getActivity(), ModifyGenderActivity.class));
-                break;
-            case R.id.view_wordwrap:// 标签页面
-                startActivity(new Intent(getActivity(),PersionLableAct.class));
-                break;
-            case R.id.rl_job_category://工作性质
-                startActivity(new Intent(mActivity, JobCategory.class));
-                break;
-            case R.id.rl_work_time://工作时间
-                Intent i1 = new Intent(mActivity, WorkTimeActivity.class);
-//                startActivityForResult(i1,1);
-                startActivity(i1);
-                break;
+//            case R.id.rl_gender:
+//                startActivity(new Intent(getActivity(), ModifyGenderActivity.class));
+//                break;
+//            case R.id.view_wordwrap:// 标签页面
+//                startActivity(new Intent(getActivity(),PersionLableAct.class));
+//                break;
+//            case R.id.rl_job_category://工作性质
+//                startActivity(new Intent(mActivity, JobCategory.class));
+//                break;
+//            case R.id.rl_work_time://工作时间
+//                Intent i1 = new Intent(mActivity, WorkTimeActivity.class);
+////                startActivityForResult(i1,1);
+//                startActivity(i1);
+//                break;
             case R.id.rl_tech_subject://可授科目
                 startActivity(new Intent(mActivity, TrainingSubjectActivity.class));
                 break;
@@ -362,6 +382,57 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
         }
 
     }
+    private void updateRequest(final String seniority) {
+        UpdateCoachParams params = new UpdateCoachParams(Session.getSession());
+        params.Seniority = seniority;
+        Session.getSession().updateRequestNoFinish(getActivity(), params);
+    }
+    int age =0;
+    private void showCoachDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        LayoutInflater layout = LayoutInflater.from(getActivity());
+        View sudokulistView = layout.inflate(R.layout.dialog_coach, null);
+        builder.setView(sudokulistView);
+        builder.setCancelable(false);
+
+        alertDialog = builder.create();
+        alertDialog.show();
+        WindowManager.LayoutParams params =
+                alertDialog.getWindow().getAttributes();
+        params.width = 800;
+        params.height = 800;
+        alertDialog.getWindow().setAttributes(params);
+
+        NumberPicker np1=(NumberPicker)sudokulistView.findViewById(R.id.np1);
+        TextView tv_true = (TextView) sudokulistView
+                .findViewById(R.id.tv_true);
+        TextView tv_false = (TextView) sudokulistView
+                .findViewById(R.id.tv_false);
+        tv_true.setOnClickListener(this);
+        tv_false.setOnClickListener(this);
+
+        np1.setMinValue(0);
+        np1.setMaxValue(20);
+
+        np1.setValue(age);
+        np1.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int i, int i1) {
+                age=i1;
+//                showSelectedAge(i,i1);
+            }
+        });
+//
+    }
+    private void showSelectedAge(int i,int i1)
+    {
+//        Toast.makeText(getActivity(),""+age,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(),"i"+i1+i,Toast.LENGTH_SHORT).show();
+
+
+
+    }
+
 
     private File mPhotoFile;
     private AsyncProgressDialog mDialog;

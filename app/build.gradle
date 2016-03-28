@@ -37,8 +37,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':caldroid')
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     //    compile files('libs/baidumapapi_base_v3_6_0.jar')
     //    compile files('libs/baidumapapi_map_v3_6_0.jar')
     //    compile files('libs/BaiduLBS_Android.jar')
@@ -54,5 +53,6 @@ dependencies {
     //    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     //支持 布局 图片 按照比例显示
     compile project(':mcalendarview')
-
+    compile project(':caldroid')
+    compile project(':library')
 }
