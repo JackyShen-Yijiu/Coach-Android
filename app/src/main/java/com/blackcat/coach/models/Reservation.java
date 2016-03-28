@@ -28,6 +28,8 @@ public class Reservation implements Serializable {
     //用来更新Reservation状态
     public int pos;
 
+    public boolean is_choose = false;
+
     public ReservationStatus getReservationstate() {
         if (this.reservationstate == null) {
             this.reservationstate = ReservationStatus.UNKNOWN;

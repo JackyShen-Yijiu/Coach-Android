@@ -454,6 +454,24 @@ public class URIUtil {
 		}
 		return null;
 	}
+
+	/**工时确认  列表*/
+	public static URI getStudyConfirm() {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, Session.getSession().coachid));
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.CONFIRM_ORDER_LIST, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+
+			return uri;
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	//新加
 	public static URI getSignin() {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
