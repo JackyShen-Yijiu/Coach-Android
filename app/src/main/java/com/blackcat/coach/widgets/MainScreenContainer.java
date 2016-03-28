@@ -9,10 +9,6 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-<<<<<<< HEAD
-import android.view.ViewGroup;
-=======
->>>>>>> ebe9a74208b0108ecb7b719d55f4a08901b4a5c0
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 

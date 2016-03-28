@@ -97,6 +97,12 @@ public class NetConstants {
 	public static final String PATH_REMINDEXAM = "api/v1/userinfo/remindexam";
 	public static final String PATH_SEARCH = "api/v1/courseinfo/searchreservationlist";
 
+
+	/***教练日程数据按时段划分*/
+	public static final String PATH_GETDAYTIMERESERVATION = "/api/v2/courseinfo/daytimelysreservation";
+
+
+
 	public static final String PATH_UPLOAD_AVATAR = "user/uploadAvatar";
 	public static final String PATH_ACCOUNT_DETAIL = "account/detail";
 
@@ -159,4 +165,9 @@ public class NetConstants {
 	public static final int VOLLEY_TIMEOUT = 10000;
 
 	public static final String DOMAIN_IMGS = "http://7xnjg0.com1.z0.glb.clouddn.com/";
+
+
+
+
+
 }

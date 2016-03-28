@@ -182,6 +182,24 @@ public class URIUtil {
 		return null;
 	}
 
+	public static URI getDaytimelyReservationList(String coachid, String date) {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, coachid));
+
+		params.add(new BasicNameValuePair(NetConstants.KEY_DATE, date));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_GETDAYTIMERESERVATION, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	/**
 	 * 查找预约 学员信息
 	 * @param coachid
