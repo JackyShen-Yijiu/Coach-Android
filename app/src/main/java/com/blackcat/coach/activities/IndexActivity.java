@@ -740,6 +740,8 @@ public class IndexActivity extends BaseActivity implements IKillable,
         return true;
     }
 
+
+
     @Override
     public void onTabSelected(int index, boolean reClicked) {
         mToolBarLeftTitle.setVisibility(View.GONE);
@@ -747,12 +749,9 @@ public class IndexActivity extends BaseActivity implements IKillable,
             case TAB_STUDENT:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
-//			mMenuItemRight.setVisible(true);
-//			if (reClicked) {
-//	        }
                 mToolBarTitle.setText(R.string.title_reservation);
                 showHideQianDao(true, ReservationFragment.currentPage, 0);
-
+                mMainContainer.stttop(120);
                 break;
             case TAB_SCHEDULE:
 //                setRightTitleWithoutImg(CommonUtil.getString(mContext, R.string.student_appointment));
@@ -761,22 +760,26 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 mRadioGroupReservation.setVisibility(View.VISIBLE);
                 mToolBarTitle.setText(R.string.title_schedule);
                 showHideQianDao(false, ReservationFragment.currentPage, 1);
-
+                mMainContainer.stttop(120);
                 break;
             case TAB_MESSAGE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_message);
                 showHideQianDao(false,-1,2);
-
+                mMainContainer.stttop(120);
 //			mMenuItemRight.setVisible(false);
                 break;
             case TAB_PROFILE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
-                mToolBarTitle.setText(R.string.title_profile);
+                if (TextUtils.isEmpty(Session.getSession().name)){
+                    mToolBarTitle.setText(Session.getSession().mobile);
+                }else {
+                    mToolBarTitle.setText(Session.getSession().name);
+                }
                 showHideQianDao(false, -1,3);
-
+                mMainContainer.stttop(0);
 //		    mMenuItemRight.setVisible(false);
                 break;
             default:
@@ -827,9 +830,15 @@ public class IndexActivity extends BaseActivity implements IKillable,
             imgQuery.setVisibility(View.GONE);
             tvQianDao.setVisibility(View.VISIBLE);
             tvQianDao.setText("学员预约");
-        }else{
-            llQianDao.setVisibility(View.GONE);
-        }
+        }else if(type==3){
+            llQianDao.setVisibility(View.VISIBLE);
+            imgQuery.setVisibility(View.VISIBLE);
+            tvQianDao.setVisibility(View.GONE);
+            imgQuery.setImageResource(R.mipmap.modification);
+        } else{
+                llQianDao.setVisibility(View.GONE);
+            }
+
 
     }
 
@@ -887,7 +896,10 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 }else if(currentPage == 1){
                     Intent intent = new Intent(this, StudentAppointmentAct.class);
                     startActivity(intent);
-                }
+                }else if(currentPage == 3){
+                    Intent intent = new Intent(this, PersonalInfoActivity.class);
+                    startActivity(intent);
+            }
 
                 break;
             case R.id.toolbar_left_title:

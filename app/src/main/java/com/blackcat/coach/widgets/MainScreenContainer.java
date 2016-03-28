@@ -9,6 +9,11 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+<<<<<<< HEAD
+import android.view.ViewGroup;
+=======
+>>>>>>> ebe9a74208b0108ecb7b719d55f4a08901b4a5c0
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
 import com.blackcat.coach.R;
@@ -78,7 +83,9 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
     private void initView() {
         inflate(getContext(), R.layout.layout_main_screen, this);
         mContentId = R.id.fl_content;
+
         scheduleTabFragment = new ScheduleTabFragment();
+
         mTabContainer = findViewById(R.id.ll_tab_container);
         mTabs = new ArrayList<TabInfo>();
 //        ChildScheduleFragment() 日程
@@ -93,6 +100,20 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
         mTabs.add(getTabInfo(R.id.tab_profile, new ProfileFragment(), IndexActivity.TAB_PROFILE,
                 R.string.tab_indicator_title_profile, R.drawable.sl_tab_icon_profile));
     }
+
+    /**
+     * IndexActivity
+     * @param top
+     */
+    public void setMarginTop(int top){
+        FrameLayout contaner = (FrameLayout)  findViewById(mContentId);
+        LayoutParams p =  new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+        p.setMargins(0,top,0,0);
+//        p.
+        contaner.setLayoutParams(p);
+//        contaner.be
+    }
+
 
     private TabInfo getTabInfo(int viewID, Fragment fragment, int type, int txtID, int imgID) {
         TabInfo tabInfo = new TabInfo();
@@ -120,6 +141,15 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
             ft.hide(tab.fragment);
             ft.commitAllowingStateLoss();
         }
+    }
+
+
+    public void stttop(int top){
+        FrameLayout fragment=(FrameLayout)findViewById(mContentId);
+        LayoutParams l=new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+        l.setMargins(0,top,0,0);
+        fragment.setLayoutParams(l);
+
     }
 
     private void showOneTab(TabInfo tab) {

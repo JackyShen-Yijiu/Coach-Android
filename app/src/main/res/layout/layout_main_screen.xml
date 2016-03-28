@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+
     >
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_line"
+         />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="@android:color/transparent"
         android:minHeight="@dimen/actionBarSize">
 
         <TextView
@@ -100,12 +107,17 @@
         </RadioGroup>
     </android.support.v7.widget.Toolbar>
 
+<<<<<<< HEAD
+
+=======
     <FrameLayout
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_line"
-        android:layout_below="@+id/toolbar" />
+        android:layout_marginTop="@dimen/actionBarSize"
+        />
+>>>>>>> ebe9a74208b0108ecb7b719d55f4a08901b4a5c0
 
     <TextView
         android:id="@+id/tv_verification_warning"

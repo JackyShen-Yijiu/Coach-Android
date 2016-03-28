@@ -14,7 +14,7 @@
 
     <color name="new_txt_blacks">#6e6e6e</color>
 
-
+    <color name="new_bg_gray">#e8e8e8</color>
 
 
     <!-- 版本分割线 =================================-->
@@ -29,7 +29,7 @@
     <color name="black">#000000</color>
     <color name="white_grey">#F5F5F5</color>
     <color name="white_absolute">#ffffff</color>
-    <color name="white">#fafafa</color>
+    <color name="white">#FFFFFF</color>
     <color name="white_pure">#ffffff</color>
     <color name="blue">#2879f3</color>
     <color name="light_red">#FEA98E</color>

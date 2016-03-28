@@ -143,6 +143,65 @@ public class CoachInfo implements Serializable {
         VolleyUtil.getQueue(activity).add(request);
     }
 
+    // 更新个人信息,停留当前页面
+    public static void updateRequestNoFinish(final Activity activity, final UpdateCoachParams params) {
+
+        if (Session.getSession() == null || activity == null) {
+            return;
+        }
+        Type type = new TypeToken<Result>() {}.getType();
+        URI uri = URIUtil.updateCoachInfo();
+        String url = null;
+        try {
+            url = uri.toURL().toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Log.d("tag","update-->"+url +GsonUtils.toJson(params));
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
+        Map map = new HashMap<>();
+        map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
+
+        GsonIgnoreCacheHeadersRequest<Result> request = new GsonIgnoreCacheHeadersRequest<Result>(
+                Request.Method.POST, url, GsonUtils.toJson(params), type, map,
+                new Response.Listener<Result>() {
+                    @Override
+                    public void onResponse(Result response) {
+                        if (response != null) {
+                            if (response.type == Result.RESULT_OK) {
+                                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
+                                Session.getSession().updateCoachInfo(params);
+                                Session.save(Session.getSession(), true);
+                                EventBus.getDefault().post(new UpdateCoachInfoOk());
+//                                activity.finish();
+                            } else if (!TextUtils.isEmpty(response.msg)) {
+                                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
+                                EventBus.getDefault().post(new UpdateCoachInfoError());
+                            }
+                        } else {
+                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+                            EventBus.getDefault().post(new UpdateCoachInfoError());
+                        }
+                        if (Constants.DEBUG) {
+                            VolleyLog.v("Response:%n %s", response);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError arg0) {
+                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+                        EventBus.getDefault().post(new UpdateCoachInfoError());
+                    }
+                });
+        // 请求加上Tag,用于取消请求
+        request.setTag(activity);
+        request.setShouldCache(false);
+        VolleyUtil.getQueue(activity).add(request);
+    }
+
     public static void updateCoachInfo(UpdateCoachParams params) {
         Session.getSession().coachid = params.coachid;
         Session.getSession().name = params.name;

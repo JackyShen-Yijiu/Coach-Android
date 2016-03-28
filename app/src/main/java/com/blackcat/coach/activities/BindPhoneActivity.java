@@ -38,7 +38,6 @@ import de.greenrobot.event.EventBus;
 public class BindPhoneActivity extends BaseActivity implements
         View.OnClickListener {
 
-    private TextView mTvBindPhoneNum;
     private EditText mEtNewPhoneNum;
     private EditText mEtVerifyCode;
     private TextView mTvSendCode;
@@ -55,7 +54,6 @@ public class BindPhoneActivity extends BaseActivity implements
     }
 
     private void initView() {
-        mTvBindPhoneNum = (TextView)findViewById(R.id.tv_phone_num);
         mEtNewPhoneNum = (EditText)findViewById(R.id.et_new_phone);
         mEtVerifyCode = (EditText)findViewById(R.id.et_verification_code);
         mTvSendCode = (TextView)findViewById(R.id.tv_send_code);
@@ -64,7 +62,6 @@ public class BindPhoneActivity extends BaseActivity implements
         mBtnFinish = (Button)findViewById(R.id.btn_finish);
         mBtnFinish.setOnClickListener(this);
 
-        mTvBindPhoneNum.setText(Session.getSession().mobile);
     }
 
     @Override

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/new_bg_gray"
     tools:context="com.blackcat.coach.fragments.ReservationFragment">
 
     <com.blackcat.coach.lib.PagerSlidingTab
@@ -19,13 +20,16 @@
         app:underlineColor="#55333333"
         app1:underlineHeight="1dp"
         app:indicatorHeight="1dp"
+        android:background="@color/white"
         android:fillViewport="false">
     </com.blackcat.coach.lib.PagerSlidingTab>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/fragment_reservation_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        >
     </android.support.v4.view.ViewPager>
 
 
