@@ -52,30 +52,30 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:name="com.blackcat.coach.CarCoachApplication"
+        android:name=".CarCoachApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.blackcat.coach.activities.IndexActivity"
+            android:name=".activities.IndexActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.RegisterActivity"
+            android:name=".activities.RegisterActivity"
             android:label="@string/title_activity_register"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.UploadCoachInfoActivity"
+            android:name=".activities.UploadCoachInfoActivity"
             android:label="@string/title_activity_upload_coach_info"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.SplashActivity"
+            android:name=".activities.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -84,155 +84,155 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.blackcat.coach.activities.ForgetPwdActivity"
+            android:name=".activities.ForgetPwdActivity"
             android:label="@string/title_activity_forget_pwd"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.PersonalInfoActivity"
+            android:name=".activities.PersonalInfoActivity"
             android:label="@string/title_activity_personal_info"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.DrivingSchoolActivity"
+            android:name=".activities.DrivingSchoolActivity"
             android:label="@string/title_activity_driving_school"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.StudentsActivity"
+            android:name=".activities.StudentsActivity"
             android:label="@string/title_activity_students"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.SelfIntroducationActivity"
+            android:name=".activities.SelfIntroducationActivity"
             android:label="@string/title_activity_self_introducation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/title_activity_setting"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.VacationActivity"
+            android:name=".activities.VacationActivity"
             android:label="@string/title_activity_vacation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.WorkTimeActivity"
+            android:name=".activities.WorkTimeActivity"
             android:label="@string/title_activity_work_time"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.ClassesSettingsActivity"
+            android:name=".activities.ClassesSettingsActivity"
             android:label="@string/title_activity_classes_setting"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.ChatActivity"
+            android:name=".activities.ChatActivity"
             android:label="@string/title_activity_chat"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.SendCommentActivity"
+            android:name=".activities.SendCommentActivity"
             android:label="@string/title_activity_send_comment"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.DetailStudentActivity"
+            android:name=".activities.DetailStudentActivity"
             android:label="@string/title_activity_detail_student"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.DetailReservationActivity"
+            android:name=".activities.DetailReservationActivity"
             android:label="@string/title_activity_detail_reservation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.AboutActivity"
+            android:name=".activities.AboutActivity"
             android:label="@string/title_activity_about"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.FeedbackActivity"
+            android:name=".activities.FeedbackActivity"
             android:label="@string/title_activity_feedback"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.WalletActivity"
+            android:name=".activities.WalletActivity"
             android:label="@string/title_activity_wallet"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.ModifyPwdActivity"
+            android:name=".activities.ModifyPwdActivity"
             android:label="@string/title_activity_modify_pwd"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.BindPhoneActivity"
+            android:name=".activities.BindPhoneActivity"
             android:label="@string/title_activity_bind_phone"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.CancelClassActivity"
+            android:name=".activities.CancelClassActivity"
             android:label="@string/title_activity_cancel_class"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.TeachContentActivity"
+            android:name=".activities.TeachContentActivity"
             android:label="@string/title_activity_teach_content"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.TrainingSubjectActivity"
+            android:name=".activities.TrainingSubjectActivity"
             android:label="@string/title_activity_training_subject"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.TrainFieldActivity"
+            android:name=".activities.TrainFieldActivity"
             android:label="@string/title_activity_train_field"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.RefuseClassActivity"
+            android:name=".activities.RefuseClassActivity"
             android:label="@string/title_activity_refuse_class"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.ModifyIdCardActivity"
+            android:name=".activities.ModifyIdCardActivity"
             android:label="@string/title_activity_modifyi_id_card"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.DrivingLicenseActivity"
+            android:name=".activities.DrivingLicenseActivity"
             android:label="@string/title_activity_driving_license"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.ModifySeniorityActivity"
+            android:name=".activities.ModifySeniorityActivity"
             android:label="@string/title_activity_modify_seniority"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.ModifyGenderActivity"
+            android:name=".activities.ModifyGenderActivity"
             android:label="@string/title_activity_modify_sex"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.ModifyCoachNumberActivity"
+            android:name=".activities.ModifyCoachNumberActivity"
             android:label="@string/title_activity_modify_coach_number"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.ShowBigImage"
+            android:name=".activities.ShowBigImage"
             android:label="@string/title_activity_show_image"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.ShowNormalFileActivity"
+            android:name=".activities.ShowNormalFileActivity"
             android:label="@string/title_activity_show_normal_file"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.blackcat.coach.activities.OrderStudentActivity"
+            android:name=".activities.OrderStudentActivity"
             android:label="@string/title_activity_order_student"
             android:screenOrientation="portrait" />
         <!-- 选择 教练类型 -->
 
         <activity
-            android:name="com.blackcat.coach.activities.PickCoachTypeAct"
+            android:name=".activities.PickCoachTypeAct"
             android:label="@string/title_coach_type"
             android:screenOrientation="portrait" />
 
         <!-- 自定义的contextmenu -->
         <activity
-            android:name="com.blackcat.coach.activities.ContextMenu"
+            android:name=".activities.ContextMenu"
             android:screenOrientation="portrait"
             android:theme="@style/MyDialogStyle" />
         <!-- 自定义的alertdialog -->
         <activity
-            android:name="com.blackcat.coach.activities.AlertDialog"
+            android:name=".activities.AlertDialog"
             android:screenOrientation="portrait"
             android:theme="@style/MyDialogStyle" />
         <!-- 转发消息用户列表页面 -->
         <activity
-            android:name="com.blackcat.coach.activities.ForwardMessageActivity"
+            android:name=".activities.ForwardMessageActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
@@ -240,7 +240,7 @@
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="56d551b8e0f55a8962001ff5" />
-        <!--56417deee0f55a2d710009f1  极致： 56d551b8e0f55a8962001ff5-->
+        <!-- 56417deee0f55a2d710009f1  极致： 56d551b8e0f55a8962001ff5 -->
         <!-- 友盟渠道统计，需要跟自己的渠道号一致 -->
         <meta-data
             android:name="UMENG_CHANNEL"
@@ -346,7 +346,7 @@
         <receiver android:name="cn.jpush.android.service.AlarmReceiver" />
 
         <!-- User defined.  For test only  用户自定义的广播接收器 -->
-        <receiver android:name="com.blackcat.coach.push.JpushReceiver">
+        <receiver android:name=".push.JpushReceiver">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
                 <!-- Required  用户注册SDK的intent -->
@@ -378,29 +378,29 @@
             android:value="d4d7ba64212dbad5a2be2c0e" />
 
         <activity
-            android:name="com.blackcat.coach.activities.MallActivity"
+            android:name=".activities.MallActivity"
             android:label="@string/title_activity_mall"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.DetailProductActivity"
+            android:name=".activities.DetailProductActivity"
             android:label="@string/title_activity_detail_mall"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.ProductOrderActivity"
+            android:name=".activities.ProductOrderActivity"
             android:label="@string/title_activity_product_order"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.ProductOrderSuccActivity"
+            android:name=".activities.ProductOrderSuccActivity"
             android:label="@string/title_activity_product_order_succ"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.CaptureActivity"
+            android:name=".activities.CaptureActivity"
             android:label="@string/title_activity_qr_capture"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
@@ -411,64 +411,64 @@
         -->
 
         <activity
-            android:name="com.blackcat.coach.activities.PersionLableAct"
+            android:name=".activities.PersionLableAct"
             android:label="@string/title_custom_label"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.ModifyCoachNameAct"
+            android:name=".activities.ModifyCoachNameAct"
             android:label="@string/title_modify_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name="com.blackcat.coach.activities.QueryAct">
+        <activity android:name=".activities.QueryAct">
             android:theme="@style/AppTheme">
         </activity>
         <activity
-            android:name="com.blackcat.coach.activities.OrderMsgActivity"
+            android:name=".activities.OrderMsgActivity"
             android:label="@string/system_msg"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.SystemMsgActivity"
+            android:name=".activities.SystemMsgActivity"
             android:label="@string/order_msg"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.SignInActivity"
+            android:name=".activities.SignInActivity"
             android:label="@string/sigin_detail"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.SignInSucceed"
+            android:name=".activities.SignInSucceed"
             android:label="@string/sigin_detail"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.SignInFaild"
+            android:name=".activities.SignInFaild"
             android:label="@string/sigin_detail"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.TermsActivity"
+            android:name=".activities.TermsActivity"
             android:label="@string/about_server"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.JobCategory"
+            android:name=".activities.JobCategory"
             android:label="@string/job_category"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.NewTrainSubjectActivity"
+            android:name=".activities.NewTrainSubjectActivity"
             android:label="@string/delegable_subject"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.GuideActivity"
+            android:name=".activities.GuideActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="com.blackcat.coach.activities.WebViewMsg"
+            android:name=".activities.WebViewMsg"
             android:label="@string/order_msg"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
@@ -478,15 +478,24 @@
         -->
 
         <activity
-            android:name="com.blackcat.coach.activities.StudentsActivity1"
+            android:name=".activities.StudentsActivity1"
             android:label="@string/title_activity_students"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity android:name="com.blackcat.coach.activities.StudentAppointmentAct"
-            android:label="@string/student_appointment"/>
-        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <activity
+            android:name=".activities.StudentAppointmentAct"
+            android:label="@string/student_appointment" />
+        <!--
+             ATTENTION: This was auto-generated to add Google Play services to your project for
+             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
 
+        <activity android:name=".activities.StudyConfirmsAct"
+            android:label="@string/title_study_confirm"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan"
+            ></activity>
     </application>
 
 </manifest>

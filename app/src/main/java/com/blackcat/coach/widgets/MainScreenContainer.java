@@ -14,10 +14,8 @@ import android.widget.RelativeLayout;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.IndexActivity;
-import com.blackcat.coach.fragments.ChildScheduleFragment;
 import com.blackcat.coach.fragments.MessageFragment;
 import com.blackcat.coach.fragments.ProfileFragment;
-import com.blackcat.coach.fragments.ReservationFragment;
 import com.blackcat.coach.fragments.ScheduleTabFragment;
 import com.blackcat.coach.fragments.StudentTabFragment;
 import com.blackcat.coach.i.IIndicateMainTabNotification;

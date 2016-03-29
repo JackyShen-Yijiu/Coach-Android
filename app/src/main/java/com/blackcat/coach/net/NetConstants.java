@@ -10,19 +10,36 @@ public class NetConstants {
 	public static final String ENCODING = "UTF-8";
 	
 	public static final boolean BASE64_ENCODING = true;
-
+	/**测试*/
 //	public static final String HOSTNAME = "101.200.204.240";
 //	public static final String HOSTNAME = "123.57.63.15";、、123.56.185.59
-	public static final String HOSTNAME = "api.yibuxueche.com";
+	/***正式*/
+	public static final String HOSTNAME = "jzapi.yibuxueche.com";
 
+//	?coachid=5666365ef14c20d07ffa6ae8
+
+//	public static final String HOSTNAME_TEST = "101.200.204.240:8183/api/v1/test";
+
+
+	/***/
 	public static final int DEFAULT_PORT = 80;
+
+//	public static final int DEFAULT_PORT = 8183;
+
+
+	//8183
 
 	public static final String VERSION = "api/v1/";
 
+	/****************************** 1.1 开始V2 ****************************************/
+	//确认订单 列表
+	public static final String CONFIRM_ORDER_LIST = "api/v2/courseinfo/getuconfirmcourse";
 
+
+	/*******************************1.0 开始 V1**************************************************/
 	//七牛相关
     public static final String PATH_QINIU_TOKEN = "api/v1/info/qiniuuptoken";
-    
+
 
 	// 个人中心
     public static final String PATH_LOGIN = "api/v1/userinfo/userlogin";
@@ -96,6 +113,17 @@ public class NetConstants {
 	/***提醒学员可以报考了*/
 	public static final String PATH_REMINDEXAM = "api/v1/userinfo/remindexam";
 	public static final String PATH_SEARCH = "api/v1/courseinfo/searchreservationlist";
+	/*************************************************/
+
+
+
+
+
+
+	/***教练日程数据按时段划分*/
+	public static final String PATH_GETDAYTIMERESERVATION = "/api/v2/courseinfo/daytimelysreservation";
+
+
 
 	public static final String PATH_UPLOAD_AVATAR = "user/uploadAvatar";
 	public static final String PATH_ACCOUNT_DETAIL = "account/detail";
@@ -159,4 +187,9 @@ public class NetConstants {
 	public static final int VOLLEY_TIMEOUT = 10000;
 
 	public static final String DOMAIN_IMGS = "http://7xnjg0.com1.z0.glb.clouddn.com/";
+
+
+
+
+
 }

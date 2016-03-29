@@ -43,7 +43,7 @@ public class WeekColumnView extends LinearLayout {
 
     private void initLayout() {
         this.setOrientation(HORIZONTAL);
-        this.setBackgroundColor(backgroundColor);
+//        this.setBackgroundColor(backgroundColor);
     }
 
 

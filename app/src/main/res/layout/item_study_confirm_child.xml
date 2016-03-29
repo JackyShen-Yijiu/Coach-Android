@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="教学内容(必选)"
+        android:textColor="@color/new_reds"
+        android:textSize="@dimen/text_size_middle"
+        android:layout_margin="@dimen/margin_16"
+        android:id="@+id/textView6" />
+
+    <com.blackcat.coach.widgets.WordWrapViewStudyContent
+        android:id="@+id/item_study_confirm_child_wwww"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16"
+        android:layout_marginRight="@dimen/margin_16"
+        >
+
+    </com.blackcat.coach.widgets.WordWrapViewStudyContent>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="评分"
+            android:textColor="@color/new_txt_lights"
+            android:id="@+id/textView7" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/item_study_confirm_child_ratingBar"
+            style="@style/roomRatingBar"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+             />
+    </RelativeLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:id="@+id/item_study_confirm_child_editText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="@dimen/margin_16"
+        android:layout_marginRight="@dimen/margin_16"
+        android:gravity="top"
+        android:textColorHint="@color/new_txt_lights"
+        android:hint="写点点评吧(选填)"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_16"
+        android:text="提交"
+        android:id="@+id/item_study_confirm_child_button" />
+</LinearLayout>

@@ -15,8 +15,11 @@ import android.widget.TextView;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.ClassesSettingsActivity;
 import com.blackcat.coach.activities.SettingsActivity;
+import com.blackcat.coach.activities.StudyConfirmsAct;
+
 import com.blackcat.coach.activities.StudentsActivity1;
 import com.blackcat.coach.activities.SystemMsgActivity;
+
 import com.blackcat.coach.activities.VacationActivity;
 import com.blackcat.coach.activities.WalletActivity;
 import com.blackcat.coach.activities.WorkTimeActivity;
@@ -79,8 +82,11 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         informations.setOnClickListener(this);
         LinearLayout setting = (LinearLayout) rootView.findViewById(R.id.ll_setting);
         setting.setOnClickListener(this);
+        rootView.findViewById(R.id.ll_add).setOnClickListener(this);
+
         LinearLayout score = (LinearLayout) rootView.findViewById(R.id.ll_score);
         score.setOnClickListener(this);
+
 
 
 
@@ -187,6 +193,9 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
                 break;
             case R.id.rl_time:
                 startActivity(new Intent(mActivity, WorkTimeActivity.class));
+                break;
+            case R.id.ll_add://添加
+                startActivity(new Intent(getActivity(), StudyConfirmsAct.class));
                 break;
 //            case R.id.rl_tech_subject:
 //                startActivity(new Intent(mActivity, TrainingSubjectActivity.class));
