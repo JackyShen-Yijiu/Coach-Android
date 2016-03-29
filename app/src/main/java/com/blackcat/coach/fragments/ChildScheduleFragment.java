@@ -156,12 +156,12 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         Date endDate = calendar.getTime();
         List<Date> dateList = CommonUtil.getDatesBetweenTwoDate(beginDate, endDate);
         ScheduleReservationAdapter reservationAdapter = new ScheduleReservationAdapter(getChildFragmentManager(), dateList);
-        reservationViewpager.setAdapter(reservationAdapter);
-        for (int i = 0; i < dateList.size(); i++) {
-            if (CommonUtil.isSameDate(dateList.get(i), Calendar.getInstance().getTime())) {
-                reservationViewpager.setCurrentItem(i);
-            }
-        }
+//        reservationViewpager.setAdapter(reservationAdapter);
+//        for (int i = 0; i < dateList.size(); i++) {
+//            if (CommonUtil.isSameDate(dateList.get(i), Calendar.getInstance().getTime())) {
+//                reservationViewpager.setCurrentItem(i);
+//            }
+//        }
     }
 
     private int mYear;

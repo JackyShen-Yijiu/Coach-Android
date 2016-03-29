@@ -63,7 +63,7 @@ public class DaytimelyReservationFragment extends BaseListFragment<DaytimelysRes
 
         mType = new TypeToken<Result<List<DaytimelysReservation>>>(){}.getType();
 
-        initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_RESERVATION);
+        initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_SCHEDULE);
         mListView.setOnLoadMoreListener(null);
         if (!Session.isUserInfoEmpty()) {
             request();
