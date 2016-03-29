@@ -9,10 +9,6 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-<<<<<<< HEAD
-import android.view.ViewGroup;
-=======
->>>>>>> ebe9a74208b0108ecb7b719d55f4a08901b4a5c0
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
@@ -94,7 +90,6 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
 //        new ReservationFragment()  预约
         mTabs.add(getTabInfo(R.id.tab_grab_order, new StudentTabFragment(), IndexActivity.TAB_STUDENT,
                 R.string.tab_indicator_title_student, R.drawable.sl_tab_icon_reservation));
-
         mTabs.add(getTabInfo(R.id.tab_my_orders, new MessageFragment(), IndexActivity.TAB_MESSAGE,
                 R.string.tab_indicator_title_message, R.drawable.sl_tab_icon_message));
         mTabs.add(getTabInfo(R.id.tab_profile, new ProfileFragment(), IndexActivity.TAB_PROFILE,
