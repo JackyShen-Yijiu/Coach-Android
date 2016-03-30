@@ -88,7 +88,6 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
 //        new ReservationFragment()  预约
         mTabs.add(getTabInfo(R.id.tab_grab_order, new StudentTabFragment(), IndexActivity.TAB_STUDENT,
                 R.string.tab_indicator_title_student, R.drawable.sl_tab_icon_reservation));
-
         mTabs.add(getTabInfo(R.id.tab_my_orders, new MessageFragment(), IndexActivity.TAB_MESSAGE,
                 R.string.tab_indicator_title_message, R.drawable.sl_tab_icon_message));
         mTabs.add(getTabInfo(R.id.tab_profile, new ProfileFragment(), IndexActivity.TAB_PROFILE,
