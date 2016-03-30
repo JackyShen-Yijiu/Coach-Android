@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.activities.AddStudentsActivity;
 import com.blackcat.coach.activities.ClassesSettingsActivity;
 import com.blackcat.coach.activities.SettingsActivity;
 import com.blackcat.coach.activities.StudyConfirmsAct;
@@ -86,6 +87,10 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
         LinearLayout score = (LinearLayout) rootView.findViewById(R.id.ll_score);
         score.setOnClickListener(this);
+
+        LinearLayout stat = (LinearLayout) rootView.findViewById(R.id.ll_stat);
+        stat.setOnClickListener(this);
+
 
 
 
@@ -197,6 +202,10 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
             case R.id.ll_add://添加
                 startActivity(new Intent(getActivity(), StudyConfirmsAct.class));
                 break;
+            case R.id.ll_stat://统计
+                startActivity(new Intent(getActivity(), AddStudentsActivity.class));
+                break;
+
 //            case R.id.rl_tech_subject:
 //                startActivity(new Intent(mActivity, TrainingSubjectActivity.class));
 //                break;

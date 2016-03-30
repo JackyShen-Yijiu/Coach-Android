@@ -4,6 +4,7 @@ package com.blackcat.coach.adapters;
 import android.app.Activity;
 import android.view.ViewGroup;
 
+import com.blackcat.coach.adapters.rows.RowAddStudents;
 import com.blackcat.coach.adapters.rows.RowComment;
 import com.blackcat.coach.adapters.rows.RowCommentPersonal;
 import com.blackcat.coach.adapters.rows.RowCourse;
@@ -53,6 +54,8 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
         public static final int TYPE_ADAPTER_ORDER_STUDENT = 17;
         /**新版 学员列表*/
         public static final int TYPE_ADAPTER_STUDENT_NEW = 18;
+        /**新版 添加学员列表*/
+        public static final int TYPE_ADD_STUDENTS = 19;
     }
     
     public List<T> getList() {
@@ -156,6 +159,8 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
                 return RowOrderStudent.createViewHolder(parent, parent.getContext());
             case AdapterType.TYPE_ADAPTER_STUDENT_NEW://新的学员列表
                 return RowStudentsNew.createViewHolder(parent,parent.getContext());
+            case AdapterType.TYPE_ADD_STUDENTS://添加学员列表
+                return RowAddStudents.createViewHolder(parent, parent.getContext());
             default:
                 return RowNone.createViewHolder(parent, parent.getContext());
         }
@@ -197,6 +202,11 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
             case AdapterType.TYPE_ADAPTER_ORDERMSG:
                 RowOrderMsg.bindViewHolder(mActivity, holder, position, mList.get(position));
                 break;
+            //添加学员列表
+            case AdapterType.TYPE_ADD_STUDENTS:
+                RowAddStudents.bindViewHolder(mActivity, holder, position, mList.get(position));
+                break;
+
             case AdapterType.TYPE_ADAPTER_COMMMENT_TEACHER://个人信息 教练评论
                  RowCommentPersonal.bindViewHolder(mActivity, holder,position,mList.get(position));
                 break;

@@ -86,6 +86,7 @@
     <string name="str_username">用户名</string>
     <string name="title_activity_driving_school">所属驾校</string>
     <string name="title_activity_students">学员列表</string>
+    <string name="title_activity_addstudents">添加学员</string>
     <string name="title_activity_self_introducation">自我介绍</string>
     <string name="title_activity_setting">设置</string>
     <string name="setting_success">设置成功</string>
@@ -210,6 +211,7 @@
     <string name="info_id">ID %s</string>
 
     <string name="action_finish">完成</string>
+    <string name="action_add">添加</string>
 
     <string name="date_empty">开始和结束日期不能为空</string>
     <string name="feedback_empty">反馈信息不能为空</string>

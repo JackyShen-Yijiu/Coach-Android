@@ -156,13 +156,31 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         Date endDate = calendar.getTime();
         List<Date> dateList = CommonUtil.getDatesBetweenTwoDate(beginDate, endDate);
         ScheduleReservationAdapter reservationAdapter = new ScheduleReservationAdapter(getChildFragmentManager(), dateList);
-//        reservationViewpager.setAdapter(reservationAdapter);
-//        for (int i = 0; i < dateList.size(); i++) {
-//            if (CommonUtil.isSameDate(dateList.get(i), Calendar.getInstance().getTime())) {
-//                reservationViewpager.setCurrentItem(i);
-//            }
-//        }
+        reservationViewpager.setAdapter(reservationAdapter);
+        for (int i = 0; i < dateList.size(); i++) {
+            if (CommonUtil.isSameDate(dateList.get(i), Calendar.getInstance().getTime())) {
+                reservationViewpager.setCurrentItem(i);
+            }
+        }
     }
+
+
+    private void switchPage(Date selectDate){
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR, -10);
+        Date beginDate = calendar.getTime();
+        calendar.add(Calendar.YEAR, 20);
+        Date endDate = calendar.getTime();
+        List<Date> dateList = CommonUtil.getDatesBetweenTwoDate(beginDate, endDate);
+        ScheduleReservationAdapter reservationAdapter = new ScheduleReservationAdapter(getChildFragmentManager(), dateList);
+        reservationViewpager.setAdapter(reservationAdapter);
+        for (int i = 0; i < dateList.size(); i++) {
+            if (CommonUtil.isSameDate(dateList.get(i), selectDate)) {
+                reservationViewpager.setCurrentItem(i);
+            }
+        }
+    }
+
 
     private int mYear;
     private int mMonth;
@@ -177,6 +195,22 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
 
         reservationViewpager = (ViewPager) rootView.findViewById(R.id.schedule_reservation_viewpager);
 
+        reservationViewpager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                //日历切换
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
         mYear = Calendar.getInstance().get(Calendar.YEAR);
         mMonth = (Calendar.getInstance().get(Calendar.MONTH) + 1);
         mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
@@ -196,6 +230,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
 //                    obtainMonthApplyData(mYear + "", mMonth + "");
 
                 }
+                LogUtil.print("onMonthChange---"+year+"-"+month);
                 if (yearAndMonthTv != null) {
 
                     yearAndMonthTv.setText(String.format("%d年%d月", year, month));
@@ -213,11 +248,12 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
             @Override
             public void onDateClick(View view, DateData date) {
                 super.onDateClick(view, date);
-                if (popWindow != null) {
+                if (popWindow != null&&popWindow.isShowing()) {
                     popWindow.dismiss();
                 }
-                String str = formatter.format(date.getDate());
-                LogUtil.print("formatter" + str);
+//                switchPage(date.getDate());
+//                String str = formatter.format(date.getDate());
+                LogUtil.print("formatter"+date.getDate().toLocaleString());
 //                if (!mCurrentDate.equals(str)) {
 //                    mCurrentDate = str;
 //                    mAdapter.setList(null);
@@ -373,8 +409,11 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
             @Override
             public void onDateClick(View view, DateData date) {
                 super.onDateClick(view, date);
-                LogUtil.print("formatter-------");
-
+                LogUtil.print("formatter----"+date.getDate().toLocaleString());
+                if (popWindow != null&&popWindow.isShowing()) {
+                    popWindow.dismiss();
+                }
+//               switchPage(date.getDate());
             }
         });
         Toolbar toolBar = mContext.getToolBar();

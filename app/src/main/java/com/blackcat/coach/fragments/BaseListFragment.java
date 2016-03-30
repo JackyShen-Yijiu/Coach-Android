@@ -48,7 +48,6 @@ public abstract class BaseListFragment<T> extends BaseFragment
     protected void initViews(View rootView, LayoutInflater inflater, int adapterType) {
         mPullToRefreshView = (PullToRefreshView) rootView.findViewById(R.id.pull_refresh_view);
         mListView = (PullToRefreshListView) rootView.findViewById(R.id.inner_list);
-        System.out.println(mListView+"[[[[["+mAdapter);
         mAdapter = new CommonAdapter<>(mActivity, null, adapterType);
         mListView.setAdapter(mAdapter);
         mPullToRefreshView.setRefreshListener(this);

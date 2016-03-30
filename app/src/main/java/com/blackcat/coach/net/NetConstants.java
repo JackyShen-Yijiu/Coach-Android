@@ -34,6 +34,10 @@ public class NetConstants {
 	/****************************** 1.1 开始V2 ****************************************/
 	//确认订单 列表
 	public static final String CONFIRM_ORDER_LIST = "api/v2/courseinfo/getuconfirmcourse";
+	//添加学员 列表
+	public static final String PATH_ADD_STUDENT = "api/v2/courseinfo/getureservationuserlist";
+
+
 
 	public static final String GET_STUDNETS_LIST_NEW = "api/v2/courseinfo/getmystudentlist";
 
@@ -142,6 +146,7 @@ public class NetConstants {
 	public static final String KEY_MESSAGEID = "lastmessage";
 	public static final String KEY_SCHOOLID = "schoolid";
 	public static final String KEY_COACHID = "coachid";
+	public static final String KEY_SUBJECTID = "subjectid";
 
 
 	/**订单状态*/

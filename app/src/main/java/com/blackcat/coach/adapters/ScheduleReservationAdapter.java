@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.blackcat.coach.fragments.DaytimelyReservationFragment;
 import com.blackcat.coach.fragments.ItemFragment;
@@ -17,37 +18,37 @@ import java.util.List;
 /**
  * Created by aa on 2016/1/9.
  */
-public class ScheduleReservationAdapter extends FragmentPagerAdapter {
+public class ScheduleReservationAdapter extends FragmentStatePagerAdapter {
 
     private List<Date> dates;
     private DaytimelyReservationFragment fragment;
-
+    private FragmentManager fm;
 
     public ScheduleReservationAdapter(FragmentManager fm, List<Date> dates) {
         super(fm);
         this.dates = dates;
+        this.fm = fm;
     }
 
 
     @Override
     public Fragment getItem(int position) {
 
-        if (fragment == null || (!fragment.isAdded())) {
-            fragment = new DaytimelyReservationFragment();
-        }
-        Bundle args = new Bundle();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        args.putString("date",format.format(dates.get(position)));
+
+
+        fragment = new DaytimelyReservationFragment();
+        Bundle args = new Bundle();
+        args.putString("date", format.format(dates.get(position)));
         fragment.setArguments(args);
-//        fragment.setData(dates.get(position));
-//        if(fragments[position].isAdded()){
-//            return fragments[position];
+//        }else{
+//            fragment.getArguments().putString("date", format.format(dates.get(position)));
 //        }
-//        Bundle args = new Bundle();
-//        args.putInt("type", position);
-////        args.putString("type", titles[position]);
-//        fragments[position].setArguments(args);
-//        return fragments[position];
+
+//        if(fragment.isAdded()){
+//
+//        }
+
 
         return fragment;
     }

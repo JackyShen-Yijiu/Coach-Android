@@ -759,7 +759,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 mToolBarTitle.setVisibility(View.GONE);
                 mRadioGroupReservation.setVisibility(View.VISIBLE);
                 mToolBarTitle.setText(R.string.title_schedule);
-                showHideQianDao(false, ReservationFragment.currentPage, 1);
+                showHideQianDao(true, ReservationFragment.currentPage, 0);
                 mMainContainer.stttop(120);
                 break;
             case TAB_MESSAGE:
