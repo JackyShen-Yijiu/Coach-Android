@@ -479,6 +479,11 @@
 
         <activity
             android:name=".activities.StudentsActivity1"
+            android:label="@string/title_activity_addstudents"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".activities.AddStudentsActivity"
             android:label="@string/title_activity_students"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />

@@ -397,6 +397,24 @@ public class URIUtil {
 		return null;
 	}
 
+	//添加学员列表
+	public static URI getAddStudentsList(String subjectid,int pos) {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, Session.getSession().coachid));
+		params.add(new BasicNameValuePair(NetConstants.KEY_SUBJECTID, subjectid));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_ADD_STUDENT, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static URI getReservationInfo(String reservationId) {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 		fillBasicParams(CarCoachApplication.getInstance(), params);

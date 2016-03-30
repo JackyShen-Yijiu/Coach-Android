@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootView"
+    android:layout_width="match_parent"
+
+    android:layout_height="80dp">
+
+
+    <RadioButton
+        android:id="@+id/iv_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:padding="12dp"
+        android:button="@drawable/checkbox_bg"
+        android:clickable="false"
+        />
+
+    <com.blackcat.coach.widgets.SelectableRoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/iv_avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/iv_check"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:sriv_border_color="#00000000"
+        app:sriv_border_width="1dip"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_avatar_small" />
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_avatar"
+        android:layout_toRightOf="@+id/iv_avatar"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/new_txt_blacks"
+        android:textSize="14sp"
+        android:text="阿萨德"/>
+
+    <TextView
+        android:id="@+id/tv_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/iv_avatar"
+        android:layout_toRightOf="@+id/iv_avatar"
+        android:layout_marginLeft="16dp"
+        android:textColor="@color/new_txt_lights"
+        android:textSize="12sp"
+        android:text="阿萨德"/>
+    <ImageView
+        android:id="@+id/item_student_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="40dp"
+        android:src="@mipmap/new_phone"/>
+
+</RelativeLayout>
