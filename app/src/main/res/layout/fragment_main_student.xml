@@ -6,8 +6,9 @@
 
     <RadioGroup
         android:id="@+id/fragment_main_student_rg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="296dp"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal"
         android:orientation="horizontal"
         >
         <RadioButton
@@ -15,6 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="科目一"
+            android:button="@null"
+            android:background="@drawable/selector_study_content"
             android:id="@+id/fragment_main_student_rb1"
             android:checked="false" />
         <RadioButton
@@ -22,6 +25,7 @@
             android:layout_height="wrap_content"
             android:text="科目二"
             android:layout_weight="1"
+
             android:id="@+id/fragment_main_student_rb2"
             android:checked="false" />
         <RadioButton

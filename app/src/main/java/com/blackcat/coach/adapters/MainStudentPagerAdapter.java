@@ -36,10 +36,6 @@ public class MainStudentPagerAdapter extends FragmentPagerAdapter {
         if(fragments[position].isAdded()){
             return fragments[position];
         }
-        Bundle args = new Bundle();
-        args.putInt("type", position);
-//        args.putString("type", titles[position]);
-        fragments[position].setArguments(args);
         return fragments[position];
     }
 

@@ -52,12 +52,11 @@ public class MainStudentItemFragment extends BaseListFragment {
     public static MainStudentItemFragment newInstance(int subjectId,int type) {
 //        subjectid = subjectId;
 //        state = type;
-        LogUtil.print("student---->item"+subjectId+"state:::>"+type);
+        LogUtil.print("student---->item==newInstance"+subjectId+"state:::>"+type);
         MainStudentItemFragment fragment = new MainStudentItemFragment();
         Bundle args = new Bundle();
         args.putInt(SUBJECT_ID, subjectId);
         args.putInt(SUBJECT_TYPE,type);
-        LogUtil.print("student---->item--getInt" + args.getInt(SUBJECT_ID) + "state:::>" + type);
         fragment.setArguments(args);
         return fragment;
     }
@@ -67,8 +66,8 @@ public class MainStudentItemFragment extends BaseListFragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments() != null) {
-//            subjectid = getArguments().getInt(SUBJECT_ID);
-//            state = getArguments().getInt(SUBJECT_TYPE);
+            subjectid = getArguments().getInt(SUBJECT_ID);
+            state = getArguments().getInt(SUBJECT_TYPE);
             LogUtil.print("student---->item-->getArgument>"+subjectid+"state-->"+state);
         }
     }

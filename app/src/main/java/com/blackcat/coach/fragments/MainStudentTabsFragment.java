@@ -47,9 +47,7 @@ public class MainStudentTabsFragment extends BaseFragment {
 
 
 
-    private Fragment[] frags = {MainStudentItemFragment.newInstance(subjectId,0),MainStudentItemFragment.newInstance(subjectId,2)
-            ,MainStudentItemFragment.newInstance(subjectId,3),MainStudentItemFragment.newInstance(subjectId,4),
-            MainStudentItemFragment.newInstance(subjectId,5)};;
+
 
     public MainStudentTabsFragment() {
         // Required empty public constructor
@@ -65,7 +63,7 @@ public class MainStudentTabsFragment extends BaseFragment {
      */
     // TODO: Rename and change types and number of parameters
     public static MainStudentTabsFragment newInstance(int subjectId, String param2) {
-        LogUtil.print("student---->item-->tab" + subjectId);
+        LogUtil.print("student---->item-->tab===newInstance" + subjectId);
         MainStudentTabsFragment fragment = new MainStudentTabsFragment();
 //        LogUtil.print("student---->item-->tab--end" + subjectId);
         Bundle args = new Bundle();
@@ -82,7 +80,7 @@ public class MainStudentTabsFragment extends BaseFragment {
             subjectId = getArguments().getInt(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        LogUtil.print("main-tabs-->subjectId--->"+subjectId);
+        LogUtil.print("main-tabs-->subjectId---===newInstance>"+subjectId);
     }
 
     @Override
@@ -101,6 +99,10 @@ public class MainStudentTabsFragment extends BaseFragment {
 //                ,MainStudentItemFragment.newInstance(subjectId,3),MainStudentItemFragment.newInstance(subjectId,4),
 //                MainStudentItemFragment.newInstance(subjectId,5)};
             // 初始化数据
+        LogUtil.print("udent---->item--before-->" + subjectId );
+        Fragment[] frags = {MainStudentItemFragment.newInstance(subjectId,0),MainStudentItemFragment.newInstance(subjectId,2)
+                ,MainStudentItemFragment.newInstance(subjectId,3),MainStudentItemFragment.newInstance(subjectId,4),
+                MainStudentItemFragment.newInstance(subjectId,5)};;
             final MainStudentPagerAdapter adapter = new MainStudentPagerAdapter(getChildFragmentManager(),titles,frags);
 
             viewPager.setAdapter(adapter);
