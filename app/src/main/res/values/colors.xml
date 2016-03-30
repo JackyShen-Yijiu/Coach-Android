@@ -10,7 +10,10 @@
 
     <color name="new_txt_blues">#627cff</color>
 
+    <color name="new_txt_light_blues">#88627cff</color>
+
     <color name="new_txt_lights">#b7b7b7</color>
+    <color name="new_txt_lights_p">#88b7b7b7</color>
 
     <color name="new_txt_blacks">#6e6e6e</color>
 
@@ -122,6 +125,7 @@
     <!--线的背景色 -->
     <color name="line_bg">#e6e7e9</color>
     <color name="gray_bg1">#f8f9fb</color>
+    <color name="item_bg">#f0f0f0</color>
 
 
 

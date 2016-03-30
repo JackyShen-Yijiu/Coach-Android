@@ -9,8 +9,7 @@ import sun.bob.mcalendarview.vo.DateData;
 /**
  * Created by Bigflower on 2015/12/10.
  * <p>
- * 分别要对上次的和这次的处理
- * 而今日和其他日也有区别 所以有两个判断
+ *
  * 1.对上次的点击判断
  * 2.对这次的点击判断
  */

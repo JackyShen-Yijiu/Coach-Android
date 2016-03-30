@@ -42,8 +42,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="onClick"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_gravity="right"
+            android:gravity="center_horizontal"
             android:paddingRight="14dp"
             >
 
@@ -52,10 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/iconfont_icon"
-                android:paddingLeft="8dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:paddingRight="3dp"
+                android:paddingBottom="2dp"
 
                 />
             <TextView
@@ -65,8 +63,7 @@
                 android:layout_height="match_parent"
                 android:text="@string/qiandao"
                 android:clickable="true"
-                android:textSize="@dimen/profile_text_size"
-                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_small"
                 android:longClickable="true"
                 android:onClick="onClick"
                 android:textColor="@color/textColorPrimary" />

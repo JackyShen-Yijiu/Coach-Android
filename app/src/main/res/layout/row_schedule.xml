@@ -3,135 +3,111 @@
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/sl_default_background"
-    >
+    android:background="@drawable/sl_default_background">
 
     <RelativeLayout
-        android:id="@+id/rl_time_range"
+        android:id="@+id/line_rl"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="15dp">
+        android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/line_ll"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:gravity="center_horizontal">
 
-        <TextView
-            android:id="@+id/tv_start_time"
+        <ImageView
+            android:id="@+id/schedule_line_iv"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+
+            android:background="@color/new_main_colors" />
+        <ImageView
+            android:id="@+id/schedule_time_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#333333"
-            android:textSize="19sp" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="23dp"
+            android:background="@mipmap/schedule_item_node_now" />
 
-        <TextView
-            android:id="@+id/tv_end_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_start_time"
-            android:layout_marginTop="7dp"
-            android:textColor="#999999"
-            android:textSize="19sp" />
+       <LinearLayout
+           android:id="@+id/schedule_time_ll"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:background="#fff"
+           android:layout_marginTop="69dp"
+           android:gravity="center_horizontal"
+           android:orientation="vertical">
+           <TextView
+               android:id="@+id/schedule_begintime_tv"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerHorizontal="true"
+               android:text="09:00"
+               android:textColor="@color/new_txt_blacks"
+               android:textSize="14sp" />
+
+           <TextView
+               android:id="@+id/schedule_endtime_tv"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_below="@+id/schedule_begintime_tv"
+               android:layout_marginTop="4dp"
+               android:text="10:00"
+               android:textColor="@color/new_txt_lights"
+               android:textSize="12sp" />
+       </LinearLayout>
+
+
     </RelativeLayout>
 
-    <View
-        android:id="@+id/divider"
-        android:layout_width="2dp"
-        android:layout_height="80dp"
-        android:layout_marginRight="12dp"
-        android:layout_toRightOf="@+id/rl_time_range"
-        android:background="@color/blue" />
+    <LinearLayout
+        android:id="@+id/line_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="23dp"
+        android:layout_toRightOf="@+id/line_rl"
+        android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/iv_avatar"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:layout_toRightOf="@+id/divider"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_avatar_small" />
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/iv_avatar">
-
-
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#333333"
-            android:text="李燕飞"
-            android:textSize="16sp" />
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_class"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/text_999"
-            android:gravity="right"
-            android:text="已约24课时"
-            android:singleLine="true"
-            android:textSize="12sp"
-            android:layout_toRightOf="@+id/tv_name"
-            android:layout_toEndOf="@+id/tv_name" />
+            <TextView
+                android:id="@+id/schedule_ordered_student_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="已约2人"
+                android:textColor="@color/new_txt_blues"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_learning_item"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
-            android:layout_marginTop="6dp"
-            android:singleLine="true"
-            android:text="科目二弟22课时"
-            android:textColor="@color/text_999"
-            android:textSize="14sp" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_learning_item"
-            android:layout_marginTop="7dp"
-            android:singleLine="true"
-            android:text="官方24课时"
-            android:textColor="@color/text_999"
-            android:textSize="12sp" />
-        <TextView
-            android:id="@+id/tv_leave_clss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
-            android:layout_marginTop="6dp"
-            android:textColor="@color/text_999"
-            android:gravity="right"
-            android:text="剩余23课时"
-            android:singleLine="true"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp" />
-        <TextView
-            android:id="@+id/tv_miss_clss"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_leave_clss"
-            android:layout_marginTop="7dp"
-            android:textColor="@color/text_999"
-            android:gravity="right"
-            android:text="漏1课时"
-            android:singleLine="true"
-            android:layout_alignParentRight="true"
-            android:textSize="12sp" />
+            <TextView
+                android:id="@+id/schedule_remain_student_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:text="剩余名额3人"
+                android:textColor="@color/new_txt_blues"
+                android:textSize="14sp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_class_detail"
-            android:layout_width="wrap_content"
+        <com.blackcat.coach.widgets.GridVIewInListView
+            android:id="@+id/schedule_student_gv"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/text_999"
-            android:layout_below="@+id/tv_name"
-            android:visibility="gone"
-            android:layout_marginTop="7dp"
-            android:layout_alignParentRight="true"
+            android:layout_marginTop="23dp"
+            android:cacheColorHint="@null"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="5">
 
-            android:text="dhgfh"
-            android:textSize="16sp" />
-    </RelativeLayout>
+        </com.blackcat.coach.widgets.GridVIewInListView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="23dp"
+            android:background="@color/line_bg" />
+    </LinearLayout>
+
 </RelativeLayout>

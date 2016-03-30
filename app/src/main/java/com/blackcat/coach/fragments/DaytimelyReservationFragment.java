@@ -40,6 +40,7 @@ public class DaytimelyReservationFragment extends BaseListFragment<DaytimelysRes
         //获取Activity传递过来的参数
         Bundle mBundle = getArguments();
         date = mBundle.getString("date");
+
         initView(contextView, inflater);
 
         initData();

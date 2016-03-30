@@ -213,7 +213,7 @@ public final class CameraManager {
 			} else if (width > MAX_FRAME_WIDTH) {
 				width = MAX_FRAME_WIDTH;
 			}
-			int height = screenResolution.y * 3 / 4;
+			int height = screenResolution.x * 3 / 4;
 			if (height < MIN_FRAME_HEIGHT) {
 				height = MIN_FRAME_HEIGHT;
 			} else if (height > MAX_FRAME_HEIGHT) {
