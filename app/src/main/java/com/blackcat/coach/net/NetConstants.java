@@ -35,6 +35,8 @@ public class NetConstants {
 	//确认订单 列表
 	public static final String CONFIRM_ORDER_LIST = "api/v2/courseinfo/getuconfirmcourse";
 
+	public static final String GET_STUDNETS_LIST_NEW = "api/v2/courseinfo/getmystudentlist";
+
 
 	/*******************************1.0 开始 V1**************************************************/
 	//七牛相关

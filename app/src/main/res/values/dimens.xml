@@ -59,4 +59,5 @@
 
     <dimen name="profile_text_size">14sp</dimen>
     <dimen name="height_top_bar">46dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

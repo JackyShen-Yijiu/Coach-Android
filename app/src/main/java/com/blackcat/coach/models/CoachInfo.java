@@ -60,6 +60,7 @@ public class CoachInfo implements Serializable {
     public String Seniority;
     public int passrate;
     public int starlevel;
+
     public List<Subject> subject;
     public CarModel carmodel;
     public TrainField trainfieldlinfo;

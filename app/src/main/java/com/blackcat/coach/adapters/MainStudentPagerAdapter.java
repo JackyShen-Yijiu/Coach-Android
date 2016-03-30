@@ -12,16 +12,23 @@ import com.blackcat.coach.fragments.ItemFragment;
 /**
  * Created by aa on 2016/1/9.
  */
-public class ReservationAdapter extends FragmentPagerAdapter {
+public class MainStudentPagerAdapter extends FragmentPagerAdapter {
 
     private final String[] titles ;
 
-    public static ItemFragment[] fragments = {new ItemFragment(),new ItemFragment(),new ItemFragment(),new ItemFragment()};
+    public Fragment[] fragments = null;
 
-    public ReservationAdapter(FragmentManager fm,String[] titles) {
+    public MainStudentPagerAdapter(FragmentManager fm, String[] titles,Fragment[] fragments) {
         super(fm);
         this.titles = titles;
+        this.fragments = fragments;
     }
+
+//    public MainStudentPagerAdapter(FragmentManager fm, String[] titles,Fragment[] fragments) {
+//        super(fm);
+//        this.titles = titles;
+//        this.fragments = fragments;
+//    }
 
 
     @Override

@@ -28,5 +28,14 @@ public class User implements Serializable {
     /**发送短信  是否需要发送，1：发送 0.不发送*/
     public int seleted = 1;
     public String leaningContents;
+    /*** v2 new  */
+    public CourseInfor courseinfo;
+
+    public String examinationdate;
+    public String applydate;
+    public String applyenddate;
+    public int testcount;
+
+
 
 }

@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:background="@color/white"
+    android:layout_height="match_parent"
+    android:padding="@dimen/padding_16"
+    >
 
 
     <TextView
@@ -10,16 +13,15 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="教学内容(必选)"
         android:textColor="@color/new_reds"
-        android:textSize="@dimen/text_size_middle"
-        android:layout_margin="@dimen/margin_16"
+        android:textSize="@dimen/text_size_small"
         android:id="@+id/textView6" />
 
     <com.blackcat.coach.widgets.WordWrapViewStudyContent
         android:id="@+id/item_study_confirm_child_wwww"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_16"
-        android:layout_marginRight="@dimen/margin_16"
+        android:layout_marginTop="18dp"
+        android:layout_marginBottom="18dp"
         >
 
     </com.blackcat.coach.widgets.WordWrapViewStudyContent>
@@ -27,12 +29,12 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
+        android:layout_marginTop="24dp"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="@dimen/text_size_large"
             android:text="评分"
             android:textColor="@color/new_txt_lights"
             android:id="@+id/textView7" />
@@ -45,6 +47,9 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
+            android:numStars="5"
+            android:rating="3"
+            android:stepSize="1"
              />
     </RelativeLayout>
 
@@ -55,17 +60,22 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="@dimen/margin_16"
-        android:layout_marginRight="@dimen/margin_16"
+        android:padding="@dimen/padding_13"
+        android:layout_marginTop="14dp"
+        android:textSize="@dimen/text_size_middle"
+        android:background="@drawable/invite_friend_bg"
         android:gravity="top"
         android:textColorHint="@color/new_txt_lights"
         android:hint="写点点评吧(选填)"
         />
 
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_16"
+        android:layout_marginTop="14dp"
         android:text="提交"
+        android:background="@drawable/bg_btn"
+        android:textColor="@color/white"
         android:id="@+id/item_study_confirm_child_button" />
 </LinearLayout>

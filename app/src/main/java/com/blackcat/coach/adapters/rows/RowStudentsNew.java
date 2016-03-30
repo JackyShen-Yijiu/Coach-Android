@@ -18,6 +18,7 @@ import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.User;
 import com.blackcat.coach.utils.BaseUtils;
 import com.blackcat.coach.utils.Constants;
+import com.blackcat.coach.utils.LogUtil;
 
 /**
  * Created by pengdonghua on 2016/3/25.
@@ -40,12 +41,14 @@ public class RowStudentsNew {
 
     public static <T> void bindViewHolder(final Activity activity,
                                           BaseViewHolder holder, final int position, final T info) {
+
         final Holder viewHolder = (Holder) holder;
         User item = (User) info;
         viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item));
         viewHolder.imgIphone.setOnClickListener(new MyOnClickListener(activity, item));
         viewHolder.tvName.setText(item.name);
         viewHolder.tvProgress.setText(item.subjectprocess);
+        LogUtil.print("bindViewHolder---->" + item.name);
         //sun
         if(item.subject.subjectid==2^item.subject.subjectid==3){
             viewHolder.tvLast.setText("剩余" + item.leavecoursecount + "课时");

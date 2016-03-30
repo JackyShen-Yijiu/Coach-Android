@@ -207,7 +207,9 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
             case AdapterType.TYPE_ADAPTER_ORDER_STUDENT:
                 RowOrderStudent.bindViewHolder(mActivity,holder,position,mList.get(position));
                 break;
-
+            case AdapterType.TYPE_ADAPTER_STUDENT_NEW:
+                RowStudentsNew.bindViewHolder(mActivity,holder,position,mList.get(position));
+                break;
             default:
                 RowNone.bindViewHolder(holder);
                 break;
