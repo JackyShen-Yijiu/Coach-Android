@@ -4,9 +4,11 @@ package com.blackcat.coach.lib;
 import java.util.Locale;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Typeface;
@@ -20,13 +22,16 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.utils.CommonUtil;
 
 
 public class PagerSlidingTab extends HorizontalScrollView {
@@ -35,9 +40,21 @@ public class PagerSlidingTab extends HorizontalScrollView {
 		public int getPageIconResId(int position);
 	}
 
+	/**
+	 *
+	 */
+	public interface IconTextTabProvider{
+		public int getPageIconResId(int position);
+
+		public int getPageIconResDefaultId(int position);
+
+		public String getPageText(int position);
+	}
+
 	// @formatter:off
 	private static final int[] ATTRS = new int[] { android.R.attr.textSize,
-			android.R.attr.textColor };
+			R.color.new_txt_blues ,R.color.new_txt_lights};
+	//文字的 颜色
 	// @formatter:on
 
 	private LinearLayout.LayoutParams defaultTabLayoutParams;
@@ -75,6 +92,8 @@ public class PagerSlidingTab extends HorizontalScrollView {
 
 	private int tabTextSize = 14;
 	private int tabTextColor = 0xFF666666;
+//	private int tabTextColorSeleted =0x627cff;
+
 	private Typeface tabTypeface = null;
 	private int tabTypefaceStyle = Typeface.BOLD;
 
@@ -89,6 +108,9 @@ public class PagerSlidingTab extends HorizontalScrollView {
 		this(context, null);
 	}
 
+	int width = 1028;
+	int itemWidth = 200;
+
 	public PagerSlidingTab(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
@@ -99,10 +121,13 @@ public class PagerSlidingTab extends HorizontalScrollView {
 		setFillViewport(true);
 		setWillNotDraw(false);
 
+		width = CommonUtil.getWindowsWidth((Activity)context);
+		itemWidth = width/5;
+
 		tabsContainer = new LinearLayout(context);
 		tabsContainer.setOrientation(LinearLayout.HORIZONTAL);
 		tabsContainer.setLayoutParams(new LayoutParams(
-				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+				width, LayoutParams.MATCH_PARENT));
 		addView(tabsContainer);
 
 		DisplayMetrics dm = getResources().getDisplayMetrics();
@@ -200,6 +225,7 @@ public class PagerSlidingTab extends HorizontalScrollView {
 		tabsContainer.removeAllViews();
 
 		tabCount = pager.getAdapter().getCount();
+		itemWidth = width/tabCount;
 
 		for (int i = 0; i < tabCount; i++) {
 
@@ -207,7 +233,10 @@ public class PagerSlidingTab extends HorizontalScrollView {
 				addIconTab(i,
 						((IconTabProvider) pager.getAdapter())
 								.getPageIconResId(i));
-			} else {
+			}else if(pager.getAdapter() instanceof  IconTextTabProvider){
+				addIconAndText(i,((IconTextTabProvider) pager.getAdapter()).getPageIconResDefaultId(i),
+						((IconTextTabProvider)pager.getAdapter()).getPageText(i));
+			}else {
 				addTextTab(i, pager.getAdapter().getPageTitle(i).toString());
 			}
 
@@ -246,6 +275,7 @@ public class PagerSlidingTab extends HorizontalScrollView {
 		tab.setText(title);
 		tab.setFocusable(true);
 		tab.setGravity(Gravity.CENTER);
+//		tab.setBackgroundResource(R.mipmap.student_all_on);
 
 //		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 //		params.weight = 1;
@@ -277,6 +307,32 @@ public class PagerSlidingTab extends HorizontalScrollView {
 		});
 
 		tabsContainer.addView(tab);
+
+	}
+
+	private void addIconAndText(final int position,int resId,String title){
+		LinearLayout ll = (LinearLayout) View.inflate(getContext(), R.layout.tab_student_state, null);
+
+		ImageView tab = (ImageView) ll.findViewById(R.id.tab_student_state_img);
+		tab.setImageResource(resId);
+
+		TextView text = (TextView) ll.findViewById(R.id.tab_student_state_txt);
+		text.setText(title);
+
+
+		ll.setFocusable(true);
+
+
+		ViewGroup.LayoutParams p = new ViewGroup.LayoutParams(itemWidth-30, ViewGroup.LayoutParams.WRAP_CONTENT);
+		ll.setLayoutParams(p);
+
+		ll.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				pager.setCurrentItem(position, false);
+			}
+		});
+		tabsContainer.addView(ll);
 
 	}
 
@@ -312,6 +368,33 @@ public class PagerSlidingTab extends HorizontalScrollView {
 						tab.setText(tab.getText().toString()
 								.toUpperCase(locale));
 					}
+				}
+			} else if(v instanceof  LinearLayout){
+
+				TextView tab = (TextView) v.findViewById(R.id.tab_student_state_txt);
+				tab.setTextSize(TypedValue.COMPLEX_UNIT_PX, tabTextSize);
+				tab.setTypeface(tabTypeface, tabTypefaceStyle);
+				tab.setTextColor(i == 0 ? getResources().getColor(
+						R.color.new_txt_blues) : getResources().getColor(
+						R.color.new_txt_lights));
+
+				// setAllCaps() is only available from API 14, so the upper case
+				// is made manually if we are on a
+				// pre-ICS-build
+				if (textAllCaps) {
+					if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+						tab.setAllCaps(true);
+					} else {
+						tab.setText(tab.getText().toString()
+								.toUpperCase(locale));
+					}
+				}
+				//
+				ImageView img = (ImageView) v.findViewById(R.id.tab_student_state_img);
+				if(i==0){//当前 项目
+					img.setImageResource(((IconTextTabProvider)pager.getAdapter()).getPageIconResId(i));
+				}else{
+					img.setImageResource(((IconTextTabProvider)pager.getAdapter()).getPageIconResDefaultId(i));
 				}
 			}
 		}
@@ -471,6 +554,20 @@ public class PagerSlidingTab extends HorizontalScrollView {
 					textView.setTextColor(i == pager.getCurrentItem() ? getResources()
 							.getColor(R.color.slidingtab_indicatorcolor)
 							: tabTextColor);
+				} else if(v instanceof  LinearLayout){
+
+					TextView tv = (TextView) v.findViewById(R.id.tab_student_state_txt);
+					ImageView img = (ImageView) v.findViewById(R.id.tab_student_state_img);
+					tv.setTextColor(i == pager.getCurrentItem() ? getResources().getColor(
+							R.color.new_txt_blues) : getResources().getColor(
+							R.color.new_txt_lights));
+
+//					ImageView img = (ImageView) v.findViewById(R.id.tab_student_state_img);
+					if(i==pager.getCurrentItem()){//当前 项目
+						img.setImageResource(((IconTextTabProvider)pager.getAdapter()).getPageIconResId(i));
+					}else{
+						img.setImageResource(((IconTextTabProvider)pager.getAdapter()).getPageIconResDefaultId(i));
+					}
 				}
 			}
 		}

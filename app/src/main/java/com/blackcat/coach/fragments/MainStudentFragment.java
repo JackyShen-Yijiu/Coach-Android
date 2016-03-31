@@ -3,6 +3,7 @@ package com.blackcat.coach.fragments;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.blackcat.coach.R;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.Subject;
+import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.LogUtil;
 
 import java.util.ArrayList;
@@ -95,16 +97,36 @@ public class MainStudentFragment extends BaseFragment{
 
 
     private void initView(View rootView) {
+        int width = CommonUtil.getWindowsWidth(getActivity());
+        int itemWidth = width/5;
+        RadioGroup.LayoutParams p = new RadioGroup.LayoutParams(itemWidth, RadioGroup.LayoutParams.WRAP_CONTENT);
+        p.setMargins(-2,0,0,0);
+
         rg = (RadioGroup) rootView.findViewById(R.id.fragment_main_student_rg);
         rb1 = (RadioButton) rootView.findViewById(R.id.fragment_main_student_rb1);
         rb2 = (RadioButton) rootView.findViewById(R.id.fragment_main_student_rb2);
         rb3 = (RadioButton) rootView.findViewById(R.id.fragment_main_student_rb3);
         rb4 = (RadioButton) rootView.findViewById(R.id.fragment_main_student_rb4);
+
+        rb1.setLayoutParams(p);
+        rb2.setLayoutParams(p);
+        rb3.setLayoutParams(p);
+        rb4.setLayoutParams(p);
+        rb1.setGravity(Gravity.CENTER);
+        rb2.setGravity(Gravity.CENTER);
+        rb3.setGravity(Gravity.CENTER);
+        rb4.setGravity(Gravity.CENTER);
+
+
+        getActivity().setTitle("学员");
         //动态 改变 科目二 科目三
         switch (Session.getSession().subject.size()){
+
             case 0:
+
             case 1://隐藏 group
                 rg.setVisibility(View.GONE);
+                getActivity().setTitle(Session.getSession().subject.get(0).name);
                 break;
             case 2://隐藏中间两个
                 rb2.setVisibility(View.GONE);

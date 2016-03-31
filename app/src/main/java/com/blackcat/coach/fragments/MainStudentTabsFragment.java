@@ -42,12 +42,16 @@ public class MainStudentTabsFragment extends BaseFragment {
     private ViewPager viewPager;
 
     private String[] titles = new String[] { "全部", "未考", "约考", "补考","通过" };
+    private int[] resdefault = new int[]{R.mipmap.student_all_off,R.mipmap.student_study_off,R.mipmap.student_exam_off,R.mipmap.student_examed_off,R.mipmap.student_pass_off};
+    private int[] res = new int[]{R.mipmap.student_all_on,R.mipmap.student_study_on,R.mipmap.student_exam_on,R.mipmap.student_examed_on,R.mipmap.student_pass_on};
     /**科目1 2  3  4*/
     private int subjectId = 1;
 
 
 
-
+    private Fragment[] frags = {MainStudentItemFragment.newInstance(subjectId,0),MainStudentItemFragment.newInstance(subjectId,2)
+            ,MainStudentItemFragment.newInstance(subjectId,3),MainStudentItemFragment.newInstance(subjectId,4),
+            MainStudentItemFragment.newInstance(subjectId,5)};;
 
     public MainStudentTabsFragment() {
         // Required empty public constructor
@@ -63,9 +67,8 @@ public class MainStudentTabsFragment extends BaseFragment {
      */
     // TODO: Rename and change types and number of parameters
     public static MainStudentTabsFragment newInstance(int subjectId, String param2) {
-        LogUtil.print("student---->item-->tab===newInstance" + subjectId);
+
         MainStudentTabsFragment fragment = new MainStudentTabsFragment();
-//        LogUtil.print("student---->item-->tab--end" + subjectId);
         Bundle args = new Bundle();
         args.putInt(ARG_PARAM1, subjectId);
         args.putString(ARG_PARAM2, param2);
@@ -79,8 +82,8 @@ public class MainStudentTabsFragment extends BaseFragment {
         if (getArguments() != null) {
             subjectId = getArguments().getInt(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            LogUtil.print("student---->item-->tab" + subjectId);
         }
-        LogUtil.print("main-tabs-->subjectId---===newInstance>"+subjectId);
     }
 
     @Override
@@ -99,11 +102,7 @@ public class MainStudentTabsFragment extends BaseFragment {
 //                ,MainStudentItemFragment.newInstance(subjectId,3),MainStudentItemFragment.newInstance(subjectId,4),
 //                MainStudentItemFragment.newInstance(subjectId,5)};
             // 初始化数据
-        LogUtil.print("udent---->item--before-->" + subjectId );
-        Fragment[] frags = {MainStudentItemFragment.newInstance(subjectId,0),MainStudentItemFragment.newInstance(subjectId,2)
-                ,MainStudentItemFragment.newInstance(subjectId,3),MainStudentItemFragment.newInstance(subjectId,4),
-                MainStudentItemFragment.newInstance(subjectId,5)};;
-            final MainStudentPagerAdapter adapter = new MainStudentPagerAdapter(getChildFragmentManager(),titles,frags);
+            final MainStudentPagerAdapter adapter = new MainStudentPagerAdapter(getChildFragmentManager(),titles,resdefault,res,frags);
 
             viewPager.setAdapter(adapter);
             slidingTab.setViewPager(viewPager);
