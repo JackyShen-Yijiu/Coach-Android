@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f7f7f7"
+    android:paddingBottom="12dp">
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line_bg"/>
+    <com.blackcat.coach.widgets.SelectableRoundedImageView
+        android:id="@+id/exam_student_pic_iv"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:scaleType="fitXY"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="16dp"
+        android:layout_below="@+id/line"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/schedule_item_no_student"
+        />
+
+    <TextView
+        android:id="@+id/exam_student_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_middle"
+        android:text="郑容和"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/exam_student_pic_iv"
+        android:textColor="@color/new_txt_blacks"/>
+    <TextView
+        android:id="@+id/exam_student_score_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:textSize="@dimen/text_size_small"
+        android:text="45分"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:textColor="@color/new_txt_lights"/>
+
+</RelativeLayout>

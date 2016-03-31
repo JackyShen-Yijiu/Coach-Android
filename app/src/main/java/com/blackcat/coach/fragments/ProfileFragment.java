@@ -17,6 +17,7 @@ import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.AddStudentsActivity;
 import com.blackcat.coach.activities.ClassesSettingsActivity;
+import com.blackcat.coach.activities.ExamInfoActivity;
 import com.blackcat.coach.activities.MoreActivity;
 import com.blackcat.coach.activities.NewDetailStudentAct;
 import com.blackcat.coach.activities.SettingsActivity;
@@ -207,7 +208,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
                 startActivity(new Intent(getActivity(), StudyConfirmsAct.class));
                 break;
             case R.id.ll_stat://统计
-                startActivity(new Intent(getActivity(), AddStudentsActivity.class));
+                startActivity(new Intent(getActivity(), ExamInfoActivity.class));
                 break;
 
 //            case R.id.rl_tech_subject:

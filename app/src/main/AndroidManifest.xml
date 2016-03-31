@@ -490,6 +490,9 @@
         <activity
             android:name=".activities.StudentAppointmentAct"
             android:label="@string/student_appointment" />
+        <activity
+            android:name=".activities.ExamInfoActivity"
+            android:label="@string/exam_info" />
 
         <activity
             android:name=".activities.MoreActivity"
