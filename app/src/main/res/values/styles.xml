@@ -41,6 +41,14 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    <style name="MyCheck_Box" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@null</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@drawable/selector_studycontent_textcolor</item>
+        <item name="android:background">@drawable/selector_study_content</item>
+
+    </style>
+
     <style name="tab_indicator">
         <item name="android:textSize">10sp</item>
         <item name="android:singleLine">true</item>

@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.IndexActivity;
+import com.blackcat.coach.fragments.MainStudentFragment;
 import com.blackcat.coach.fragments.MessageFragment;
 import com.blackcat.coach.fragments.ProfileFragment;
 import com.blackcat.coach.fragments.ScheduleTabFragment;
@@ -86,7 +87,8 @@ public class MainScreenContainer extends RelativeLayout implements OnClickListen
         mTabs.add(getTabInfo(R.id.tab_schedule,scheduleTabFragment , IndexActivity.TAB_SCHEDULE,
                 R.string.tab_indicator_title_schedule, R.drawable.sl_tab_icon_schedule));
 //        new ReservationFragment()  预约
-        mTabs.add(getTabInfo(R.id.tab_grab_order, new StudentTabFragment(), IndexActivity.TAB_STUDENT,
+//        MainStudentFragment  StudentTabFragment
+        mTabs.add(getTabInfo(R.id.tab_grab_order, new MainStudentFragment(), IndexActivity.TAB_STUDENT,
                 R.string.tab_indicator_title_student, R.drawable.sl_tab_icon_reservation));
         mTabs.add(getTabInfo(R.id.tab_my_orders, new MessageFragment(), IndexActivity.TAB_MESSAGE,
                 R.string.tab_indicator_title_message, R.drawable.sl_tab_icon_message));

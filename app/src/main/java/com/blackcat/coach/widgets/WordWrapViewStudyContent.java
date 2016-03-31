@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 
 import com.blackcat.coach.models.CoachClass;
 import com.blackcat.coach.models.LabelBean;
@@ -73,13 +74,14 @@ public class WordWrapViewStudyContent extends ViewGroup {
         int y = 0;//纵坐标开始
         int rows = 1;
         for(int i=0;i<childCount;i++){
-            View view = getChildAt(i);
+            CheckBox view = (CheckBox) getChildAt(i);
 
-            if(i<list.size() && !list.get(i).is_choose){//没有选中 。。颜色灰色
-                view.setBackgroundColor(Color.WHITE);
-            }else{
-                view.setBackgroundColor(Color.BLUE);
-            }
+//            if(i<list.size() && !list.get(i).is_choose){//没有选中 。。颜色灰色
+//
+//                view.setBackgroundColor(Color.WHITE);
+//            }else{
+//                view.setBackgroundColor(Color.BLUE);
+//            }
 
 
             int width = view.getMeasuredWidth();
@@ -108,7 +110,7 @@ public class WordWrapViewStudyContent extends ViewGroup {
         int childCount = getChildCount();
         for(int index = 0;index<childCount;index++){
             View child = getChildAt(index);
-            child.setPadding(PADDING_HOR, PADDING_VERTICAL, PADDING_HOR, PADDING_VERTICAL);
+//            child.setPadding(PADDING_HOR, PADDING_VERTICAL, PADDING_HOR, PADDING_VERTICAL);
             child.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
             int width = child.getMeasuredWidth();
             int height = child.getMeasuredHeight();

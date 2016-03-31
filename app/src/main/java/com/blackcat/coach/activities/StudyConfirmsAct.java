@@ -1,9 +1,12 @@
 package com.blackcat.coach.activities;
 
 import android.app.*;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
+import android.view.WindowManager;
 import android.widget.ExpandableListView;
 import android.widget.NumberPicker;
 import android.widget.Toast;
@@ -56,6 +59,14 @@ public class StudyConfirmsAct extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            // 透明状态栏
+            getWindow().addFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            // 透明导航栏
+            getWindow().addFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
         setContentView(R.layout.activity_studyconfirms);
         configToolBar(R.mipmap.ic_back);
         initView();
@@ -64,8 +75,17 @@ public class StudyConfirmsAct extends BaseActivity {
 
     private void initView() {
         lv = (ExpandableListView) findViewById(R.id.act_study_confirm_expandableListView);
+//        lv.setDescendantFocusability();
         adapter = new StudyConfirmAdapter(this);
         lv.setAdapter(adapter);
+        lv.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
+
+
+                return false;
+            }
+        });
     }
 
     private Type mTokenType = new TypeToken<Result<List<Reservation>>>() {}.getType();
@@ -89,7 +109,7 @@ public class StudyConfirmsAct extends BaseActivity {
 //            ConfirmParams param = new ConfirmParams();
 //            param.coachid = Session.getSession().coachid;
 
-            Toast.makeText(StudyConfirmsAct.this, "request", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(StudyConfirmsAct.this, "request", Toast.LENGTH_SHORT).show();
             Map map = new HashMap<>();
             map.put("authorization", Session.getToken());
             GsonIgnoreCacheHeadersRequest<Result<List<Reservation>>> request = new GsonIgnoreCacheHeadersRequest<Result<List<Reservation>>>(

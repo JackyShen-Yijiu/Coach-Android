@@ -37,12 +37,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     //    compile files('libs/baidumapapi_base_v3_6_0.jar')
     //    compile files('libs/baidumapapi_map_v3_6_0.jar')
     //    compile files('libs/BaiduLBS_Android.jar')
     //    compile 'com.7heaven.ioswidget:iosswitch:0.5'
-    //    compile files('libs/library_nineoldandroids.jar')
+    //    compile files('libsbrary_nineoldandroids.jar')
     //    compile files('libs/easemobchat_2.2.2.jar')
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.android.support:support-v4:23.0.1'
@@ -55,4 +55,5 @@ dependencies {
     compile project(':mcalendarview')
     compile project(':caldroid')
     compile project(':library')
+    compile project(':SwipeBackLayout')
 }

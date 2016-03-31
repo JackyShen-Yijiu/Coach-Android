@@ -24,8 +24,6 @@ public class ReservationAdapter extends FragmentPagerAdapter {
     }
 
 
-
-
     @Override
     public Fragment getItem(int position) {
         if(fragments[position].isAdded()){

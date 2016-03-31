@@ -3,8 +3,7 @@
     <string name="title_study_confirm">确认完成</string>
 
 
-
-<!-- 1.0 -->
+    <!-- 1.0 -->
     <string name="app_name">极致教练</string>
 
     <string name="hello_world">Hello world!</string>
@@ -338,6 +337,7 @@
 
     <string name="student_appointment">学员预约</string>
     <string name="exam_info">考试信息</string>
+    <string name="add_more">添加更多</string>
     <string name="toady">今天</string>
 
 

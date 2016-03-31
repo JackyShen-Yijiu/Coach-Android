@@ -163,6 +163,37 @@ public class URIUtil {
 		return null;
 	}
 
+	/**
+	 * 获取学员列表
+	 * @param subjectId
+	 * @param state
+	 * @param pageIndex
+	 * @param count
+	 * @return
+	 */
+	public static URI getStudentListNew(int subjectId,int state,int pageIndex,int count){
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		//种类
+		params.add(new BasicNameValuePair("subjectid", String.valueOf(subjectId)));
+		params.add(new BasicNameValuePair("studentstate", String.valueOf(state)));
+
+		params.add(new BasicNameValuePair(NetConstants.KEY_COACHID, Session.getSession().coachid));
+		params.add(new BasicNameValuePair(NetConstants.KEY_COUNT, String.valueOf(count)));
+
+		params.add(new BasicNameValuePair(NetConstants.KEY_INDEX, String.valueOf(pageIndex)));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.GET_STUDNETS_LIST_NEW, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static URI getReservationList(String coachid, int pos) {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 		fillBasicParams(CarCoachApplication.getInstance(), params);
@@ -763,6 +794,22 @@ public class URIUtil {
 			URI uri = URIUtils.createURI(NetConstants.HTTP,
 					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
 					NetConstants.PATH_GET_STUDENTINFO, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public static URI getStudentInfo(String userId) {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_USERID, userId));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_GET_NEW_STUDENTINFO, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
 			logRequestUri(uri);
 			return uri;
 		} catch (Exception e) {
