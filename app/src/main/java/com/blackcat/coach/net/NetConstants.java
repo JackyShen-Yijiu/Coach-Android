@@ -36,8 +36,12 @@ public class NetConstants {
 	public static final String CONFIRM_ORDER_LIST = "api/v2/courseinfo/getuconfirmcourse";
 	//添加学员 列表
 	public static final String PATH_ADD_STUDENT = "api/v2/courseinfo/getureservationuserlist";
-
-
+    //考试信息 列表
+	public static final String PATH_EXAM_INFO = "api/v2/courseinfo/getexamsummaryinfo";
+	//考试学员 列表
+	public static final String PATH_EXAM_STUDENT = "api/v2/courseinfo/getexamstudentlist";
+	//学员详情
+	public static final String PATH_GET_NEW_STUDENTINFO = "api/v2/courseinfo/studentdetialinfo";
 
 	public static final String GET_STUDNETS_LIST_NEW = "api/v2/courseinfo/getmystudentlist";
 
@@ -72,6 +76,8 @@ public class NetConstants {
 	public static final String PATH_GET_SUBJECTS = "api/v1/info/subject";
 	public static final String PATH_GET_COMMENTS = "api/v1/courseinfo/getusercomment/1/";
 	public static final String PATH_GET_STUDENTINFO = "api/v1/userinfo/studentinfo";
+
+
 	public static final String PATH_GET_NEARBYSCHOOL = "api/v1/driveschool/nearbydriveschool";
 	public static final String PATH_GET_SCHOOLBYNAME = "api/v1/getschoolbyname";
 	public static final String PATH_GET_CLASSTYPE = "api/v1/userinfo/getcoachclasstype";
@@ -175,6 +181,8 @@ public class NetConstants {
 	public static final String KEY_PRODUCT_ID = "productid";
 	public static final String KEY_SEARCH_NAME = "searchname";
 	public static final String STUDENT_TYPE = "studenttype";
+	public static final String KEY_EXAMDATE = "examdate";
+	public static final String KEY_EXAMSTATE = "examstate";
 
 
 	public static final String KEY_COACH_ID = "coachid";

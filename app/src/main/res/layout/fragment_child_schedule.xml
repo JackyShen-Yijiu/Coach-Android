@@ -1,72 +1,87 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.blackcat.coach.fragments.ChildScheduleFragment">
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@color/white_absolute"
-        >
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white_absolute"
+            >
 
 
-      <LinearLayout
-          android:id="@+id/schedule_calendar_layout"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:paddingLeft="20dp"
-          android:orientation="horizontal">
-          <LinearLayout
-              android:layout_width="0dp"
-              android:layout_height="wrap_content"
-              android:layout_weight="1"
-              android:orientation="vertical">
-              <!--<com.prolificinteractive.materialcalendarview.MaterialCalendarView-->
-                  <!--android:id="@+id/calendarView"-->
-                  <!--android:layout_width="match_parent"-->
-                  <!--android:layout_height="wrap_content"-->
-                  <!--/>-->
-          <sun.bob.mcalendarview.views.WeekColumnView
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:paddingBottom="6dp"
-              android:paddingTop="10dp" />
+            <LinearLayout
+                android:id="@+id/schedule_calendar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <!--<com.prolificinteractive.materialcalendarview.MaterialCalendarView-->
+                    <!--android:id="@+id/calendarView"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--/>-->
+                    <sun.bob.mcalendarview.views.WeekColumnView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="6dp"
+                        android:paddingTop="10dp" />
 
-          <!--  -->
+                    <!--  -->
 
-          <sun.bob.mcalendarview.views.ExpCalendarView
-              android:id="@+id/calendar_exp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              />
-          </LinearLayout>
-          <ImageView
-              android:id="@+id/schedule_expand_calendar"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="17dp"
-              android:layout_marginRight="10dp"
-              android:src="@mipmap/schedule_fold_down"/>
-      </LinearLayout>
+                    <sun.bob.mcalendarview.views.ExpCalendarView
+                        android:id="@+id/calendar_exp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        />
+                </LinearLayout>
+                <ImageView
+                    android:id="@+id/schedule_expand_calendar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/schedule_fold_down"/>
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="#cccccc" />
+
+        </LinearLayout>
         <View
             android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:background="#cccccc" />
+            android:layout_height="1dp"
+            android:background="#E6E6E6" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/schedule_reservation_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"></android.support.v4.view.ViewPager>
+        <!--<include layout="@layout/layout_pulltorefresh_list" />-->
 
     </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#E6E6E6" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/schedule_reservation_viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"></android.support.v4.view.ViewPager>
-    <!--<include layout="@layout/layout_pulltorefresh_list" />-->
-
-</LinearLayout>
+    
+    <Button
+        android:id="@+id/working_hour_confirm_but"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@mipmap/button_time"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="64dp"
+        android:text="工时\n确认"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

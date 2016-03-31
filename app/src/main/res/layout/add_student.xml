@@ -6,14 +6,17 @@
     tools:context="com.blackcat.coach.fragments.AddStudentsFragment">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
     <LinearLayout
         android:id="@+id/ll_head"
         android:layout_width="match_parent"
         android:orientation="horizontal"
+        android:background="@color/white_pure"
         android:layout_height="84dp">
 
     <RelativeLayout
+        android:id="@+id/time_one_rl"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="match_parent">
@@ -21,7 +24,6 @@
             android:id="@+id/start_time_one"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10:00"
             android:layout_marginTop="12dp"
             android:layout_centerHorizontal="true"
             android:textColor="@color/new_txt_blacks"
@@ -31,7 +33,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/start_time_one"
-            android:text="11:00"
             android:layout_marginTop="2dp"
             android:layout_centerHorizontal="true"
             android:textColor="@color/new_txt_lights"
@@ -45,9 +46,25 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/checkbox_bg"
             android:layout_below="@+id/end_time_one"/>
+        <TextView
+            android:id="@+id/student_fulled_one_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_centerHorizontal="true"
+            android:text="已满"
+            android:textSize="@dimen/text_size_middle"
+            android:textColor="@color/new_txt_lights"
+            android:visibility="gone"
+            android:layout_below="@+id/end_time_one"/>
 
     </RelativeLayout>
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/line_bg"/>
         <RelativeLayout
+            android:id="@+id/time_two_rl"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
@@ -55,7 +72,6 @@
                 android:id="@+id/start_time_two"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10:00"
                 android:layout_marginTop="12dp"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/new_txt_blacks"
@@ -65,7 +81,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/start_time_two"
-                android:text="11:00"
                 android:layout_marginTop="2dp"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/new_txt_lights"
@@ -79,9 +94,25 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/checkbox_bg"
                 android:layout_below="@+id/end_time_two"/>
+            <TextView
+                android:id="@+id/student_fulled_two_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_centerHorizontal="true"
+                android:text="已满"
+                android:textSize="@dimen/text_size_middle"
+                android:textColor="@color/new_txt_lights"
+                android:visibility="gone"
+                android:layout_below="@+id/end_time_two"/>
 
         </RelativeLayout>
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/line_bg"/>
         <RelativeLayout
+            android:id="@+id/time_three_rl"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
@@ -89,7 +120,6 @@
                 android:id="@+id/start_time_three"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10:00"
                 android:layout_marginTop="12dp"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/new_txt_blacks"
@@ -99,7 +129,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/start_time_three"
-                android:text="11:00"
                 android:layout_marginTop="2dp"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/new_txt_lights"
@@ -113,9 +142,25 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/checkbox_bg"
                 android:layout_below="@+id/end_time_three"/>
+            <TextView
+                android:id="@+id/student_fulled_three_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_centerHorizontal="true"
+                android:text="已满"
+                android:textSize="@dimen/text_size_middle"
+                android:textColor="@color/new_txt_lights"
+                android:visibility="gone"
+                android:layout_below="@+id/end_time_three"/>
 
         </RelativeLayout>
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/line_bg"/>
         <RelativeLayout
+            android:id="@+id/time_four_rl"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
@@ -123,7 +168,6 @@
                 android:id="@+id/start_time_four"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10:00"
                 android:layout_marginTop="12dp"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/new_txt_blacks"
@@ -133,7 +177,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/start_time_four"
-                android:text="11:00"
                 android:layout_marginTop="2dp"
                 android:layout_centerHorizontal="true"
                 android:textColor="@color/new_txt_lights"
@@ -147,15 +190,30 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/checkbox_bg"
                 android:layout_below="@+id/end_time_four"/>
-
+            <TextView
+                android:id="@+id/student_fulled_four_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:layout_centerHorizontal="true"
+                android:text="已满"
+                android:textSize="@dimen/text_size_middle"
+                android:textColor="@color/new_txt_lights"
+                android:visibility="gone"
+                android:layout_below="@+id/end_time_four"/>
         </RelativeLayout>
 
     </LinearLayout>
-
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/ll_head"
+        android:background="@color/line_bg"/>
     <include
         layout="@layout/layout_pulltorefresh_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ll_head"/>
+        android:layout_below="@+id/line"/>
 </RelativeLayout>
 </FrameLayout>

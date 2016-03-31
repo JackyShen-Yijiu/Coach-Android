@@ -157,6 +157,42 @@
                 android:layout_height="1px"
                 android:layout_marginLeft="@dimen/padding_left"
                 android:background="@color/split_line_color" />
+            <RelativeLayout
+                android:id="@+id/rl_cache"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/info_item_height"
+                android:background="@drawable/sl_default_background">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/padding_left"
+                    android:text="清除缓存"
+                    android:textColor="@color/profile_text_normal"
+                    android:textSize="@dimen/profile_text_size" />
+                <TextView
+                    android:id="@+id/cache_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text=""
+                    android:drawableRight="@mipmap/ic_right"
+                    android:textColor="@color/new_txt_lights"
+                    android:layout_marginRight="15dp"
+                    android:textSize="12sp" />
+
+                 />
+
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:background="@color/split_line_color" />
 
             <RelativeLayout
                 android:id="@+id/rl_rating"

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.blackcat.coach.fragments.MessegeFragment">
+    tools:context="com.blackcat.coach.fragments.NewDetailStudentFragment">
 
     <include layout="@layout/layout_toolbar" />
 
@@ -13,4 +13,5 @@
         android:layout_height="match_parent">
 
     </FrameLayout>
+
 </LinearLayout>

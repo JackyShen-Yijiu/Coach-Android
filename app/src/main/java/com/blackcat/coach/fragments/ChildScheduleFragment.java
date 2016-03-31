@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -100,14 +101,22 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        EventBus.getDefault().register(this);
+        EventBus.getDefault().register(this);
 
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-//        EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this);
+    }
+
+    public void onEvent(MonthApplyEvent event){
+        LogUtil.print("点击今天");
+//        expCalendarView.setCurrentItem(CellConfig.middlePosition);
+        Calendar calendar = Calendar.getInstance();
+        DateData dateData =  new DateData(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.DAY_OF_MONTH));
+        expCalendarView.travelTo(dateData);
     }
 
 
@@ -187,6 +196,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
 
     private void initView(View rootView) {
 
+        rootView.findViewById(R.id.working_hour_confirm_but).setOnClickListener(this);
         //      Get instance.
         expCalendarView = ((ExpCalendarView) rootView.findViewById(R.id.calendar_exp));
         expandIv = (ImageView) rootView.findViewById(R.id.schedule_expand_calendar);
@@ -204,6 +214,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
             @Override
             public void onPageSelected(int position) {
                 //日历切换
+                LogUtil.print("=======日历切换"+expCalendarView.getCurrentItem());
             }
 
             @Override
@@ -251,7 +262,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
                 if (popWindow != null&&popWindow.isShowing()) {
                     popWindow.dismiss();
                 }
-//                switchPage(date.getDate());
+                switchPage(date.getDate());
 //                String str = formatter.format(date.getDate());
                 LogUtil.print("formatter"+date.getDate().toLocaleString());
 //                if (!mCurrentDate.equals(str)) {
@@ -388,6 +399,9 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
                     popWindow.dismiss();
                 }
                 break;
+            case R.id.working_hour_confirm_but:
+                LogUtil.print("工时确认");
+                break;
             default:
                 break;
         }
@@ -413,7 +427,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
                 if (popWindow != null&&popWindow.isShowing()) {
                     popWindow.dismiss();
                 }
-//               switchPage(date.getDate());
+               switchPage(date.getDate());
             }
         });
         Toolbar toolBar = mContext.getToolBar();

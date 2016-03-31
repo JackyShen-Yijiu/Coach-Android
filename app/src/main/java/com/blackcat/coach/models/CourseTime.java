@@ -1,7 +1,9 @@
 package com.blackcat.coach.models;
 
 
-public class CourseTime {
+import java.io.Serializable;
+
+public class CourseTime implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 

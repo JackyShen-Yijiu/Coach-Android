@@ -490,6 +490,20 @@
         <activity
             android:name=".activities.StudentAppointmentAct"
             android:label="@string/student_appointment" />
+        <activity
+            android:name=".activities.ExamInfoActivity"
+            android:label="@string/exam_info" />
+
+        <activity
+            android:name=".activities.MoreActivity"
+            android:label="@string/add_more" />
+
+        <activity
+            android:name=".activities.NewDetailStudentAct"
+            android:label="@string/title_activity_detail_student"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
              App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
