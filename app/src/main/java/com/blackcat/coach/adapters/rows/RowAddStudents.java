@@ -2,27 +2,20 @@ package com.blackcat.coach.adapters.rows;
 
 import android.app.Activity;
 import android.content.Context;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.BaseViewHolder;
-import com.blackcat.coach.adapters.MessageAdapter;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.AddStudentsVO;
-import com.blackcat.coach.models.User;
 import com.blackcat.coach.utils.BaseUtils;
 import com.blackcat.coach.utils.LogUtil;
-import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.widgets.SelectableRoundedImageView;
 
 /**
@@ -31,7 +24,8 @@ import com.blackcat.coach.widgets.SelectableRoundedImageView;
 public class RowAddStudents {
     /**当前选中的项*/
     public static int index = -1;
-
+    /**当前选中的学员Id*/
+    public static AddStudentsVO selectUser=null;
     private static RadioButton rbLast = null;
 
     public static BaseViewHolder createViewHolder(ViewGroup parent, Context context) {
@@ -54,7 +48,7 @@ public class RowAddStudents {
                                           BaseViewHolder holder, final int position, final T info) {
         LogUtil.print("click--->" + index + "position-->" + position);
         final Holder viewHolder = (Holder) holder;
-        AddStudentsVO item = (AddStudentsVO) info;
+        final AddStudentsVO item = (AddStudentsVO) info;
         viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item,position));
         viewHolder.imgIphone.setOnClickListener(new MyOnClickListener(activity, item, position));
         viewHolder.tvName.setText(item.name);
@@ -70,6 +64,8 @@ public class RowAddStudents {
                    }
                    rbLast = viewHolder.iv_check;
                }
+                selectUser = item;
+                LogUtil.print(item.name+"click--->"+index);
                 LogUtil.print("click--->" + index + "position--00000>" + position);
             }
         });
@@ -127,8 +123,9 @@ public class RowAddStudents {
                     }
                     break;
                 case R.id.iv_check:
-                    index = post;
-                    LogUtil.print("click--->"+index);
+//                    index = post;
+
+
                     break;
                 case R.id.rootView:
                     break;

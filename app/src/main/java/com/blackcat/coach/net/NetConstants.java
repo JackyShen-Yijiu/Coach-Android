@@ -36,6 +36,10 @@ public class NetConstants {
 	public static final String CONFIRM_ORDER_LIST = "api/v2/courseinfo/getuconfirmcourse";
 	//添加学员 列表
 	public static final String PATH_ADD_STUDENT = "api/v2/courseinfo/getureservationuserlist";
+    //考试信息 列表
+	public static final String PATH_EXAM_INFO = "api/v2/courseinfo/getexamsummaryinfo";
+	//考试学员 列表
+	public static final String PATH_EXAM_STUDENT = "api/v2/courseinfo/getexamstudentlist";
 
 
 
@@ -173,6 +177,8 @@ public class NetConstants {
 	public static final String KEY_PRODUCT_ID = "productid";
 	public static final String KEY_SEARCH_NAME = "searchname";
 	public static final String STUDENT_TYPE = "studenttype";
+	public static final String KEY_EXAMDATE = "examdate";
+	public static final String KEY_EXAMSTATE = "examstate";
 
 
 	public static final String KEY_COACH_ID = "coachid";

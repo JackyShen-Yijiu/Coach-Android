@@ -26,7 +26,7 @@ public class DaytimelysReservation implements Serializable{
     public int signinstudentcount;
 
 
-    public class Coursereservationdetial {
+    public class Coursereservationdetial implements Serializable{
 
         public int reservationstate;
         public String reservationcreatetime;

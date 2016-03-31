@@ -6,8 +6,8 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="54dp"
+        android:layout_height="54dp"
         >
         <com.blackcat.coach.widgets.SelectableRoundedImageView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/student_pic_iv"
@@ -15,13 +15,24 @@
             android:layout_height="44dp"
             android:scaleType="fitXY"
             android:src="@mipmap/schedule_item_no_student"
-            android:padding="5dp"
             />
+        <TextView
+            android:id="@+id/student_miss_class_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white_pure"
+            android:textSize="@dimen/text_size_small"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="15dp"
+            android:text="漏课"/>
         <ImageView
+            android:id="@+id/student_study_status_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="10dp"
             android:src="@mipmap/schedule_item_complete"/>
     </RelativeLayout>
 

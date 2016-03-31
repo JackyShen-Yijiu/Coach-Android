@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.activities.AddStudentsActivity;
 import com.blackcat.coach.activities.DetailReservationActivity;
 import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.imgs.UILHelper;
@@ -37,6 +38,7 @@ public class RowSchedule {
 
     private static Context mContext;
 
+    //当前选择项
     public static BaseViewHolder createViewHolder(ViewGroup parent, Context context) {
         mContext = context;
         View view = LayoutInflater.from(context).inflate(R.layout.row_schedule, parent, false);
@@ -55,13 +57,15 @@ public class RowSchedule {
     }
 
     public static <T> void bindViewHolder(final Activity activity,
-                                          BaseViewHolder holder, final int position, final T info) {
+                                          BaseViewHolder holder, final int position, final List<T> info) {
         final Holder viewHolder = (Holder) holder;
-        final DaytimelysReservation item = (DaytimelysReservation) info;
+        final DaytimelysReservation item = (DaytimelysReservation) info.get(position);
+        final int index = position;
         viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item));
         if (item != null) {
-            viewHolder.beginTimeTv.setText(item.coursetime.getBegintime().substring(0,item.coursetime.getBegintime().lastIndexOf(":")));
-            viewHolder.endTimeTv.setText(item.coursetime.getEndtime().substring(0, item.coursetime.getEndtime().lastIndexOf(":")));
+
+            viewHolder.beginTimeTv.setText(UTC2LOC.instance.getDate(item.coursebegintime, "HH:mm"));
+            viewHolder.endTimeTv.setText(UTC2LOC.instance.getDate(item.courseendtime, "HH:mm"));
             Date now = Calendar.getInstance().getTime();
             if (UTC2LOC.instance.getDates(item.coursebegintime, "yyyy-MM-dd HH:mm:ss").after(now)) {
                 //未来的
@@ -111,13 +115,35 @@ public class RowSchedule {
             viewHolder.studentGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                   if(item.coursereservationdetial!=null &&item.coursereservationdetial.size()>position){
-                       //已预约的学员
-                       LogUtil.print("已预约的学员onItemClick");
-                   }else{
-                       //添加学员
-                       LogUtil.print("添加学员onItemClick");
-                   }
+
+                    Date now = Calendar.getInstance().getTime();
+                    //过时的不能点击
+                    if (UTC2LOC.instance.getDates(item.courseendtime, "yyyy-MM-dd HH:mm:ss").before(now)) {
+
+                    } else {
+
+
+                        if (item.coursereservationdetial != null && item.coursereservationdetial.size() > position) {
+                            //已预约的学员
+                            LogUtil.print("已预约的学员onItemClick");
+                        } else {
+                            //添加学员
+                            LogUtil.print("添加学员onItemClick" + info.size() + "---" + index);
+                            Intent intent = new Intent(mContext, AddStudentsActivity.class);
+                            intent.putExtra("student1", item);
+                            if (info.size() > (index + 1)) {
+                                intent.putExtra("student2", (DaytimelysReservation) info.get(index + 1));
+                            }
+                            if (info.size() > (index + 2)) {
+                                intent.putExtra("student3", (DaytimelysReservation) info.get(index + 2));
+                            }
+                            if (info.size() > (index + 3)) {
+                                intent.putExtra("student4", (DaytimelysReservation) info.get(index + 3));
+                            }
+
+                            mContext.startActivity(intent);
+                        }
+                    }
                 }
             });
 
@@ -157,20 +183,49 @@ public class RowSchedule {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.schedule_student_info_item, parent, false);
             SelectableRoundedImageView studentPic = (SelectableRoundedImageView) convertView.findViewById(R.id.student_pic_iv);
             TextView studentNameTv = (TextView) convertView.findViewById(R.id.student_name_tv);
-
+            ImageView studyStatusIv = (ImageView) convertView.findViewById(R.id.student_study_status_iv);
+            TextView missClassTv = (TextView) convertView.findViewById(R.id.student_miss_class_tv);
+            missClassTv.setVisibility(View.INVISIBLE);
+            studyStatusIv.setVisibility(View.INVISIBLE);
             studentPic.setScaleType(ImageView.ScaleType.CENTER_CROP);
             studentPic.setImageResource(R.mipmap.schedule_item_no_student);
             studentPic.setOval(true);
-            if(reservation.coursereservationdetial!=null&&reservation.coursereservationdetial.size()>position){
-                DaytimelysReservation.Coursereservationdetial detail =reservation.coursereservationdetial.get(position);
+            if (reservation.coursereservationdetial != null && reservation.coursereservationdetial.size() > position) {
+                DaytimelysReservation.Coursereservationdetial detail = reservation.coursereservationdetial.get(position);
                 if (detail.userid != null && detail.userid.headportrait != null && !TextUtils.isEmpty(detail.userid.headportrait.originalpic)) {
                     UILHelper.loadImage(studentPic, detail.userid.headportrait.originalpic, false, R.mipmap.schedule_item_no_student);
                 }
                 studentNameTv.setText(detail.userid.name);
-            }else{
-                studentPic.setImageResource(R.mipmap.schedule_item_add_student);
-                studentNameTv.setVisibility(View.GONE);
+                if (detail.reservationstate == 9) {
+                    //已签到
+                    studyStatusIv.setVisibility(View.VISIBLE);
+                    studyStatusIv.setImageResource(R.mipmap.schedule_item_register);
+                } else if (detail.reservationstate == 10) {
+                    //漏课
+                    missClassTv.setVisibility(View.VISIBLE);
+                } else if (detail.reservationstate == 7) {
+                    //评价完成
+                    studyStatusIv.setVisibility(View.VISIBLE);
+                    studyStatusIv.setImageResource(R.mipmap.schedule_item_complete);
+
+                } else {
+                    studyStatusIv.setVisibility(View.INVISIBLE);
+                }
+            } else {
+                Date now = Calendar.getInstance().getTime();
+                //过时
+                if (UTC2LOC.instance.getDates(reservation.courseendtime, "yyyy-MM-dd HH:mm:ss").before(now)) {
+                    //过时的不出现“+”
+                    studentPic.setVisibility(View.INVISIBLE);
+                    studentNameTv.setVisibility(View.GONE);
+                } else {
+
+                    studentPic.setImageResource(R.mipmap.schedule_item_add_student);
+                    studentNameTv.setVisibility(View.GONE);
+                }
             }
+
+
             return convertView;
         }
     }

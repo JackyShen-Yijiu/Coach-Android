@@ -1,13 +1,13 @@
 package com.blackcat.coach.activities;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-
 import com.blackcat.coach.R;
-import com.blackcat.coach.utils.BaseUtils;
+import com.blackcat.coach.fragments.AddStudentsFragment;
+import com.blackcat.coach.utils.LogUtil;
 
 /**
  * Created by aa on 2016/3/29.
@@ -18,7 +18,11 @@ public class AddStudentsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_add);
         configToolBar(R.mipmap.ic_back);
-
+        //
+        AddStudentsFragment fragment = new AddStudentsFragment();
+        FragmentTransaction ft =getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.fragment_add_student,fragment,"addstudent");
+        ft.commit();
     }
 
     @Override
@@ -38,9 +42,17 @@ public class AddStudentsActivity extends BaseActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == ACTION_MENUITEM_ID0) {
+            //替学员预约
+            LogUtil.print("替学员预约");
+            AddStudentsFragment fragment = (AddStudentsFragment) getSupportFragmentManager().findFragmentByTag("addstudent");
+            fragment.commitAppointment();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
+
 }
