@@ -64,4 +64,13 @@
         <attr name="outerStrokeWidth" format="reference|dimension" />
         <attr name="shadowSpace" format="reference|dimension" />
     </declare-styleable>
+
+
+    <declare-styleable name="ExamItemLayout">
+        <attr name="itemSubject" format="string"/>
+        <attr name="itemNumber" format="string"/>
+        <attr name="itemGrade" format="string"/>
+        <attr name="itemPass" format="string"/>
+
+    </declare-styleable>
 </resources>

@@ -2,11 +2,15 @@ package com.blackcat.coach.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.easemob.Constant;
+import com.blackcat.coach.models.User;
 import com.blackcat.coach.utils.BaseUtils;
+import com.blackcat.coach.utils.LogUtil;
 
 public class AboutActivity extends BaseNoFragmentActivity implements View.OnClickListener{
 
@@ -29,6 +33,7 @@ public class AboutActivity extends BaseNoFragmentActivity implements View.OnClic
             case R.id.tv_proto:
                 Intent intent = new Intent(AboutActivity.this, TermsActivity.class);
                 startActivity(intent);
+
                 break;
         }
     }

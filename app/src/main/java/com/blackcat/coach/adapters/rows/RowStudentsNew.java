@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.DetailStudentActivity;
+import com.blackcat.coach.activities.NewDetailStudentAct;
 import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.User;
@@ -101,7 +102,7 @@ public class RowStudentsNew {
         public void onClick(View v) {
             switch(v.getId()){
                 case R.id.rootView:
-                    Intent intent = new Intent(activity, DetailStudentActivity.class);
+                    Intent intent = new Intent(activity, NewDetailStudentAct.class);
                     intent.putExtra(Constants.DATA, user);
                     activity.startActivity(intent);
                     break;

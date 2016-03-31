@@ -92,8 +92,8 @@ public class DetailStudentFragment extends BaseListFragment<Comment> implements 
         mTvPlace = (TextView) mHeaderView.findViewById(R.id.tv_place);
         mIvImage = (ImageView) mHeaderView.findViewById(R.id.iv_image);
 
-        btnBaoKao = (Button) rootView.findViewById(R.id.student_detail_btn);
-        btnBaoKao.setOnClickListener(this);
+//        btnBaoKao = (Button) rootView.findViewById(R.id.student_detail_btn);
+//        btnBaoKao.setOnClickListener(this);
 //        bindStudentInfo();
     }
 
@@ -206,9 +206,9 @@ public class DetailStudentFragment extends BaseListFragment<Comment> implements 
     @Override
     public void onClick(View view) {
         switch(view.getId()){
-            case R.id.student_detail_btn:
-                BaoKao(mUser._id);
-                break;
+//            case R.id.student_detail_btn:
+//                BaoKao(mUser._id);
+//                break;
         }
     }
 

@@ -44,6 +44,7 @@ import com.blackcat.coach.easemob.utils.CommonUtils;
 import com.blackcat.coach.events.NewMessageReceiveEvent;
 
 import com.blackcat.coach.models.Session;
+import com.blackcat.coach.utils.LogUtil;
 import com.easemob.EMEventListener;
 import com.easemob.EMNotifierEvent;
 import com.easemob.chat.EMChatManager;
@@ -135,10 +136,19 @@ public class ChatActivity extends BaseActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        LogUtil.print("ssssssssssssss");
         configToolBar(R.mipmap.ic_back);
         activityInstance = this;
         initView();
         setUpView();
+        LogUtil.print("sssssss从vcdvsssssss");
+    }
+
+    @Override
+    protected void onStart() {
+        LogUtil.print("onStartsssssss11111");
+        super.onStart();
+        LogUtil.print("onStartsssssss");
     }
 
     private void initView() {
@@ -365,6 +375,7 @@ public class ChatActivity extends BaseActivity implements
             }
         }
     }
+
 
     private void getLocalFile() {
         Intent intent;
@@ -717,6 +728,7 @@ public class ChatActivity extends BaseActivity implements
 
     @Override
     protected  void onResume() {
+        LogUtil.print("sssssssonRes3333ume");
         super.onResume();
         BlackCatHXSDKHelper sdkHelper = (BlackCatHXSDKHelper)BlackCatHXSDKHelper.getInstance();
         sdkHelper.pushActivity(this);
@@ -726,6 +738,7 @@ public class ChatActivity extends BaseActivity implements
                         EMNotifierEvent.Event.EventOfflineMessage,
                         EMNotifierEvent.Event.EventDeliveryAck,
                         EMNotifierEvent.Event.EventReadAck});
+        LogUtil.print("sssssssonResume");
     }
 
     @Override

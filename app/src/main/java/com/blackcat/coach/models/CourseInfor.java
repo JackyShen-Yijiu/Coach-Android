@@ -1,11 +1,12 @@
 package com.blackcat.coach.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 /** 学员 学习状态
  * Created by zou on 15/10/17.
  */
-public class CourseInfor {
+public class CourseInfor implements Serializable{
     public int totalcourse;
     public int buycoursecount;
     public int reservation;

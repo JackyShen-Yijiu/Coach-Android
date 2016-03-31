@@ -3,7 +3,9 @@ package com.blackcat.coach.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -11,6 +13,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
+import com.blackcat.coach.cache.DataCleanManager;
 import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
 import com.blackcat.coach.events.LogoutEvent;
 import com.blackcat.coach.models.CoachInfo;
@@ -48,6 +51,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
     private int settingAppointment, settingClassNotice, settingNewNotice;
 
     private Type mTokenType;
+    private TextView cache_number;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -170,6 +174,8 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         findViewById(R.id.rl_about).setOnClickListener(this);
         findViewById(R.id.rl_rating).setOnClickListener(this);
         findViewById(R.id.rl_feedback).setOnClickListener(this);
+        cache_number=(TextView) findViewById(R.id.cache_number);
+        findViewById(R.id.rl_cache).setOnClickListener(this);
         mLogoutView = findViewById(R.id.ll_logout);
         mLogoutView.setOnClickListener(this);
 
@@ -208,6 +214,12 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
         if (Session.isUserInfoEmpty()) {
             mLogoutView.setVisibility(View.INVISIBLE);
         }
+        try {
+            cache_number.setText(DataCleanManager.getTotalCacheSize(SettingsActivity.this));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     @Override
@@ -240,6 +252,22 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
             case R.id.sv_new_notice://新消息通知
                 break;
             case R.id.sv_class_notice://开课提醒
+                break;
+            case R.id.rl_cache://清除缓存
+                try {
+                    //查看缓存的大小
+                    Log.e("YQY", DataCleanManager.getTotalCacheSize(SettingsActivity.this));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                DataCleanManager.clearAllCache(SettingsActivity.this);
+                try {
+                    //清除后的操作
+                    Log.e("YQY", DataCleanManager.getTotalCacheSize(SettingsActivity.this));
+                    cache_number.setText(DataCleanManager.getTotalCacheSize(SettingsActivity.this));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
         }
     }

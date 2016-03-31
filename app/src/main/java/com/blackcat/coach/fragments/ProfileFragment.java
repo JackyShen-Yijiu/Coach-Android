@@ -11,10 +11,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.AddStudentsActivity;
 import com.blackcat.coach.activities.ClassesSettingsActivity;
+import com.blackcat.coach.activities.MoreActivity;
+import com.blackcat.coach.activities.NewDetailStudentAct;
 import com.blackcat.coach.activities.SettingsActivity;
 import com.blackcat.coach.activities.StudyConfirmsAct;
 
@@ -188,7 +192,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
                 startActivity(new Intent(mActivity, SystemMsgActivity.class));
                 break;
             case R.id.ll_score://学员列表
-                startActivity(new Intent(mActivity, StudentsActivity1.class));//
+                startActivity(new Intent(mActivity, MoreActivity.class));//
                 break;
             case R.id.ll_setting:
                 startActivity(new Intent(mActivity, SettingsActivity.class));

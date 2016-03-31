@@ -37,23 +37,23 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     //    compile files('libs/baidumapapi_base_v3_6_0.jar')
     //    compile files('libs/baidumapapi_map_v3_6_0.jar')
     //    compile files('libs/BaiduLBS_Android.jar')
     //    compile 'com.7heaven.ioswidget:iosswitch:0.5'
-    //    compile files('libs/library_nineoldandroids.jar')
+    //    compile files('libsbrary_nineoldandroids.jar')
     //    compile files('libs/easemobchat_2.2.2.jar')
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:support-v4:23.0.1'
     //    compile 'com.android.support:design:23.0.1'
     //    compile files('libs/Parse-1.9.4.jar')
     //    compile files('libs/bolts-android-1.2.0.jar')
+    compile 'com.zhy:percent-support-extends:1.0.1'
     //    compile 'com.google.android.gms:play-services-appindexing:8.1.0'
     //支持 布局 图片 按照比例显示
     compile project(':mcalendarview')
     compile project(':caldroid')
     compile project(':library')
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.android.support:support-v4:23.2.1'
-    compile 'com.zhy:percent-support-extends:1.0.1'
-    compile 'com.android.support:recyclerview-v7:23.2.1'
+    compile project(':SwipeBackLayout')
 }
