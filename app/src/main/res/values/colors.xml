@@ -8,7 +8,7 @@
 
     <color name="new_reds">#e62e48</color>
 
-    <color name="new_txt_blues">#627cff</color>
+    <color name="new_txt_blues">#5b8efb</color>
 
     <color name="new_txt_light_blues">#88627cff</color>
 
@@ -17,7 +17,7 @@
 
     <color name="new_txt_blacks">#6e6e6e</color>
 
-    <color name="new_bg_gray">#e8e8e8</color>
+    <color name="new_bg_gray">#e8e8ed</color>
 
 
     <!-- 版本分割线 =================================-->

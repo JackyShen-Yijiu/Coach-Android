@@ -49,9 +49,9 @@ public class MainStudentTabsFragment extends BaseFragment {
 
 
 
-    private Fragment[] frags = {MainStudentItemFragment.newInstance(subjectId,0),MainStudentItemFragment.newInstance(subjectId,2)
-            ,MainStudentItemFragment.newInstance(subjectId,3),MainStudentItemFragment.newInstance(subjectId,4),
-            MainStudentItemFragment.newInstance(subjectId,5)};;
+//    private Fragment[] frags = {MainStudentItemFragment.newInstance(subjectId,0),MainStudentItemFragment.newInstance(subjectId,2)
+//            ,MainStudentItemFragment.newInstance(subjectId,3),MainStudentItemFragment.newInstance(subjectId,4),
+//            MainStudentItemFragment.newInstance(subjectId,5)};;
 
     public MainStudentTabsFragment() {
         // Required empty public constructor
@@ -98,9 +98,9 @@ public class MainStudentTabsFragment extends BaseFragment {
 
     private void initData() {
 
-//            frags = {MainStudentItemFragment.newInstance(subjectId,0),MainStudentItemFragment.newInstance(subjectId,2)
-//                ,MainStudentItemFragment.newInstance(subjectId,3),MainStudentItemFragment.newInstance(subjectId,4),
-//                MainStudentItemFragment.newInstance(subjectId,5)};
+            Fragment[] frags = {MainStudentItemFragment.newInstance(subjectId,0),MainStudentItemFragment.newInstance(subjectId,2)
+                ,MainStudentItemFragment.newInstance(subjectId,3),MainStudentItemFragment.newInstance(subjectId,4),
+                MainStudentItemFragment.newInstance(subjectId,5)};;
             // 初始化数据
             final MainStudentPagerAdapter adapter = new MainStudentPagerAdapter(getChildFragmentManager(),titles,resdefault,res,frags);
 
@@ -153,16 +153,16 @@ public class MainStudentTabsFragment extends BaseFragment {
         }
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+//    @Override
+//    public void onAttach(Context context) {
+//        super.onAttach(context);
 //        if (context instanceof OnFragmentInteractionListener) {
 //            mListener = (OnFragmentInteractionListener) context;
 //        } else {
 //            throw new RuntimeException(context.toString()
 //                    + " must implement OnFragmentInteractionListener");
 //        }
-    }
+//    }
 
     @Override
     public void onDetach() {

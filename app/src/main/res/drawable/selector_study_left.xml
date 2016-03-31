@@ -12,8 +12,8 @@
             <corners
                 android:topRightRadius="0dp"
                 android:bottomRightRadius="0dp"
-                android:topLeftRadius="10dp"
-                android:bottomLeftRadius="10dp"
+                android:topLeftRadius="4dp"
+                android:bottomLeftRadius="4dp"
                  />
             <stroke
                 android:color="@color/new_main_colors"
@@ -34,8 +34,8 @@
             <corners
                 android:topRightRadius="0dp"
                 android:bottomRightRadius="0dp"
-                android:topLeftRadius="10dp"
-                android:bottomLeftRadius="10dp"/>
+                android:topLeftRadius="4dp"
+                android:bottomLeftRadius="4dp"/>
             <stroke
                 android:color="@color/new_main_colors"
                 android:width="1dp"
@@ -56,8 +56,8 @@
             <corners
                 android:topRightRadius="0dp"
                 android:bottomRightRadius="0dp"
-                android:topLeftRadius="10dp"
-                android:bottomLeftRadius="10dp" />
+                android:topLeftRadius="4dp"
+                android:bottomLeftRadius="4dp" />
             <stroke
                 android:color="@color/new_main_colors"
                 android:width="1dp"
