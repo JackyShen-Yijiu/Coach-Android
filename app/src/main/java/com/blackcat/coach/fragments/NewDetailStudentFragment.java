@@ -154,7 +154,7 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
     private void bindStudentInfo() {
         Resources res = getResources();
 
-        mTvContent.setText(getCurrentSubject(mUser.subject).progress);
+
 
         if (mUser.carmodel!=null && mUser.carmodel.name!= null) {
             mTvCarModel.setText(mUser.carmodel.name);
@@ -172,11 +172,15 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
         } else {
         }
         //课时
+        if (getCurrentSubject(mUser.subject)!=null ){
+            mTvContent.setText(getCurrentSubject(mUser.subject).progress);
 
-        mTvguiding.setText("规定："+getCurrentSubject(mUser.subject).officialfinishhours+"课时");
-        mTvwancheng.setText("完成："+getCurrentSubject(mUser.subject).finishcourse+"课时");
-        mTvgoumai.setText("购买："+getCurrentSubject(mUser.subject).officialhours+"课时");
-        mTvyixue.setText("已学："+getCurrentSubject(mUser.subject).totalcourse+"课时");
+            mTvguiding.setText("规定："+getCurrentSubject(mUser.subject).officialfinishhours+"课时");
+            mTvwancheng.setText("完成："+getCurrentSubject(mUser.subject).finishcourse+"课时");
+            mTvgoumai.setText("购买："+getCurrentSubject(mUser.subject).officialhours+"课时");
+            mTvyixue.setText("已学："+getCurrentSubject(mUser.subject).totalcourse+"课时");
+        }
+
 
         //进度图片
         if (mUser.subject.subjectid==1){
