@@ -3,9 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@mipmap/building_pic_1080"
     tools:context="com.blackcat.coach.fragments.NewDetailStudentFragment">
 
     <include layout="@layout/layout_toolbar" />
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/building_pic_1080"/>
+</LinearLayout>
 </LinearLayout>
