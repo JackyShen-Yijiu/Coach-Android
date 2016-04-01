@@ -11,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="10dp"
         android:background="@color/white_grey"/>
-    <ImageView
+    <com.blackcat.coach.widgets.SelectableRoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:sriv_border_color="#00000000"
+        app:sriv_border_width="1dip"
         android:id="@+id/iv_avatar"
         android:layout_width="60dp"
         android:layout_height="60dp"
@@ -51,16 +54,7 @@
             android:text=""
             android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/item_student_phone"
-            android:paddingLeft="10dp"
-            android:paddingRight="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/ic_phone"
-            />
+
         <TextView
 
             android:layout_width="wrap_content"
@@ -97,7 +91,7 @@
                 android:textColor="@color/text_999"
                 android:singleLine="true"
                 android:layout_alignParentLeft="true"
-                android:layout_toLeftOf="@+id/tv_missing"
+                android:text="last-------->"
                 android:textSize="14sp" />
 
 
@@ -106,12 +100,39 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/text_999"
-                android:layout_alignParentRight="true"
+                android:text="missing--"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/tv_last"
                 android:contentDescription="剩余课程数量"
+                android:layout_marginRight="16dp"
                 android:textSize="14sp"
                 />
         </RelativeLayout>
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/item_student_msg"
+        android:paddingLeft="10dp"
+        android:paddingRight="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:layout_toLeftOf="@+id/item_student_phone"
+        android:src="@mipmap/chat"
+        />
+
+    <ImageView
+        android:id="@+id/item_student_phone"
+        android:paddingLeft="8dp"
+        android:paddingRight="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="16dp"
+        android:src="@mipmap/phone"
+        />
 
 </RelativeLayout>

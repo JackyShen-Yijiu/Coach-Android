@@ -121,7 +121,7 @@ public abstract class BaseListFragment<T> extends BaseFragment
         }
     }
 
-    protected void onFeedsResponse(Result<List<T>> response, int refreshType) {
+    public void onFeedsResponse(Result<List<T>> response, int refreshType) {
         mPullToRefreshView.completeRefresh();
         if (Constants.DEBUG) {
             VolleyLog.v("Response:%n %s", response);

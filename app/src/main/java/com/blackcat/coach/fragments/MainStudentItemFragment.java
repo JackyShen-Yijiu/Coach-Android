@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.VolleyError;
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.CommonAdapter;
 
@@ -39,6 +40,7 @@ public class MainStudentItemFragment extends BaseListFragment {
     //0 全部学员 1在学学员 2未考学员 3约考学员 4补考学员 5通过学员
     private int state = 0;
     private OnListFragmentInteractionListener mListener;
+
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
