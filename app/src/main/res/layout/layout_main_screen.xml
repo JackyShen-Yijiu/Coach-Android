@@ -7,12 +7,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottom_line"
-         />
-
+        />
+    <!--@dimen/actionBarSize-->
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/actionBarSize"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
         android:background="@android:color/transparent"
         android:minHeight="@dimen/actionBarSize">
 

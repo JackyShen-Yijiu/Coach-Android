@@ -744,6 +744,8 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
     @Override
     public void onTabSelected(int index, boolean reClicked) {
+        int toolBarHeight = (int)CommonUtil.getDimen(this,R.dimen.toolbar_height);
+        LogUtil.print("----------9999"+toolBarHeight);
         mToolBarLeftTitle.setVisibility(View.GONE);
         switch (index) {
             case TAB_STUDENT:
@@ -751,7 +753,8 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_reservation);
                 showHideQianDao(true, ReservationFragment.currentPage, 0);
-                mMainContainer.stttop(120);
+
+                mMainContainer.stttop(toolBarHeight);
                 break;
             case TAB_SCHEDULE:
 //                setRightTitleWithoutImg(CommonUtil.getString(mContext, R.string.student_appointment));
@@ -760,14 +763,14 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 mRadioGroupReservation.setVisibility(View.VISIBLE);
                 mToolBarTitle.setText(R.string.title_schedule);
                 showHideQianDao(true, ReservationFragment.currentPage, 0);
-                mMainContainer.stttop(120);
+                mMainContainer.stttop(toolBarHeight);
                 break;
             case TAB_MESSAGE:
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_message);
                 showHideQianDao(false,-1,2);
-                mMainContainer.stttop(120);
+                mMainContainer.stttop(toolBarHeight);
 //			mMenuItemRight.setVisible(false);
                 break;
             case TAB_PROFILE:

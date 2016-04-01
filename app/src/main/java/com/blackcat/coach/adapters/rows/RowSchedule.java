@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.AddStudentsActivity;
 import com.blackcat.coach.activities.DetailReservationActivity;
+import com.blackcat.coach.activities.NewDetailStudentAct;
 import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.DaytimelysReservation;
@@ -100,8 +101,8 @@ public class RowSchedule {
                 viewHolder.lineIv.setBackgroundColor(mContext.getResources().getColor(R.color.new_txt_blues));
                 viewHolder.orderedStudentTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_blues));
                 viewHolder.remainStudnetTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_blues));
-                viewHolder.beginTimeTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_blacks));
-                viewHolder.endTimeTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_lights));
+                viewHolder.beginTimeTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_blues));
+                viewHolder.endTimeTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_light_blues));
                 viewHolder.orderedStudentTv.setText("已约" + item.selectedstudentcount + "人");
                 viewHolder.remainStudnetTv.setText("剩余名额" + (item.coursestudentcount - item.selectedstudentcount) + "人");
                 viewHolder.rootView.setBackgroundColor(mContext.getResources().getColor(R.color.white_pure));
@@ -126,6 +127,10 @@ public class RowSchedule {
                         if (item.coursereservationdetial != null && item.coursereservationdetial.size() > position) {
                             //已预约的学员
                             LogUtil.print("已预约的学员onItemClick");
+                            Intent intent = new Intent(mContext, NewDetailStudentAct.class);
+                            intent.putExtra(Constants.DATA,item.coursereservationdetial.get(position).userid);
+                            mContext.startActivity(intent);
+
                         } else {
                             //添加学员
                             LogUtil.print("添加学员onItemClick" + info.size() + "---" + index);

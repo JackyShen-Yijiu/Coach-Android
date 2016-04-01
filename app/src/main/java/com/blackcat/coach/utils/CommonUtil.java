@@ -11,6 +11,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.util.DisplayMetrics;
 
+import com.blackcat.coach.R;
+
 public class CommonUtil {
 
 	/** 获取屏幕的宽度 */
@@ -48,6 +50,13 @@ public class CommonUtil {
 	 */
 	public static String getString(Context context, int stringId) {
 		return context.getResources().getString(stringId);
+	}
+
+	/**
+	 * 获取dimen
+	 */
+	public static float getDimen(Context context, int dimen) {
+		return context.getResources().getDimension(dimen);
 	}
 
 	/**
