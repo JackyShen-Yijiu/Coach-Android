@@ -2,7 +2,10 @@
 package com.blackcat.coach.adapters;
 
 import android.app.Activity;
+import android.provider.MediaStore;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
 
 import com.blackcat.coach.adapters.rows.RowAddStudents;
 import com.blackcat.coach.adapters.rows.RowComment;
@@ -22,6 +25,7 @@ import com.blackcat.coach.adapters.rows.RowStudentSms;
 import com.blackcat.coach.adapters.rows.RowStudentsNew;
 import com.blackcat.coach.adapters.rows.RowSystemMsg;
 import com.blackcat.coach.adapters.rows.RowWallet;
+import com.blackcat.coach.models.AddStudentsVO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -265,6 +269,10 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
 //                break;
 //        }
         return 0;
+    }
+
+    public void select(AddStudentsVO user,int pos,RadioButton box){
+        RowAddStudents.select(user,pos,box);
     }
 
     @Override

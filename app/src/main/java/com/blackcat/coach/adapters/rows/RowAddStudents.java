@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -14,6 +15,7 @@ import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.AddStudentsVO;
+import com.blackcat.coach.models.User;
 import com.blackcat.coach.utils.BaseUtils;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.widgets.SelectableRoundedImageView;
@@ -49,7 +51,7 @@ public class RowAddStudents {
         LogUtil.print("click--->" + index + "position-->" + position);
         final Holder viewHolder = (Holder) holder;
         final AddStudentsVO item = (AddStudentsVO) info;
-        viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item,position));
+        viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item, position));
         viewHolder.imgIphone.setOnClickListener(new MyOnClickListener(activity, item, position));
         viewHolder.tvName.setText(item.name);
         //viewHolder.tvProgress.setText(item.subjectprocess);
@@ -87,6 +89,23 @@ public class RowAddStudents {
 
 
 
+    }
+
+    /**
+     * 选中某一项
+     * @param user
+     * @param pos
+     * @param box
+     */
+    public static void select(AddStudentsVO user,int pos,RadioButton box){
+        if(index != pos){
+            index = pos;
+            if(rbLast!=null){//上一次选中了，设置为不选中状态
+                rbLast.setChecked(false);
+            }
+            rbLast = box;
+        }
+        selectUser = user;
     }
 
     static class Holder extends BaseViewHolder {

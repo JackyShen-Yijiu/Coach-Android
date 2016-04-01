@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -52,6 +53,12 @@ import java.util.Map;
  * Created by aa on 2016/3/29.
  */
 public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> implements CompoundButton.OnCheckedChangeListener {
+
+    /**当前选中的项*/
+    public static int index = -1;
+    public static AddStudentsVO selectUser=null;
+    private static RadioButton rbLast = null;
+
     private int type = 0;
     private CheckBox checkBoxOne, checkBoxTwo, checkBoxThree, checkBoxFour;
     private TextView fulledTvOne, fulledTvTwo, fulledTvThree, fulledTvFour;
@@ -97,8 +104,11 @@ public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> impleme
         mListView.setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 LogUtil.print("mListView--------------");
+                RadioButton rb =(RadioButton) view.findViewById(R.id.iv_check);
+                mAdapter.select(mAdapter.getItem((int)l),(int)l,rb);
+
             }
         });
         return rootView;

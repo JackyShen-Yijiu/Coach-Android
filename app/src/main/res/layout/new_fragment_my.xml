@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/my_fragment_bg">
+        android:background="@mipmap/mine_background">
 
         <ImageView
             android:layout_width="match_parent"
@@ -165,7 +165,7 @@
             android:layout_height="match_parent"
             android:background="@color/line_bg"/>
         <LinearLayout
-            android:id="@+id/ll_wallet"
+            android:id="@+id/ll_stat"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -174,14 +174,14 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/wallet"/>
+                android:background="@mipmap/test"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textSize="12sp"
                 android:textColor="@color/new_txt_blacks"
-                android:text="钱包"/>
+                android:text="考试信息"/>
 
         </LinearLayout>
 
@@ -245,32 +245,6 @@
         android:background="@color/white"
         android:orientation="horizontal"
         android:layout_height="88dp">
-
-        <LinearLayout
-            android:id="@+id/ll_stat"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/stat"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="12sp"
-                android:textColor="@color/new_txt_blacks"
-                android:text="统计"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/line_bg"/>
         <LinearLayout
             android:id="@+id/ll_score"
             android:layout_width="0dp"
@@ -281,14 +255,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/score"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="12sp"
-                android:textColor="@color/new_txt_blacks"
-                android:text="学员评价"/>
+                android:background="@mipmap/add_tool"/>
+            />
 
         </LinearLayout>
 
@@ -297,16 +265,29 @@
             android:layout_height="match_parent"
             android:background="@color/line_bg"/>
         <LinearLayout
-            android:id="@+id/ll_add"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:background="@color/new_bg_gray"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+      />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/line_bg"/>
+
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:gravity="center"
+            android:background="@color/new_bg_gray"
             android:orientation="vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@mipmap/add_tool"/>
+
 
         </LinearLayout>
 

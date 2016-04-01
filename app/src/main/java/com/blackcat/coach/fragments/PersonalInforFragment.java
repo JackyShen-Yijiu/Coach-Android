@@ -49,6 +49,7 @@ import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.params.UpdateCoachParams;
 import com.blackcat.coach.qiniu.PhotoUtil;
 import com.blackcat.coach.qiniu.QiniuUploadManager;
+import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.widgets.SelectableRoundedImageView;
@@ -399,8 +400,8 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
         alertDialog.show();
         WindowManager.LayoutParams params =
                 alertDialog.getWindow().getAttributes();
-        params.width = 800;
-        params.height = 800;
+        params.width = (int)(CommonUtil.getWindowsWidth(getActivity())*0.75);
+        params.height = params.width;
         alertDialog.getWindow().setAttributes(params);
 
         NumberPicker np1=(NumberPicker)sudokulistView.findViewById(R.id.np1);

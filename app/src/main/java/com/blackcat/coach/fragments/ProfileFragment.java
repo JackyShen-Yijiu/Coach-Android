@@ -82,13 +82,13 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 //        profileHeader.setOnClickListener(this);
         LinearLayout vacation = (LinearLayout) rootView.findViewById(R.id.ll_vacation);
         vacation.setOnClickListener(this);
-        LinearLayout wallet = (LinearLayout) rootView.findViewById(R.id.ll_wallet);
-        wallet.setOnClickListener(this);
+//        LinearLayout wallet = (LinearLayout) rootView.findViewById(R.id.ll_wallet);
+//        wallet.setOnClickListener(this);
         LinearLayout informations= (LinearLayout) rootView.findViewById(R.id.ll_informations);
         informations.setOnClickListener(this);
         LinearLayout setting = (LinearLayout) rootView.findViewById(R.id.ll_setting);
         setting.setOnClickListener(this);
-        rootView.findViewById(R.id.ll_add).setOnClickListener(this);
+//        rootView.findViewById(R.id.ll_add).setOnClickListener(this);
 
         LinearLayout score = (LinearLayout) rootView.findViewById(R.id.ll_score);
         score.setOnClickListener(this);
@@ -120,14 +120,14 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         if(CLASS_SETTING)
             mClass.setText("已设置");
         else
-            mClass.setText("");
+            mClass.setText("未设置");
 
         if(Session.getSession().workweek.length>0){//工作时间
-
+        LogUtil.print("asdasdasdasd"+Session.getSession().workweek.length);
             mWorkTime.setText(getWorkTime(Session.getSession().workweek,Session.getSession().worktimespace.begintimeint,
                     Session.getSession().worktimespace.endtimeint));
         }else{
-            mWorkTime.setText("");
+            mWorkTime.setText("未设置");
         }
 
     }
@@ -198,15 +198,15 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
             case R.id.ll_setting:
                 startActivity(new Intent(mActivity, SettingsActivity.class));
                 break;
-            case R.id.ll_wallet:
-                startActivity(new Intent(mActivity, WalletActivity.class));
-                break;
+//            case R.id.ll_wallet:
+//                startActivity(new Intent(mActivity, WalletActivity.class));
+//                break;
             case R.id.rl_time:
                 startActivity(new Intent(mActivity, WorkTimeActivity.class));
                 break;
-            case R.id.ll_add://添加
-                startActivity(new Intent(getActivity(), StudyConfirmsAct.class));
-                break;
+//            case R.id.ll_add://添加
+//                startActivity(new Intent(getActivity(), StudyConfirmsAct.class));
+//                break;
             case R.id.ll_stat://统计
                 startActivity(new Intent(getActivity(), ExamInfoActivity.class));
                 break;

@@ -2,17 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootView"
     android:layout_width="match_parent"
-android:background="@color/white_pure"
+    android:background="@color/white_pure"
     android:layout_height="80dp">
 
 
     <RadioButton
         android:id="@+id/iv_check"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_marginLeft="16dp"
-        android:padding="12dp"
         android:button="@drawable/checkbox_bg"
         android:clickable="false"
         />
@@ -23,8 +22,8 @@ android:background="@color/white_pure"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/iv_check"
         android:layout_marginTop="16dp"
+        android:layout_marginLeft="55dp"
         app:sriv_border_color="#00000000"
         app:sriv_border_width="1dip"
         android:scaleType="fitXY"
@@ -54,9 +53,11 @@ android:background="@color/white_pure"
         android:id="@+id/item_student_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:padding="15dp"
         android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/iv_check"
         android:layout_centerVertical="true"
-        android:layout_marginRight="40dp"
+        android:layout_marginRight="30dp"
         android:src="@mipmap/new_phone"/>
 
 </RelativeLayout>
