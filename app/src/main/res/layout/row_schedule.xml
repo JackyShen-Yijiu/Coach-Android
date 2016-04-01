@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layout_alignBottom="@+id/line_ll"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="16dp"
         android:gravity="center_horizontal">
 
         <ImageView
@@ -64,7 +64,7 @@
         android:id="@+id/line_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="35dp"
+        android:layout_marginLeft="28dp"
         android:layout_marginTop="23dp"
         android:layout_toRightOf="@+id/line_rl"
         android:orientation="vertical">
@@ -78,7 +78,6 @@
                 android:id="@+id/schedule_ordered_student_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="已约2人"
                 android:textColor="@color/new_txt_blues"
                 android:textSize="14sp" />
 
@@ -87,7 +86,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:text="剩余名额3人"
                 android:textColor="@color/new_txt_blues"
                 android:textSize="14sp" />
         </LinearLayout>
