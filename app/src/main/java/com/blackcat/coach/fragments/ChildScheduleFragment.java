@@ -1,5 +1,6 @@
 package com.blackcat.coach.fragments;
 
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -21,6 +22,7 @@ import com.android.volley.VolleyError;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.IndexActivity;
+import com.blackcat.coach.activities.StudyConfirmsAct;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.adapters.ScheduleReservationAdapter;
 import com.blackcat.coach.caldroid.CaldroidFragment;
@@ -400,6 +402,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
                 }
                 break;
             case R.id.working_hour_confirm_but:
+                startActivity(new Intent(getActivity(), StudyConfirmsAct.class));
                 LogUtil.print("工时确认");
                 break;
             default:

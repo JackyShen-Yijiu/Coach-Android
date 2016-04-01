@@ -119,7 +119,7 @@ public class StudyConfirmsAct extends BaseActivity {
                         @Override
                         public void onResponse(Result response) {
                             if (response != null && response.type == Result.RESULT_OK) {
-                                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
+//                                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
 
                                 list = (List<Reservation>) response.data;
                                 adapter.setData(list);
