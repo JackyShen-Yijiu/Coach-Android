@@ -3,7 +3,7 @@
 <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/text1"
     android:layout_width="match_parent"
-    android:layout_height="38dp"
+    android:layout_height="44dp"
     android:checkMark="@drawable/checkbox_bg"
     android:gravity="center_vertical"
     android:paddingLeft="@dimen/padding_left"

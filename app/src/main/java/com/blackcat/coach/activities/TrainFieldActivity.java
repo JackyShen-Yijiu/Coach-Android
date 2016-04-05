@@ -31,7 +31,6 @@ import java.util.List;
 public class TrainFieldActivity extends BaseActivity {
 
     private ListView mFieldListView;
-    private TextView mTvDrivingSchool;
     private String[] mFieldListContent;
     private ArrayAdapter  mAdapter;
 
@@ -53,8 +52,8 @@ public class TrainFieldActivity extends BaseActivity {
     }
 
     private void initView() {
-        mTvDrivingSchool = (TextView)findViewById(R.id.tv_driving_school);
-        mTvDrivingSchool.setText(Session.getSession().driveschoolinfo.name);
+//        mTvDrivingSchool = (TextView)findViewById(R.id.tv_driving_school);
+//        mTvDrivingSchool.setText(Session.getSession().driveschoolinfo.name);
         mFieldListView = (ListView)findViewById(R.id.lv_list);
         mFieldListView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
     }

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -44,6 +45,7 @@ import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
+import com.blackcat.coach.widgets.PullToRefreshView;
 import com.blackcat.coach.widgets.SelectableRoundedImageView;
 import com.google.gson.reflect.TypeToken;
 
@@ -70,6 +72,7 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
     private TextView exam_number_2,exam_pass_2,exam_grade_2;
     private TextView exam_number_3,exam_pass_3,exam_grade_3;
     private TextView exam_number_4,exam_pass_4,exam_grade_4;
+    private RelativeLayout fresh_header;
 
 
     public static NewDetailStudentFragment newInstance(User user) {
@@ -108,6 +111,8 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
     @Override
     protected void initViews(View rootView, LayoutInflater inflater, int adapterType, int headerLayoutRes) {
         super.initViews(rootView, inflater, adapterType, headerLayoutRes);
+
+
 
         mTvCarModel = (TextView) mHeaderView.findViewById(R.id.tv_car_type);
         mTvProgress = (TextView) mHeaderView.findViewById(R.id.tv_subject_progress);

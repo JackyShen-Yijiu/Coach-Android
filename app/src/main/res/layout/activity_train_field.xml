@@ -8,18 +8,6 @@
 
     <include layout="@layout/layout_toolbar" />
 
-    <TextView
-        android:id="@+id/tv_driving_school"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/padding_left"
-        android:paddingRight="@dimen/padding_left"
-        android:text="北京海淀驾校"
-        android:textColor="@color/text_999"
-        android:textSize="14sp"
-        android:background="#F7F9FB"/>
-
     <ListView
         android:id="@+id/lv_list"
         android:layout_width="match_parent"

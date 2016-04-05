@@ -757,6 +757,9 @@ public class IndexActivity extends BaseActivity implements IKillable,
                     mToolBarTitle.setText("学员");
                 }
 
+
+//                mToolBarTitle.setText(R.string.title_reservation);
+//                mToolBarTitle.setTextSize(18);
                 showHideQianDao(false, ReservationFragment.currentPage, 2);
 
                 mMainContainer.stttop(toolBarHeight);
@@ -767,6 +770,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 mToolBarTitle.setVisibility(View.GONE);
                 mRadioGroupReservation.setVisibility(View.VISIBLE);
                 mToolBarTitle.setText(R.string.title_schedule);
+                mToolBarTitle.setTextSize(18);
                 showHideQianDao(true, ReservationFragment.currentPage, 0);
                 mMainContainer.stttop(toolBarHeight);
                 break;
@@ -774,6 +778,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_message);
+                mToolBarTitle.setTextSize(18);
                 showHideQianDao(false,-1,-1);
                 mMainContainer.stttop(toolBarHeight);
 //			mMenuItemRight.setVisible(false);
@@ -786,6 +791,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 }else {
                     mToolBarTitle.setText(Session.getSession().name);
                 }
+                mToolBarTitle.setTextSize(18);
                 showHideQianDao(false, -1,3);
                 mMainContainer.stttop(0);
 //		    mMenuItemRight.setVisible(false);

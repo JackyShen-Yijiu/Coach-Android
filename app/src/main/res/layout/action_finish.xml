@@ -7,4 +7,5 @@
     android:paddingLeft="@dimen/padding_6"
     android:paddingRight="@dimen/padding_6"
     android:text="@string/action_finish"
-    android:textColor="@color/white_pure" />
+    android:textSize="14sp"
+    android:textColor="@color/white" />
