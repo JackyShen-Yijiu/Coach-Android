@@ -70,14 +70,19 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="44dp"/>
 
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_class"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:orientation="vertical">
         <TextView
             android:id="@+id/tv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="授课班型"
-            android:layout_toRightOf="@+id/iv_class"
-            android:layout_above="@+id/iv_class"
-            android:layout_marginLeft="14dp"
             android:textSize="14sp"
             android:textColor="@color/new_txt_blacks"/>
 
@@ -86,10 +91,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="VIP班"
-            android:layout_alignLeft="@+id/tv1"
-            android:layout_below="@+id/iv_class"
+            android:layout_marginTop="14dp"
             android:textSize="12sp"
             android:textColor="@color/new_txt_lights"/>
+        </LinearLayout>
     </RelativeLayout>
 
         <TextView
@@ -108,15 +113,18 @@
                 android:layout_marginLeft="44dp"
                 android:layout_centerVertical="true"
                 android:src="@drawable/rg_time" />
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/iv_time"
+            android:orientation="vertical"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp">
             <TextView
                 android:id="@+id/tv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="工作时间"
-                android:layout_toRightOf="@+id/iv_time"
-                android:layout_above="@+id/iv_time"
-                android:layout_marginLeft="14dp"
                 android:textSize="14sp"
                 android:textColor="@color/new_txt_blacks"/>
 
@@ -124,11 +132,11 @@
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
                 android:text="周一至周五"
-                android:layout_alignLeft="@+id/tv2"
-                android:layout_below="@+id/iv_time"
                 android:textSize="12sp"
                 android:textColor="@color/new_txt_lights"/>
+        </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 

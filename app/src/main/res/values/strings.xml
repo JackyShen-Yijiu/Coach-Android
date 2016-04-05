@@ -56,7 +56,7 @@
 
     <!-- register -->
     <string name="register">注册</string>
-    <string name="register_code">验证码</string>
+    <string name="register_code">请输入验证码</string>
     <string name="login_confirm_password">确认密码</string>
     <string name="register_invite">输入邀请码将获得奖励</string>
     <string name="register_send_code">发送验证码</string>
@@ -184,6 +184,7 @@
     <string name="str_cancel_ok">取消成功</string>
     <string name="str_accept_ok">接受预约成功</string>
     <string name="op_ok">操作成功</string>
+    <string name="clean_ok">清除成功</string>
 
     <string name="title_activity_teach_content">教学内容确认</string>
 
@@ -212,6 +213,7 @@
 
     <string name="action_finish">完成</string>
     <string name="action_add">添加</string>
+    <string name="action_save">保存</string>
 
     <string name="date_empty">开始和结束日期不能为空</string>
     <string name="feedback_empty">反馈信息不能为空</string>

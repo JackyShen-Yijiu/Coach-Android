@@ -4,6 +4,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
+
         <!-- Actionbar color -->
         <!-- <item name="colorPrimary">@color/white_absolute</item> -->
         <!--Status bar color-->
@@ -40,6 +41,8 @@
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+
+
     </style>
 
     <style name="MyCheck_Box" parent="@android:style/Widget.CompoundButton.CheckBox">
@@ -161,5 +164,6 @@
         <item name="android:windowEnterAnimation">@anim/top_in_anim</item>
         <item name="android:windowExitAnimation">@anim/top_out_anim</item>
     </style>
+
 </resources>
 

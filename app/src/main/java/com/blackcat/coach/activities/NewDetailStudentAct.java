@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.easemob.BlackCatHXSDKHelper;
@@ -27,7 +28,11 @@ public class NewDetailStudentAct extends BaseActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_student);
         configToolBar(R.mipmap.ic_back);
+        init();
         mUser = (User) getIntent().getSerializableExtra(Constants.DATA);
+
+
+
         LogUtil.print("=====sssss=="+mUser.userid);
         if (mUser == null) {
 //            finish();
@@ -40,6 +45,11 @@ public class NewDetailStudentAct extends BaseActivity implements View.OnClickLis
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.add(R.id.fl_container, NewDetailStudentFragment.newInstance(mUser));
         transaction.commitAllowingStateLoss();
+    }
+
+    private void init() {
+//        fresh_header=(RelativeLayout).findViewById(R.id.fresh_header);
+//        fresh_header.setVisibility(View.GONE);
     }
 
 

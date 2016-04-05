@@ -8,4 +8,5 @@ import java.io.Serializable;
 public class Subject implements Serializable {
     public int subjectid;
     public String name;
+
 }

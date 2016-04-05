@@ -3,76 +3,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/new_bg_gray"
     tools:context="com.blackcat.coach.activities.BindPhoneActivity">
 
     <include layout="@layout/layout_toolbar" />
 
-
-
-
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="44dp">
 
     <EditText
         android:id="@+id/et_new_phone"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:maxLength="11"
-        android:layout_marginLeft="@dimen/activity_padding"
-        android:layout_marginRight="@dimen/activity_padding"
-        android:layout_marginTop="@dimen/activity_padding"
-        android:background="@drawable/background_border"
+        android:background="@color/white"
         android:hint="@string/str_new_phone"
         android:inputType="phone"
         android:paddingLeft="15dp"
         android:singleLine="true"
-        android:textColor="#999999"
-        android:textSize="15sp" />
+        android:textColor="@color/new_txt_blacks"
+        android:textSize="14sp" />
+        <ImageView
+            android:id="@+id/iv_clean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/delete_text"/>
+    </RelativeLayout>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/line_bg"/>
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:layout_marginLeft="@dimen/activity_padding"
-        android:layout_marginRight="@dimen/activity_padding"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:background="@color/white">
 
 
         <EditText
             android:id="@+id/et_verification_code"
-            android:layout_width="202dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/background_border"
+            android:background="@color/white"
             android:hint="@string/register_code"
             android:inputType="number"
             android:paddingLeft="15dp"
             android:singleLine="true"
-            android:textColor="#999999"
-            android:textSize="15sp" />
+            android:textColor="@color/new_txt_blacks"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/tv_send_code"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_border_blue"
+            android:layout_width="80dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:gravity="center"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_study_content_default"
             android:text="@string/register_send_code"
-            android:textColor="@color/blue" />
+            android:textColor="@color/white" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
-    <Button
-        android:id="@+id/btn_finish"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginLeft="@dimen/activity_padding"
-        android:layout_marginRight="@dimen/activity_padding"
-        android:layout_marginTop="20dp"
-        android:background="@color/blue"
-        android:text="@string/str_finish"
-        android:textColor="@color/white_pure"
-        android:textSize="16sp" />
 </LinearLayout>
