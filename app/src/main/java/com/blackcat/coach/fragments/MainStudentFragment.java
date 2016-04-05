@@ -131,11 +131,20 @@ public class MainStudentFragment extends BaseFragment{
             case 2://隐藏中间两个
                 rb2.setVisibility(View.GONE);
                 rb3.setVisibility(View.GONE);
+                rb1.setText(Session.getSession().subject.get(0).name);
+                rb4.setText(Session.getSession().subject.get(1).name);
                 break;
             case 3:
                 rb2.setVisibility(View.GONE);
+                rb1.setText(Session.getSession().subject.get(0).name);
+                rb3.setText(Session.getSession().subject.get(1).name);
+                rb4.setText(Session.getSession().subject.get(2).name);
                 break;
             case 4:
+                rb1.setText(Session.getSession().subject.get(0).name);
+                rb2.setText(Session.getSession().subject.get(1).name);
+                rb3.setText(Session.getSession().subject.get(2).name);
+                rb4.setText(Session.getSession().subject.get(3).name);
                 break;
         }
         for (Subject subject : Session.getSession().subject) {
