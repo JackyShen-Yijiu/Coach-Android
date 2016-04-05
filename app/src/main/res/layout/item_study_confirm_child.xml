@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/item_study_confirm_child_ratingBar"
-            style="@style/roomRatingBar"
+            style="@style/ratingbar_comment"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
@@ -75,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
         android:text="提交"
-        android:background="@drawable/bg_btn"
+        android:background="@drawable/bg_btn_round"
         android:textColor="@color/white"
         android:id="@+id/item_study_confirm_child_button" />
 </LinearLayout>

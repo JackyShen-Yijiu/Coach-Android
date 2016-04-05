@@ -177,7 +177,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
             mTvProgress.setText(mReservation.courseprocessdesc);
             tv_progress_one.setText(mReservation.courseprocessdesc);
         }
-
+        LogUtil.print("state---->"+mReservation.getReservationstate());
         switch (mReservation.getReservationstate()) {
             case APPLYING:
 
@@ -207,6 +207,7 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
 
 
                 break;
+            case SYSTEM_CANCEL:
             case APPLYREFUSE://教练拒绝或者取消(已取消)
                 //已取消
                 ll_change_reson.setVisibility(View.VISIBLE);
@@ -384,7 +385,8 @@ public class DetailReservationActivity extends BaseNoFragmentActivity implements
                         }
                         break;
                     case UNCOMMENTS:
-                        intent = new Intent(this, SendCommentActivity.class);
+//                        intent = new Intent(this, SendCommentActivity.class);
+                        intent = new Intent(this, StudyConfirmsAct.class);
                         intent.putExtra(Constants.DATA, mReservation);
                         startActivity(intent);
                         break;

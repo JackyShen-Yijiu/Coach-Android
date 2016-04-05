@@ -96,10 +96,6 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         LinearLayout stat = (LinearLayout) rootView.findViewById(R.id.ll_stat);
         stat.setOnClickListener(this);
 
-
-
-
-
     }
 
     private void bindUserInfo() {

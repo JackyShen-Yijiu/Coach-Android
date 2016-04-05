@@ -77,7 +77,7 @@
 
     </RelativeLayout>
 
-
+    <include layout="@layout/line_gray1"></include>
 
 
     <RelativeLayout

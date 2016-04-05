@@ -55,6 +55,12 @@ public class MainStudentFragment extends BaseFragment{
         View rootView = inflater.inflate(R.layout.fragment_main_student, container, false);
         initView(rootView);
         initData();
+        if(!Session.getSession().is_validation){//没有审核通过
+            rb1.setEnabled(false);
+            rb2.setEnabled(false);
+            rb3.setEnabled(false);
+            rb4.setEnabled(false);
+        }
         return rootView;
     }
 
@@ -119,11 +125,13 @@ public class MainStudentFragment extends BaseFragment{
 
 
         getActivity().setTitle("学员");
+        LogUtil.print("subject---size-->"+Session.getSession().subject.size());
         //动态 改变 科目二 科目三
         switch (Session.getSession().subject.size()){
 
             case 0:
 
+                break;
             case 1://隐藏 group
                 rg.setVisibility(View.GONE);
                 getActivity().setTitle(Session.getSession().subject.get(0).name);

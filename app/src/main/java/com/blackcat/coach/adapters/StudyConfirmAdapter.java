@@ -22,6 +22,7 @@ import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.StudyConfirmsAct;
 import com.blackcat.coach.events.ReservationOpOk;
+import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.CoachClass;
 import com.blackcat.coach.models.LabelBean;
 import com.blackcat.coach.models.Reservation;
@@ -37,6 +38,7 @@ import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.UTC2LOC;
 import com.blackcat.coach.utils.VolleyUtil;
+import com.blackcat.coach.widgets.SelectableRoundedImageView;
 import com.blackcat.coach.widgets.WordWrapViewStudyContent;
 import com.google.gson.reflect.TypeToken;
 
@@ -66,7 +68,6 @@ public class StudyConfirmAdapter extends BaseExpandableListAdapter {
     public StudyConfirmAdapter(Context context){
         this.context = context;
         mTokenType = new TypeToken<Result>() {}.getType();
-
     }
 
     public void setData(List<Reservation> list){
@@ -113,13 +114,33 @@ public class StudyConfirmAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
         View v = View.inflate(context,R.layout.item_study_confirm_parent,null);
+        SelectableRoundedImageView imgIcon = (SelectableRoundedImageView) v.findViewById(R.id.item_study_confirm_parent_icon);
+
+        imgIcon.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imgIcon.setImageResource(R.mipmap.ic_avatar_small);
+        imgIcon.setOval(true);
+
         TextView tvName = (TextView) v.findViewById(R.id.item_study_confirm_parent_name);
         TextView tvTime = (TextView) v.findViewById(R.id.item_study_confirm_parent_time);
         ImageView imgArrow = (ImageView) v.findViewById(R.id.item_study_confirm_parent_arrow);
         Reservation item = list.get(i);
         tvName.setText(item.userid.name);
-
         tvTime.setText(UTC2LOC.instance.getDate(item.begintime,"HH:mm")+" ~ "+UTC2LOC.instance.getDate(item.endtime,"HH:mm"));
+
+        if ( item.userid.headportrait.originalpic != null && !TextUtils.isEmpty( item.userid.headportrait.originalpic)) {
+//            PicassoUtil.loadImage(activity, viewHolder.ivAvatar, item.headportrait.originalpic, R.dimen.avatar_size, R.dimen.avatar_size, false, R.mipmap.ic_avatar_small);
+            UILHelper.loadImage(imgIcon, item.userid.headportrait.originalpic, false, R.mipmap.ic_avatar_small);
+        } else {
+            imgIcon.setImageResource(R.mipmap.ic_avatar_small);
+        }
+
+        if (!b) {
+            imgArrow.setImageResource(R.mipmap.ic_arrow_up);
+        } else {
+            imgArrow.setImageResource(R.mipmap.ic_arrow_down);
+        }
+//
+
 
         return v;
     }
@@ -144,10 +165,14 @@ public class StudyConfirmAdapter extends BaseExpandableListAdapter {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(et.getText())) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.comment_empty);
-                    return;
+                if(ifChecked(list)){
+                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast("请选择教学内容");
+                    return ;
                 }
+//                if (TextUtils.isEmpty(et.getText())) {
+//                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.comment_empty);
+//                    return;
+//                }
                 String coachid = Session.getSession().coachid;
                 String reservationId = item._id;
                 String commentcontent = et.getText().toString();
@@ -302,10 +327,6 @@ public class StudyConfirmAdapter extends BaseExpandableListAdapter {
             for (int i = 0; i < list.size(); i++) {
 
                 CheckBox checkBox = (CheckBox) View.inflate(context,R.layout.checkbox,null);
-//                checkBox.set
-//                checkBox.setButtonDrawable(null);
-//                checkBox.setBackground(context.getResources().getDrawable(R.drawable.selector_study_content));
-//                checkBox.setBackground(R.drawable.selector_study_content);
                 checkBox.setText(list.get(i).getClassName());
                 checkBox.setTag(i);
                 checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -321,28 +342,21 @@ public class StudyConfirmAdapter extends BaseExpandableListAdapter {
                         list.get(tag).is_choose = b;//! list.get(tag).is_choose;
                     }
                 });
-//                TextView textview = new TextView(context)
-//                textview.setText(list.get(i).getClassName());
-//                textview.setClickable(true);
-//                textview.setTag(i);
-//                textview.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        final int tag = Integer.parseInt(view.getTag().toString());
-//                        if(list.get(tag).is_choose){//已经选中了  不选中
-//                            view.setBackgroundColor(Color.BLUE);
-//                        }else{//未选中// )
-//                            view.setBackgroundColor(Color.WHITE);
-//                        }
-//                        list.get(tag).is_choose = ! list.get(tag).is_choose;
-//                    }
-//                });
+
                 wordWrap.addView(checkBox);
 
         }
 
     }
 
+    private boolean ifChecked(List<CoachClass> list){
+        for (CoachClass coachClass : list) {
+            if(coachClass.is_choose){
+                return false;
+            }
+        }
+        return true;
+    }
 
 
     @Override

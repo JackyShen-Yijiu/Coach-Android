@@ -16,7 +16,9 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:singleLine="true"
+        android:layout_marginTop="6dp"
         android:id="@+id/tab_student_state_txt"
+        android:layout_marginBottom="10dp"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

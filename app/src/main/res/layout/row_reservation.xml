@@ -9,6 +9,7 @@
         android:id="@+id/divider_top"
         android:layout_width="match_parent"
         android:layout_height="1px"
+        android:visibility="gone"
         android:background="#e6e6e6" />
 
     <com.blackcat.coach.widgets.SelectableRoundedImageView
@@ -146,12 +147,13 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_below="@+id/tv_place"
-        android:background="#e6e6e6" />
+        android:background="@color/new_bg_gray" />
 
     <View
         android:id="@+id/divider_bottom2"
         android:layout_width="match_parent"
         android:layout_height="9dp"
+        android:visibility="gone"
         android:layout_below="@+id/divider_bottom1"
         android:background="@color/list_divider2" />
 
@@ -163,5 +165,5 @@
         android:layout_alignParentRight="true"
         android:layout_alignTop="@+id/divider_top"
         android:visibility="gone"
-        android:background="@color/text_blue" />
+        android:background="@color/new_bg_gray" />
 </RelativeLayout>

@@ -140,6 +140,12 @@
         <item name="android:maxHeight">16dp</item>
     </style>
 
+    <style name="ratingbar_comment" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/ratebar_comment</item>
+        <item name="android:minHeight">20dp</item>
+        <item name="android:maxHeight">20dp</item>
+    </style>
+
     <style name="dialog_btn_style">
         <item name="android:textColor">#ffffff</item>
         <item name="android:textSize">16dp</item>

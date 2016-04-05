@@ -51,10 +51,10 @@
                 android:width="1dp"
                 ></stroke>
             <padding
-                android:bottom="8dip"
-                android:top="8dip"
-                android:left="15dip"
-                android:right="12dip"
+                android:bottom="5dip"
+                android:top="5dip"
+                android:left="5dip"
+                android:right="5dip"
                 ></padding>
         </shape>
 

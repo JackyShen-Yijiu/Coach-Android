@@ -128,13 +128,12 @@ public class IndexActivity extends BaseActivity implements IKillable,
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         if(mMainContainer.getCurrentFragment().equals(mMainContainer.scheduleTabFragment)){
             mMainContainer.scheduleTabFragment.switchFragment();
+            LogUtil.print(mMainContainer.scheduleTabFragment.type+"showHide----abcd>" + ReservationFragment.currentPage);
             if(mMainContainer.scheduleTabFragment.type==0){
 //                showHideQianDao(false, -1, 3);
-                showHideQianDao(true, ReservationFragment.currentPage, 0);
+                showHideQianDao(true,-1, 4);
                 mToolBarLeftTitle.setVisibility(View.GONE);
-
             }else{
-
                 mToolBarLeftTitle.setVisibility(View.VISIBLE);
                 showHideQianDao(true, ReservationFragment.currentPage, 0);
             }
@@ -749,15 +748,20 @@ public class IndexActivity extends BaseActivity implements IKillable,
         LogUtil.print("----------9999"+toolBarHeight);
         mToolBarLeftTitle.setVisibility(View.GONE);
         switch (index) {
-            case TAB_STUDENT:
+            case TAB_STUDENT://学员列表
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
-                mToolBarTitle.setText(R.string.title_reservation);
+                if(Session.getSession().subject!=null && Session.getSession().subject.size()==1){
+                    mToolBarTitle.setText(Session.getSession().subject.get(0).name);
+                }else{
+                    mToolBarTitle.setText("学员");
+                }
+
                 showHideQianDao(false, ReservationFragment.currentPage, 2);
 
                 mMainContainer.stttop(toolBarHeight);
                 break;
-            case TAB_SCHEDULE:
+            case TAB_SCHEDULE://日程
 //                setRightTitleWithoutImg(CommonUtil.getString(mContext, R.string.student_appointment));
                 setLeftTitle(CommonUtil.getString(mContext, R.string.toady));
                 mToolBarTitle.setVisibility(View.GONE);
@@ -766,7 +770,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 showHideQianDao(true, ReservationFragment.currentPage, 0);
                 mMainContainer.stttop(toolBarHeight);
                 break;
-            case TAB_MESSAGE:
+            case TAB_MESSAGE://消息
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_message);
@@ -774,7 +778,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 mMainContainer.stttop(toolBarHeight);
 //			mMenuItemRight.setVisible(false);
                 break;
-            case TAB_PROFILE:
+            case TAB_PROFILE://个人中心
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 if (TextUtils.isEmpty(Session.getSession().name)){
@@ -811,6 +815,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
      * @param flag
      */
     public void showHideQianDao(boolean flag,int position,int type) {
+        LogUtil.print("showHide-->"+flag+position);
         currentPage = type;
         if (flag){
             llQianDao.setVisibility(View.VISIBLE);
@@ -819,11 +824,16 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 tvQianDao.setTextSize(10);
                 tvQianDao.setText("签到");
                 imgQuery.setImageResource(R.drawable.iconfont_icon);
-            }else {
+                imgQuery.setVisibility(View.VISIBLE);
+            }else if(type == 4){//隐藏右边的所有
+                tvQianDao.setVisibility(View.GONE);
+                imgQuery.setVisibility(View.GONE);
+            }else{
                 tvQianDao.setVisibility(View.GONE);
                 imgQuery.setImageResource(R.drawable.iconfont_query);
+                imgQuery.setVisibility(View.VISIBLE);
             }
-            imgQuery.setVisibility(View.VISIBLE);
+
         }else if(type == 2){
             llQianDao.setVisibility(View.VISIBLE);
             tvQianDao.setVisibility(View.VISIBLE);

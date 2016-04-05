@@ -47,8 +47,6 @@ public class StudentTabFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-
         rootView = inflater.inflate(R.layout.fragment_reservation, container, false);
         mContext = getActivity();
         initView();
