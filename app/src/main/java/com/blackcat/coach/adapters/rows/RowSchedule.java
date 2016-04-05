@@ -23,6 +23,7 @@ import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.DaytimelysReservation;
 import com.blackcat.coach.models.MessageCount;
 import com.blackcat.coach.models.Reservation;
+import com.blackcat.coach.models.User;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.UTC2LOC;
@@ -38,6 +39,7 @@ import java.util.List;
 public class RowSchedule {
 
     private static Context mContext;
+
 
     //当前选择项
     public static BaseViewHolder createViewHolder(ViewGroup parent, Context context) {
@@ -56,7 +58,7 @@ public class RowSchedule {
         holder.timeLl = (LinearLayout) view.findViewById(R.id.schedule_time_ll);
         return holder;
     }
-
+    private User user;
     public static <T> void bindViewHolder(final Activity activity,
                                           BaseViewHolder holder, final int position, final List<T> info) {
         final Holder viewHolder = (Holder) holder;

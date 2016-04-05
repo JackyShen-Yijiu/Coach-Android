@@ -28,6 +28,7 @@ public class NewDetailStudentAct extends BaseActivity implements View.OnClickLis
         setContentView(R.layout.activity_detail_student);
         configToolBar(R.mipmap.ic_back);
         mUser = (User) getIntent().getSerializableExtra(Constants.DATA);
+        LogUtil.print("=====sssss=="+mUser.userid);
         if (mUser == null) {
 //            finish();
 

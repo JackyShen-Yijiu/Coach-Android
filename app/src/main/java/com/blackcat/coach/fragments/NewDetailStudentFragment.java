@@ -93,8 +93,8 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
 
         mPage = 1;
         if (mUser!=null) {
-            fetchUserInfo(mUser.userid);
-            mURI = URIUtil.getCommentList(mUser.userid,mPage);
+            fetchUserInfo(mUser._id);
+            mURI = URIUtil.getCommentList(mUser._id,mPage);
             refresh(DicCode.RefreshType.R_INIT, mURI);
         }else{
             fetchUserInfo("56e95ace17a0206355ec380b");
@@ -227,14 +227,14 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
     @Override
     public void onRefresh() {
         mPage = 1;
-        mURI = URIUtil.getCommentList(mUser.userid, mPage);
+        mURI = URIUtil.getCommentList(mUser._id, mPage);
         refresh(DicCode.RefreshType.R_PULL_DOWN, mURI);
     }
 
     @Override
     public void onLoadMore() {
         mPage++;
-        mURI = URIUtil.getCommentList(mUser.userid, mPage);
+        mURI = URIUtil.getCommentList(mUser._id, mPage);
         refresh(DicCode.RefreshType.R_PULL_UP, mURI);
     }
 
@@ -327,7 +327,7 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
 
         RemindExam params = new RemindExam();
         params.coachid = String.valueOf(Session.getSession().coachid);
-        params.userid = userId;
+        params._id = userId;
 
         Map map = new HashMap<>();
         map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
@@ -374,6 +374,6 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
 
     class RemindExam{
         String coachid;
-        String userid;
+        String _id;
     }
 }
