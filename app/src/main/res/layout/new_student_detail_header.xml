@@ -120,7 +120,7 @@
         <TextView
             android:id="@+id/tv_subject_content"
             android:layout_width="wrap_content"
-            android:text="上车起步"
+            android:text=""
             android:layout_marginLeft="12dp"
             android:layout_centerVertical="true"
             android:textColor="@color/new_txt_blacks"
@@ -187,7 +187,7 @@
                 android:layout_toRightOf="@+id/goumai"
                 android:layout_alignBottom="@+id/goumai"
                 android:textColor="@color/new_txt_lights"
-                android:text="已学:0"/>
+                android:text="已学:0课时"/>
 
         </RelativeLayout>
 
@@ -220,7 +220,7 @@
             android:layout_marginLeft="14dp"
             android:textSize="14sp"
             android:textColor="@color/new_txt_lights"
-            android:text="常用地址"/>
+            android:text=""/>
 
     </RelativeLayout>
     <LinearLayout
