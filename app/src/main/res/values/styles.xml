@@ -20,6 +20,7 @@
         <item name="android:textColorSecondary">@color/white_pure</item>
         <item name="android:textColor">@color/white_pure</item>
         <item name="android:actionMenuTextColor">@color/white_pure</item>
+        <item name="android:colorPrimaryDark">@color/new_main_colors</item>
         <item name="actionMenuTextColor">@color/white_pure</item>
     </style>
     `

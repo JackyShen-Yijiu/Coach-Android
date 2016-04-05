@@ -40,6 +40,7 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:textSize="14sp"
+                android:textColor="#6e6e6e"
                 android:text="13" />
            <!-- <ImageView
                 android:id="@+id/has_order"
