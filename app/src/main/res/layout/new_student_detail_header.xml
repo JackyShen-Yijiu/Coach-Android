@@ -14,12 +14,13 @@
         android:background="#ceecff"
         android:layout_height="48dp">
         <TextView
-            android:id="@+id/tv_car_type"
+        android:id="@+id/tv_car_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
         android:textColor="@color/new_main_colors"
         android:layout_centerVertical="true"
+        android:maxEms="8"
         android:layout_marginLeft="16dp"
         android:text="C1全周班"/>
         <ImageView
@@ -120,7 +121,7 @@
         <TextView
             android:id="@+id/tv_subject_content"
             android:layout_width="wrap_content"
-            android:text="上车起步"
+            android:text=""
             android:layout_marginLeft="12dp"
             android:layout_centerVertical="true"
             android:textColor="@color/new_txt_blacks"
@@ -220,7 +221,7 @@
             android:layout_marginLeft="14dp"
             android:textSize="14sp"
             android:textColor="@color/new_txt_lights"
-            android:text="常用地址"/>
+            android:text=""/>
 
     </RelativeLayout>
     <LinearLayout
