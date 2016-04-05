@@ -86,10 +86,11 @@
                 android:id="@+id/rbtn_reservation"
                 android:layout_width="90dp"
                 android:layout_height="31dp"
-                android:background="@drawable/bg_title_tab_item"
+                android:background="@drawable/selector_title_left"
                 android:button="@null"
                 android:checked="true"
                 android:gravity="center"
+                android:layout_marginRight="-1dp"
                 android:text="@string/title_time"
                 android:textColor="@drawable/sl_tab_title_textcolor" />
 
@@ -97,7 +98,7 @@
                 android:id="@+id/rbtn_schedule"
                 android:layout_width="90dp"
                 android:layout_height="31dp"
-                android:background="@drawable/bg_title_tab_item"
+                android:background="@drawable/selector_title_right"
                 android:button="@null"
                 android:gravity="center"
                 android:text="@string/title_list"

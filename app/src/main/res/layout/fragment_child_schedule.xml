@@ -64,12 +64,21 @@
             android:layout_height="1dp"
             android:background="#E6E6E6" />
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/schedule_reservation_viewpager"
+       <!--<com.blackcat.coach.widgets.NoScrollViewPager-->
+            <!--android:id="@+id/schedule_reservation_viewpager"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"></com.blackcat.coach.widgets.NoScrollViewPager>-->
+        <FrameLayout
+            android:id="@+id/schedule_reservation_fl"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"></android.support.v4.view.ViewPager>
+            android:layout_weight="1"></FrameLayout>
+
+
         <!--<include layout="@layout/layout_pulltorefresh_list" />-->
+
+
 
     </LinearLayout>
     

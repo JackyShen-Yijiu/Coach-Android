@@ -129,13 +129,14 @@ public class IndexActivity extends BaseActivity implements IKillable,
         if(mMainContainer.getCurrentFragment().equals(mMainContainer.scheduleTabFragment)){
             mMainContainer.scheduleTabFragment.switchFragment();
             if(mMainContainer.scheduleTabFragment.type==0){
-                showHideQianDao(false, -1, 3);
+//                showHideQianDao(false, -1, 3);
+                showHideQianDao(true, ReservationFragment.currentPage, 0);
                 mToolBarLeftTitle.setVisibility(View.GONE);
 
             }else{
 
                 mToolBarLeftTitle.setVisibility(View.VISIBLE);
-                showHideQianDao(false, ReservationFragment.currentPage, 1);
+                showHideQianDao(true, ReservationFragment.currentPage, 0);
             }
         }
     }
@@ -752,7 +753,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_reservation);
-                showHideQianDao(true, ReservationFragment.currentPage, 0);
+                showHideQianDao(false, ReservationFragment.currentPage, 2);
 
                 mMainContainer.stttop(toolBarHeight);
                 break;
@@ -769,7 +770,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 mToolBarTitle.setVisibility(View.VISIBLE);
                 mRadioGroupReservation.setVisibility(View.GONE);
                 mToolBarTitle.setText(R.string.title_message);
-                showHideQianDao(false,-1,2);
+                showHideQianDao(false,-1,-1);
                 mMainContainer.stttop(toolBarHeight);
 //			mMenuItemRight.setVisible(false);
                 break;
@@ -815,6 +816,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
             llQianDao.setVisibility(View.VISIBLE);
             if(position==0){//签到
                 tvQianDao.setVisibility(View.VISIBLE);
+                tvQianDao.setTextSize(10);
                 tvQianDao.setText("签到");
                 imgQuery.setImageResource(R.drawable.iconfont_icon);
             }else {
@@ -825,6 +827,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
         }else if(type == 2){
             llQianDao.setVisibility(View.VISIBLE);
             tvQianDao.setVisibility(View.VISIBLE);
+            tvQianDao.setTextSize(14);
             tvQianDao.setText("群发短信");
             imgQuery.setVisibility(View.GONE);
 

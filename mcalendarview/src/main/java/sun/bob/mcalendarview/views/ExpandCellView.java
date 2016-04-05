@@ -65,7 +65,7 @@ private Context context;
     }
 
     public void setDateNormal() {
-        textView.setTextColor(Color.parseColor("#333333"));
+        textView.setTextColor(Color.parseColor("#6e6e6e"));
         textView.setBackgroundDrawable(null);
     }
 

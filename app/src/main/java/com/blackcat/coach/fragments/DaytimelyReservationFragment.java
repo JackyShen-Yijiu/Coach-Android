@@ -15,10 +15,13 @@ import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.net.URIUtil;
+import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.LogUtil;
+import com.blackcat.coach.utils.UTC2LOC;
 import com.google.gson.reflect.TypeToken;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -74,6 +77,12 @@ public class DaytimelyReservationFragment extends BaseListFragment<DaytimelysRes
     }
 
 
+    public void setData(String date){
+        if (!Session.isUserInfoEmpty()) {
+            this.date = date;
+            request();
+        }
+    }
 
     @Override
     protected void initViews(View rootView, LayoutInflater inflater,
@@ -112,6 +121,23 @@ public class DaytimelyReservationFragment extends BaseListFragment<DaytimelysRes
         super.onFeedsErrorResponse(arg0, refreshType);
         if (refreshType == DicCode.RefreshType.R_PULL_UP) {
             mPage--;
+        }
+    }
+
+    @Override
+    protected void onFeedsResponse(Result<List<DaytimelysReservation>> response, int refreshType) {
+        super.onFeedsResponse(response, refreshType);
+        Date beginTime = null;
+        Date endTime = null;
+        for (int i=0;i<response.data.size();i++){
+            beginTime = UTC2LOC.instance.getDates(response.data.get(i).coursebegintime,"yyyy-MM-dd HH:mm:ss");
+            endTime = UTC2LOC.instance.getDates(response.data.get(i).courseendtime,"yyyy-MM-dd HH:mm:ss");
+            LogUtil.print(beginTime.toLocaleString()+"----"+endTime.toLocaleString());
+            Date now = Calendar.getInstance().getTime();
+            if(now.after(beginTime) && now.before(endTime)){
+                mListView.setSelection(i);
+                break;
+            }
         }
     }
 
