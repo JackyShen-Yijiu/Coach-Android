@@ -3,14 +3,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/new_main_colors"
+    android:fitsSystemWindows="true"
     tools:context="com.blackcat.coach.fragments.NewDetailStudentFragment">
 
-    <include layout="@layout/layout_toolbar" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="48dp">
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="15dp"
+        android:src="@mipmap/ic_back"/>
+</RelativeLayout>
 
     <FrameLayout
         android:id="@+id/fl_container"
+        android:background="@color/white"
         android:layout_width="match_parent"
-        
         android:layout_height="match_parent">
 
     </FrameLayout>

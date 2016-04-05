@@ -72,7 +72,6 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
     private TextView exam_number_2,exam_pass_2,exam_grade_2;
     private TextView exam_number_3,exam_pass_3,exam_grade_3;
     private TextView exam_number_4,exam_pass_4,exam_grade_4;
-    private RelativeLayout fresh_header;
 
 
     public static NewDetailStudentFragment newInstance(User user) {

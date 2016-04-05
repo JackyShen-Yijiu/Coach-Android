@@ -71,7 +71,7 @@ public class BaseActivity extends AppCompatActivity {
 	}
 
 	protected boolean hasActionbarShadow(){
-		return true;
+		return false;
 	}
 	
 	public void showActionbarShadow() {
