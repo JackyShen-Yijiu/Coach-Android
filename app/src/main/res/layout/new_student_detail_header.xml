@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 <RelativeLayout
     android:layout_width="match_parent"
-    android:background="@mipmap/student_background"
+    android:background="@color/new_main_colors"
     android:layout_height="90dp">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:layout_centerVertical="true"
         android:maxEms="8"
         android:layout_marginLeft="16dp"
-        android:text="C1全周班"/>
+        android:text="暂无"/>
         <ImageView
             android:id="@+id/iv_chat"
             android:layout_width="wrap_content"
@@ -274,7 +274,7 @@
             android:layout_centerVertical="true"
             android:textColor="@color/new_txt_blacks"
             android:layout_toRightOf="@+id/exam_subject"
-            android:text="3月考试2"/>
+            android:text="暂无"/>
         <TextView
             android:id="@+id/exam_pass"
             android:layout_width="wrap_content"
@@ -284,7 +284,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:textColor="@color/new_reds"
-            android:text="通过"/>
+            android:text="暂无"/>
         <TextView
             android:id="@+id/exam_grade"
             android:layout_width="wrap_content"
@@ -294,7 +294,7 @@
             android:layout_centerVertical="true"
             android:textColor="@color/new_txt_lights"
             android:layout_toLeftOf="@+id/exam_pass"
-            android:text="94分"/>
+            android:text="暂无"/>
 </RelativeLayout>
 
         <RelativeLayout
@@ -319,7 +319,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/new_txt_blacks"
                 android:layout_toRightOf="@+id/exam_subject_2"
-                android:text="3月考试2"/>
+                android:text="暂无"/>
             <TextView
                 android:id="@+id/exam_pass_2"
                 android:layout_width="wrap_content"
@@ -329,7 +329,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:textColor="@color/new_reds"
-                android:text="通过"/>
+                android:text="暂无"/>
             <TextView
                 android:id="@+id/exam_grade_2"
                 android:layout_width="wrap_content"
@@ -339,7 +339,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/new_txt_lights"
                 android:layout_toLeftOf="@+id/exam_pass_2"
-                android:text="94分"/>
+                android:text="暂无"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -364,7 +364,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/new_txt_blacks"
                 android:layout_toRightOf="@+id/exam_subject_3"
-                android:text="3月考试2"/>
+                android:text="暂无"/>
             <TextView
                 android:id="@+id/exam_pass_3"
                 android:layout_width="wrap_content"
@@ -374,7 +374,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:textColor="@color/new_reds"
-                android:text="通过"/>
+                android:text="暂无"/>
             <TextView
                 android:id="@+id/exam_grade_3"
                 android:layout_width="wrap_content"
@@ -384,7 +384,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/new_txt_lights"
                 android:layout_toLeftOf="@+id/exam_pass_3"
-                android:text="94分"/>
+                android:text="暂无"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -409,7 +409,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/new_txt_blacks"
                 android:layout_toRightOf="@+id/exam_subject_4"
-                android:text="3月考试2"/>
+                android:text="暂无"/>
             <TextView
                 android:id="@+id/exam_pass_4"
                 android:layout_width="wrap_content"
@@ -419,7 +419,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:textColor="@color/new_reds"
-                android:text="通过"/>
+                android:text="暂无"/>
             <TextView
                 android:id="@+id/exam_grade_4"
                 android:layout_width="wrap_content"
@@ -429,7 +429,7 @@
                 android:layout_centerVertical="true"
                 android:textColor="@color/new_txt_lights"
                 android:layout_toLeftOf="@+id/exam_pass_4"
-                android:text="94分"/>
+                android:text="暂无"/>
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout

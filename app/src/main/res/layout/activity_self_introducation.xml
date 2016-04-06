@@ -10,9 +10,9 @@
     <EditText
         android:id="@+id/et_self_intro"
         android:layout_width="match_parent"
-        android:layout_height="89dp"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:layout_marginTop="@dimen/padding_10"
+        android:layout_marginTop="10dp"
         android:background="@null"
         android:gravity="top|left"
         android:hint="@string/str_self_intro"
@@ -21,7 +21,7 @@
         android:paddingRight="@dimen/padding_left"
         android:paddingTop="@dimen/padding_14"
         android:singleLine="false"
-        android:textColor="@color/maintab_text_normal"
+        android:textColor="@color/new_txt_blacks"
         android:textSize="@dimen/profile_text_size" />
 
 

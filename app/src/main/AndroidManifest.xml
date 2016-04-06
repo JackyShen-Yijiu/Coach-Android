@@ -67,6 +67,10 @@
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".activities.NewLoginActivity"
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.RegisterActivity"
             android:label="@string/title_activity_register"
             android:screenOrientation="portrait" />

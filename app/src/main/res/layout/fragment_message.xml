@@ -4,7 +4,6 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context="com.blackcat.coach.fragments.MessegeFragment">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,8 +20,8 @@
             android:id="@+id/inner_list"
             style="@style/ListViewStyle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never" />
+            android:layout_height="wrap_content"
+             />
     </LinearLayout>
 
 </FrameLayout>

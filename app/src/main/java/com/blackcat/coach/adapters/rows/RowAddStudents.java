@@ -43,6 +43,8 @@ public class RowAddStudents {
         holder.imgIphone = (ImageView) view.findViewById(R.id.item_student_phone);
         holder.iv_check = (RadioButton) view.findViewById(R.id.iv_check);
 
+
+
         return holder;
     }
 
@@ -55,6 +57,15 @@ public class RowAddStudents {
         viewHolder.imgIphone.setOnClickListener(new MyOnClickListener(activity, item, position));
         viewHolder.tvName.setText(item.name);
         //viewHolder.tvProgress.setText(item.subjectprocess);
+
+        if (item.subject!=null){
+             if (item.subject.subjectid==2){
+                   viewHolder.tvProgress.setText(item.subjecttwo.progress);
+              }else {
+            viewHolder.tvProgress.setText(item.subjectthree.progress);
+        }
+        }
+
 
         viewHolder.iv_check.setOnClickListener(new View.OnClickListener() {
             @Override

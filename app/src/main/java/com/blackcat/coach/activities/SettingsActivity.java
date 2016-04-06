@@ -244,7 +244,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
 
                 //TODO, clear volley cache
                 EventBus.getDefault().post(new LogoutEvent());
-                startActivity(new Intent(this, LoginActivity.class));
+                startActivity(new Intent(this, NewLoginActivity.class));
                 finish();
                 break;
             case R.id.sv_appointment://预约
