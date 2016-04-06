@@ -128,7 +128,7 @@ public class DaytimelyReservationFragment extends BaseListFragment<DaytimelysRes
     }
 
     @Override
-    protected void onFeedsResponse(Result<List<DaytimelysReservation>> response, int refreshType) {
+    public void onFeedsResponse(Result<List<DaytimelysReservation>> response, int refreshType) {
         super.onFeedsResponse(response, refreshType);
 
         Date beginTime = null;

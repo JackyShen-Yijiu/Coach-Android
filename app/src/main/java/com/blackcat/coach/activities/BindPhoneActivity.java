@@ -1,10 +1,14 @@
 package com.blackcat.coach.activities;
 
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -41,10 +45,11 @@ public class BindPhoneActivity extends BaseActivity implements
     private EditText mEtNewPhoneNum;
     private EditText mEtVerifyCode;
     private TextView mTvSendCode;
-    private Button   mBtnFinish;
 
     private Type mSmsType = new TypeToken<Result>(){}.getType();
     private VerifyCodeTimer mTimer;
+    private ImageView iv_clean;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,8 +64,9 @@ public class BindPhoneActivity extends BaseActivity implements
         mTvSendCode = (TextView)findViewById(R.id.tv_send_code);
         mTvSendCode.setOnClickListener(this);
 
-        mBtnFinish = (Button)findViewById(R.id.btn_finish);
-        mBtnFinish.setOnClickListener(this);
+        iv_clean=(ImageView)findViewById(R.id.iv_clean);
+        iv_clean.setOnClickListener(this);
+
 
     }
 
@@ -91,17 +97,9 @@ public class BindPhoneActivity extends BaseActivity implements
                 sendSmsRequest(mEtNewPhoneNum.getText().toString());
                 break;
 
-            case R.id.btn_finish:
-                if (TextUtils.isEmpty(mEtNewPhoneNum.getText())) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_empty);
-                    return;
-                }
-                if (TextUtils.isEmpty(mEtVerifyCode.getText())) {
-                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.sms_empty);
-                    return;
-                }
-                bindPhoneRequest(mEtNewPhoneNum.getText().toString().trim(),
-                        mEtVerifyCode.getText().toString().trim());
+
+            case R.id.iv_clean:
+                mEtNewPhoneNum.setText("");
                 break;
             default:
                 break;
@@ -207,5 +205,37 @@ public class BindPhoneActivity extends BaseActivity implements
         request.setShouldCache(false);
 
         VolleyUtil.getQueue(this).add(request);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuItem item = menu.add(ACTION_GROUP_ID, ACTION_MENUITEM_ID0, 0, R.string.action_save);
+        MenuItemCompat.setShowAsAction(item, MenuItem.SHOW_AS_ACTION_ALWAYS
+                | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == ACTION_MENUITEM_ID0) {
+
+            if (TextUtils.isEmpty(mEtNewPhoneNum.getText())) {
+                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.phonenum_empty);
+            }
+            if (TextUtils.isEmpty(mEtVerifyCode.getText())) {
+                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.sms_empty);
+            }
+            bindPhoneRequest(mEtNewPhoneNum.getText().toString().trim(),
+                    mEtVerifyCode.getText().toString().trim());
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

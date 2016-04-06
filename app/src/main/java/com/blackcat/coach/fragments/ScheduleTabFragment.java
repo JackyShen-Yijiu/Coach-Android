@@ -7,8 +7,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.activities.IndexActivity;
 
 /**
  * 日程 （tab）
@@ -52,12 +54,18 @@ public class ScheduleTabFragment extends BaseFragment {
         show(scheduleFragment, SCHEDULE);
         hide(reservationFragment, RESERVATION);
         type = 1;
+        ((IndexActivity)getActivity()).showHideQianDao(true,type,0);
+//        Toast.makeText(getActivity(),"showSchedule",Toast.LENGTH_SHORT).show();
+
     }
 
     private void showReservation(){
         show(reservationFragment,RESERVATION);
-        hide(scheduleFragment,SCHEDULE);
+        hide(scheduleFragment, SCHEDULE);
         type =0;
+        ((IndexActivity)getActivity()).showHideQianDao(true,-1,4);
+//        Toast.makeText(getActivity(),"showReservation",Toast.LENGTH_SHORT).show();
+
     }
 
     public void switchFragment(){
@@ -89,6 +97,7 @@ public class ScheduleTabFragment extends BaseFragment {
         if(frag==null){
             if(tag.equals(SCHEDULE)){
                 frag = new ChildScheduleFragment();
+
             }else{
                 frag = new ReservationFragment();
             }

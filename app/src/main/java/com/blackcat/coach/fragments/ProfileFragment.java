@@ -96,10 +96,6 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
         LinearLayout stat = (LinearLayout) rootView.findViewById(R.id.ll_stat);
         stat.setOnClickListener(this);
 
-
-
-
-
     }
 
     private void bindUserInfo() {
@@ -164,7 +160,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
     @Override
     public void onClick(View v) {
         //没有审核通过，不是设置
-        if(!Session.getSession().is_validation && v.getId() !=R.id.rl_setting){
+        if(!Session.getSession().is_validation && v.getId() !=R.id.ll_setting){
             ToastHelper.getInstance(getActivity().getApplicationContext()).toast(R.string.coach_not_avlidable);
             return ;
         }

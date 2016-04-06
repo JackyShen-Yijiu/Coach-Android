@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -44,6 +45,7 @@ import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
+import com.blackcat.coach.widgets.PullToRefreshView;
 import com.blackcat.coach.widgets.SelectableRoundedImageView;
 import com.google.gson.reflect.TypeToken;
 
@@ -93,8 +95,8 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
 
         mPage = 1;
         if (mUser!=null) {
-            fetchUserInfo(mUser.userid);
-            mURI = URIUtil.getCommentList(mUser.userid,mPage);
+            fetchUserInfo(mUser._id);
+            mURI = URIUtil.getCommentList(mUser._id,mPage);
             refresh(DicCode.RefreshType.R_INIT, mURI);
         }else{
             fetchUserInfo("56e95ace17a0206355ec380b");
@@ -108,6 +110,8 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
     @Override
     protected void initViews(View rootView, LayoutInflater inflater, int adapterType, int headerLayoutRes) {
         super.initViews(rootView, inflater, adapterType, headerLayoutRes);
+
+
 
         mTvCarModel = (TextView) mHeaderView.findViewById(R.id.tv_car_type);
         mTvProgress = (TextView) mHeaderView.findViewById(R.id.tv_subject_progress);
@@ -227,14 +231,14 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
     @Override
     public void onRefresh() {
         mPage = 1;
-        mURI = URIUtil.getCommentList(mUser.userid, mPage);
+        mURI = URIUtil.getCommentList(mUser._id, mPage);
         refresh(DicCode.RefreshType.R_PULL_DOWN, mURI);
     }
 
     @Override
     public void onLoadMore() {
         mPage++;
-        mURI = URIUtil.getCommentList(mUser.userid, mPage);
+        mURI = URIUtil.getCommentList(mUser._id, mPage);
         refresh(DicCode.RefreshType.R_PULL_UP, mURI);
     }
 
@@ -327,7 +331,7 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
 
         RemindExam params = new RemindExam();
         params.coachid = String.valueOf(Session.getSession().coachid);
-        params.userid = userId;
+        params._id = userId;
 
         Map map = new HashMap<>();
         map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
@@ -374,6 +378,6 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
 
     class RemindExam{
         String coachid;
-        String userid;
+        String _id;
     }
 }

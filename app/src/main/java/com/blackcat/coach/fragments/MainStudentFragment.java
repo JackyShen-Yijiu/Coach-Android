@@ -55,6 +55,12 @@ public class MainStudentFragment extends BaseFragment{
         View rootView = inflater.inflate(R.layout.fragment_main_student, container, false);
         initView(rootView);
         initData();
+        if(!Session.getSession().is_validation){//没有审核通过
+            rb1.setEnabled(false);
+            rb2.setEnabled(false);
+            rb3.setEnabled(false);
+            rb4.setEnabled(false);
+        }
         return rootView;
     }
 
@@ -119,11 +125,13 @@ public class MainStudentFragment extends BaseFragment{
 
 
         getActivity().setTitle("学员");
+        LogUtil.print("subject---size-->"+Session.getSession().subject.size());
         //动态 改变 科目二 科目三
         switch (Session.getSession().subject.size()){
 
             case 0:
 
+                break;
             case 1://隐藏 group
                 rg.setVisibility(View.GONE);
                 getActivity().setTitle(Session.getSession().subject.get(0).name);
@@ -131,11 +139,20 @@ public class MainStudentFragment extends BaseFragment{
             case 2://隐藏中间两个
                 rb2.setVisibility(View.GONE);
                 rb3.setVisibility(View.GONE);
+                rb1.setText(Session.getSession().subject.get(0).name);
+                rb4.setText(Session.getSession().subject.get(1).name);
                 break;
             case 3:
                 rb2.setVisibility(View.GONE);
+                rb1.setText(Session.getSession().subject.get(0).name);
+                rb3.setText(Session.getSession().subject.get(1).name);
+                rb4.setText(Session.getSession().subject.get(2).name);
                 break;
             case 4:
+                rb1.setText(Session.getSession().subject.get(0).name);
+                rb2.setText(Session.getSession().subject.get(1).name);
+                rb3.setText(Session.getSession().subject.get(2).name);
+                rb4.setText(Session.getSession().subject.get(3).name);
                 break;
         }
         for (Subject subject : Session.getSession().subject) {

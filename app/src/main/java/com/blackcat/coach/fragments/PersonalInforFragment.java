@@ -46,6 +46,7 @@ import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.LabelBean;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
+import com.blackcat.coach.models.Subject;
 import com.blackcat.coach.models.params.UpdateCoachParams;
 import com.blackcat.coach.qiniu.PhotoUtil;
 import com.blackcat.coach.qiniu.QiniuUploadManager;
@@ -72,8 +73,7 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
 
     private TextView mTvIdCard, mTvDriverLicense,mTvSenioritymTvPhone,mTvSeniority,mTvPhone,mTvSeniorityId,mTvSex,mTvIntroduction,mTvName,mTvId;
     private SelectableRoundedImageView mIvAvatar;
-
-    private Button btnBaoKao;
+    private List<Subject> mSubjectList;
 
 //    private WordWrapView  wordWrapView;
     private TextView tv_job_category;
@@ -148,8 +148,8 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
         tv_job_category.setOnClickListener(this);
 //        RelativeLayout workTime = (RelativeLayout) rootView.findViewById(R.id.rl_work_time);
 //        workTime.setOnClickListener(this);
-        RelativeLayout techClass = (RelativeLayout) rootView.findViewById(R.id.rl_tech_subject);
-        techClass.setOnClickListener(this);
+//        RelativeLayout techClass = (RelativeLayout) rootView.findViewById(R.id.rl_tech_subject);
+//        techClass.setOnClickListener(this);
 
         RelativeLayout trainfield = (RelativeLayout) rootView.findViewById(R.id.rl_train_field);
         trainfield.setOnClickListener(this);
@@ -234,14 +234,16 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
             tv_job_category.setText(R.string.str_direct_coach);}
 
 
-        if(Session.getSession().subject.size()>0){//可授科目
-            if(Session.getSession().subject.size()==1){
-                mSubject.setText(Session.getSession().subject.get(0).name);
-            }else
-                mSubject.setText("已设置");
-        }else{
-            mSubject.setText("");
+//        if(!TextUtils.isEmpty(Session.getSession().mSubjectList)){//可授科目
+//            mSubject.setText(mSubjectList.name);
+//        }else{
+//            mSubject.setText("");
+//        }
+
+        for (int i = 0; i <Session.getSession().subject.size(); i++) {
+           mSubject.setText(Session.getSession().subject.get(i).name.toString()+"");
         }
+
 
         //addTags();
     }
@@ -372,9 +374,9 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
 ////                startActivityForResult(i1,1);
 //                startActivity(i1);
 //                break;
-            case R.id.rl_tech_subject://可授科目
-                startActivity(new Intent(mActivity, TrainingSubjectActivity.class));
-                break;
+//            case R.id.rl_tech_subject://可授科目
+//                startActivity(new Intent(mActivity, TrainingSubjectActivity.class));
+//                break;
             case R.id.rl_train_field://训练场地
                 startActivity(new Intent(mActivity, TrainFieldActivity.class));
                 break;

@@ -261,6 +261,7 @@ public class SettingsActivity extends BaseActivity implements View.OnClickListen
                     e.printStackTrace();
                 }
                 DataCleanManager.clearAllCache(SettingsActivity.this);
+                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.clean_ok);
                 try {
                     //清除后的操作
                     Log.e("YQY", DataCleanManager.getTotalCacheSize(SettingsActivity.this));
