@@ -77,11 +77,14 @@ public class DaytimelyReservationFragment extends BaseListFragment<DaytimelysRes
     }
 
 
-    public void setData(String date){
+    public void setData(Date date){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        format.format(date.getDate());
         if (!Session.isUserInfoEmpty()) {
-            this.date = date;
+            this.date = format.format(date);
             request();
         }
+
     }
 
     @Override
@@ -127,17 +130,24 @@ public class DaytimelyReservationFragment extends BaseListFragment<DaytimelysRes
     @Override
     public void onFeedsResponse(Result<List<DaytimelysReservation>> response, int refreshType) {
         super.onFeedsResponse(response, refreshType);
+
         Date beginTime = null;
         Date endTime = null;
-        for (int i=0;i<response.data.size();i++){
-            beginTime = UTC2LOC.instance.getDates(response.data.get(i).coursebegintime,"yyyy-MM-dd HH:mm:ss");
-            endTime = UTC2LOC.instance.getDates(response.data.get(i).courseendtime,"yyyy-MM-dd HH:mm:ss");
-            LogUtil.print(beginTime.toLocaleString()+"----"+endTime.toLocaleString());
-            Date now = Calendar.getInstance().getTime();
-            if(now.after(beginTime) && now.before(endTime)){
-                mListView.setSelection(i);
-                break;
-            }
+        mListView.setSelection(0);
+        if(response.data.size()>0&&CommonUtil.isSameDate(Calendar.getInstance().getTime(),
+                UTC2LOC.instance.getDates(response.data.get(0).coursedate, "yyyy-MM-dd"))){
+            for (int i=0;i<response.data.size();i++){
+                beginTime = UTC2LOC.instance.getDates(response.data.get(i).coursebegintime,"yyyy-MM-dd HH:mm:ss");
+                endTime = UTC2LOC.instance.getDates(response.data.get(i).courseendtime,"yyyy-MM-dd HH:mm:ss");
+                LogUtil.print(beginTime.toLocaleString()+"----"+endTime.toLocaleString());
+                Date now = Calendar.getInstance().getTime();
+                if(now.after(beginTime) && now.before(endTime)){
+                    mListView.setSelection(i);
+                    break;
+                }
+        }
+//        Calendar.getInstance().getTime().compareTo(response.data.get(0).coursedate);
+
         }
     }
 

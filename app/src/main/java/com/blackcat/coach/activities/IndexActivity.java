@@ -828,14 +828,16 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 tvQianDao.setVisibility(View.VISIBLE);
                 tvQianDao.setTextSize(10);
                 tvQianDao.setText("签到");
-                imgQuery.setImageResource(R.drawable.iconfont_icon);
+
+                imgQuery.setImageResource(R.mipmap.iconfont_icon);
                 imgQuery.setVisibility(View.VISIBLE);
             }else if(type == 4){//隐藏右边的所有
                 tvQianDao.setVisibility(View.GONE);
                 imgQuery.setVisibility(View.GONE);
             }else{
-                tvQianDao.setVisibility(View.GONE);
-                imgQuery.setImageResource(R.drawable.iconfont_icon);
+                tvQianDao.setVisibility(View.VISIBLE);
+                imgQuery.setImageResource(R.mipmap.iconfont_icon);
+                tvQianDao.setText("签到");
                 imgQuery.setVisibility(View.VISIBLE);
             }
 
@@ -902,13 +904,13 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
 //                LogUtil.print("current---page" + mMainContainer.getCurrentTabType());
                 if(currentPage == 0){
-                    if(ReservationFragment.currentPage == 0){//签到
+//                    if(ReservationFragment.currentPage == 0){//签到
                         Intent intent = new Intent(this, CaptureActivity.class);
                         startActivity(intent);
-                    }else{//搜索
-                        Intent intent1 = new Intent(this, QueryAct.class);
-                        startActivity(intent1);
-                    }
+//                    }else{//搜索
+//                        Intent intent1 = new Intent(this, QueryAct.class);
+//                        startActivity(intent1);
+//                    }
                 }else if(currentPage == 2){
 //                    Intent intent1 = new Intent(this, StudentAppointmentAct.class);
                     Intent intent1 = new Intent(this, StudentsActivity1.class);
