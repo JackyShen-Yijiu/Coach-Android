@@ -609,6 +609,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
         llQianDao = (LinearLayout) findViewById(R.id.toolbar_title_right);
         tvQianDao = (TextView) findViewById(R.id.toobar_title_right_tv);
+        tvQianDao.setVisibility(View.VISIBLE);
         imgQuery = (ImageView) findViewById(R.id.toobar_title_right_img);
         mVerificationWarning = (TextView) findViewById(R.id.tv_verification_warning);
         if (!Session.getSession().is_validation) {
@@ -756,8 +757,6 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 }else{
                     mToolBarTitle.setText("学员");
                 }
-
-
 //                mToolBarTitle.setText(R.string.title_reservation);
 //                mToolBarTitle.setTextSize(18);
                 showHideQianDao(false, ReservationFragment.currentPage, 2);
@@ -836,7 +835,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 imgQuery.setVisibility(View.GONE);
             }else{
                 tvQianDao.setVisibility(View.GONE);
-                imgQuery.setImageResource(R.drawable.iconfont_query);
+                imgQuery.setImageResource(R.drawable.iconfont_icon);
                 imgQuery.setVisibility(View.VISIBLE);
             }
 

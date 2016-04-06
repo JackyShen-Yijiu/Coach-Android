@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -443,11 +444,11 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
             @Override
             public void onDateClick(View view, DateData date) {
                 super.onDateClick(view, date);
-                LogUtil.print("formatter----"+date.getDate().toLocaleString());
-                if (popWindow != null&&popWindow.isShowing()) {
+                LogUtil.print("formatter----" + date.getDate().toLocaleString());
+                if (popWindow != null && popWindow.isShowing()) {
                     popWindow.dismiss();
                 }
-                if(reservationFragment!=null){
+                if (reservationFragment != null) {
                     reservationFragment.setData(format.format(date.getDate()));
                 }
 //               switchPage(date.getDate());
@@ -468,7 +469,15 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         popWindow.setOutsideTouchable(true);
         // 这个是为了点击“返回Back”也能使其消失，并且并不会影响你的背景
         popWindow.setBackgroundDrawable(new BitmapDrawable());
+        popWindow.setAnimationStyle(R.style.popwin_anim_style);
         popWindow.showAsDropDown(toolBar);
+//        popWindow.showAsDropDown(expCalendarView);
+
+//        popWindow.showAtLocation(toolBar, Gravity.TOP,0,0);
+    }
+
+    private void popAnimIn(){
+//        popWindow.
     }
 
 
