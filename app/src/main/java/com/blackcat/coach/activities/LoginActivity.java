@@ -171,6 +171,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
 
     private void hxLogin(final String username, final String pwd) {//环信登录
+        LogUtil.print(username+"ddddd----"+pwd);
 //    if (BlackCatHXSDKHelper.getInstance().isLogined()) {
 //        return;
 //    }

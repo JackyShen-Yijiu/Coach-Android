@@ -23,6 +23,7 @@ public class WeekAdapter extends ArrayAdapter<Integer> {
     private Context mContext;
     private TextView lastClickView = null;
     private int lastIitem;
+    private boolean isFirst = true;
 
     public WeekAdapter(Context context, int resource, List<AppointmentDay> data) {
         super(context, resource);
@@ -69,8 +70,17 @@ public class WeekAdapter extends ArrayAdapter<Integer> {
         final int today = calendar.get(Calendar.DAY_OF_MONTH);
 //		final int thisMonth = calendar.get(Calendar.MONTH + 1);
         if (appointmentDay.day == today) {
-            holder.solar.setTextColor(CommonUtil.getColor(mContext,
-                    R.color.new_txt_blues));
+//            holder.solar.setTextColor(CommonUtil.getColor(mContext,
+//                    R.color.new_txt_blues));
+            if(isFirst){
+                holder.solar.setTextColor(CommonUtil.getColor(mContext,
+                        R.color.white));
+                holder.solar.setBackgroundResource(R.drawable.point);
+                lastClickView = holder.solar;
+                lastIitem = appointmentDay.day;
+                isFirst = false;
+            }
+
             // holder.hasOrder.setVisibility(View.VISIBLE);
             // LogUtil.print("今天");
         }
@@ -125,15 +135,15 @@ public class WeekAdapter extends ArrayAdapter<Integer> {
                         // if (lastClickView == textView) {
                         // return;
                         // }
-                        if (lastIitem == today) {
-                            lastClickView.setBackgroundDrawable(null);
-                            lastClickView.setTextColor(CommonUtil.getColor(
-                                    mContext, R.color.new_txt_blues));
-                        } else {
+//                        if (lastIitem == today) {
+////                            lastClickView.setBackgroundDrawable(null);
+////                            lastClickView.setTextColor(CommonUtil.getColor(
+////                                    mContext, R.color.new_txt_blues));
+//                        } else {
                             lastClickView.setBackgroundDrawable(null);
                             lastClickView.setTextColor(CommonUtil.getColor(
                                     mContext, R.color.new_txt_blacks));
-                        }
+//                        }
 
                     }
                     textView.setBackgroundResource(R.drawable.point);

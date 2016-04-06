@@ -170,12 +170,25 @@ public class RowSchedule {
 
         @Override
         public int getCount() {
-            return reservation.coursestudentcount;
+            int count=0;
+                if (UTC2LOC.instance.getDates(reservation.courseendtime, "yyyy-MM-dd HH:mm:ss").
+                        before(Calendar.getInstance().getTime())) {
+                    //过时的不显示“+”
+                    count = reservation.selectedstudentcount;
+                    LogUtil.print("4444444--gsg----"+count);
+                }else{
+                    count=reservation.coursestudentcount;
+                }
+            if(count ==0){
+                count =1;
+            }
+            return count;
         }
 
 
         @Override
         public Object getItem(int position) {
+            //
             return reservation.coursereservationdetial.get(position);
         }
 
@@ -191,7 +204,10 @@ public class RowSchedule {
             SelectableRoundedImageView studentPic = (SelectableRoundedImageView) convertView.findViewById(R.id.student_pic_iv);
             TextView studentNameTv = (TextView) convertView.findViewById(R.id.student_name_tv);
             ImageView studyStatusIv = (ImageView) convertView.findViewById(R.id.student_study_status_iv);
-            TextView missClassTv = (TextView) convertView.findViewById(R.id.student_miss_class_tv);
+            SelectableRoundedImageView missClassTv = (SelectableRoundedImageView) convertView.findViewById(R.id.student_miss_class_tv);
+            missClassTv.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            missClassTv.setImageResource(R.mipmap.schedule_item_miss_class);
+            missClassTv.setOval(true);
             missClassTv.setVisibility(View.INVISIBLE);
             studyStatusIv.setVisibility(View.INVISIBLE);
             studentPic.setScaleType(ImageView.ScaleType.CENTER_CROP);
@@ -218,6 +234,8 @@ public class RowSchedule {
                 } else {
                     studyStatusIv.setVisibility(View.INVISIBLE);
                 }
+
+
             } else {
                 Date now = Calendar.getInstance().getTime();
                 //过时
@@ -226,9 +244,16 @@ public class RowSchedule {
                     studentPic.setVisibility(View.INVISIBLE);
                     studentNameTv.setVisibility(View.INVISIBLE);
                 } else {
+                    if (UTC2LOC.instance.getDates(reservation.coursebegintime, "yyyy-MM-dd HH:mm:ss").before(Calendar.getInstance().getTime())
+                            &&UTC2LOC.instance.getDates(reservation.courseendtime, "yyyy-MM-dd HH:mm:ss").after(Calendar.getInstance().getTime())) {
+                        //当前时间的不出现“+”
+//                        studentPic.setVisibility(View.INVISIBLE);
+//                        studentNameTv.setVisibility(View.INVISIBLE);
+                    }else{
+                        studentPic.setImageResource(R.mipmap.schedule_item_add_student);
+                        studentNameTv.setVisibility(View.INVISIBLE);
+                    }
 
-                    studentPic.setImageResource(R.mipmap.schedule_item_add_student);
-                    studentNameTv.setVisibility(View.INVISIBLE);
                 }
             }
 

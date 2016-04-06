@@ -24,6 +24,7 @@ import com.blackcat.coach.activities.StudentAppointmentAct;
 import com.blackcat.coach.adapters.CommonAdapter;
 import com.blackcat.coach.adapters.rows.RowAddStudents;
 import com.blackcat.coach.dialogs.ApplySuccessDialog;
+import com.blackcat.coach.events.MonthApplyEvent;
 import com.blackcat.coach.models.AddStudentsVO;
 import com.blackcat.coach.models.DaytimelysReservation;
 import com.blackcat.coach.models.DicCode;
@@ -43,11 +44,14 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * Created by aa on 2016/3/29.
@@ -355,7 +359,7 @@ public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> impleme
         params.is_shuttle = shuttle;
         params.address = Session.getSession().address;
         params.begintime = UTC2LOC.instance.getDate(selectCourseList.get(0).coursebegintime, "yyyy-MM-dd HH:mm:ss");
-        params.endtime = UTC2LOC.instance.getDate(selectCourseList.get(selectCourseList.size() - 1).coursebegintime, "yyyy-MM-dd HH:mm:ss");
+        params.endtime = UTC2LOC.instance.getDate(selectCourseList.get(selectCourseList.size() - 1).courseendtime, "yyyy-MM-dd HH:mm:ss");
 
         LogUtil.print(GsonUtils.toJson(params));
         Map map = new HashMap<>();
@@ -373,14 +377,33 @@ public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> impleme
                             dialog.setTextAndImage("是",
                                     "恭喜您预约成功，是否短信通知学员", "否",
                                     R.drawable.ic_dialog);
-                            dialog.setListener(new View.OnClickListener() {
+                            dialog.setConfirmListener(new View.OnClickListener() {
 
                                 @Override
                                 public void onClick(View arg0) {
                                     //发短信
 //                                    ToastHelper.getInstance(CarCoachApplication.getInstance()).toast("发短差");
+                                    MonthApplyEvent event = new MonthApplyEvent();
+                                    Calendar calendar = Calendar.getInstance();
+                                    calendar.setTime(UTC2LOC.instance.getDates(selectCourseList.get(0).coursebegintime,"yyyy-MM-dd"));
+                                    event.calendar = calendar;
+                                    EventBus.getDefault().post(event);
                                     sendMsg(RowAddStudents.selectUser.mobile);
                                     dialog.dismiss();
+                                    getActivity().finish();
+                                }
+                            });
+                            dialog.setCancelListener(new View.OnClickListener() {
+
+                                @Override
+                                public void onClick(View arg0) {
+                                    MonthApplyEvent event = new MonthApplyEvent();
+                                    Calendar calendar = Calendar.getInstance();
+                                    calendar.setTime(UTC2LOC.instance.getDates(selectCourseList.get(0).coursebegintime,"yyyy-MM-dd"));
+                                    event.calendar = calendar;
+                                    EventBus.getDefault().post(event);
+                                    dialog.dismiss();
+                                    getActivity().finish();
                                 }
                             });
                             dialog.show();

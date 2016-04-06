@@ -75,6 +75,7 @@ import java.lang.ref.WeakReference;
 import java.lang.reflect.Type;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -826,7 +827,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
         if (flag){
             llQianDao.setVisibility(View.VISIBLE);
             if(position==0){//签到
-                tvQianDao.setVisibility(View.VISIBLE);
+                tvQianDao.setVisibility(View.GONE);
                 tvQianDao.setTextSize(10);
                 tvQianDao.setText("签到");
 
@@ -928,7 +929,10 @@ public class IndexActivity extends BaseActivity implements IKillable,
             case R.id.toolbar_left_title:
                 //点击今天按钮
                 LogUtil.print("点击今天---");
-                EventBus.getDefault().post(new MonthApplyEvent());
+                MonthApplyEvent event = new MonthApplyEvent();
+                Calendar calendar = Calendar.getInstance();
+                event.calendar = calendar;
+                EventBus.getDefault().post(event);
                 break;
             default:
                 break;

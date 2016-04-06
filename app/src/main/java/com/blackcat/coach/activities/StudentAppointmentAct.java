@@ -400,7 +400,7 @@ public class StudentAppointmentAct extends BaseActivity implements View.OnClickL
                             dialog.setTextAndImage("是",
                                     "恭喜您预约成功，是否短信通知学员", "否",
                                     R.drawable.ic_dialog);
-                            dialog.setListener(new View.OnClickListener() {
+                            dialog.setConfirmListener(new View.OnClickListener() {
 
                                 @Override
                                 public void onClick(View arg0) {

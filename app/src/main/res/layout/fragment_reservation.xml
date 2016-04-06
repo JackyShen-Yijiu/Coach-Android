@@ -5,21 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/new_bg_gray"
     tools:context="com.blackcat.coach.fragments.ReservationFragment">
 
     <com.blackcat.coach.lib.PagerSlidingTab
         android:id="@+id/fragment_reservation_sliding_tab"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="12dp"
-        android:textSize="12sp"
+        android:layout_height="40dp"
+        android:textSize="14sp"
         android:textColor="@drawable/selector_textcolor"
         app:tabPaddingLeftRight="24dp"
         app:indicatorColor="@color/slidingtab_indicatorcolor"
-        app:underlineColor="@android:color/transparent"
-        app:underlineHeight="1dp"
-        app:indicatorHeight="1dp"
+        app:underlineColor="@color/line_bg"
+        app:underlineHeight="0.5dp"
+        app:indicatorHeight="2dp"
         android:background="@color/white"
         android:fillViewport="false">
     </com.blackcat.coach.lib.PagerSlidingTab>

@@ -68,8 +68,12 @@ public class ApplySuccessDialog extends Dialog implements
 	 * @param listener
 	 */
 	
-	public void setListener(View.OnClickListener listener){
+	public void setConfirmListener(View.OnClickListener listener){
 		confirmBtn.setOnClickListener(listener);
+	}
+
+	public void setCancelListener(View.OnClickListener listener){
+		cancelBtn.setOnClickListener(listener);
 	}
 
 	@Override

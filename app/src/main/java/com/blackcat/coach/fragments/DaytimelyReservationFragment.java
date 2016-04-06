@@ -79,7 +79,7 @@ public class DaytimelyReservationFragment extends BaseListFragment<DaytimelysRes
 
     public void setData(Date date){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        format.format(date.getDate());
+//        format.format(date.getDate());
         if (!Session.isUserInfoEmpty()) {
             this.date = format.format(date);
             request();

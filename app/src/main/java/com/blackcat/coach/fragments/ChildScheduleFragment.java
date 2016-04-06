@@ -128,7 +128,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
     public void onEvent(MonthApplyEvent event){
         LogUtil.print("点击今天");
 //        expCalendarView.setCurrentItem(CellConfig.middlePosition);
-        Calendar calendar = Calendar.getInstance();
+//        Calendar calendar = Calendar.getInstance();
+        Calendar calendar = event.calendar;
 //        DateData dateData =  new DateData(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.DAY_OF_MONTH));
 //        expCalendarView.travelTo(dateData);
         if (reservationFragment != null) {
@@ -219,7 +220,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
 
                     LogUtil.print("点击了" + day.year + "-" + day.month + "-" + day.day);
                     Calendar calendar = Calendar.getInstance();
-                    calendar.set(day.year, day.month, day.day);
+                    calendar.set(day.year, (day.month-1), day.day);
 
                     if (reservationFragment != null) {
 
@@ -498,13 +499,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         popWindow = new PopupWindow(popview,
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT);
-//        popWindow.setAnimationStyle(R.style.CustomDialog);
-        popWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-            @Override
-            public void onDismiss() {
-                imageInit();
-            }
-        });
+        popWindow.setAnimationStyle(R.style.CustomDialog);
+
         popWindow.setFocusable(true);
         popWindow.setOutsideTouchable(true);
         // 这个是为了点击“返回Back”也能使其消失，并且并不会影响你的背景
