@@ -67,6 +67,16 @@ public class ExpCalendarUtil {
         return new DateData(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, 1);
     }
 
+//    public static int getPostion(Calendar calendar) {
+//        Log.i("ExpDateData", CellConfig.w2mPointDate.toString());
+//        Calendar calendar = Calendar.getInstance();
+////        calendar.set(CellConfig.w2mPointDate.getYear(), CellConfig.w2mPointDate.getMonth() - 1, CellConfig.w2mPointDate.getDay());
+//        int distance = absPos - CellConfig.Month2WeekPos;
+//        int absPos =
+//        calendar.add(Calendar.DATE, distance * 7);
+//        return new DateData(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, 1);
+//    }
+
 
     public static int getMonthDayNumber(int offset) {
         Calendar calendar = Calendar.getInstance();

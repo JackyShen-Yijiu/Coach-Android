@@ -37,6 +37,7 @@ public class MonthViewExpd extends MonthView {
         adapter = new CalendarExpAdapter(getContext(), 1, monthWeekData.getData()).setCellViews(cellView, markView);
         adapter.setDisplayData(selectDate);
         this.setAdapter(adapter);
+
     }
 
     private void getMonthWeekData(int position) {

@@ -818,7 +818,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 tvQianDao.setVisibility(View.VISIBLE);
                 tvQianDao.setTextSize(10);
                 tvQianDao.setText("签到");
-                imgQuery.setImageResource(R.drawable.iconfont_icon);
+                imgQuery.setImageResource(R.mipmap.iconfont_icon);
             }else {
                 tvQianDao.setVisibility(View.GONE);
                 imgQuery.setImageResource(R.drawable.iconfont_query);

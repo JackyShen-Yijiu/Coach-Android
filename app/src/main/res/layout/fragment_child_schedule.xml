@@ -39,10 +39,10 @@
 
                     <!--  -->
 
-                    <sun.bob.mcalendarview.views.ExpCalendarView
-                        android:id="@+id/calendar_exp"
+                    <com.blackcat.coach.lib.calendar.WeekViewPager
+                        android:id="@+id/calendar_exp_vp"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="36dp"
                         />
                 </LinearLayout>
                 <ImageView

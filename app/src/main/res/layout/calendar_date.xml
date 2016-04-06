@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="#fff"
+    android:paddingBottom="4dp"
+    android:orientation="vertical" >
+
+   <!-- <TextView
+        android:id="@+id/week"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="周一"
+        android:visibility="gone"
+        android:textColor="@color/new_txt_lights"
+        android:textSize="12sp" />-->
+
+    <TextView
+        android:id="@+id/solar"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="2dp"
+        android:text="13"
+        android:textColor="@color/new_txt_lights"
+        android:textSize="14sp" />
+
+</RelativeLayout>

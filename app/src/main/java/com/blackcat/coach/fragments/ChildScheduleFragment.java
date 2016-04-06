@@ -3,6 +3,7 @@ package com.blackcat.coach.fragments;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -30,6 +31,11 @@ import com.blackcat.coach.caldroid.CaldroidFragment;
 
 import com.blackcat.coach.easemob.utils.CommonUtils;
 import com.blackcat.coach.events.MonthApplyEvent;
+import com.blackcat.coach.lib.calendar.AppointmentDay;
+import com.blackcat.coach.lib.calendar.AppointmentWeekFragment;
+import com.blackcat.coach.lib.calendar.OnDateClickListener;
+import com.blackcat.coach.lib.calendar.WeekViewPager;
+import com.blackcat.coach.lib.calendar.adapter.WeekViewPagerAdapter;
 import com.blackcat.coach.models.CoachCourseVO;
 import com.blackcat.coach.models.DaytimelysReservation;
 import com.blackcat.coach.models.DicCode;
@@ -62,6 +68,7 @@ import sun.bob.mcalendarview.CellConfig;
 import sun.bob.mcalendarview.listeners.OnExpDateClickListener;
 import sun.bob.mcalendarview.listeners.OnMonthScrollListener;
 import sun.bob.mcalendarview.views.ExpCalendarView;
+import sun.bob.mcalendarview.views.ExpWeekCalendarView;
 import sun.bob.mcalendarview.vo.DateData;
 
 
@@ -70,17 +77,17 @@ import sun.bob.mcalendarview.vo.DateData;
  */
 public class ChildScheduleFragment extends BaseListFragment<Reservation> implements View.OnClickListener {
 
+    public static Date selectedDate = Calendar.getInstance().getTime();
     // 基本变量
     private IndexActivity mContext;
 
 
-    private SimpleDateFormat formatter;
 
 
     private CaldroidFragment caldroidFragment;
     private String mCurrentDate;
 
-    private static ExpCalendarView expCalendarView;
+//    private static ExpWeekCalendarView expCalendarView;
 
 
     private float aspect = 180f / 112f;
@@ -92,6 +99,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
     private TextView yearAndMonthTv;
     private DaytimelyReservationFragment reservationFragment;
     private SimpleDateFormat format;
+    private WeekViewPager viewPager;
     //    private NoScrollViewPager reservationViewpager;
 
 
@@ -121,8 +129,15 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         LogUtil.print("点击今天");
 //        expCalendarView.setCurrentItem(CellConfig.middlePosition);
         Calendar calendar = Calendar.getInstance();
-        DateData dateData =  new DateData(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.DAY_OF_MONTH));
-        expCalendarView.travelTo(dateData);
+//        DateData dateData =  new DateData(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.DAY_OF_MONTH));
+//        expCalendarView.travelTo(dateData);
+        if (reservationFragment != null) {
+//                    selectedDate = date.getDate();
+            reservationFragment.setData(calendar.getTime());
+        }
+        viewPager.setFragmentManger(getChildFragmentManager());
+
+        viewPager.setSelectDate(calendar.getTime(),viewPager.getCurrentItem());
     }
 
 
@@ -143,23 +158,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
 //        initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_SCHEDULE);
 
         initView(rootView);
-//        mListView.setOnLoadMoreListener(null);
-//        formatter = new SimpleDateFormat("yyyy-MM-dd");
-//        mCurrentDate = formatter.format(new Date());// 当期日期
-//
-//        mType = new TypeToken<Result<List<DaytimelysReservation>>>() {}.getType();
-//
-//
-////        mPage = 1;
-//        if (!Session.isUserInfoEmpty()) {
-//            mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);
-//            refresh(DicCode.RefreshType.R_INIT, mURI);
-//        }
 
-
-//        requestTime(mCurrentDate);
-
-        initData();
+//        initData();
         return rootView;
     }
 
@@ -205,7 +205,33 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
 
         rootView.findViewById(R.id.working_hour_confirm_but).setOnClickListener(this);
         //      Get instance.
-        expCalendarView = ((ExpCalendarView) rootView.findViewById(R.id.calendar_exp));
+//        expCalendarView = ((ExpWeekCalendarView) rootView.findViewById(R.id.calendar_exp));
+        viewPager = (WeekViewPager) rootView.findViewById(R.id.calendar_exp_vp);
+
+        viewPager.setAdapter(new WeekViewPagerAdapter(getChildFragmentManager()));
+
+        viewPager.setCurrentItem(500);
+        viewPager.setOnDateClickListener(new OnDateClickListener() {
+
+            @Override
+            public void onDateClick(AppointmentDay day, boolean clickbale) {
+                if (clickbale) {
+
+                    LogUtil.print("点击了" + day.year + "-" + day.month + "-" + day.day);
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.set(day.year, day.month, day.day);
+
+                    if (reservationFragment != null) {
+
+                        reservationFragment.setData(calendar.getTime());
+                    }
+                } else {
+                    // LogUtil.print("木有点击了" + day);
+                }
+            }
+        });
+
+
         expandIv = (ImageView) rootView.findViewById(R.id.schedule_expand_calendar);
         rootView.findViewById(R.id.schedule_calendar_layout).setOnClickListener(this);
         expandIv.setOnClickListener(this);
@@ -246,64 +272,67 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         imageInit();
 
 //      Set up listeners.
-        expCalendarView.setOnDateClickListener(new OnExpDateClickListener()).setOnMonthScrollListener(new OnMonthScrollListener() {
-            @Override
-            public void onMonthChange(int year, int month) {
-//                YearMonthTv.setText(String.format("%d年%d月", year, month));
-                if (!(mYear == year && mMonth == month)) {
-                    mMonth = month;
-                    mYear = year;
-                    mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
-//                    obtainMonthApplyData(mYear + "", mMonth + "");
-
-                }
-                LogUtil.print("onMonthChange---"+year+"-"+month);
-                if (yearAndMonthTv != null) {
-
-                    yearAndMonthTv.setText(String.format("%d年%d月", year, month));
-                }
-
-            }
-
-            @Override
-            public void onMonthScroll(float positionOffset) {
-//                Log.i("listener", "onMonthScroll:" + positionOffset);
-            }
-        });
-
-        expCalendarView.setOnDateClickListener(new OnExpDateClickListener()).setOnDateClickListener(new OnExpDateClickListener() {
-            @Override
-            public void onDateClick(View view, DateData date) {
-                super.onDateClick(view, date);
-                if (popWindow != null&&popWindow.isShowing()) {
-                    popWindow.dismiss();
-                }
-                if(reservationFragment!=null){
-                    reservationFragment.setData(format.format(date.getDate()));
-                }
-//                switchPage(date.getDate());
-//                String str = formatter.format(date.getDate());
-                LogUtil.print("formatter"+date.getDate().toLocaleString());
-//                if (!mCurrentDate.equals(str)) {
-//                    mCurrentDate = str;
-//                    mAdapter.setList(null);
-//                    mAdapter.notifyDataSetChanged();
-//                    mPage = 1;
-//                    if (!Session.isUserInfoEmpty()) {
-//                        mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);
-//                        refresh(DicCode.RefreshType.R_INIT, mURI);
-//                    }
-////                    requestTime(str);
+//        expCalendarView.setOnDateClickListener(new OnExpDateClickListener()).setOnMonthScrollListener(new OnMonthScrollListener() {
+//            @Override
+//            public void onMonthChange(int year, int month) {
+////                YearMonthTv.setText(String.format("%d年%d月", year, month));
+////                if (!(mYear == year && mMonth == month)) {
+////                    mMonth = month;
+////                    mYear = year;
+////                    mContext.setmToolBarTitle(String.format("%d-%d", mYear, mMonth));
+//////                    obtainMonthApplyData(mYear + "", mMonth + "");
+////
+////                }
+//
+//                LogUtil.print("onMonthChange---"+year+"-"+month);
+//                if (yearAndMonthTv != null) {
+//
+//                    yearAndMonthTv.setText(String.format("%d年%d月", year, month));
 //                }
-            }
-        });
+//
+//            }
+//
+//            @Override
+//            public void onMonthScroll(float positionOffset) {
+////                Log.i("listener", "onMonthScroll:" + positionOffset);
+//            }
+//        });
+//
+//        expCalendarView.setOnDateClickListener(new OnExpDateClickListener()).setOnDateClickListener(new OnExpDateClickListener() {
+//            @Override
+//            public void onDateClick(View view, DateData date) {
+//                super.onDateClick(view, date);
+//                if (popWindow != null&&popWindow.isShowing()) {
+//                    popWindow.dismiss();
+//                }
+//                LogUtil.print("expCalendarView---"+expCalendarView.getCurrentItem());
+//                if(reservationFragment!=null){
+//                    reservationFragment.setData(format.format(date.getDate()));
+//                }
+//                selectDate = date.getDate();
+////                switchPage(date.getDate());
+////                String str = formatter.format(date.getDate());
+//                LogUtil.print("formatter"+date.getDate().toLocaleString());
+////                if (!mCurrentDate.equals(str)) {
+////                    mCurrentDate = str;
+////                    mAdapter.setList(null);
+////                    mAdapter.notifyDataSetChanged();
+////                    mPage = 1;
+////                    if (!Session.isUserInfoEmpty()) {
+////                        mURI = URIUtil.getScheduleList(Session.getSession().coachid, mCurrentDate);
+////                        refresh(DicCode.RefreshType.R_INIT, mURI);
+////                    }
+//////                    requestTime(str);
+////                }
+//            }
+//        });
 
     }
 
     private void imageInit() {
         CellConfig.Month2WeekPos = CellConfig.middlePosition;
         CellConfig.ifMonth = false;
-        expCalendarView.shrink();
+//        expCalendarView.shrink();
 
     }
 
@@ -407,10 +436,11 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
                 //打开popwindow
                 CellConfig.Week2MonthPos = CellConfig.middlePosition;
                 CellConfig.ifMonth = true;
-                if (popExpCalendarView != null) {
-
-                    popExpCalendarView.expand();
-                }
+//                expCalendarView.getCurrentItem();
+//                if (popExpCalendarView != null) {
+//
+//                    popExpCalendarView.expand();
+//                }
                 openCalendarWindow();
                 break;
             case R.id.calendar_stop_expand_iv:
@@ -421,6 +451,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
             case R.id.working_hour_confirm_but:
                 startActivity(new Intent(getActivity(), StudyConfirmsAct.class));
                 LogUtil.print("工时确认");
+
                 break;
             default:
                 break;
@@ -435,24 +466,34 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
 
         LogUtil.print(((LinearLayout) popview.findViewById(R.id.pop_calendar_fragment)).findViewById(R.id.calendar_exp) + "llllll");
         yearAndMonthTv = (TextView) popview.findViewById(R.id.pop_calendar_fragment).findViewById(R.id.calendar_date_tv);
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy年MM月");
+        yearAndMonthTv.setText(format1.format(new Date()));
         popview.findViewById(R.id.pop_calendar_fragment).findViewById(R.id.calendar_stop_expand_iv).setOnClickListener(this);
         LinearLayout ExpCalendarViewLayout = (LinearLayout) popview.findViewById(R.id.pop_calendar_fragment).findViewById(R.id.pop_schedule_calendar_ll);
         popExpCalendarView = (ExpCalendarView) ExpCalendarViewLayout.getChildAt(0);
-
         popExpCalendarView.setOnDateClickListener(new OnExpDateClickListener()).setOnDateClickListener(new OnExpDateClickListener() {
             @Override
             public void onDateClick(View view, DateData date) {
                 super.onDateClick(view, date);
-                LogUtil.print("formatter----"+date.getDate().toLocaleString());
-                if (popWindow != null&&popWindow.isShowing()) {
+                LogUtil.print("popExpCalendarView---" + popExpCalendarView.getCurrentItem());
+                LogUtil.print(viewPager.getCurrentItem()+"formatter----" + date.getDate().toLocaleString());
+                if (popWindow != null && popWindow.isShowing()) {
                     popWindow.dismiss();
                 }
-                if(reservationFragment!=null){
-                    reservationFragment.setData(format.format(date.getDate()));
+                if (reservationFragment != null) {
+//                    selectedDate = date.getDate();
+                    reservationFragment.setData(date.getDate());
                 }
+                viewPager.setFragmentManger(getChildFragmentManager());
+
+                viewPager.setSelectDate(date.getDate(),viewPager.getCurrentItem());
 //               switchPage(date.getDate());
             }
         });
+
+
+
+
         Toolbar toolBar = mContext.getToolBar();
         popWindow = new PopupWindow(popview,
                 WindowManager.LayoutParams.MATCH_PARENT,

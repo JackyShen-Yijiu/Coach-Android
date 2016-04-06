@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="28dp"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="20dp"
         android:layout_toRightOf="@+id/line_rl"
         android:orientation="vertical">
 
@@ -94,7 +94,7 @@
             android:id="@+id/schedule_student_gv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="23dp"
+            android:layout_marginTop="20dp"
             android:cacheColorHint="@null"
             android:listSelector="@android:color/transparent"
             android:numColumns="5">
