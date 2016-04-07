@@ -16,20 +16,16 @@ import android.widget.TextView;
 
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.AddStudentsActivity;
-import com.blackcat.coach.activities.DetailReservationActivity;
 import com.blackcat.coach.activities.NewDetailStudentAct;
 import com.blackcat.coach.adapters.BaseViewHolder;
 import com.blackcat.coach.imgs.UILHelper;
 import com.blackcat.coach.models.DaytimelysReservation;
-import com.blackcat.coach.models.MessageCount;
-import com.blackcat.coach.models.Reservation;
 import com.blackcat.coach.models.User;
 import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.UTC2LOC;
 import com.blackcat.coach.widgets.SelectableRoundedImageView;
 
-import org.jivesoftware.smack.util.collections.IterableMap;
 
 import java.util.Calendar;
 import java.util.Date;
