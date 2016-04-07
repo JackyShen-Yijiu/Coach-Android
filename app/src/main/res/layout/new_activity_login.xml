@@ -70,7 +70,7 @@
         android:layout_below="@+id/et_verification_code"
         android:textColor="#CCCCCC"
         android:textSize="12sp"
-        android:text="只有联盟驾校教练才可以通过验证，加入极致驾服！"/>
+        android:text="只有联盟驾校教练才可以通过验证！"/>
 
     <Button
         android:id="@+id/btn_login"
@@ -81,7 +81,7 @@
         android:layout_marginTop="16dp"
         android:layout_below="@+id/tv_zhuyi"
         android:background="#6495FB"
-        android:text="立即加入"
+        android:text="立即登陆"
         android:textColor="@color/white_pure"
         android:textSize="16sp" />
 

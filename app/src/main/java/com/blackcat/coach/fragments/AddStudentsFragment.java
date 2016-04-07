@@ -80,7 +80,6 @@ public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> impleme
     DaytimelysReservation student1, student2, student3, student4;
 
     private List<DaytimelysReservation> selectCourseList = new ArrayList<DaytimelysReservation>();
-    private List<AddStudentsVO>list=new ArrayList<AddStudentsVO>();
     private Comparator<Object> courseComp;
     private RelativeLayout layout_null;
     private ImageView null_iv;
@@ -125,8 +124,6 @@ public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> impleme
 
     private void initView(View view) {
 
-        layout_null=(RelativeLayout)view.findViewById(R.id.layout_null);
-        null_iv=(ImageView)view.findViewById(R.id.null_iv);
 
         checkBoxOne = (CheckBox) view.findViewById(R.id.rb_check_one);
         checkBoxTwo = (CheckBox) view.findViewById(R.id.rb_check_two);
@@ -160,9 +157,6 @@ public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> impleme
         student3 = (DaytimelysReservation) getActivity().getIntent().getSerializableExtra("student3");
         student4 = (DaytimelysReservation) getActivity().getIntent().getSerializableExtra("student4");
         //当学员列表为空时
-    if (list.size()==0){
-
-    }
         if (student1 != null) {
             if (student1.coursestudentcount == student1.selectedstudentcount) {
                 //该课程已预约满
