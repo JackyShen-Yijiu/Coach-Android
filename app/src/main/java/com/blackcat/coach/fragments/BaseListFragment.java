@@ -110,6 +110,8 @@ public abstract class BaseListFragment<T> extends BaseFragment
     }
 
     protected void onFeedsErrorResponse(VolleyError arg0, int refreshType) {
+        if(mPullToRefreshView == null)
+            return ;
         mPullToRefreshView.completeRefresh();
         if (refreshType != DicCode.RefreshType.R_PULL_UP) {
             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);

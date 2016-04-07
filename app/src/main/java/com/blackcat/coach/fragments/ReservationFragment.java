@@ -13,6 +13,7 @@ import com.blackcat.coach.R;
 import com.blackcat.coach.activities.IndexActivity;
 import com.blackcat.coach.adapters.ReservationAdapter;
 import com.blackcat.coach.lib.PagerSlidingTab;
+import com.blackcat.coach.utils.LogUtil;
 
 /**
  * 预约--订单
@@ -69,6 +70,7 @@ public class ReservationFragment extends BaseFragment {
      */
     // TODO: Rename and change types and number of parameters
     public static ReservationFragment newInstance(String param1, String param2) {
+        LogUtil.print("newInstance------reservation000");
         ReservationFragment fragment = new ReservationFragment();
         return fragment;
     }
@@ -80,14 +82,15 @@ public class ReservationFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LogUtil.print("newInstance------reservation1111");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        LogUtil.print("newInstance------reservation222");
         // Inflate the layout for this fragment
-
+LogUtil.print("onCreateView----000---");
         rootView = inflater.inflate(R.layout.fragment_reservation, container, false);
         mContext = getActivity();
         //        mContentId = R.id.fragment_container;

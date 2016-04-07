@@ -167,9 +167,10 @@ public class RowSchedule {
         @Override
         public int getCount() {
             int count=0;
-                if (UTC2LOC.instance.getDates(reservation.courseendtime, "yyyy-MM-dd HH:mm:ss").
-                        before(Calendar.getInstance().getTime())) {
-                    //过时的不显示“+”
+            if (UTC2LOC.instance.getDates(reservation.coursebegintime, "yyyy-MM-dd HH:mm:ss").before(Calendar.getInstance().getTime())
+                    &&UTC2LOC.instance.getDates(reservation.courseendtime, "yyyy-MM-dd HH:mm:ss").after(Calendar.getInstance().getTime())) {
+
+                //当前时间的不显示“+”
                     count = reservation.selectedstudentcount;
                 }else{
                     count=reservation.coursestudentcount;
@@ -242,8 +243,8 @@ public class RowSchedule {
                     if (UTC2LOC.instance.getDates(reservation.coursebegintime, "yyyy-MM-dd HH:mm:ss").before(Calendar.getInstance().getTime())
                             &&UTC2LOC.instance.getDates(reservation.courseendtime, "yyyy-MM-dd HH:mm:ss").after(Calendar.getInstance().getTime())) {
                         //当前时间的不出现“+”
-//                        studentPic.setVisibility(View.INVISIBLE);
-//                        studentNameTv.setVisibility(View.INVISIBLE);
+                        studentPic.setVisibility(View.GONE);
+                        studentNameTv.setVisibility(View.GONE);
                     }else{
                         studentPic.setImageResource(R.mipmap.schedule_item_add_student);
                         studentNameTv.setVisibility(View.INVISIBLE);

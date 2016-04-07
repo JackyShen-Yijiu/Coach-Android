@@ -82,7 +82,6 @@ public class StudyConfirmsAct extends BaseActivity {
             @Override
             public boolean onGroupClick(ExpandableListView expandableListView, View view, int i, long l) {
 
-
                 return false;
             }
         });
