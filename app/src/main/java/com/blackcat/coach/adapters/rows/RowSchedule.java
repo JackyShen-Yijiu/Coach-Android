@@ -175,7 +175,6 @@ public class RowSchedule {
                         before(Calendar.getInstance().getTime())) {
                     //过时的不显示“+”
                     count = reservation.selectedstudentcount;
-                    LogUtil.print("4444444--gsg----"+count);
                 }else{
                     count=reservation.coursestudentcount;
                 }

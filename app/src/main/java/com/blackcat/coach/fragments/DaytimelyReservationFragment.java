@@ -80,6 +80,8 @@ public class DaytimelyReservationFragment extends BaseListFragment<DaytimelysRes
     public void setData(Date date){
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 //        format.format(date.getDate());
+        ChildScheduleFragment.selectedDate = date;
+        LogUtil.print("DaytimelyReservationFragment--"+ChildScheduleFragment.selectedDate.toLocaleString());
         if (!Session.isUserInfoEmpty()) {
             this.date = format.format(date);
             request();

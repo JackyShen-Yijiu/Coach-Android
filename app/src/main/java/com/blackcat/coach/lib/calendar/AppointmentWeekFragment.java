@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
 import com.blackcat.coach.CarCoachApplication;
+import com.blackcat.coach.fragments.ChildScheduleFragment;
 import com.blackcat.coach.utils.LogUtil;
 
 import java.util.Date;

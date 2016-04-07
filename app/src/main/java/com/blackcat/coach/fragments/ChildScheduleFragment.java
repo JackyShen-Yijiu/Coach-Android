@@ -76,7 +76,9 @@ import sun.bob.mcalendarview.vo.DateData;
  * 日程
  */
 public class ChildScheduleFragment extends BaseListFragment<Reservation> implements View.OnClickListener {
-
+    //上一次点击的日期
+    public static TextView lastClickView;
+    //上一次点击的日期
     public static Date selectedDate = Calendar.getInstance().getTime();
     // 基本变量
     private IndexActivity mContext;
@@ -132,13 +134,14 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         Calendar calendar = event.calendar;
 //        DateData dateData =  new DateData(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH)+1,calendar.get(Calendar.DAY_OF_MONTH));
 //        expCalendarView.travelTo(dateData);
+        viewPager.setFragmentManger(getChildFragmentManager());
+
+        viewPager.setSelectDate(calendar.getTime(),viewPager.getCurrentItem());
         if (reservationFragment != null) {
 //                    selectedDate = date.getDate();
             reservationFragment.setData(calendar.getTime());
         }
-        viewPager.setFragmentManger(getChildFragmentManager());
 
-        viewPager.setSelectDate(calendar.getTime(),viewPager.getCurrentItem());
     }
 
 
@@ -223,7 +226,6 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
                     calendar.set(day.year, (day.month-1), day.day);
 
                     if (reservationFragment != null) {
-
                         reservationFragment.setData(calendar.getTime());
                     }
                 } else {
@@ -477,17 +479,18 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
             public void onDateClick(View view, DateData date) {
                 super.onDateClick(view, date);
                 LogUtil.print("popExpCalendarView---" + popExpCalendarView.getCurrentItem());
-                LogUtil.print(viewPager.getCurrentItem()+"formatter----" + date.getDate().toLocaleString());
+                LogUtil.print(viewPager.getCurrentItem() + "formatter----" + date.getDate().toLocaleString());
                 if (popWindow != null && popWindow.isShowing()) {
                     popWindow.dismiss();
                 }
+                viewPager.setFragmentManger(getChildFragmentManager());
+
+                viewPager.setSelectDate(date.getDate(), viewPager.getCurrentItem());
                 if (reservationFragment != null) {
 //                    selectedDate = date.getDate();
                     reservationFragment.setData(date.getDate());
                 }
-                viewPager.setFragmentManger(getChildFragmentManager());
 
-                viewPager.setSelectDate(date.getDate(),viewPager.getCurrentItem());
 //               switchPage(date.getDate());
             }
         });

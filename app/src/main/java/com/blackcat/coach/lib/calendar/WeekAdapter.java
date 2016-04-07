@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blackcat.coach.R;
+import com.blackcat.coach.fragments.ChildScheduleFragment;
 import com.blackcat.coach.utils.CommonUtil;
 import com.blackcat.coach.utils.LogUtil;
 
@@ -21,8 +22,8 @@ public class WeekAdapter extends ArrayAdapter<Integer> {
 
     private List<AppointmentDay> data;
     private Context mContext;
-    private TextView lastClickView = null;
-    private int lastIitem;
+
+//    private int lastIitem;
     private boolean isFirst = true;
 
     public WeekAdapter(Context context, int resource, List<AppointmentDay> data) {
@@ -76,8 +77,8 @@ public class WeekAdapter extends ArrayAdapter<Integer> {
                 holder.solar.setTextColor(CommonUtil.getColor(mContext,
                         R.color.white));
                 holder.solar.setBackgroundResource(R.drawable.point);
-                lastClickView = holder.solar;
-                lastIitem = appointmentDay.day;
+                ChildScheduleFragment.lastClickView = holder.solar;
+//                lastIitem = appointmentDay.day;
                 isFirst = false;
             }
 
@@ -108,8 +109,8 @@ public class WeekAdapter extends ArrayAdapter<Integer> {
                 holder.solar.setTextColor(CommonUtil.getColor(mContext,
                         R.color.white));
                 holder.solar.setBackgroundResource(R.drawable.point);
-                lastClickView = holder.solar;
-                lastIitem = appointmentDay.day;
+                ChildScheduleFragment.lastClickView = holder.solar;
+//                lastIitem = appointmentDay.day;
             }
         }
 
@@ -129,8 +130,8 @@ public class WeekAdapter extends ArrayAdapter<Integer> {
 //					} else {
                     TextView textView = (TextView) ((RelativeLayout) v)
                             .getChildAt(0);
-                    if (lastClickView != null) {
-                        LogUtil.print(lastClickView.getText().toString()
+                    if ( ChildScheduleFragment.lastClickView != null) {
+                        LogUtil.print( ChildScheduleFragment.lastClickView.getText().toString()
                                 + "========");
                         // if (lastClickView == textView) {
                         // return;
@@ -140,8 +141,8 @@ public class WeekAdapter extends ArrayAdapter<Integer> {
 ////                            lastClickView.setTextColor(CommonUtil.getColor(
 ////                                    mContext, R.color.new_txt_blues));
 //                        } else {
-                            lastClickView.setBackgroundDrawable(null);
-                            lastClickView.setTextColor(CommonUtil.getColor(
+                        ChildScheduleFragment.lastClickView.setBackgroundDrawable(null);
+                        ChildScheduleFragment.lastClickView.setTextColor(CommonUtil.getColor(
                                     mContext, R.color.new_txt_blacks));
 //                        }
 
@@ -150,8 +151,8 @@ public class WeekAdapter extends ArrayAdapter<Integer> {
 
                     textView.setTextColor(CommonUtil.getColor(mContext,
                             R.color.white));
-                    lastClickView = textView;
-                    lastIitem = appointmentDay.day;
+                    ChildScheduleFragment.lastClickView = textView;
+//                    lastIitem = appointmentDay.day;
                     OnDateClickListener.instance.onDateClick(
                             appointmentDay, true);
 

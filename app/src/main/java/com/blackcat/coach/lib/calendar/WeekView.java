@@ -50,6 +50,6 @@ public class WeekView extends GridView {
 		LogUtil.print("---"+selectPosition);
 		adapter.setSelectedDate(seleDate, WeekDataUtil.getWeekData(selectPosition));
 		adapter.notifyDataSetChanged();
-		ChildScheduleFragment.selectedDate = seleDate;
+
 	}
 }
