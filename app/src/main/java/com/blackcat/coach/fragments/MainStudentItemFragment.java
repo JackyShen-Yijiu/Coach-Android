@@ -87,7 +87,7 @@ public class MainStudentItemFragment extends BaseListFragment {
         mType = new TypeToken<Result<List<User>>>(){}.getType();
 
         initViews(rootView, inflater, CommonAdapter.AdapterType.TYPE_ADAPTER_STUDENT_NEW);
-
+        mListView.setPadding(0,0,0,10);
         mPage = 1;
         if (!Session.isUserInfoEmpty()) {
             request(mPage);

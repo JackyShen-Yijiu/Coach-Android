@@ -10,6 +10,7 @@
         android:id="@+id/dividing_line"
         android:layout_width="match_parent"
         android:layout_height="10dp"
+        android:visibility="gone"
         android:background="@color/white"/>
     <com.blackcat.coach.widgets.SelectableRoundedImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -31,9 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/iv_avatar"
+        android:layout_toLeftOf="@+id/item_student_msg"
         android:layout_below="@+id/dividing_line"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
     <RelativeLayout
@@ -68,11 +69,12 @@
 
         <TextView
             android:id="@+id/tv_progress"
-            android:layout_width="wrap_content"
+            android:layout_width="213dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginTop="5dp"
             android:singleLine="true"
+            android:layout_marginTop="5dp"
+            android:text=""
             android:textColor="@color/text_999"
             android:textSize="14sp" />
 
@@ -80,6 +82,7 @@
             android:id="@+id/item_student_rl3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:layout_centerVertical="true"
             >

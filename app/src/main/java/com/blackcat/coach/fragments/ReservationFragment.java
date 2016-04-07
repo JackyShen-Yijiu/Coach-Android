@@ -15,7 +15,7 @@ import com.blackcat.coach.adapters.ReservationAdapter;
 import com.blackcat.coach.lib.PagerSlidingTab;
 
 /**
- * 预约
+ * 预约--订单
  */
 public class ReservationFragment extends BaseFragment {
 

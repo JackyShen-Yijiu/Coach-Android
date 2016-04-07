@@ -128,8 +128,8 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         });
         order_msg=(RelativeLayout)rootView.findViewById(R.id.rl_order_messeage);
         order_msg.setOnClickListener(this);
-        system_msg=(RelativeLayout)rootView.findViewById(R.id.rl_system_messeage);
-        system_msg.setOnClickListener(this);
+//        system_msg=(RelativeLayout)rootView.findViewById(R.id.rl_system_messeage);
+//        system_msg.setOnClickListener(this);
                 
 
         mTvErrorMsg = (TextView)rootView.findViewById(R.id.tv_connect_errormsg);
