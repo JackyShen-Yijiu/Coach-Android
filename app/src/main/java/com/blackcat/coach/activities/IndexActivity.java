@@ -550,9 +550,13 @@ public class IndexActivity extends BaseActivity implements IKillable,
     private void refreshUI() {
         //更新未读消息显示
         //refreshUnreadLabel();
-        // 刷新当前页面
+        // 刷新当前页面--列表
         ReservationAdapter.fragments[ReservationFragment.currentPage].reRusume();
-
+        // 刷新当前页面--时间
+        MonthApplyEvent event = new MonthApplyEvent();
+        Calendar calendar = Calendar.getInstance();
+        event.calendar = calendar;
+        EventBus.getDefault().post(event);
         //更新fragment消息通知
         EventBus.getDefault().post(new NewMessageReceiveEvent());
 
