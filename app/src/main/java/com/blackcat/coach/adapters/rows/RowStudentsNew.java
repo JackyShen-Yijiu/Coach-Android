@@ -61,7 +61,7 @@ public class RowStudentsNew {
 
 
         viewHolder.tvName.setText(item.name);
-        viewHolder.tvProgress.setText(item.subjectprocess);
+        viewHolder.tvProgress.setText(item.courseinfo.progress);
         LogUtil.print("bindViewHolder---->" + item.leavecoursecount);
         //sun
         if(item.subject.subjectid==2^item.subject.subjectid==3){

@@ -44,6 +44,12 @@ public class NetConstants {
 	public static final String PATH_GET_NEW_STUDENTINFO = "api/v2/courseinfo/studentdetialinfo";
 
 	public static final String GET_STUDNETS_LIST_NEW = "api/v2/courseinfo/getmystudentlist";
+	//新版登录
+	public static final String PATH_NEW_LOGIN = "api/v2/userinfo/coachloginbycode";
+	//新版验证
+	public static final String PATH_NEW_SENDCODE = "api/v2/userinfo/coachmobileverification";
+
+
 
 
 	/*******************************1.0 开始 V1**************************************************/
@@ -143,7 +149,7 @@ public class NetConstants {
 	public static final String KEY_OS = "_os";
 	public static final String KEY_VERSION = "_ver";
 	public static final String KEY_MID = "_mid";
-
+	public static final String KEY_MOBILE = "mobile";
 
 	public static final String KEY_USERTYPE = "usertype";
 	public static final String KEY_TYPE = "type";

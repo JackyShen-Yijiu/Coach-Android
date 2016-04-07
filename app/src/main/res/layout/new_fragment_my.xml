@@ -18,8 +18,8 @@
         <com.blackcat.coach.widgets.SelectableRoundedImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/iv_avatar"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:scaleType="fitXY"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/new_txt_lights"
             android:layout_below="@+id/tv_school_name"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:layout_centerHorizontal="true"
             android:text="123"
             android:textSize="13sp" />
@@ -91,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="VIP班"
-            android:layout_marginTop="14dp"
+            android:layout_marginTop="8dp"
             android:textSize="12sp"
             android:textColor="@color/new_txt_lights"/>
         </LinearLayout>
@@ -132,7 +132,7 @@
                 android:id="@+id/tv_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="8dp"
                 android:text="周一至周五"
                 android:textSize="12sp"
                 android:textColor="@color/new_txt_lights"/>

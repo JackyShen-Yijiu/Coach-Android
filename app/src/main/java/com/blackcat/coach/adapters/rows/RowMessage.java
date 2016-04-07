@@ -59,7 +59,7 @@ public class RowMessage {
             if (avatarUrl != null && !TextUtils.isEmpty(avatarUrl)) {
                 UILHelper.loadImage(viewHolder.ivAvatar, avatarUrl, false, R.mipmap.ic_avatar_small);
             }else{
-                viewHolder.ivAvatar.setImageResource(R.mipmap.ic_avatar_small);
+//                viewHolder.ivAvatar.setImageResource(R.mipmap.ic_avatar_small);
             }
         }catch (Exception e){
             e.printStackTrace();

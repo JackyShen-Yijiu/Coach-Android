@@ -51,7 +51,6 @@ public class DetailStudentFragment extends BaseListFragment<Comment> implements 
     private TextView mTvSchoolName, mTvCarModel, mTvProgress, mTvPlace;
     private ImageView mIvImage;
 
-    private Button btnBaoKao;
 
     public static DetailStudentFragment newInstance(User user) {
         DetailStudentFragment fragment = new DetailStudentFragment();
@@ -129,12 +128,12 @@ public class DetailStudentFragment extends BaseListFragment<Comment> implements 
 //        LogUtil.print("leavecourseCount-->"+mUser);
 //
         LogUtil.print("leavecourseCount-->"+mUser.subject);
-        if(mUser.leavecoursecount.equals("0") && mUser.subject!=null){//报名,显示按钮
-            btnBaoKao.setText("可报考"+mUser.subject.name);
-            btnBaoKao.setVisibility(View.VISIBLE);
-        }else{//隐藏 按钮
-            btnBaoKao.setVisibility(View.GONE);
-        }
+//        if(mUser.leavecoursecount.equals("0") && mUser.subject!=null){//报名,显示按钮
+//            btnBaoKao.setText("可报考"+mUser.subject.name);
+//            btnBaoKao.setVisibility(View.VISIBLE);
+//        }else{//隐藏 按钮
+//            btnBaoKao.setVisibility(View.GONE);
+//        }
 
     }
 
@@ -211,72 +210,72 @@ public class DetailStudentFragment extends BaseListFragment<Comment> implements 
 //                break;
         }
     }
-
-    /**
-     * 该学员报考
-     * @param userId
-     */
-    private void BaoKao(String userId){
-        Type type = new TypeToken<Result>() {}.getType();
-        URI uri = URIUtil.getremindexam();
-        String url = null;
-        try {
-            url = uri.toURL().toString();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if (TextUtils.isEmpty(url)) {
-            return;
-        }
-
-        RemindExam params = new RemindExam();
-        params.coachid = String.valueOf(Session.getSession().coachid);
-        params.userid = userId;
-
-        Map map = new HashMap<>();
-        map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
-        //？
-        GsonIgnoreCacheHeadersRequest<Result> request = new GsonIgnoreCacheHeadersRequest<Result>(
-                Request.Method.POST, url, GsonUtils.toJson(params), type, map,
-                new Response.Listener<Result>() {
-                    @Override
-                    public void onResponse(Result response) {
-                        if (response != null) {
-                            if (response.type == Result.RESULT_OK) {
-
-                                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
+//
+//    /**
+//     * 该学员报考
+//     * @param userId
+//     */
+//    private void BaoKao(String userId){
+//        Type type = new TypeToken<Result>() {}.getType();
+//        URI uri = URIUtil.getremindexam();
+//        String url = null;
+//        try {
+//            url = uri.toURL().toString();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        if (TextUtils.isEmpty(url)) {
+//            return;
+//        }
+//
+//        RemindExam params = new RemindExam();
+//        params.coachid = String.valueOf(Session.getSession().coachid);
+//        params.userid = userId;
+//
+//        Map map = new HashMap<>();
+//        map.put(NetConstants.KEY_AUTHORIZATION, Session.getToken());
+//        //？
+//        GsonIgnoreCacheHeadersRequest<Result> request = new GsonIgnoreCacheHeadersRequest<Result>(
+//                Request.Method.POST, url, GsonUtils.toJson(params), type, map,
+//                new Response.Listener<Result>() {
+//                    @Override
+//                    public void onResponse(Result response) {
+//                        if (response != null) {
+//                            if (response.type == Result.RESULT_OK) {
+//
+//                                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
 //                                Session.getSession().updateCoachInfo(params);
 //                                Session.save(Session.getSession(), true);
 //                                EventBus.getDefault().post(new UpdateCoachInfoOk());
 //                                activity.finish();
-                                btnBaoKao.setVisibility(View.GONE);
-                            } else if (!TextUtils.isEmpty(response.msg)) {
-                                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
-                                EventBus.getDefault().post(new UpdateCoachInfoError());
-                            }
-                        } else {
-                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
-                            EventBus.getDefault().post(new UpdateCoachInfoError());
-                        }
-                        if (Constants.DEBUG) {
-                            VolleyLog.v("Response:%n %s", response);
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError arg0) {
-                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
-                        EventBus.getDefault().post(new UpdateCoachInfoError());
-                    }
-                });
-        // 请求加上Tag,用于取消请求
-        request.setTag(this);
-        request.setShouldCache(false);
-
-        VolleyUtil.getQueue(mActivity).add(request);
-    }
+//                                btnBaoKao.setVisibility(View.GONE);
+//                            } else if (!TextUtils.isEmpty(response.msg)) {
+//                                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
+//                                EventBus.getDefault().post(new UpdateCoachInfoError());
+//                            }
+//                        } else {
+//                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+//                            EventBus.getDefault().post(new UpdateCoachInfoError());
+//                        }
+//                        if (Constants.DEBUG) {
+//                            VolleyLog.v("Response:%n %s", response);
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError arg0) {
+//                        ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+//                        EventBus.getDefault().post(new UpdateCoachInfoError());
+//                    }
+//                });
+//        // 请求加上Tag,用于取消请求
+//        request.setTag(this);
+//        request.setShouldCache(false);
+//
+//        VolleyUtil.getQueue(mActivity).add(request);
+//    }
 
     class RemindExam{
         String coachid;

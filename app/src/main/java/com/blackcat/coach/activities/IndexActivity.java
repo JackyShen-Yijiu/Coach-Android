@@ -610,6 +610,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
         llQianDao = (LinearLayout) findViewById(R.id.toolbar_title_right);
         tvQianDao = (TextView) findViewById(R.id.toobar_title_right_tv);
+        tvQianDao.setVisibility(View.VISIBLE);
         imgQuery = (ImageView) findViewById(R.id.toobar_title_right_img);
         mVerificationWarning = (TextView) findViewById(R.id.tv_verification_warning);
         if (!Session.getSession().is_validation) {
@@ -757,8 +758,6 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 }else{
                     mToolBarTitle.setText("学员");
                 }
-
-
 //                mToolBarTitle.setText(R.string.title_reservation);
 //                mToolBarTitle.setTextSize(18);
                 showHideQianDao(false, ReservationFragment.currentPage, 2);
@@ -837,8 +836,9 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 tvQianDao.setVisibility(View.GONE);
                 imgQuery.setVisibility(View.GONE);
             }else{
-                tvQianDao.setVisibility(View.GONE);
+                tvQianDao.setVisibility(View.VISIBLE);
                 imgQuery.setImageResource(R.mipmap.iconfont_icon);
+                tvQianDao.setText("签到");
                 imgQuery.setVisibility(View.VISIBLE);
             }
 
@@ -905,13 +905,13 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
 //                LogUtil.print("current---page" + mMainContainer.getCurrentTabType());
                 if(currentPage == 0){
-                    if(ReservationFragment.currentPage == 0){//签到
+//                    if(ReservationFragment.currentPage == 0){//签到
                         Intent intent = new Intent(this, CaptureActivity.class);
                         startActivity(intent);
-                    }else{//搜索
-                        Intent intent1 = new Intent(this, QueryAct.class);
-                        startActivity(intent1);
-                    }
+//                    }else{//搜索
+//                        Intent intent1 = new Intent(this, QueryAct.class);
+//                        startActivity(intent1);
+//                    }
                 }else if(currentPage == 2){
 //                    Intent intent1 = new Intent(this, StudentAppointmentAct.class);
                     Intent intent1 = new Intent(this, StudentsActivity1.class);
