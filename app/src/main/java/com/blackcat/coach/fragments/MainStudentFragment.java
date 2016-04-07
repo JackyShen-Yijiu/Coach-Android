@@ -94,7 +94,9 @@ public class MainStudentFragment extends BaseFragment{
         if(frags.size()>0){
             fragmentTransaction.add(R.id.fragment_main_student_content,frags.get(0));
             fragmentTransaction.commit();
+            rg.setVisibility(View.VISIBLE);
         }else{
+            rg.setVisibility(View.GONE);
             Toast.makeText(getActivity(), "暂无可授课程", Toast.LENGTH_SHORT).show();
         }
 
@@ -127,7 +129,7 @@ public class MainStudentFragment extends BaseFragment{
         getActivity().setTitle("学员");
         LogUtil.print("subject---size-->"+Session.getSession().subject.size());
         //动态 改变 科目二 科目三
-        switch (Session.getSession().subject.size()){
+            switch (Session.getSession().subject.size()){
 
             case 0:
 
@@ -172,7 +174,10 @@ public class MainStudentFragment extends BaseFragment{
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
+                if(frags.size()==0){
+                    Toast.makeText(getActivity(), "暂无可授课程", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 FragmentTransaction fragmentTransaction =  getChildFragmentManager().beginTransaction();
                 switch(i){
                     case R.id.fragment_main_student_rb1:

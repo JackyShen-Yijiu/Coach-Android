@@ -98,7 +98,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 .findViewById(R.id.iv_messeage);
 
         imgSystemInfor.setScaleType(ImageView.ScaleType.CENTER_CROP);
-        imgSystemInfor.setImageResource(R.drawable.messeage);
+        imgSystemInfor.setImageResource(R.mipmap.system_messages);
         imgSystemInfor.setOval(true);
 
         tv_unread_count=(TextView)rootView.findViewById(R.id.tv_unread_count);
@@ -171,7 +171,8 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                     @Override
                     public void onResponse(Result<MessageCount> response) {
                         if (response != null && response.type == Result.RESULT_OK && response.data != null) {
-                            Tv_toast.setText(response.data.messageinfo.message);
+                            LogUtil.print("message--->"+response.data.messageinfo.message);
+                            Tv_toast.setText(response.data.messageinfo.message==null?"欢迎使用极致驾服":response.data.messageinfo.message);
                             tv_unread_count.setText(String.valueOf(response.data.messageinfo.messagecount));
                             Tv_system_toast.setText(response.data.Newsinfo.news);
 
@@ -180,8 +181,10 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                             system_time.setText(response.data.Newsinfo.newstime);
                             if(response.data.messageinfo.messagecount==0){
                                 tv_unread_count.setVisibility(View.INVISIBLE);
-                                Tv_toast.setVisibility(View.INVISIBLE);
+//                                Tv_toast.setVisibility(View.INVISIBLE);
+                                Tv_toast.setText("欢迎使用极致驾服");
                             }else{
+
                                 tv_unread_count.setVisibility(View.VISIBLE);
                             }
 
