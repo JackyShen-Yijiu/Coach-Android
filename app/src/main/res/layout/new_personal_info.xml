@@ -345,21 +345,17 @@
             android:id="@+id/tv_subjects"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/iv_subjects"
             android:background="@null"
             android:singleLine="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
             android:textColor="@color/new_txt_lights"
             android:textSize="12sp" />
 
-        <ImageView
-            android:id="@+id/iv_subjects"
-            android:layout_width="@dimen/detail_right_size"
-            android:layout_height="@dimen/detail_right_size"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="@dimen/padding_left"
-            android:src="@mipmap/ic_right" />
+
     </RelativeLayout>
     <View
         android:layout_width="match_parent"

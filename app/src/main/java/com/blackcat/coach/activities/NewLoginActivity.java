@@ -270,7 +270,7 @@ public class NewLoginActivity extends BaseNoFragmentActivity implements View.OnC
                             mTvSendCode.setEnabled(false);
                         } else if (response != null && !TextUtils.isEmpty(response.msg)) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
-                            if (response.msg.contains("没有查询到您的注册信息")){
+                            if (response.msg.contains("您的手机号不属于联盟驾校")){
                                 LogUtil.print("asdasd");
                                 showCoachDialog();
                             }
@@ -303,6 +303,7 @@ public class NewLoginActivity extends BaseNoFragmentActivity implements View.OnC
         public void onFinish() {
             mTvSendCode.setText(R.string.register_get_code);
             mTvSendCode.setEnabled(true);
+            mTvSendCode.setBackgroundResource(R.drawable.background_border_blue);
         }
 
         @Override
