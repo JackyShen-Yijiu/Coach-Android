@@ -167,8 +167,8 @@ public class RowSchedule {
         @Override
         public int getCount() {
             int count=0;
-            if (UTC2LOC.instance.getDates(reservation.coursebegintime, "yyyy-MM-dd HH:mm:ss").before(Calendar.getInstance().getTime())
-                    &&UTC2LOC.instance.getDates(reservation.courseendtime, "yyyy-MM-dd HH:mm:ss").after(Calendar.getInstance().getTime())) {
+            if (UTC2LOC.instance.getDates(reservation.coursebegintime, "yyyy-MM-dd HH:mm:ss")
+                    .before(Calendar.getInstance().getTime())) {
 
                 //当前时间的不显示“+”
                     count = reservation.selectedstudentcount;

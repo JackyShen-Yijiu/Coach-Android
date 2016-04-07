@@ -17,4 +17,5 @@
         android:layout_height="match_parent"
         android:overScrollMode="never" />
 
+    <include layout="@layout/null_layout"/>
 </com.blackcat.coach.widgets.PullToRefreshView>

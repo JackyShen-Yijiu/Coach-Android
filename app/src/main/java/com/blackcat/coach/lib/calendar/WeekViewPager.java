@@ -40,7 +40,7 @@ public class WeekViewPager extends ViewPager {
         lastSelectDate.setTime(ChildScheduleFragment.selectedDate);
         int days = daysBetween(ChildScheduleFragment.selectedDate, seleDate);
         int selectItem = currentItem;
-        if (days / 7 == 0) {
+        selectItem = currentItem + days / 7;
             if (days > 0) {
                 //选择日期大于之前选择的日期
 
@@ -53,9 +53,6 @@ public class WeekViewPager extends ViewPager {
                     selectItem--;
                 }
             }
-        } else {
-            selectItem = currentItem + days / 7;
-        }
         this.setCurrentItem(selectItem);
 
         LogUtil.print(seleDate.toLocaleString() + "--" + currentItem);

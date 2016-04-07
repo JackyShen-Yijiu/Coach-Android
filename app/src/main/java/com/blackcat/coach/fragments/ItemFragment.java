@@ -207,5 +207,11 @@ LogUtil.print("11111onCreateView----000---");
         super.onDestroyView();
     }
 
+    @Override
+    public void noData() {
+        mListView.setVisibility(View.GONE);
+        mNullIv.setImageResource(R.mipmap.no_data);
+        mNullLayout.setVisibility(View.VISIBLE);
+    }
 }
 

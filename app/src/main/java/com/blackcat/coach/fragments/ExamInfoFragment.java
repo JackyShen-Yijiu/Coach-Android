@@ -139,8 +139,10 @@ public class ExamInfoFragment extends BaseListFragment<AddStudentsVO> {
     }
 
 
-
-
-
-
+    @Override
+    public void noData() {
+        mListView.setVisibility(View.GONE);
+        mNullIv.setImageResource(R.mipmap.no_exam_info);
+        mNullLayout.setVisibility(View.VISIBLE);
+    }
 }

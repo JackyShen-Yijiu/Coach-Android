@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.android.volley.VolleyError;
 import com.blackcat.coach.R;
@@ -72,6 +74,7 @@ public class DaytimelyReservationFragment extends BaseListFragment<DaytimelysRes
         if (!Session.isUserInfoEmpty()) {
             request();
         }
+
         EventBus.getDefault().register(this);
 
     }
@@ -113,6 +116,13 @@ public class DaytimelyReservationFragment extends BaseListFragment<DaytimelysRes
 
     @Override
     public void onLoadMore() {
+    }
+
+    @Override
+    public void noData() {
+        mListView.setVisibility(View.GONE);
+        mNullIv.setImageResource(R.mipmap.no_data);
+        mNullLayout.setVisibility(View.VISIBLE);
     }
 
     private  void request(){
