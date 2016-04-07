@@ -16,6 +16,7 @@
         android:layout_marginLeft="20dp"
         android:layout_below="@+id/iv_1"
         android:layout_marginTop="41dp"
+        android:textColorHint="#CACACA"
         android:paddingLeft="10dp"
         android:drawablePadding="10dp"
         android:drawableLeft="@mipmap/icon_phone"
@@ -28,7 +29,7 @@
         android:textColor="@color/new_txt_blacks"
         android:textSize="14sp" />
 
-    <Button
+    <TextView
         android:id="@+id/tv_send_code"
         android:layout_width="75dp"
         android:layout_height="45dp"
@@ -47,6 +48,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="20dp"
         android:layout_below="@+id/et_phonenum"
+        android:textColorHint="#CACACA"
         android:layout_marginTop="15dp"
         android:background="@drawable/background_border"
         android:hint="@string/login_password"
