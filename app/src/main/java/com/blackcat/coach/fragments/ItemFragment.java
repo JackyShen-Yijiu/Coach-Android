@@ -57,7 +57,7 @@ public class ItemFragment extends BaseListFragment {
         //获取Activity传递过来的参数
         Bundle mBundle = getArguments();
         initView(contextView,inflater,mBundle.getInt("type"));
-
+LogUtil.print("11111onCreateView----000---");
         initData();
 
         return contextView;

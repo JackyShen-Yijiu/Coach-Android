@@ -13,6 +13,7 @@ import com.blackcat.coach.R;
 import com.blackcat.coach.activities.IndexActivity;
 import com.blackcat.coach.adapters.ReservationAdapter;
 import com.blackcat.coach.lib.PagerSlidingTab;
+import com.blackcat.coach.utils.LogUtil;
 
 /**
  * 预约--订单
@@ -87,7 +88,7 @@ public class ReservationFragment extends BaseFragment {
                              Bundle savedInstanceState) {
 
         // Inflate the layout for this fragment
-
+LogUtil.print("onCreateView----000---");
         rootView = inflater.inflate(R.layout.fragment_reservation, container, false);
         mContext = getActivity();
         //        mContentId = R.id.fragment_container;
