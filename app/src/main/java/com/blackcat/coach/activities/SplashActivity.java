@@ -92,7 +92,7 @@ public class SplashActivity extends BaseNoFragmentActivity{
             intent = new Intent(this,GuideActivity.class);
         }else{
             if (Session.isUserInfoEmpty()) {
-                intent = new Intent(this, LoginActivity.class);
+                intent = new Intent(this, NewLoginActivity.class);
             } else {
                 intent = new Intent(this, IndexActivity.class);
             }

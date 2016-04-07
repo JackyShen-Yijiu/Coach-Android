@@ -142,10 +142,10 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 tv_unread_count.setVisibility(View.GONE);
                 Tv_toast.setVisibility(View.GONE);
                 break;
-            case R.id.rl_system_messeage://行业资讯
-                startActivity(new Intent(mActivity, SystemMsgActivity.class));
-                TV_system_messeage.setVisibility(View.GONE);
-                break;
+//            case R.id.rl_system_messeage://行业资讯
+//                startActivity(new Intent(mActivity, SystemMsgActivity.class));
+//                TV_system_messeage.setVisibility(View.GONE);
+//                break;
        }
     }
 

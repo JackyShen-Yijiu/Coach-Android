@@ -35,6 +35,7 @@ import de.greenrobot.event.EventBus;
  * Created by zou on 15/10/23.
  */
 public class CoachInfo implements Serializable {
+    public String password;//MD5 HODE密码
 
     public String coachid;
     public String mobile;

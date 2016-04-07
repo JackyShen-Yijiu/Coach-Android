@@ -11,7 +11,7 @@ public class AddStudentsVO implements Serializable {
     public String name;
     public String mobile;
     public String userid;
-    public Subjectone subjectone;
+    public Subject subject;
     public Subjectone subjecttwo;
     public Subjectone subjectthree;
 }
