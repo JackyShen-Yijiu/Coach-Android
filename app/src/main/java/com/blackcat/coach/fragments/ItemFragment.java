@@ -37,23 +37,13 @@ public class ItemFragment extends BaseListFragment {
 
     public static  boolean REFRESH3 = false;
 
-
-//    static ItemFragment frag = null;
-//
-//    public static ItemFragment getInstance(int t){
-//        type = t;
-//        if(null == frag ){
-//            frag = new ItemFragment();
-//        }
-//        return frag;
-//    }
-
+    private View contextView = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View contextView = inflater.inflate(R.layout.fragment_item, container, false);
+        contextView = inflater.inflate(R.layout.fragment_item, container, false);
         //获取Activity传递过来的参数
         Bundle mBundle = getArguments();
         initView(contextView,inflater,mBundle.getInt("type"));
@@ -66,7 +56,6 @@ LogUtil.print("11111onCreateView----000---");
     private void initData() {
 
     }
-
 
 
     @Override
@@ -120,6 +109,8 @@ LogUtil.print("11111onCreateView----000---");
     }
 
     public void reRusume(){
+        if(contextView==null)
+            return;
         switch (ReservationFragment.currentPage ){
             case 0:
                 LogUtil.print("---request00."+type);
