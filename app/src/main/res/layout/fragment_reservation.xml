@@ -16,13 +16,8 @@
         android:textColor="@drawable/selector_textcolor"
         app:tabPaddingLeftRight="24dp"
         app:indicatorColor="@color/slidingtab_indicatorcolor"
-<<<<<<< HEAD
         app:underlineColor="@color/line_bg"
         app:underlineHeight="0.5dp"
-=======
-        app:underlineColor="@android:color/transparent"
-        app:underlineHeight="2dp"
->>>>>>> 6237bd4127ff9ec65beadebba490aa53305a25e5
         app:indicatorHeight="2dp"
         android:background="@color/white"
         android:fillViewport="false">

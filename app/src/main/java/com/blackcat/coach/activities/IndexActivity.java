@@ -1030,7 +1030,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                         conflictBuilder = null;
                         Session.save(null, true);
                         finish();
-                        startActivity(new Intent(IndexActivity.this, LoginActivity.class));
+                        startActivity(new Intent(IndexActivity.this, NewLoginActivity.class));
                     }
                 });
                 conflictBuilder.setCancelable(false);

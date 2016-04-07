@@ -479,17 +479,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
             @Override
             public void onDateClick(View view, DateData date) {
                 super.onDateClick(view, date);
-<<<<<<< HEAD
                 LogUtil.print("popExpCalendarView---" + popExpCalendarView.getCurrentItem());
                 LogUtil.print(viewPager.getCurrentItem() + "formatter----" + date.getDate().toLocaleString());
-=======
-
-//                LogUtil.print("formatter----" + date.getDate().toLocaleString());
-//
-//                LogUtil.print("popExpCalendarView---" + popExpCalendarView.getCurrentItem());
-//                LogUtil.print(viewPager.getCurrentItem()+"formatter----" + date.getDate().toLocaleString());
-
->>>>>>> 6237bd4127ff9ec65beadebba490aa53305a25e5
                 if (popWindow != null && popWindow.isShowing()) {
                     popWindow.dismiss();
                 }
