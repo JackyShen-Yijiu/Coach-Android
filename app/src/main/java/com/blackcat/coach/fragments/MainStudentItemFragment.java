@@ -148,4 +148,11 @@ public class MainStudentItemFragment extends BaseListFragment {
         // TODO: Update argument type and name
 //        void onListFragmentInteraction(DummyItem item);
     }
+
+    @Override
+    public void noData() {
+        mListView.setVisibility(View.GONE);
+        mNullIv.setImageResource(R.mipmap.no_student);
+        mNullLayout.setVisibility(View.VISIBLE);
+    }
 }

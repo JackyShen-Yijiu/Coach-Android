@@ -489,5 +489,13 @@ public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> impleme
         super.onDestroy();
         RowAddStudents.index=-1;
         RowAddStudents.selectUser=null;
+
+    }
+
+    @Override
+    public void noData() {
+        mListView.setVisibility(View.GONE);
+        mNullIv.setImageResource(R.mipmap.no_student);
+        mNullLayout.setVisibility(View.VISIBLE);
     }
 }

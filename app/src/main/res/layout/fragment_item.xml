@@ -1,9 +1,9 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="10dp"
-    tools:context="com.blackcat.coach.fragments.DaytimelyReservationFragment">
-
+>
+    <!--<include layout="@layout/null_layout"/>-->
     <include layout="@layout/layout_pulltorefresh_list" />
-</FrameLayout>
+</RelativeLayout>

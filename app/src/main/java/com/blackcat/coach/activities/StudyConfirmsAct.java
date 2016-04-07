@@ -8,7 +8,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -55,6 +57,8 @@ public class StudyConfirmsAct extends BaseActivity {
     private StudyConfirmAdapter adapter;
 
     private List<Reservation> list = new ArrayList<Reservation>();
+    private RelativeLayout mNullLayout;
+    private ImageView mNullIv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,67 +89,90 @@ public class StudyConfirmsAct extends BaseActivity {
                 return false;
             }
         });
+
+        //空白页
+        mNullLayout = (RelativeLayout) findViewById(R.id.layout_null);
+        mNullIv = (ImageView) findViewById(R.id.null_iv);
+        mNullLayout.setVisibility(View.GONE);
+        lv.setVisibility(View.VISIBLE);
     }
 
-    private Type mTokenType = new TypeToken<Result<List<Reservation>>>() {}.getType();
+    private Type mTokenType = new TypeToken<Result<List<Reservation>>>() {
+    }.getType();
 
     /**
      * 获取未完成 学员列表
      */
-        private void request() {
-            URI uri = URIUtil.getStudyConfirm();
-            String url = null;
-            try {
-                url = uri.toURL().toString();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+    private void request() {
+        URI uri = URIUtil.getStudyConfirm();
+        String url = null;
+        try {
+            url = uri.toURL().toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-            if (TextUtils.isEmpty(url)) {
-                return;
-            }
+        if (TextUtils.isEmpty(url)) {
+            return;
+        }
 
 //            ConfirmParams param = new ConfirmParams();
 //            param.coachid = Session.getSession().coachid;
 
 //            Toast.makeText(StudyConfirmsAct.this, "request", Toast.LENGTH_SHORT).show();
-            Map map = new HashMap<>();
-            map.put("authorization", Session.getToken());
-            GsonIgnoreCacheHeadersRequest<Result<List<Reservation>>> request = new GsonIgnoreCacheHeadersRequest<Result<List<Reservation>>>(
-                    Request.Method.GET, url, GsonUtils.toJson(null), mTokenType, map,
-                    new Response.Listener<Result<List<Reservation>>>() {
+        Map map = new HashMap<>();
+        map.put("authorization", Session.getToken());
+        GsonIgnoreCacheHeadersRequest<Result<List<Reservation>>> request = new GsonIgnoreCacheHeadersRequest<Result<List<Reservation>>>(
+                Request.Method.GET, url, GsonUtils.toJson(null), mTokenType, map,
+                new Response.Listener<Result<List<Reservation>>>() {
 
-                        @Override
-                        public void onResponse(Result response) {
-                            if (response != null && response.type == Result.RESULT_OK) {
+                    @Override
+                    public void onResponse(Result response) {
+                        if (response != null && response.type == Result.RESULT_OK) {
 //                                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.op_ok);
 
-                                list = (List<Reservation>) response.data;
+                            list = (List<Reservation>) response.data;
+                            if (list.size() == 0) {
+                                lv.setVisibility(View.GONE);
+                                mNullIv.setImageResource(R.mipmap.no_uncomment_student);
+                                mNullLayout.setVisibility(View.VISIBLE);
+                            } else {
+                                lv.setVisibility(View.VISIBLE);
+                                mNullLayout.setVisibility(View.GONE);
                                 adapter.setData(list);
 
-                            } else if (!TextUtils.isEmpty(response.msg)) {
-                                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
                             }
-                            if (Constants.DEBUG) {
-                                VolleyLog.v("Response:%n %s", response);
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError arg0) {
-                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
-                        }
-                    });
-            // 请求加上Tag,用于取消请求
-            request.setTag(this);
-            request.setShouldCache(false);
 
-            VolleyUtil.getQueue(this).add(request);
+                        } else if (!TextUtils.isEmpty(response.msg)) {
+                            lv.setVisibility(View.GONE);
+                            mNullIv.setImageResource(R.mipmap.no_uncomment_student);
+                            mNullLayout.setVisibility(View.VISIBLE);
+//                                ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
+                        }
+                        if (Constants.DEBUG) {
+                            VolleyLog.v("Response:%n %s", response);
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError arg0) {
+                        lv.setVisibility(View.GONE);
+                        mNullIv.setImageResource(R.mipmap.no_network);
+                        mNullLayout.setVisibility(View.VISIBLE);
+//                            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+                    }
+                });
+        // 请求加上Tag,用于取消请求
+        request.setTag(this);
+        request.setShouldCache(false);
+
+        VolleyUtil.getQueue(this).add(request);
 
 
     }
-    class ConfirmParams{
+
+    class ConfirmParams {
         String coachid;
     }
 
@@ -153,7 +180,7 @@ public class StudyConfirmsAct extends BaseActivity {
     /**
      * 提交数据
      */
-    private void requestPost(){
+    private void requestPost() {
 
     }
 
