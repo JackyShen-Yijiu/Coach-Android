@@ -215,11 +215,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/line"/>
-    <!--<include-->
-        <!--layout="@layout/null_layout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@+id/line"-->
 
         <!--/>-->
 </RelativeLayout>

@@ -848,7 +848,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
         }else if(type == 2){
             llQianDao.setVisibility(View.VISIBLE);
-            tvQianDao.setVisibility(View.VISIBLE);
+            tvQianDao.setVisibility(View.GONE);
             tvQianDao.setTextSize(14);
             tvQianDao.setText("群发短信");
             imgQuery.setVisibility(View.GONE);
