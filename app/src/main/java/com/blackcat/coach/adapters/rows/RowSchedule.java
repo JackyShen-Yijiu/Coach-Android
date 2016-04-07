@@ -224,11 +224,11 @@ public class RowSchedule {
                 if (UTC2LOC.instance.getDates(reservation.courseendtime, "yyyy-MM-dd HH:mm:ss").before(now)) {
                     //过时的不出现“+”
                     studentPic.setVisibility(View.INVISIBLE);
-                    studentNameTv.setVisibility(View.GONE);
+                    studentNameTv.setVisibility(View.INVISIBLE);
                 } else {
 
                     studentPic.setImageResource(R.mipmap.schedule_item_add_student);
-                    studentNameTv.setVisibility(View.GONE);
+                    studentNameTv.setVisibility(View.INVISIBLE);
                 }
             }
 

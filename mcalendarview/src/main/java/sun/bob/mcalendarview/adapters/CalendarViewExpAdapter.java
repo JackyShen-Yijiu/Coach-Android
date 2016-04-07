@@ -3,6 +3,7 @@ package sun.bob.mcalendarview.adapters;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.ViewGroup;
 
@@ -18,7 +19,7 @@ import sun.bob.mcalendarview.vo.DateData;
 /**
  * Created by 明明大美女 on 2015/12/8.
  */
-public class CalendarViewExpAdapter extends FragmentStatePagerAdapter {
+public class CalendarViewExpAdapter extends FragmentPagerAdapter {
 
     private DateData date;
 
@@ -96,4 +97,5 @@ public class CalendarViewExpAdapter extends FragmentStatePagerAdapter {
     public void setDisplayData(List<Calendar> selectDate){
         this.selectDate = selectDate;
     }
+
 }
