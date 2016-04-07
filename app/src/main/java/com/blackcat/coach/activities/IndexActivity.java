@@ -610,7 +610,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
         llQianDao = (LinearLayout) findViewById(R.id.toolbar_title_right);
         tvQianDao = (TextView) findViewById(R.id.toobar_title_right_tv);
-        tvQianDao.setVisibility(View.VISIBLE);
+        tvQianDao.setVisibility(View.GONE);
         imgQuery = (ImageView) findViewById(R.id.toobar_title_right_img);
         mVerificationWarning = (TextView) findViewById(R.id.tv_verification_warning);
         if (!Session.getSession().is_validation) {
@@ -836,7 +836,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
                 tvQianDao.setVisibility(View.GONE);
                 imgQuery.setVisibility(View.GONE);
             }else{
-                tvQianDao.setVisibility(View.VISIBLE);
+                tvQianDao.setVisibility(View.GONE);
                 imgQuery.setImageResource(R.mipmap.iconfont_icon);
                 tvQianDao.setText("签到");
                 imgQuery.setVisibility(View.VISIBLE);

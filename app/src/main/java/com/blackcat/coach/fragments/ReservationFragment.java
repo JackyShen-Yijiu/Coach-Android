@@ -90,7 +90,7 @@ public class ReservationFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         LogUtil.print("newInstance------reservation222");
         // Inflate the layout for this fragment
-
+LogUtil.print("onCreateView----000---");
         rootView = inflater.inflate(R.layout.fragment_reservation, container, false);
         mContext = getActivity();
         //        mContentId = R.id.fragment_container;
