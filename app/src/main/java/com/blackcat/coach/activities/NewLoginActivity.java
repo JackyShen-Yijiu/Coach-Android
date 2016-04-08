@@ -91,7 +91,7 @@ public class NewLoginActivity extends BaseNoFragmentActivity implements View.OnC
         switch (id) {
             case R.id.tv_send_code:
 
-                mTvSendCode.setBackgroundResource(R.drawable.background_border_gree);
+//
 
                 String phone = mEtPhoneNum.getText().toString();
                 if (TextUtils.isEmpty(phone)) {
@@ -309,6 +309,7 @@ public class NewLoginActivity extends BaseNoFragmentActivity implements View.OnC
         @Override
         public void onTick(long millisUntilFinished) {
             // some script here
+            mTvSendCode.setBackgroundResource(R.drawable.background_border_gree);
             mTvSendCode.setText(String.format(
                     getResources().getString(R.string.register_time_left),
                     millisUntilFinished / 1000));
