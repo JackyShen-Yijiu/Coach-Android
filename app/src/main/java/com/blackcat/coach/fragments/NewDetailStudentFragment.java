@@ -95,13 +95,16 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
 
         mPage = 1;
         if (mUser!=null) {
+            if(!TextUtils.isEmpty(mUser._id)){
+
             fetchUserInfo(mUser._id);
             mURI = URIUtil.getCommentList(mUser._id,mPage);
             refresh(DicCode.RefreshType.R_INIT, mURI);
-        }else{
-            fetchUserInfo("56e95ace17a0206355ec380b");
-            mURI = URIUtil.getCommentList("56e95ace17a0206355ec380b",mPage);
-            refresh(DicCode.RefreshType.R_INIT, mURI);
+            }else{
+                fetchUserInfo(mUser.userid);
+                mURI = URIUtil.getCommentList(mUser.userid,mPage);
+                refresh(DicCode.RefreshType.R_INIT, mURI);
+            }
         }
         return rootView;
     }
@@ -231,15 +234,31 @@ public class NewDetailStudentFragment extends BaseListFragment<Comment> implemen
     @Override
     public void onRefresh() {
         mPage = 1;
-        mURI = URIUtil.getCommentList(mUser._id, mPage);
-        refresh(DicCode.RefreshType.R_PULL_DOWN, mURI);
+        if(!TextUtils.isEmpty(mUser._id)){
+
+            mURI = URIUtil.getCommentList(mUser._id, mPage);
+            refresh(DicCode.RefreshType.R_PULL_DOWN, mURI);
+        }else{
+            mURI = URIUtil.getCommentList(mUser.userid, mPage);
+            refresh(DicCode.RefreshType.R_PULL_DOWN, mURI);
+        }
+
     }
 
     @Override
     public void onLoadMore() {
         mPage++;
-        mURI = URIUtil.getCommentList(mUser._id, mPage);
-        refresh(DicCode.RefreshType.R_PULL_UP, mURI);
+
+        if(!TextUtils.isEmpty(mUser._id)){
+
+            mURI = URIUtil.getCommentList(mUser._id, mPage);
+            refresh(DicCode.RefreshType.R_PULL_UP, mURI);
+        }else{
+            mURI = URIUtil.getCommentList(mUser.userid, mPage);
+            refresh(DicCode.RefreshType.R_PULL_UP, mURI);
+        }
+
+
     }
 
     @Override

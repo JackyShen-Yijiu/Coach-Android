@@ -30,6 +30,7 @@
 #注意前面的包名，如果把这个类复制到自己的项目底下，比如放在com.example.utils底下，应该这么写(实际要去掉#)
 #-keep class com.example.utils.SmileUtils {*;}
 #如果使用easeui库，需要这么写
+
 -keep class com.easemob.easeui.utils.EaseSmileUtils {*;}
 
 #2.0.9后加入语音通话功能，如需使用此功能的api，加入以下keep

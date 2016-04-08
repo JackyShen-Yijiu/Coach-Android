@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -79,6 +81,8 @@ public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> impleme
 
     private List<DaytimelysReservation> selectCourseList = new ArrayList<DaytimelysReservation>();
     private Comparator<Object> courseComp;
+    private RelativeLayout layout_null;
+    private ImageView null_iv;
 
     public static AddStudentsFragment newInstance(String param1, String param2) {
         AddStudentsFragment fragment = new AddStudentsFragment();
@@ -119,6 +123,8 @@ public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> impleme
     }
 
     private void initView(View view) {
+
+
         checkBoxOne = (CheckBox) view.findViewById(R.id.rb_check_one);
         checkBoxTwo = (CheckBox) view.findViewById(R.id.rb_check_two);
         checkBoxThree = (CheckBox) view.findViewById(R.id.rb_check_three);
@@ -150,8 +156,7 @@ public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> impleme
         student2 = (DaytimelysReservation) getActivity().getIntent().getSerializableExtra("student2");
         student3 = (DaytimelysReservation) getActivity().getIntent().getSerializableExtra("student3");
         student4 = (DaytimelysReservation) getActivity().getIntent().getSerializableExtra("student4");
-
-
+        //当学员列表为空时
         if (student1 != null) {
             if (student1.coursestudentcount == student1.selectedstudentcount) {
                 //该课程已预约满
@@ -478,5 +483,13 @@ public class AddStudentsFragment extends BaseListFragment<AddStudentsVO> impleme
         super.onDestroy();
         RowAddStudents.index=-1;
         RowAddStudents.selectUser=null;
+
+    }
+
+    @Override
+    public void noData() {
+        mListView.setVisibility(View.GONE);
+        mNullIv.setImageResource(R.mipmap.no_student);
+        mNullLayout.setVisibility(View.VISIBLE);
     }
 }

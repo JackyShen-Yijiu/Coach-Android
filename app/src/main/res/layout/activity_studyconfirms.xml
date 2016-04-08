@@ -8,6 +8,7 @@
     android:background="@color/new_main_colors"
     tools:context=".activities.StudyConfirmsAct">
 
+
     <include layout="@layout/layout_toolbar" />
     <ExpandableListView
         android:layout_width="match_parent"
@@ -23,4 +24,5 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+    <include layout="@layout/null_layout"/>
 </LinearLayout>

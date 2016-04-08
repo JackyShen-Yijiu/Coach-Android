@@ -92,9 +92,12 @@ public class MainStudentFragment extends BaseFragment{
 
         FragmentTransaction fragmentTransaction =  getChildFragmentManager().beginTransaction();
         if(frags.size()>0){
-            fragmentTransaction.add(R.id.fragment_main_student_content,frags.get(0));
+            fragmentTransaction.add(R.id.fragment_main_student_content, frags.get(0));
             fragmentTransaction.commit();
-            rg.setVisibility(View.VISIBLE);
+            if(frags.size()>1)
+                rg.setVisibility(View.VISIBLE);
+            else
+                rg.setVisibility(View.GONE);
         }else{
             rg.setVisibility(View.GONE);
             Toast.makeText(getActivity(), "暂无可授课程", Toast.LENGTH_SHORT).show();

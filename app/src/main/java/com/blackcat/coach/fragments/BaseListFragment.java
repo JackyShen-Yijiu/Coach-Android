@@ -3,6 +3,8 @@ package com.blackcat.coach.fragments;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -43,19 +45,30 @@ public abstract class BaseListFragment<T> extends BaseFragment
     protected int mPage = 1;
 
     protected int mDataSourceType;
+    protected RelativeLayout mNullLayout;
+    protected ImageView mNullIv;
 
     // Called in onCreateView of subclass
     protected void initViews(View rootView, LayoutInflater inflater, int adapterType) {
+        //空白页
+        mNullLayout = (RelativeLayout) rootView.findViewById(R.id.layout_null);
+        mNullIv = (ImageView) rootView.findViewById(R.id.null_iv);
+
         mPullToRefreshView = (PullToRefreshView) rootView.findViewById(R.id.pull_refresh_view);
         mListView = (PullToRefreshListView) rootView.findViewById(R.id.inner_list);
         mAdapter = new CommonAdapter<>(mActivity, null, adapterType);
         mListView.setAdapter(mAdapter);
         mPullToRefreshView.setRefreshListener(this);
         mListView.setOnLoadMoreListener(this);
+        mListView.setVisibility(View.VISIBLE);
+        mNullLayout.setVisibility(View.GONE);
 
     }
 
     protected void initViews(View rootView, LayoutInflater inflater, int adapterType, int headerLayoutRes) {
+        //空白页
+        mNullLayout = (RelativeLayout) rootView.findViewById(R.id.layout_null);
+        mNullIv = (ImageView) rootView.findViewById(R.id.null_iv);
         mPullToRefreshView = (PullToRefreshView) rootView.findViewById(R.id.pull_refresh_view);
         mListView = (PullToRefreshListView) rootView.findViewById(R.id.inner_list);
         mHeaderView = inflater.inflate(headerLayoutRes, mListView, false);
@@ -64,6 +77,8 @@ public abstract class BaseListFragment<T> extends BaseFragment
         mListView.setAdapter(mAdapter);
         mPullToRefreshView.setRefreshListener(this);
         mListView.setOnLoadMoreListener(this);
+        mListView.setVisibility(View.VISIBLE);
+        mNullLayout.setVisibility(View.GONE);
     }
 
     protected void refresh(final int refreshType, URI uri) {
@@ -114,7 +129,10 @@ public abstract class BaseListFragment<T> extends BaseFragment
             return ;
         mPullToRefreshView.completeRefresh();
         if (refreshType != DicCode.RefreshType.R_PULL_UP) {
-            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
+            mListView.setVisibility(View.GONE);
+            mNullIv.setImageResource(R.mipmap.no_network);
+            mNullLayout.setVisibility(View.VISIBLE);
+//            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(R.string.net_err);
         } else {
             mListView.setLoadMoreFailed();
         }
@@ -129,6 +147,12 @@ public abstract class BaseListFragment<T> extends BaseFragment
             VolleyLog.v("Response:%n %s", response);
         }
         if (response != null && response.type == Result.RESULT_OK && response.data != null) {
+            if(response.data.size() ==0){
+                noData();
+                return;
+            }
+            mListView.setVisibility(View.VISIBLE);
+            mNullLayout.setVisibility(View.GONE);
             List<T> list = response.data;
 //            if(list.size()>0 && list.get(0) instanceof User){
 //                for(int i=0;i<list.size();i++){//
@@ -152,13 +176,15 @@ public abstract class BaseListFragment<T> extends BaseFragment
             mAdapter.notifyDataSetChanged();
             LogUtil.print("listsize--->"+mAdapter.getList().size());
         } else if (response != null && !TextUtils.isEmpty(response.msg)) {
-            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
+            noData();
+//            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
         }
     }
 
     public CommonAdapter<T> getAdapter(){
         return mAdapter;
     }
+
 
 
     @Override
@@ -172,4 +198,6 @@ public abstract class BaseListFragment<T> extends BaseFragment
 
     @Override
     abstract public void onLoadMore();
+    //返回的数据为空时
+    public void noData(){}
 }

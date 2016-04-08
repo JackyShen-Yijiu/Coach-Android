@@ -8,9 +8,13 @@ import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +37,7 @@ import com.blackcat.coach.utils.GsonUtils;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
+import com.blackcat.coach.widgets.LoginRelative;
 import com.easemob.EMCallBack;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMGroupManager;
@@ -71,7 +76,26 @@ public class NewLoginActivity extends BaseNoFragmentActivity implements View.OnC
         initViews();
     }
 
+    private int keyHeight = 300;
+
+//    @Override
+    protected void onLayoutChange(View v, int left, int top, int right,
+                               int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+
+        //old是改变前的左上右下坐标点值，没有old的是改变后的左上右下坐标点值
+
+//      System.out.println(oldLeft + " " + oldTop +" " + oldRight + " " + oldBottom);
+//      System.out.println(left + " " + top +" " + right + " " + bottom);
+
+
+        //现在认为只要控件将Activity向上推的高度超过了1/3屏幕高，就认为软键盘弹起
+
+
+    }
+
     private void initViews() {
+
+
         mEtPhoneNum = (EditText) findViewById(R.id.et_phonenum);
         mEtVerifyCode = (EditText) findViewById(R.id.et_verification_code);
         mTvSendCode = (TextView) findViewById(R.id.tv_send_code);
@@ -82,8 +106,100 @@ public class NewLoginActivity extends BaseNoFragmentActivity implements View.OnC
 
         tv_proto = (TextView) findViewById(R.id.tv_proto);
         tv_proto.setOnClickListener(this);
+        final ImageView img = (ImageView) findViewById(R.id.iv_1);
+        final com.blackcat.coach.widgets.LoginRelative rl = (com.blackcat.coach.widgets.LoginRelative) findViewById(R.id.new_act_login_rl);
+        final LinearLayout l1 = (LinearLayout) findViewById(R.id.new_act_login_r2);
+        rl.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener(){
+
+
+            @Override
+            public void onGlobalLayout(){
+
+//                if(getWindow().getAttributes().softInputMode==WindowManager.LayoutParams.SOFT_INPUT_STATE_UNSPECIFIED) {
+////                    LogUtil.print("root::>"+rl.getRootView().getHeight()+"Height;;>>"+rl.getHeight());
+//                    Toast.makeText(NewLoginActivity.this, "监听到软键盘弹起...777", Toast.LENGTH_SHORT).show();
+//                }else{
+//                    Toast.makeText(NewLoginActivity.this, "监听到软件盘关闭...8888", Toast.LENGTH_SHORT).show();
+//                }
+
+                //比较Activity根布局与当前布局的大小
+                int heightDiff = rl.getRootView().getHeight()- rl.getHeight();
+
+                if(heightDiff >100){
+
+                    //大小超过100时，一般为显示虚拟键盘事件
+//                    Toast.makeText(NewLoginActivity.this, "监听到软键盘弹起...3333", Toast.LENGTH_SHORT).show();
+                }else{
+//                    Toast.makeText(NewLoginActivity.this, "监听到软件盘关闭...444", Toast.LENGTH_SHORT).show();
+                    //大小小于100时，为不显示虚拟键盘或虚拟键盘隐藏
+
+                }
+            }
+        });
+
+
+//        findViewById(R.id.new_act_login_r2).addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+//            @Override
+//            public void onLayoutChange(View v, int left, int top, int right,
+//                                       int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+//
+//
+//                Toast.makeText(NewLoginActivity.this, top+"监听到软键盘弹起..2222."+oldTop, Toast.LENGTH_SHORT).show();
+//
+//                if(oldBottom != 0 && bottom != 0 &&(oldBottom - bottom > keyHeight)){
+//
+//                    Toast.makeText(NewLoginActivity.this, "监听到软键盘弹起...", Toast.LENGTH_SHORT).show();
+//
+//                }else if(oldBottom != 0 && bottom != 0 &&(bottom - oldBottom > keyHeight)){
+//
+//                    Toast.makeText(NewLoginActivity.this, "监听到软件盘关闭...", Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }
+//        });
+//        rl.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+//            @Override
+//            public void onLayoutChange(View v, int left, int top, int right,
+//                                       int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+//                Toast.makeText(NewLoginActivity.this, top+"监听到软键盘弹起..1111."+oldTop, Toast.LENGTH_SHORT).show();
+//
+//                if(oldBottom != 0 && bottom != 0 &&(oldBottom - bottom > keyHeight)){
+//
+//                    Toast.makeText(NewLoginActivity.this, "监听到软键盘弹起...", Toast.LENGTH_SHORT).show();
+//
+//                }else if(oldBottom != 0 && bottom != 0 &&(bottom - oldBottom > keyHeight)){
+//
+//                    Toast.makeText(NewLoginActivity.this, "监听到软件盘关闭...", Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }
+//        });
+//
+
+//
+//
+//        rl.setStateListener(new LoginRelative.KeyBordStateListener() {
+//            @Override
+//            public void statechange(int state) {
+//                switch(state){
+//                    case LoginRelative.KEYBORAD_HIDE:
+//                        img.setVisibility(View.VISIBLE);
+//                        break;
+//                    case LoginRelative.KEYBORAD_SHOW:
+//                        img.setVisibility(View.GONE);
+//                        break;
+//                }
+//            }
+//        });
 
     }
+
+    private boolean keybord(){
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+//        imm.
+        return true;
+        }
+
 
     @Override
     public void onClick(View v) {
@@ -270,7 +386,7 @@ public class NewLoginActivity extends BaseNoFragmentActivity implements View.OnC
                             mTvSendCode.setEnabled(false);
                         } else if (response != null && !TextUtils.isEmpty(response.msg)) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
-                            if (response.msg.contains("没有查询到您的注册信息")){
+                            if (response.msg.contains("您的手机号不属于联盟驾校")){
                                 LogUtil.print("asdasd");
                                 showCoachDialog();
                             }
@@ -303,6 +419,7 @@ public class NewLoginActivity extends BaseNoFragmentActivity implements View.OnC
         public void onFinish() {
             mTvSendCode.setText(R.string.register_get_code);
             mTvSendCode.setEnabled(true);
+            mTvSendCode.setBackgroundResource(R.drawable.background_border_blue);
         }
 
         @Override

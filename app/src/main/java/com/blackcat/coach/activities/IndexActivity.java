@@ -550,9 +550,13 @@ public class IndexActivity extends BaseActivity implements IKillable,
     private void refreshUI() {
         //更新未读消息显示
         //refreshUnreadLabel();
-        // 刷新当前页面
+        // 刷新当前页面--列表
         ReservationAdapter.fragments[ReservationFragment.currentPage].reRusume();
-
+        // 刷新当前页面--时间
+        MonthApplyEvent event = new MonthApplyEvent();
+        Calendar calendar = Calendar.getInstance();
+        event.calendar = calendar;
+        EventBus.getDefault().post(event);
         //更新fragment消息通知
         EventBus.getDefault().post(new NewMessageReceiveEvent());
 
@@ -844,7 +848,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
 
         }else if(type == 2){
             llQianDao.setVisibility(View.VISIBLE);
-            tvQianDao.setVisibility(View.VISIBLE);
+            tvQianDao.setVisibility(View.GONE);
             tvQianDao.setTextSize(14);
             tvQianDao.setText("群发短信");
             imgQuery.setVisibility(View.GONE);

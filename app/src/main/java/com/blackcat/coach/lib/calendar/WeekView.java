@@ -7,7 +7,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.GridView;
 
-import com.blackcat.coach.fragments.ChildScheduleFragment;
+import com.blackcat.coach.lib.calendar.adapter.WeekAdapter;
 import com.blackcat.coach.lib.calendar.util.WeekDataUtil;
 import com.blackcat.coach.utils.LogUtil;
 
