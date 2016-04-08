@@ -58,9 +58,9 @@ public class GuideActivity extends Activity {
 		});
 
 		drawables = new Drawable[] {
-				getResources().getDrawable(R.drawable.welcome_one),
-				getResources().getDrawable(R.drawable.welcome_two),
-				getResources().getDrawable(R.drawable.welcome_three),
+				getResources().getDrawable(R.mipmap.guide1_2x),
+				getResources().getDrawable(R.mipmap.guide2_2x),
+				getResources().getDrawable(R.mipmap.guide3_2x),
 				};
 
 		animations = new Animation[] {

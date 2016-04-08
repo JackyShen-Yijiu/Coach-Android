@@ -12,17 +12,16 @@
         android:scaleType="fitXY" />
     <Button
         android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="19dp"
-        android:background="@drawable/button_background"
+        android:background="@android:color/transparent"
         android:paddingBottom="5dp"
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:paddingTop="5dp"
-        android:textColor="#fefefe"
-        android:text="点击进入" />
+ />
 
 </RelativeLayout>
