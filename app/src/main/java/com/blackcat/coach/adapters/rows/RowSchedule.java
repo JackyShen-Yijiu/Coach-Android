@@ -222,7 +222,7 @@ public class RowSchedule {
                 } else if (detail.reservationstate == 10) {
                     //漏课
                     missClassTv.setVisibility(View.VISIBLE);
-                } else if (detail.reservationstate == 7) {
+                } else if (detail.reservationstate == 7||detail.reservationstate == 6) {
                     //评价完成
                     studyStatusIv.setVisibility(View.VISIBLE);
                     studyStatusIv.setImageResource(R.mipmap.schedule_item_complete);
