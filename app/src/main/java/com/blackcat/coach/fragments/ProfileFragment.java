@@ -20,6 +20,7 @@ import com.blackcat.coach.activities.ClassesSettingsActivity;
 import com.blackcat.coach.activities.ExamInfoActivity;
 import com.blackcat.coach.activities.MoreActivity;
 import com.blackcat.coach.activities.NewDetailStudentAct;
+import com.blackcat.coach.activities.PersonalInfoActivity;
 import com.blackcat.coach.activities.SettingsActivity;
 import com.blackcat.coach.activities.StudyConfirmsAct;
 
@@ -62,6 +63,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
     private void initViews(View rootView) {
         mIvAvatar = (SelectableRoundedImageView) rootView.findViewById(R.id.iv_avatar);
+        mIvAvatar.setOnClickListener(this);
         mIvAvatar.setScaleType(ImageView.ScaleType.CENTER_CROP);
         mIvAvatar.setImageResource(R.mipmap.ic_avatar_small);
         mIvAvatar.setOval(true);
@@ -95,6 +97,7 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
         LinearLayout stat = (LinearLayout) rootView.findViewById(R.id.ll_stat);
         stat.setOnClickListener(this);
+
 
     }
 
@@ -167,9 +170,9 @@ public class ProfileFragment extends BaseFragment implements OnClickListener {
 
         int id = v.getId();
         switch (id) {
-//            case R.id.rl_profile_header:
-//                startActivity(new Intent(mActivity, PersonalInfoActivity.class));
-//                break;
+            case R.id.iv_avatar:
+                startActivity(new Intent(mActivity, PersonalInfoActivity.class));
+                break;
 //            case R.id.rl_job_category:
 //                startActivity(new Intent(mActivity, JobCategory.class));
 //                break;
