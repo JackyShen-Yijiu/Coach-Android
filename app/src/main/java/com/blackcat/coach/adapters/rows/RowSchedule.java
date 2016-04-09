@@ -117,7 +117,7 @@ public class RowSchedule {
 
                     Date now = Calendar.getInstance().getTime();
                     //过时的不能点击
-                    if (UTC2LOC.instance.getDates(item.courseendtime, "yyyy-MM-dd HH:mm:ss").before(now)) {
+                    if (UTC2LOC.instance.getDates(item.coursebegintime, "yyyy-MM-dd HH:mm:ss").before(now)) {
 
                     } else {
 
