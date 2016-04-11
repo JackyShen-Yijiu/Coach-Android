@@ -862,7 +862,7 @@ public class IndexActivity extends BaseActivity implements IKillable,
             llQianDao.setVisibility(View.VISIBLE);
             imgQuery.setVisibility(View.VISIBLE);
             tvQianDao.setVisibility(View.GONE);
-            imgQuery.setImageResource(R.mipmap.modification);
+            imgQuery.setImageResource(R.mipmap.edit_xiugai);
         } else{
                 llQianDao.setVisibility(View.GONE);
             }
