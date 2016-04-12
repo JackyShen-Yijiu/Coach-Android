@@ -147,10 +147,10 @@ public abstract class BaseListFragment<T> extends BaseFragment
             VolleyLog.v("Response:%n %s", response);
         }
         if (response != null && response.type == Result.RESULT_OK && response.data != null) {
-            if(response.data.size() ==0){
-                noData();
-                return;
-            }
+//            if(response.data.size() ==0){
+//                noData();
+//                return;
+//            }
             mListView.setVisibility(View.VISIBLE);
             mNullLayout.setVisibility(View.GONE);
             List<T> list = response.data;

@@ -213,5 +213,7 @@ public class ItemFragment extends BaseListFragment {
         mNullIv.setImageResource(R.mipmap.no_data);
         mNullLayout.setVisibility(View.VISIBLE);
     }
+
+
 }
 
