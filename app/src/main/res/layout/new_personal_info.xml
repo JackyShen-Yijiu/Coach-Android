@@ -199,7 +199,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/padding_left"
-            android:text="驾照类型"
+            android:text="教练号"
             android:textColor="@color/profile_text_normal"
             android:textSize="@dimen/profile_text_size" />
 
@@ -275,7 +275,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/padding_left"
-            android:drawableRight="@mipmap/ic_right"
             android:textColor="@color/new_txt_lights"
             android:textSize="12sp" />
 
@@ -431,7 +430,7 @@
             android:layout_marginTop="20dp"
             android:layout_alignLeft="@+id/tv_self_hint"
             android:maxLines="3"
-            android:text="各适量的"
+            android:text=""
             android:ellipsize="end"
             android:textColor="@color/text_999"
             android:textSize="@dimen/text_size_small" />

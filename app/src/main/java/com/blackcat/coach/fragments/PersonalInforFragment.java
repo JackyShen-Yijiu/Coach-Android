@@ -206,10 +206,10 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
         }
         if (!TextUtils.isEmpty(Session.getSession().Seniority)) {
 //
-            if (Session.getSession().Seniority.contains("年")){
-                String[] s=Session.getSession().Seniority.split("年");
-                mTvSeniority.setText(s[0]+"年");
-            }
+//            if (Session.getSession().Seniority.contains("年")){
+//                String[] s=Session.getSession().Seniority.split("年");
+//                mTvSeniority.setText(s[0]+"年");
+//            }
             mTvSeniority.setText(Session.getSession().Seniority+"年");
 
         }
@@ -315,12 +315,12 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
                 break;
             case R.id.rl_avatar:
                 break;
-            case R.id.tv_true:
-//                String seniority =age;//mTvSeniority.getText().toString().trim();
-                mTvSeniority.setText(age+"年");
-                updateRequest(String.valueOf(age));
-                alertDialog.dismiss();
-                break;
+//            case R.id.tv_true:
+////                String seniority =age;//mTvSeniority.getText().toString().trim();
+//                mTvSeniority.setText(age+"年");
+//                updateRequest(String.valueOf(age));
+//                alertDialog.dismiss();
+//                break;
             case R.id.tv_false:
                 alertDialog.dismiss();
                 break;
@@ -355,7 +355,7 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
                 break;
             case R.id.rl_seniority:
 //                startActivity(new Intent(getActivity(), ModifySeniorityActivity.class));
-                showCoachDialog();
+//                showCoachDialog();
                 break;
             case R.id.rl_coach_num:
                 startActivity(new Intent(getActivity(), ModifyCoachNumberActivity.class));

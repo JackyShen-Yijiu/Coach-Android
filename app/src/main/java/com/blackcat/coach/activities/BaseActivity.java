@@ -1,5 +1,7 @@
 package com.blackcat.coach.activities;
 
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -129,5 +131,17 @@ public class BaseActivity extends AppCompatActivity {
 	protected void onDestroy() {
 		VolleyUtil.getQueue(this).cancelAll(this);;
 		super.onDestroy();
+	}
+
+
+ //字体不随着系统的改变而改变
+
+	@Override
+	public Resources getResources() {
+		Resources res = super.getResources();
+		Configuration config=new Configuration();
+		config.setToDefaults();
+		res.updateConfiguration(config, res.getDisplayMetrics());
+		return res;
 	}
 }
