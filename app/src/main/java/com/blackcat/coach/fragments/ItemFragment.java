@@ -213,5 +213,7 @@ LogUtil.print("11111onCreateView----000---");
         mNullIv.setImageResource(R.mipmap.no_data);
         mNullLayout.setVisibility(View.VISIBLE);
     }
+
+
 }
 
