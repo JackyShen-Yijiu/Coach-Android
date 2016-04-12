@@ -237,6 +237,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         });
     }
     private void refreshMessagesList() {
+
         if (mMessageLists == null) {
             mMessageLists = new ArrayList<>();
         } else {
@@ -259,6 +260,7 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         sortMessageListByTime(mMessageLists);
         mAdapter.setList(mMessageLists);
         mAdapter.notifyDataSetChanged();
+        LogUtil.print("tvName=show=>============="+mMessageLists.size());
     }
 
 

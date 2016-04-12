@@ -147,10 +147,10 @@ public abstract class BaseListFragment<T> extends BaseFragment
             VolleyLog.v("Response:%n %s", response);
         }
         if (response != null && response.type == Result.RESULT_OK && response.data != null) {
-            if(response.data.size() ==0){
-                noData();
-                return;
-            }
+//            if(response.data.size() ==0){
+//                noData();
+//                return;
+//            }
             mListView.setVisibility(View.VISIBLE);
             mNullLayout.setVisibility(View.GONE);
             List<T> list = response.data;
@@ -169,12 +169,10 @@ public abstract class BaseListFragment<T> extends BaseFragment
                 }
                 mAdapter.appendList(list);
             } else {
-                LogUtil.print("listsize-11-->"+list.size());
                 mListView.setNoMoreData(false);
                 mAdapter.setList(list);
             }
             mAdapter.notifyDataSetChanged();
-            LogUtil.print("listsize--->"+mAdapter.getList().size());
         } else if (response != null && !TextUtils.isEmpty(response.msg)) {
             noData();
 //            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);

@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.IndexActivity;
@@ -48,8 +49,10 @@ import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
 
 import com.blackcat.coach.utils.CommonUtil;
+import com.blackcat.coach.utils.Constants;
 import com.blackcat.coach.utils.LogUtil;
 import com.blackcat.coach.utils.ToastHelper;
+import com.blackcat.coach.utils.UTC2LOC;
 import com.blackcat.coach.utils.VolleyUtil;
 import com.blackcat.coach.widgets.NoScrollViewPager;
 import com.google.gson.reflect.TypeToken;
@@ -463,6 +466,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
     }
 
     private void openCalendarWindow() {
+        long start = (System.currentTimeMillis());
+        LogUtil.print("show--end--time：：>"+start);
         if (popview == null) {
             popview = (ViewGroup) View.inflate(mContext, R.layout.fragment_calendar, null);
 
@@ -515,14 +520,12 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         popWindow.setBackgroundDrawable(new BitmapDrawable());
         popWindow.setAnimationStyle(R.style.popwin_anim_style);
         popWindow.showAsDropDown(toolBar);
+        LogUtil.print("show--end--time：11：>"+(System.currentTimeMillis()-start));
 //        popWindow.showAsDropDown(expCalendarView);
 
 //        popWindow.showAtLocation(toolBar, Gravity.TOP,0,0);
     }
 
-    private void popAnimIn(){
-//        popWindow.
-    }
 
 
 }

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/rootView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:background="@drawable/sl_default_background">
 
     <RelativeLayout
@@ -19,7 +20,7 @@
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
-
+            android:visibility="visible"
             android:background="@color/new_main_colors" />
         <ImageView
             android:id="@+id/schedule_time_iv"
@@ -62,11 +63,10 @@
 
     <LinearLayout
         android:id="@+id/line_ll"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="20dp"
-        android:layout_toRightOf="@+id/line_rl"
         android:orientation="vertical">
 
         <LinearLayout
@@ -108,4 +108,4 @@
             android:background="@color/line_bg" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
