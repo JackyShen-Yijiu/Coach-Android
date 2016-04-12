@@ -54,6 +54,7 @@
                 android:id="@+id/toobar_title_right_img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:src="@mipmap/iconfont_icon"
                 android:paddingBottom="2dp"
 

@@ -109,6 +109,7 @@ public class RowSchedule {
             }
 
 
+            viewHolder.lineIv.setVisibility(View.VISIBLE);
             //
             viewHolder.studentGv.setAdapter(new StudentAdapter(mContext, item));
             viewHolder.studentGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

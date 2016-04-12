@@ -169,12 +169,10 @@ public abstract class BaseListFragment<T> extends BaseFragment
                 }
                 mAdapter.appendList(list);
             } else {
-                LogUtil.print("listsize-11-->"+list.size());
                 mListView.setNoMoreData(false);
                 mAdapter.setList(list);
             }
             mAdapter.notifyDataSetChanged();
-            LogUtil.print("listsize--->"+mAdapter.getList().size());
         } else if (response != null && !TextUtils.isEmpty(response.msg)) {
             noData();
 //            ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
