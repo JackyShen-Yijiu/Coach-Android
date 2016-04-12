@@ -30,6 +30,7 @@ public class ModifyCoachNumberActivity extends BaseActivity {
 
     private void initView() {
         mEtNewCoachNum = (EditText)findViewById(R.id.et_new_coach_num);
+        mEtNewCoachNum.setText(Session.getSession().coachnumber);
     }
 
 //   @Override
