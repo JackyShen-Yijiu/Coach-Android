@@ -172,8 +172,8 @@
     </style>
 
     <style name="popwin_anim_style">
-        <item name="android:windowEnterAnimation">@anim/alpha_in</item>
-        <item name="android:windowExitAnimation">@anim/alpha_out</item>
+        <item name="android:windowEnterAnimation">@anim/alpha_in_pop</item>
+        <item name="android:windowExitAnimation">@anim/alpha_out_pop</item>
     </style>
 
 </resources>

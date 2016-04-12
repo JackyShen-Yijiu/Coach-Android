@@ -7,4 +7,9 @@
         class="com.blackcat.coach.fragments.CalendarDialogFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@mipmap/shadow_line"
+        ></ImageView>
 </LinearLayout>

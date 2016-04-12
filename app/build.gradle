@@ -8,8 +8,8 @@ android {
         applicationId "com.jzjf.coach"
         minSdkVersion 11
         targetSdkVersion 23
-        versionCode 2
-        versionName "1.1.0"
+        versionCode 3
+        versionName "1.2.0"
     }
 
     def keyStorePath = "./bc.keystore.jks"
