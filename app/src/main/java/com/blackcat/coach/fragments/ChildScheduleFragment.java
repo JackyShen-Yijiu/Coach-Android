@@ -463,6 +463,8 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
     }
 
     private void openCalendarWindow() {
+        long start = (System.currentTimeMillis());
+        LogUtil.print("show--end--time：：>"+start);
         if (popview == null) {
             popview = (ViewGroup) View.inflate(mContext, R.layout.fragment_calendar, null);
 
@@ -515,6 +517,7 @@ public class ChildScheduleFragment extends BaseListFragment<Reservation> impleme
         popWindow.setBackgroundDrawable(new BitmapDrawable());
         popWindow.setAnimationStyle(R.style.popwin_anim_style);
         popWindow.showAsDropDown(toolBar);
+        LogUtil.print("show--end--time：11：>"+(System.currentTimeMillis()-start));
 //        popWindow.showAsDropDown(expCalendarView);
 
 //        popWindow.showAtLocation(toolBar, Gravity.TOP,0,0);
