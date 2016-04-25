@@ -68,7 +68,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.NewLoginActivity"
-            android:windowSoftInputMode="adjustPan|stateVisible"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
         <activity
