@@ -69,6 +69,11 @@
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
+
+        <!-- <<<<<<< HEAD
+=======
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
+>>>>>>> e7099f2c7d3c1e4802ac8a90c689d6d6baa6ac41-->
         <activity
             android:name=".activities.NewLoginActivity"
             android:label="@string/title_activity_login"

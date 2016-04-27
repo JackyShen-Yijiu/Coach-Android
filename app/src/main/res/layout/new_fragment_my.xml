@@ -214,7 +214,7 @@
                 android:layout_marginTop="8dp"
                 android:textSize="12sp"
                 android:textColor="@color/new_txt_blacks"
-                android:text="资询"/>
+                android:text="资讯"/>
 
         </LinearLayout>
 
