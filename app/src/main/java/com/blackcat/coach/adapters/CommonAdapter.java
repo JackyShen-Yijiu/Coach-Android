@@ -15,6 +15,7 @@ import com.blackcat.coach.adapters.rows.RowDrivingSchool;
 import com.blackcat.coach.adapters.rows.RowExamInfo;
 import com.blackcat.coach.adapters.rows.RowMessage;
 import com.blackcat.coach.adapters.rows.RowNone;
+import com.blackcat.coach.adapters.rows.RowNoticeMsg;
 import com.blackcat.coach.adapters.rows.RowOrderMsg;
 import com.blackcat.coach.adapters.rows.RowOrderStudent;
 import com.blackcat.coach.adapters.rows.RowProduct;
@@ -51,6 +52,9 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
         public static final int TYPE_ADAPTER_PRODUCT = 12;
         public static final int TYPE_ADAPTER_SYSTEMMSG = 13;
         public static final int TYPE_ADAPTER_ORDERMSG = 14;
+        /***公告*/
+        public static final int TYPE_ADAPTER_NOTICE = 21;
+
         /***
          * 个人信息
          */
@@ -182,6 +186,8 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
                 return RowAddStudents.createViewHolder(parent, parent.getContext());
             case AdapterType.TYPE_EXAM_INFO://考试信息列表
                 return RowExamInfo.createViewHolder(parent, parent.getContext());
+            case AdapterType.TYPE_ADAPTER_NOTICE:
+                return RowNoticeMsg.createViewHolder(parent,parent.getContext());
             default:
                 return RowNone.createViewHolder(parent, parent.getContext());
         }
@@ -244,6 +250,9 @@ public class CommonAdapter<T> extends AbstractAdapter<BaseViewHolder> {
                 break;
             case AdapterType.TYPE_ADAPTER_STUDENT_NEW:
                 RowStudentsNew.bindViewHolder(mActivity,holder,position,mList.get(position));
+                break;
+            case AdapterType.TYPE_ADAPTER_NOTICE:
+                RowNoticeMsg.bindViewHolder(mActivity,holder,position,mList.get(position));
                 break;
             default:
                 RowNone.bindViewHolder(holder);
