@@ -36,12 +36,12 @@ public class RowSchedule {
 
     private static Context mContext;
 
-    private static int blue;
-    private static int blue_light;
-    private static int txt_light;
-    private static int txt_black;
-    private static int white;
-    private static int item_bg;
+    private static int blue = 0;
+    private static int blue_light = 0;
+    private static int txt_light = 0;
+    private static int txt_black = 0;
+    private static int white = 0;
+    private static int item_bg = 0;
 
     //当前选择项
     public static BaseViewHolder createViewHolder(ViewGroup parent, Context context) {
@@ -60,12 +60,15 @@ public class RowSchedule {
         holder.timeLl = (LinearLayout) view.findViewById(R.id.schedule_time_ll);
         holder.adapter = new StudentAdapter(context);
         holder.studentGv.setAdapter(holder.adapter);
-        blue = mContext.getResources().getColor(R.color.new_txt_blues);
-        txt_light = mContext.getResources().getColor(R.color.new_txt_lights);
-        txt_black = mContext.getResources().getColor(R.color.new_txt_blacks);
-        blue_light = mContext.getResources().getColor(R.color.new_txt_light_blues);
-        white = mContext.getResources().getColor(R.color.white_pure);
-        item_bg = mContext.getResources().getColor(R.color.item_bg);
+        if(txt_light==0){
+            blue = mContext.getResources().getColor(R.color.new_txt_blues);
+            txt_light = mContext.getResources().getColor(R.color.new_txt_lights);
+            txt_black = mContext.getResources().getColor(R.color.new_txt_blacks);
+            blue_light = mContext.getResources().getColor(R.color.new_txt_light_blues);
+            white = mContext.getResources().getColor(R.color.white_pure);
+            item_bg = mContext.getResources().getColor(R.color.item_bg);
+        }
+
         return holder;
     }
     private User user;

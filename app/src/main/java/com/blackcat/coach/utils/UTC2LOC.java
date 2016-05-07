@@ -22,7 +22,9 @@ public class UTC2LOC {
 		}
 	}
 
-	static Date dt = null;
+//	static Date dt = null;
+
+	static SimpleDateFormat f = null;
 
 	public static String getDate(String date, String format) {
 		try {
@@ -30,9 +32,10 @@ public class UTC2LOC {
 				return "";
 			}
 			date = date.replace("Z", "");
-			if(dt==null)
-				dt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS")
-						.parse(date);
+			if(f==null)
+				f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+
+			Date dt = f.parse(date);
 			// 转换为北京时间,相差8个小时
 			dt.setTime(dt.getTime() + 28800000);
 			SimpleDateFormat sf = new SimpleDateFormat(format);
