@@ -240,12 +240,16 @@ public class PersonalInforFragment extends BaseListFragment<Comment> implements 
 //            mSubject.setText("");
 //        }
 
-        for (int i = 0; i <Session.getSession().subject.size(); i++) {
-           mSubject.setText(Session.getSession().subject.get(i).name.toString()+"");
-        }
-
-
+//        for (int i = 0; i <Session.getSession().subject.size(); i++) {
+//            LogUtil.print("iiiiiiiiiiiii"+Session.getSession().subject.get(i).name);
+//        }
+//        mSubject.setText(Session.getSession().subject.get(2).name+"");
         //addTags();
+        StringBuffer stringBuffer=new StringBuffer();
+        for (int i = 0; i <Session.getSession().subject.size(); i++) {
+            stringBuffer.append(Session.getSession().subject.get(i).name+" ");
+        }
+        mSubject.setText(stringBuffer+"");
     }
     private String getTime(int temp){
         if(temp<10)

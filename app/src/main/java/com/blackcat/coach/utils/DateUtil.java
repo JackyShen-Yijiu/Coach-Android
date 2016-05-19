@@ -34,6 +34,25 @@ public class DateUtil {
 
     }
 
+    public static String parseTimeFormat(String time,String format)  {
+//        2015-12-15T15:59:43.308Z
+        SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        SimpleDateFormat f1 = new SimpleDateFormat(format);
+
+        if(null == time){
+            return time;
+        }
+        try {
+            Date d = f.parse(time);
+            return f1.format(d);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return time;
+        }
+
+    }
+
+
     public static boolean isIdCard(String str){
         Pattern pt = Pattern.compile("\\d{15,17}([\\dxX]{1})?");
         Matcher mt = pt.matcher(str);

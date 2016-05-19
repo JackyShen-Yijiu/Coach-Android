@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.blackcat.coach.CarCoachApplication;
 import com.blackcat.coach.R;
 import com.blackcat.coach.activities.ChatActivity;
+import com.blackcat.coach.activities.NoticeActivity;
 import com.blackcat.coach.activities.OrderMsgActivity;
 import com.blackcat.coach.activities.SystemMsgActivity;
 import com.blackcat.coach.adapters.CommonAdapter;
@@ -33,6 +34,7 @@ import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.NetConstants;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.LogUtil;
+import com.blackcat.coach.utils.SharedPreferencesUtil;
 import com.blackcat.coach.utils.SpHelper;
 import com.blackcat.coach.utils.ToastHelper;
 import com.blackcat.coach.utils.VolleyUtil;
@@ -101,6 +103,13 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         imgSystemInfor.setImageResource(R.mipmap.system_messages);
         imgSystemInfor.setOval(true);
 
+        SelectableRoundedImageView imgNotice = (SelectableRoundedImageView) rootView
+                .findViewById(R.id.system_messeage);
+
+        imgNotice.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imgNotice.setImageResource(R.mipmap.system_bulletin);
+        imgNotice.setOval(true);
+
         tv_unread_count=(TextView)rootView.findViewById(R.id.tv_unread_count);
         TV_system_messeage=(TextView)rootView.findViewById(R.id.TV_system_messeage);
 
@@ -128,8 +137,8 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         });
         order_msg=(RelativeLayout)rootView.findViewById(R.id.rl_order_messeage);
         order_msg.setOnClickListener(this);
-//        system_msg=(RelativeLayout)rootView.findViewById(R.id.rl_system_messeage);
-//        system_msg.setOnClickListener(this);
+        system_msg=(RelativeLayout)rootView.findViewById(R.id.rl_system_messeage);
+        system_msg.setOnClickListener(this);
         mTvErrorMsg = (TextView)rootView.findViewById(R.id.tv_connect_errormsg);
 
     }
@@ -140,10 +149,12 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                 tv_unread_count.setVisibility(View.GONE);
                 Tv_toast.setVisibility(View.GONE);
                 break;
-//            case R.id.rl_system_messeage://行业资讯
-//                startActivity(new Intent(mActivity, SystemMsgActivity.class));
-//                TV_system_messeage.setVisibility(View.GONE);
-//                break;
+            case R.id.rl_system_messeage://公告
+                startActivity(new Intent(mActivity, NoticeActivity.class));
+//                TV_system_messeage.setText("");
+                Tv_system_toast.setText("");
+                TV_system_messeage.setVisibility(View.INVISIBLE);
+                break;
        }
     }
 
@@ -169,10 +180,10 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                     @Override
                     public void onResponse(Result<MessageCount> response) {
                         if (response != null && response.type == Result.RESULT_OK && response.data != null) {
-                            LogUtil.print("message--->"+response.data.messageinfo.message);
+                            LogUtil.print("message--->" + response.data.messageinfo.message);
                             Tv_toast.setText(response.data.messageinfo.message==null?"欢迎使用极致驾服":response.data.messageinfo.message);
                             tv_unread_count.setText(String.valueOf(response.data.messageinfo.messagecount));
-                            Tv_system_toast.setText(response.data.Newsinfo.news);
+
 
                             TV_system_messeage.setText(String.valueOf(response.data.Newsinfo.newscount));
                             order_time.setText(response.data.messageinfo.messagetime);
@@ -186,11 +197,24 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
                                 tv_unread_count.setVisibility(View.VISIBLE);
                             }
 
-                            if(response.data.Newsinfo.newscount==0){
-                                TV_system_messeage.setVisibility(View.INVISIBLE);
-                            }else{
+//                            if(response.data.Newsinfo.newscount==0){/*
+//                                TV_system_messeage.setVisibility(View.INVISIBLE);
+//                            }else{
+//                                TV_system_messeage.setVisibility(View.VISIBLE);
+//                            }*/
+
+                            int bulletincount = SharedPreferencesUtil.
+                            getInt(getActivity(), "bulletincount",0);
+                            if(response.data.bulletininfo.bulletincount > bulletincount){//有最新
+                                TV_system_messeage.setText((response.data.bulletininfo.bulletincount - bulletincount)+"");
+                                Tv_system_toast.setText(response.data.bulletininfo.bulletin);
                                 TV_system_messeage.setVisibility(View.VISIBLE);
+                            }else{// 隐藏没有最新的
+                                Tv_system_toast.setText("");
+                                TV_system_messeage.setVisibility(View.INVISIBLE);
                             }
+                            //公告
+                            SharedPreferencesUtil.putInt(getActivity(),"bulletincount",response.data.bulletininfo.bulletincount);
 
                         } else if (response != null && !TextUtils.isEmpty(response.msg)) {
                             ToastHelper.getInstance(CarCoachApplication.getInstance()).toast(response.msg);
@@ -262,8 +286,6 @@ public class MessageFragment extends BaseFragment implements View.OnClickListene
         mAdapter.notifyDataSetChanged();
         LogUtil.print("tvName=show=>============="+mMessageLists.size());
     }
-
-
 
     private void sortMessageListByTime(List<Message> messageList) {
         Collections.sort(messageList, new Comparator<Message>() {

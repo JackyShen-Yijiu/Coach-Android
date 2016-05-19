@@ -98,6 +98,9 @@ public class NetConstants {
 	public static final String PATH_BUY_PRODUCT = "api/v1/userinfo/buyproduct";
 	//添加
 	public static final String PATH_SYSTEMMSG = "api/v1/userinfo/getnews";
+	/**公告*/
+	public static final String PATH_NOTICE_MSG = "/api/headmaster/userinfo/getbulletin";
+
 	public static final String PATH_OREDERMSG = "api/v1/userinfo/getsysteminfo";
 	/***教练评论*/
 	public static final String PATH_GET_COMMENTS_CAOCH = "api/v1/courseinfo/getusercomment/2/";
