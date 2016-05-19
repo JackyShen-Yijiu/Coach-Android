@@ -36,6 +36,12 @@ public class RowSchedule {
 
     private static Context mContext;
 
+    private static int blue;
+    private static int blue_light;
+    private static int txt_light;
+    private static int txt_black;
+    private static int white;
+    private static int item_bg;
 
     //当前选择项
     public static BaseViewHolder createViewHolder(ViewGroup parent, Context context) {
@@ -52,66 +58,81 @@ public class RowSchedule {
         holder.lineIv = (ImageView) view.findViewById(R.id.schedule_line_iv);
 
         holder.timeLl = (LinearLayout) view.findViewById(R.id.schedule_time_ll);
+        holder.adapter = new StudentAdapter(context);
+        holder.studentGv.setAdapter(holder.adapter);
+        blue = mContext.getResources().getColor(R.color.new_txt_blues);
+        txt_light = mContext.getResources().getColor(R.color.new_txt_lights);
+        txt_black = mContext.getResources().getColor(R.color.new_txt_blacks);
+        blue_light = mContext.getResources().getColor(R.color.new_txt_light_blues);
+        white = mContext.getResources().getColor(R.color.white_pure);
+        item_bg = mContext.getResources().getColor(R.color.item_bg);
         return holder;
     }
     private User user;
     public static <T> void bindViewHolder(final Activity activity,
                                           BaseViewHolder holder, final int position, final List<T> info) {
+        long start = System.currentTimeMillis();
+        LogUtil.print("start--time->"+start);
         final Holder viewHolder = (Holder) holder;
         final DaytimelysReservation item = (DaytimelysReservation) info.get(position);
         final int index = position;
         viewHolder.rootView.setOnClickListener(new MyOnClickListener(activity, item));
         if (item != null) {
-
+            LogUtil.print("start--777->" + (System.currentTimeMillis() - start));
             viewHolder.beginTimeTv.setText(UTC2LOC.instance.getDate(item.coursebegintime, "HH:mm"));
             viewHolder.endTimeTv.setText(UTC2LOC.instance.getDate(item.courseendtime, "HH:mm"));
+            LogUtil.print("start--777-2222>" + (System.currentTimeMillis() - start));
             Date now = Calendar.getInstance().getTime();
+            LogUtil.print("start--666->" + (System.currentTimeMillis() - start));
             if (UTC2LOC.instance.getDates(item.coursebegintime, "yyyy-MM-dd HH:mm:ss").after(now)) {
                 //未来的
                 viewHolder.timeIv.setBackgroundResource(R.mipmap.schedule_item_node_future);
-                viewHolder.lineIv.setBackgroundColor(mContext.getResources().getColor(R.color.new_txt_blues));
-                viewHolder.orderedStudentTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_lights));
-                viewHolder.remainStudnetTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_lights));
-                viewHolder.beginTimeTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_blacks));
-                viewHolder.endTimeTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_lights));
+
+                viewHolder.lineIv.setBackgroundColor(blue);
+                viewHolder.orderedStudentTv.setTextColor(txt_light);
+                viewHolder.remainStudnetTv.setTextColor(txt_light);
+                viewHolder.beginTimeTv.setTextColor(txt_black);
+                viewHolder.endTimeTv.setTextColor(txt_light);
+                LogUtil.print("start--888->" + (System.currentTimeMillis() - start));
                 viewHolder.orderedStudentTv.setText("已约" + item.selectedstudentcount + "人");
                 viewHolder.remainStudnetTv.setText("剩余名额" + (item.coursestudentcount - item.selectedstudentcount) + "人");
-                viewHolder.rootView.setBackgroundColor(mContext.getResources().getColor(R.color.white_pure));
+                viewHolder.rootView.setBackgroundColor(white);
                 viewHolder.rootView.setClickable(true);
-                viewHolder.timeLl.setBackgroundColor(mContext.getResources().getColor(R.color.white_pure));
-
+                viewHolder.timeLl.setBackgroundColor(white);
+                LogUtil.print("start--999->" + (System.currentTimeMillis() - start));
             } else if (UTC2LOC.instance.getDates(item.courseendtime, "yyyy-MM-dd HH:mm:ss").before(now)) {
                 //过时
                 viewHolder.timeIv.setBackgroundResource(R.mipmap.schedule_item_node_past);
-                viewHolder.lineIv.setBackgroundColor(mContext.getResources().getColor(R.color.new_txt_lights));
-                viewHolder.rootView.setBackgroundColor(mContext.getResources().getColor(R.color.item_bg));
-                viewHolder.beginTimeTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_lights));
+                viewHolder.lineIv.setBackgroundColor(txt_light);
+                viewHolder.rootView.setBackgroundColor(item_bg);
+                viewHolder.beginTimeTv.setTextColor(txt_light);
                 viewHolder.endTimeTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_lights_p));
                 viewHolder.rootView.setClickable(false);
-                viewHolder.orderedStudentTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_lights));
-                viewHolder.remainStudnetTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_lights));
+                viewHolder.orderedStudentTv.setTextColor(txt_light);
+                viewHolder.remainStudnetTv.setTextColor(txt_light);
                 viewHolder.orderedStudentTv.setText("已学" + item.selectedstudentcount + "人");
                 viewHolder.remainStudnetTv.setText("漏课" + (item.selectedstudentcount - item.signinstudentcount) + "人");
-                viewHolder.timeLl.setBackgroundColor(mContext.getResources().getColor(R.color.item_bg));
+                viewHolder.timeLl.setBackgroundColor(item_bg);
             } else {
                 //现在
                 viewHolder.timeIv.setBackgroundResource(R.mipmap.schedule_item_node_now);
-                viewHolder.lineIv.setBackgroundColor(mContext.getResources().getColor(R.color.new_txt_blues));
-                viewHolder.orderedStudentTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_blues));
-                viewHolder.remainStudnetTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_blues));
-                viewHolder.beginTimeTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_blues));
-                viewHolder.endTimeTv.setTextColor(mContext.getResources().getColor(R.color.new_txt_light_blues));
+                viewHolder.lineIv.setBackgroundColor(blue);
+                viewHolder.orderedStudentTv.setTextColor(blue);
+                viewHolder.remainStudnetTv.setTextColor(blue);
+                viewHolder.beginTimeTv.setTextColor(blue);
+                viewHolder.endTimeTv.setTextColor(blue_light);
                 viewHolder.orderedStudentTv.setText("已约" + item.selectedstudentcount + "人");
                 viewHolder.remainStudnetTv.setText("剩余名额" + (item.coursestudentcount - item.selectedstudentcount) + "人");
-                viewHolder.rootView.setBackgroundColor(mContext.getResources().getColor(R.color.white_pure));
+                viewHolder.rootView.setBackgroundColor(white);
                 viewHolder.rootView.setClickable(true);
-                viewHolder.timeLl.setBackgroundColor(mContext.getResources().getColor(R.color.white_pure));
+                viewHolder.timeLl.setBackgroundColor(white);
             }
 
-
+            LogUtil.print("start--222->"+(System.currentTimeMillis() - start));
             viewHolder.lineIv.setVisibility(View.VISIBLE);
-            //
-            viewHolder.studentGv.setAdapter(new StudentAdapter(mContext, item));
+            viewHolder.adapter.setData(item);
+            LogUtil.print("start--333->" + (System.currentTimeMillis() - start));
+//            viewHolder.studentGv.setAdapter(viewHolder.adapter);//new StudentAdapter(mContext, item)
             viewHolder.studentGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -148,9 +169,10 @@ public class RowSchedule {
                             mContext.startActivity(intent);
                         }
                     }
+
                 }
             });
-
+            LogUtil.print("start--444->" + (System.currentTimeMillis() - start));
         }
 
     }
@@ -158,17 +180,28 @@ public class RowSchedule {
     static class StudentAdapter extends BaseAdapter {
 
         private Context mContext;
-        private DaytimelysReservation reservation;
+        private DaytimelysReservation reservation = null;
 
         public StudentAdapter(Context mContext, DaytimelysReservation reservation) {
             this.mContext = mContext;
             this.reservation = reservation;
         }
 
+        public StudentAdapter(Context mContext){
+            this.mContext = mContext;
+        }
+
+        public void setData(DaytimelysReservation r){
+            reservation = r;
+            notifyDataSetChanged();
+        }
+
         @Override
         public int getCount() {
             int count=0;
-            if (UTC2LOC.instance.getDates(reservation.coursebegintime, "yyyy-MM-dd HH:mm:ss")
+            if(reservation == null){
+                count = 0;
+            }else if (UTC2LOC.instance.getDates(reservation.coursebegintime, "yyyy-MM-dd HH:mm:ss")
                     .before(Calendar.getInstance().getTime())) {
 
                 //当前时间的不显示“+”
@@ -210,7 +243,9 @@ public class RowSchedule {
             studentPic.setScaleType(ImageView.ScaleType.CENTER_CROP);
             studentPic.setImageResource(R.mipmap.schedule_item_no_student);
             studentPic.setOval(true);
-            if (reservation.coursereservationdetial != null && reservation.coursereservationdetial.size() > position) {
+            if(reservation == null){
+
+            }else  if (reservation.coursereservationdetial != null && reservation.coursereservationdetial.size() > position) {
                 DaytimelysReservation.Coursereservationdetial detail = reservation.coursereservationdetial.get(position);
                 if (detail.userid != null && detail.userid.headportrait != null && !TextUtils.isEmpty(detail.userid.headportrait.originalpic)) {
                     UILHelper.loadImage(studentPic, detail.userid.headportrait.originalpic, false, R.mipmap.schedule_item_no_student);
@@ -268,6 +303,11 @@ public class RowSchedule {
         private TextView orderedStudentTv, remainStudnetTv;
         private GridView studentGv;//
         private LinearLayout timeLl;
+        StudentAdapter adapter;
+        int blue;
+        int blue_light;
+        int txt_light;
+        int txt_black;
 
         public Holder(View itemView) {
             super(itemView);
