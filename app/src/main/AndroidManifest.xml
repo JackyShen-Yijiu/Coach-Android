@@ -70,10 +70,12 @@
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
 
-        <!-- <<<<<<< HEAD
+        <!--
+<<<<<<< HEAD
 =======
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"
->>>>>>> e7099f2c7d3c1e4802ac8a90c689d6d6baa6ac41-->
+>>>>>>> e7099f2c7d3c1e4802ac8a90c689d6d6baa6ac41
+        -->
         <activity
             android:name=".activities.NewLoginActivity"
             android:label="@string/title_activity_login"
@@ -526,7 +528,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activities.NoticeActivity"></activity>
+        <activity android:name=".activities.NoticeActivity" />
     </application>
 
 </manifest>
