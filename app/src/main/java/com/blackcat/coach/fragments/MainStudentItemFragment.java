@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.blackcat.coach.R;
 import com.blackcat.coach.adapters.CommonAdapter;
@@ -15,11 +17,16 @@ import com.blackcat.coach.models.DicCode;
 import com.blackcat.coach.models.Result;
 import com.blackcat.coach.models.Session;
 import com.blackcat.coach.models.User;
+import com.blackcat.coach.net.GsonIgnoreCacheHeadersRequest;
 import com.blackcat.coach.net.URIUtil;
 import com.blackcat.coach.utils.LogUtil;
+import com.blackcat.coach.utils.VolleyUtil;
 import com.google.gson.reflect.TypeToken;
 
+import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 
@@ -80,6 +87,7 @@ public class MainStudentItemFragment extends BaseListFragment {
         View view = inflater.inflate(R.layout.layout_pulltorefresh_list, container, false);
         // Set the adapter
         initView(view, inflater);
+//        test();
         return view;
     }
 
@@ -103,6 +111,47 @@ public class MainStudentItemFragment extends BaseListFragment {
         else{
             refresh(DicCode.RefreshType.R_PULL_UP, mURI);
         }
+    }
+
+    private void test(){
+        URI mURI = URIUtil.getTest();
+        String url = null;
+        if (mURI != null) {
+            try {
+                url = mURI.toURL().toString();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        Map map = new HashMap<>();
+        Toast.makeText(getActivity(), "test", Toast.LENGTH_SHORT).show();
+        GsonIgnoreCacheHeadersRequest<Result> request = new GsonIgnoreCacheHeadersRequest<Result>(
+                url, mType, map,
+                new Response.Listener<Result>() {
+                    @Override
+                    public void onResponse(Result response) {
+                        LogUtil.print("onResponse-->"+response);
+//                        onFeedsResponse(response, refreshType);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError arg0) {
+                        LogUtil.print("onResponse-->onErrorResponse"+arg0);
+//                        onFeedsErrorResponse(arg0, refreshType);
+                    }
+                });
+        // 请求加上Tag,用于取消请求
+        request.setTag(this);
+//        if (refreshType == DicCode.RefreshType.R_PULL_DOWN) {
+//            request.setManuallyRefresh(true);
+//        } else if (refreshType == DicCode.RefreshType.R_PULL_UP) {
+//            request.setShouldCache(false);
+//        }
+
+        VolleyUtil.getQueue(getActivity()).add(request);
+
     }
 
 

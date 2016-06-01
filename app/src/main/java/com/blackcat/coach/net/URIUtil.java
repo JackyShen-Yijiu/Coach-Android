@@ -150,6 +150,24 @@ public class URIUtil {
 		return null;
 	}
 
+
+	public static URI getTest() {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("phone", "13120064118"));
+		params.add(new BasicNameValuePair("type", "1"));
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					"192.168.0.124", 8080,
+					"OutDoorComment/servlet/LoginServlet", URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public static URI getApplyVerify() {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 		fillBasicParams(CarCoachApplication.getInstance(), params);
