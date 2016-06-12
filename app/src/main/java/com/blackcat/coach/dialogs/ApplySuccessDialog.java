@@ -83,8 +83,7 @@ public class ApplySuccessDialog extends Dialog implements
 			dismiss();
 			break;
 		case R.id.dialog_no_login_cancel_btn:
-			
-//			context.sendBroadcast(new Intent(MyAppointmentActivity.class
+//			context.sendBroadcast(new Inte	nt(MyAppointmentActivity.class
 //					.getName()).putExtra("isApplyExam", true));
 			dismiss();
 			break;

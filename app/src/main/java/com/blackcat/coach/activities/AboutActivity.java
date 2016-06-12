@@ -33,7 +33,6 @@ public class AboutActivity extends BaseNoFragmentActivity implements View.OnClic
             case R.id.tv_proto:
                 Intent intent = new Intent(AboutActivity.this, TermsActivity.class);
                 startActivity(intent);
-
                 break;
         }
     }
