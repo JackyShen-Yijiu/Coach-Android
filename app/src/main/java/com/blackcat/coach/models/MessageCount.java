@@ -8,4 +8,6 @@ import java.io.Serializable;
 public class MessageCount implements Serializable {
     public MessageInfo messageinfo;
     public NewsInfo Newsinfo;
+    public BulletininfoVO bulletininfo;
+
 }

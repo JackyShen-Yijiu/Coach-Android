@@ -65,7 +65,7 @@
             android:id="@+id/Tv_toast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="欢迎使用极致驾服"
+            android:hint="欢迎使用极致驾服"
             android:textColor="@color/new_txt_lights"
             android:layout_toRightOf="@+id/avatar_container"
             android:layout_marginLeft="0dp"
@@ -96,24 +96,27 @@
         android:id="@+id/rl_system_messeage"
         android:layout_width="match_parent"
         android:background="#ffffff"
-        android:visibility="gone"
         android:layout_height="80dp">
         <RelativeLayout
             android:id="@+id/avatar_container_one"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="15dp">
+            android:layout_marginLeft="0dp">
 
-            <ImageView
+            <com.blackcat.coach.widgets.SelectableRoundedImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                app:sriv_border_color="#00000000"
+                app:sriv_border_width="1dip"
                 android:id="@+id/system_messeage"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginRight="12dp"
-                android:layout_centerVertical="true"
+                android:layout_width="@dimen/avatar_size"
+                android:layout_height="@dimen/avatar_size"
+                android:layout_centerInParent="true"
                 android:scaleType="fitXY"
-                android:src="@drawable/messeage"
+                android:src="@mipmap/system_bulletin"
                 />
+
+
             <TextView
                 android:id="@+id/TV_system_messeage"
                 android:layout_width="wrap_content"
@@ -125,35 +128,47 @@
                 android:visibility="gone"
                 android:textColor="@color/white_pure"
                 android:textSize="12sp" />
+
+
         </RelativeLayout>
         <TextView
             android:id="@+id/TV_sy_messeage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="行业资讯"
+            android:text="公告"
             android:textSize="18sp"
-            android:textColor="#000000"
+            android:textColor="@color/new_txt_blacks"
             android:layout_toRightOf="@+id/avatar_container_one"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="18dp"
             />
         <TextView
             android:id="@+id/Tv_system_toast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
+            android:hint="暂时没有新公告"
+            android:textColor="@color/new_txt_lights"
             android:layout_toRightOf="@+id/avatar_container_one"
-            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="16dp"
             android:layout_alignBottom="@+id/avatar_container_one" />
         <TextView
             android:id="@+id/system_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=""
+            android:visibility="gone"
             android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="16dp"
+            android:src="@mipmap/ic_right"/>
 
     </RelativeLayout>
 

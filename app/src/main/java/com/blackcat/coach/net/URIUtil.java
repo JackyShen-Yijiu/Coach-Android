@@ -137,11 +137,29 @@ public class URIUtil {
 	public static URI getNewSendSms(String mobile) {
 		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
 		fillBasicParams(CarCoachApplication.getInstance(), params);
-		params.add(new BasicNameValuePair(NetConstants.KEY_MOBILE,mobile));
+		params.add(new BasicNameValuePair(NetConstants.KEY_MOBILE, mobile));
 		try {
 			URI uri = URIUtils.createURI(NetConstants.HTTP,
 					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
 					NetConstants.PATH_NEW_SENDCODE , URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
+	public static URI getTest() {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		params.add(new BasicNameValuePair("phone", "13120064118"));
+		params.add(new BasicNameValuePair("type", "1"));
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					"192.168.0.124", 8080,
+					"OutDoorComment/servlet/LoginServlet", URLEncodedUtils.format(params, NetConstants.ENCODING), null);
 			logRequestUri(uri);
 			return uri;
 		} catch (Exception e) {
@@ -431,6 +449,27 @@ public class URIUtil {
 			URI uri = URIUtils.createURI(NetConstants.HTTP,
 					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
 					NetConstants.PATH_SYSTEMMSG, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
+			logRequestUri(uri);
+			return uri;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	//系统消息（新加）
+	public static URI getNoticeMsgList(String coachid, int pos,String schoolid) {
+		ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+		fillBasicParams(CarCoachApplication.getInstance(), params);
+		params.add(new BasicNameValuePair(NetConstants.KEY_USERID, coachid));
+		params.add(new BasicNameValuePair("schoolid",schoolid));
+		params.add(new BasicNameValuePair("count",String.valueOf(NetConstants.REQ_LEN)));
+		params.add(new BasicNameValuePair("seqindex",String.valueOf(pos)));
+//		params.add(new BasicNameValuePair(NetConstants.KEY_INDEX, String.valueOf(pos)));
+		try {
+			URI uri = URIUtils.createURI(NetConstants.HTTP,
+					NetConstants.HOSTNAME, NetConstants.DEFAULT_PORT,
+					NetConstants.PATH_NOTICE_MSG, URLEncodedUtils.format(params, NetConstants.ENCODING), null);
 			logRequestUri(uri);
 			return uri;
 		} catch (Exception e) {
